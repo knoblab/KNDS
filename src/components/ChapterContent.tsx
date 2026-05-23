@@ -20,7 +20,7 @@ interface ChapterProps {
 export default function ChapterContent({ activeChapter }: ChapterProps) {
   return (
     <div className={`space-y-12 transition-all duration-300 text-sm`}>
-      
+
       {/* CHAPTER 1 */}
       {activeChapter === 1 && (
         <section id="ch-1" className="scroll-mt-16 animate-fade-in">
@@ -39,20 +39,20 @@ export default function ChapterContent({ activeChapter }: ChapterProps) {
           <div className="relative w-full aspect-video md:aspect-[21/9] bg-zinc-50 border border-zinc-200 rounded-xl overflow-hidden mb-8 flex items-center justify-center p-8 group">
             {/* Grid Background */}
             <div className="absolute inset-0 z-0 pointer-events-none" style={{ backgroundImage: 'linear-gradient(to right, rgba(9, 9, 11, 0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(9, 9, 11, 0.05) 1px, transparent 1px)', backgroundSize: '16px 16px' }}></div>
-            
+
             {/* Displaying Headphone image */}
-            <img 
-              src="https://soundium.com/cdn/shop/files/7a541ce0-049a-4afa-9809-ddded0f3376d.png?v=1745829736&width=1946" 
-              alt="B&W Headphones Material Design" 
-              className="relative z-10 w-full h-full object-contain drop-shadow-2xl transition-transform duration-700 ease-out group-hover:scale-105" 
+            <img
+              src="https://soundium.com/cdn/shop/files/7a541ce0-049a-4afa-9809-ddded0f3376d.png?v=1745829736&width=1946"
+              alt="B&W Headphones Material Design"
+              className="relative z-10 w-full h-full object-contain drop-shadow-2xl transition-transform duration-700 ease-out group-hover:scale-105"
             />
-            
+
             {/* Material Annotations */}
             <div className="absolute top-4 left-4 z-20">
               <span className="font-mono text-[9px] font-bold text-zinc-500 tracking-widest uppercase">Design Inspiration</span>
               <h3 className="font-sans text-sm font-bold text-zinc-900 mt-1">Bowers & Wilkins Form Factor</h3>
             </div>
-            
+
             {/* Material Callouts */}
             <div className="absolute top-1/4 left-1/4 z-20 flex items-center gap-2 pointer-events-none">
               <div className="w-2 h-2 rounded-full bg-red-700 animate-pulse"></div>
@@ -100,7 +100,7 @@ export default function ChapterContent({ activeChapter }: ChapterProps) {
             <p>
               PDF-DS의 철학은 기존 주류 웹 디자인이 가지고 있는 <strong>구조적 비효율성</strong>과 지나친 장식주의를 비판하고 이를 해결하는 과정에서 완성되었습니다.
             </p>
-            
+
             <LayoutComparisonSandbox />
 
             <h3 className="font-bold text-zinc-900 mt-6 pt-4 border-t border-zinc-200">윈도우(16:9) 중심의 공간 낭비와 패러다임 전환</h3>
@@ -196,7 +196,7 @@ export default function ChapterContent({ activeChapter }: ChapterProps) {
               <li><strong>다국어 호환성:</strong> Pretendard 자체가 가진 방대한 다국어 글리프 글꼴 세트는 한국어에서 영문으로, 영문에서 다시 일본어 등 다른 문자로 전환될 때 발생하는 시각적 높이 단차(Ascender/Descender 튀는 현상) 문제를 완벽히 평탄화합니다.</li>
             </ul>
           </div>
-          
+
           <div className="mt-8 space-y-12">
             <TypographySandbox />
             <AlignmentSandbox />
@@ -223,7 +223,7 @@ export default function ChapterContent({ activeChapter }: ChapterProps) {
             <p>
               PDF-DS는 기존의 수직 구조가 방치하던 <strong>좌우 레터박스 공간을 완전히 회수</strong>하여 화면의 100%를 통제합니다. 단조로운 대칭뷰를 탈피하여 <strong>38:62 비대칭 황금 분할</strong>을 레이아웃 표준으로 삼습니다.
             </p>
-            
+
             <GoldenRatioSandbox />
 
             <ul className="list-disc pl-5 mt-6">
