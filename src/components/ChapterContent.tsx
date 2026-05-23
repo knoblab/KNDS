@@ -36,12 +36,43 @@ export default function ChapterContent({ activeChapter }: ChapterProps) {
             </div>
           </div>
 
+          <div className="relative w-full aspect-video md:aspect-[21/9] bg-zinc-50 border border-zinc-200 rounded-xl overflow-hidden mb-8 flex items-center justify-center p-8 group">
+            {/* Grid Background */}
+            <div className="absolute inset-0 z-0 pointer-events-none" style={{ backgroundImage: 'linear-gradient(to right, rgba(9, 9, 11, 0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(9, 9, 11, 0.05) 1px, transparent 1px)', backgroundSize: '16px 16px' }}></div>
+            
+            {/* Displaying Headphone image */}
+            <img 
+              src="https://soundium.com/cdn/shop/files/7a541ce0-049a-4afa-9809-ddded0f3376d.png?v=1745829736&width=1946" 
+              alt="B&W Headphones Material Design" 
+              className="relative z-10 w-full h-full object-contain drop-shadow-2xl transition-transform duration-700 ease-out group-hover:scale-105" 
+            />
+            
+            {/* Material Annotations */}
+            <div className="absolute top-4 left-4 z-20">
+              <span className="font-mono text-[9px] font-bold text-zinc-500 tracking-widest uppercase">Design Inspiration</span>
+              <h3 className="font-sans text-sm font-bold text-zinc-900 mt-1">Bowers & Wilkins Form Factor</h3>
+            </div>
+            
+            {/* Material Callouts */}
+            <div className="absolute top-1/4 left-1/4 z-20 flex items-center gap-2 pointer-events-none">
+              <div className="w-2 h-2 rounded-full bg-red-700 animate-pulse"></div>
+              <span className="font-mono text-[9px] font-bold text-zinc-500 bg-white/90 px-1.5 py-0.5 border border-zinc-200">Fabric & Nappa Leather</span>
+            </div>
+            <div className="absolute bottom-1/4 right-1/4 z-20 flex items-center gap-2 pointer-events-none">
+              <div className="w-2 h-2 rounded-full bg-zinc-800 animate-pulse"></div>
+              <span className="font-mono text-[9px] font-bold text-zinc-500 bg-white/90 px-1.5 py-0.5 border border-zinc-200">Metal & Polymer Transitions</span>
+            </div>
+          </div>
+
           <div className="prose max-w-none text-zinc-700 leading-relaxed space-y-4">
             <p>
-              현대 하드웨어 디자인이 예술로 추앙받는 이유는 단순히 값비싼 소재를 써서가 아니라, <strong>타협 없이 물리적 형태를 지배하고 이질적인 물리 소재(금속, 플라스틱, 가죽 등) 간의 전이(Transition) 과정이 하나의 유기체처럼 완벽히 맞물리도록 엔지니어링 했기 때문</strong>입니다.
+              현대 하드웨어 디자인이 예술로 추앙받는 이유는 단순히 값비싼 소재를 써서가 아니라, <strong>타협 없이 물리적 형태를 지배하고 이질적인 물리 소재(아노다이징 금속, 무광 폴리머 플라스틱, 프리미엄 나파 가죽, 텍스처 패브릭) 간의 전이(Transition) 과정이 하나의 유기체처럼 완벽히 맞물리도록 엔지니어링 했기 때문</strong>입니다.
             </p>
             <p>
-              <strong>PDF-DS (Physical-Digital Fusion Design System)</strong>는 이러한 극한의 물리적 마감 철학을 디지털 스크린의 차가운 평면 공간에 이식하려는 대담한 시도입니다. 화면이라는 매체의 한계로 인해 실제 질감(Texture)을 부여할 수 없다는 한계를 극복하기 위해, PDF-DS는 <strong>'수학적으로 통제된 색상의 대비', '1px 선(Border)의 투명도 변화', 그리고 '컴포넌트의 기하학적 형태 변화(Shape Morphing)'</strong>를 웹 스크린의 가상 물리 소재로 치환합니다.
+              바워스 앤 윌킨스(B&W) 헤드폰 같은 명품 기기에서 관찰되는 <strong>각 부품의 확실한 재질 차이와 이를 하나로 묶어내는 극도의 통일성</strong>은 PDF-DS의 핵심 영감입니다. <strong>PDF-DS (Physical-Digital Fusion Design System)</strong>는 이러한 극한의 물리적 마감 철학을 디지털 스크린의 차가운 평면 공간에 이식하려는 대담한 시도입니다.
+            </p>
+            <p>
+              화면이라는 매체의 한계로 인해 실제 질감(Texture)을 부여할 수 없다는 한계를 극복하기 위해, PDF-DS는 <strong>'수학적으로 통제된 색상의 대비', '1px 선(Border)의 투명도 변화', 그리고 '컴포넌트의 기하학적 형태 변화(Shape Morphing)'</strong>를 웹 스크린의 가상 물리 소재로 치환합니다.
             </p>
             <p>
               이 시스템은 감성적이고 인간적인 척하는 가짜 아날로그 디테일(sepia 톤 배경, 감상적 서체, 부드러운 그림자)을 철저히 배제하고, 차갑고 정교한 디지털 본연의 아름다움(Achromatic, Blueprint Grid)을 추구합니다.
