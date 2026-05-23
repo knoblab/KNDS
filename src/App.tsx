@@ -1,17 +1,17 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'motion/react';
-import { 
-  Compass, 
-  Ruler, 
-  Type, 
-  Palette, 
-  Smartphone, 
-  Columns, 
-  Terminal, 
-  ClipboardCheck, 
-  Grid, 
-  Sliders, 
-  ZoomIn, 
+import {
+  Compass,
+  Ruler,
+  Type,
+  Palette,
+  Smartphone,
+  Columns,
+  Terminal,
+  ClipboardCheck,
+  Grid,
+  Sliders,
+  ZoomIn,
   ChevronRight,
   ChevronLeft,
   ArrowRight
@@ -24,7 +24,7 @@ export default function App() {
   const [sidebarWidth, setSidebarWidth] = useState<number>(38); // Standard 38%
   const [isResizing, setIsResizing] = useState<boolean>(false);
   const [isMobile, setIsMobile] = useState<boolean>(false);
-  
+
   // Parallax Scroll-to-Dock state engine
   const [scrollTop, setScrollTop] = useState<number>(0);
 
@@ -95,7 +95,7 @@ export default function App() {
       const containerRect = containerRef.current.getBoundingClientRect();
       const relativeX = e.clientX - containerRect.left;
       const percentage = (relativeX / containerRect.width) * 100;
-      
+
       // Enforce 20% to 50% boundary caps in Section 6
       if (percentage >= 20 && percentage <= 50) {
         setSidebarWidth(percentage);
@@ -135,9 +135,9 @@ export default function App() {
 
   // Chapter mapping metadata
   const chapters = [
-    { num: 1, title: 'The Core Philosophy', sub: '서론: 두 세계의 융합', icon: Compass },
-    { num: 2, title: 'Legacy & Limitations', sub: '출발점 분석: 주류 웹 디자인의 한계', icon: Ruler },
-    { num: 3, title: 'Digital Transition', sub: '전이 과정: 물리적 치환', icon: Type },
+    { num: 1, title: 'The Core Philosophy', sub: '서론: 디자인 모티브', icon: Compass },
+    { num: 2, title: 'Legacy & Limitations', sub: '출발점: 기존 주류 디자인의 한계', icon: Ruler },
+    { num: 3, title: 'Digital Transition', sub: '물리 디자인 철학의 디지털 치환', icon: Type },
     { num: 4, title: 'Precision Typography', sub: '정밀 타이포그래피 및 다국어 처리', icon: Type },
     { num: 5, title: '38:62 Blueprint Format', sub: '구조의 완성: 비대칭 레이아웃', icon: Columns },
     { num: 6, title: 'Aesthetic Value', sub: '결론: 미학적 가치', icon: Palette },
@@ -212,13 +212,13 @@ export default function App() {
             </span>
             <div className="flex overflow-x-auto gap-2 pb-3" style={{ scrollbarWidth: 'none' }}>
               {chapters.map(ch => (
-                <button 
-                  key={ch.num} 
+                <button
+                  key={ch.num}
                   onClick={() => {
                     setActiveChapter(ch.num);
                     const el = document.getElementById(`ch-${ch.num}`);
-                    if(el) el.scrollIntoView({behavior: 'smooth', block: 'start'});
-                  }} 
+                    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }}
                   className={`shrink-0 px-3 py-2 rounded text-[10px] font-mono font-bold transition-colors ${activeChapter === ch.num ? 'bg-zinc-900 text-white' : 'bg-zinc-100 text-zinc-700 hover:bg-zinc-200'}`}
                 >
                   0{ch.num}. {ch.title}
@@ -226,20 +226,20 @@ export default function App() {
               ))}
             </div>
           </div>
-          
+
           <ChapterContent activeChapter={activeChapter} />
-          
+
           <div className="mt-12 pt-6 border-t border-zinc-200 flex justify-between">
-            <button 
-              disabled={activeChapter === 1} 
-              onClick={() => { setActiveChapter(activeChapter - 1); window.scrollTo({top: 0, behavior: 'smooth'}); }} 
+            <button
+              disabled={activeChapter === 1}
+              onClick={() => { setActiveChapter(activeChapter - 1); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
               className={`flex items-center gap-1 text-xs font-mono font-bold px-4 py-2 rounded transition-colors ${activeChapter === 1 ? 'opacity-50 cursor-not-allowed bg-zinc-50 border border-zinc-100 text-zinc-400' : 'bg-zinc-100 text-zinc-700 active:bg-zinc-200'}`}
             >
               <ChevronLeft className="w-3.5 h-3.5" /> PREV
             </button>
-            <button 
-              disabled={activeChapter === 6} 
-              onClick={() => { setActiveChapter(activeChapter + 1); window.scrollTo({top: 0, behavior: 'smooth'}); }} 
+            <button
+              disabled={activeChapter === 6}
+              onClick={() => { setActiveChapter(activeChapter + 1); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
               className={`flex items-center gap-1 text-xs font-mono font-bold px-4 py-2 rounded transition-colors ${activeChapter === 6 ? 'opacity-50 cursor-not-allowed bg-zinc-50 border border-zinc-100 text-zinc-400' : 'bg-zinc-900 text-white active:scale-95'}`}
             >
               NEXT <ChevronRight className="w-3.5 h-3.5" />
@@ -251,26 +251,26 @@ export default function App() {
   }
 
   return (
-    <div 
+    <div
       ref={containerRef}
       onScroll={handleMasterScroll}
       className="h-screen overflow-y-auto bg-white text-zinc-900 font-sans select-none scroll-smooth relative"
       style={{ scrollbarWidth: 'none' }} /* Beautiful seamless view */
     >
-      
+
       {/* Scroll track spacer structure to enable natural high-fidelity parallax scrolling */}
       <div className="h-[210vh] pointer-events-none absolute top-0 left-0 right-0 z-0 bg-transparent" />
 
       {/* FIXED PLATFORM FRAME IN REACTION TO SCROLL */}
       <div className="fixed inset-0 w-full h-full flex flex-col overflow-hidden z-10 pointer-events-none">
-        
+
 
 
         {/* Core Screen Layout (Asymmetric split when docked, morphing when scrolling) */}
         <div className="flex-1 flex flex-col lg:flex-row overflow-hidden relative">
-          
+
           {/* LEFT SIDE PANEL (Transitions from Full Screen landing to Left Control Sidebar) */}
-          <aside 
+          <aside
             ref={sidebarRef}
             className="bg-zinc-50 border-r border-zinc-200 shrink-0 z-20 relative overflow-hidden flex flex-col justify-between"
             style={{
@@ -279,11 +279,11 @@ export default function App() {
               backgroundSize: '24px 24px' // Traditional 24dp grid modulus
             }}
           >
-            
+
             {/* ========================================== */}
             {/* HERO LANDING CANVAS LAYER (Is visible when dockProgress < 0.95) */}
             {/* ========================================== */}
-            <div 
+            <div
               className="absolute inset-0 flex flex-col justify-between p-6 md:p-12 text-zinc-950 select-none z-10 pointer-events-auto"
               style={{
                 opacity: 1 - dockProgress * 1.6,
@@ -304,7 +304,7 @@ export default function App() {
               <div className="flex-1 flex flex-col items-center justify-center text-center max-w-4xl mx-auto space-y-8 my-auto">
                 <div className="relative">
                   {/* Rotating grid calibration dial */}
-                  <div 
+                  <div
                     className="absolute -inset-20 opacity-[0.075] pointer-events-none flex items-center justify-center anim-spin-slow"
                     style={{
                       transform: `rotate(${scrollTop * 0.45}deg)`,
@@ -339,7 +339,7 @@ export default function App() {
 
                 {/* Tactical Quick Dock Button */}
                 <div className="flex flex-col items-center gap-5 relative z-10">
-                  <button 
+                  <button
                     onClick={dockToSystem}
                     className="px-8 py-3.5 bg-zinc-950 hover:bg-zinc-900 border border-zinc-900 text-white rounded-md text-xs font-mono font-bold tracking-widest transition-all transform hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-zinc-950/20 hover:border-red-700 flex items-center gap-2 pointer-events-auto"
                   >
@@ -347,7 +347,7 @@ export default function App() {
                     ENTER SPEC SYSTEM (도킹 시스템 입력)
                     <ArrowRight className="w-4 h-4 text-red-500" />
                   </button>
-                  
+
                   {/* Animated scroll suggestion */}
                   <div className="text-[9px] font-mono text-zinc-400 flex flex-col items-center gap-1.5 mt-2">
                     <span className="tracking-widest filter-pulse">SCROLL DOWN OR CLICK TO SYSTEM COUPLING</span>
@@ -367,7 +367,7 @@ export default function App() {
             {/* ========================================== */}
             {/* SIDEBAR SYSTEM INTERFACE LAYER (Is visible when dockProgress > 0.05) */}
             {/* ========================================== */}
-            <div 
+            <div
               className="absolute inset-0 flex flex-col justify-between p-5 select-none z-15 pointer-events-auto"
               style={{
                 opacity: (dockProgress - 0.1) * 1.11,
@@ -408,7 +408,7 @@ export default function App() {
                   <span className="text-[9px] font-mono text-zinc-400 block pb-1 border-b border-zinc-100 uppercase tracking-widest mb-1.5 font-bold">
                     CHAPTER INDEX
                   </span>
-                  
+
                   {chapters.map((ch) => {
                     const isSelected = activeChapter === ch.num;
                     return (
@@ -454,7 +454,7 @@ export default function App() {
 
           {/* SPLITTER DRAGGABLE BAR (Only visible on larger width desktops when docked) */}
           {dockProgress > 0.95 && (
-            <div 
+            <div
               onMouseDown={startResizing}
               onDoubleClick={() => {
                 setSidebarWidth(38); // Reset to standard Golden asymmetric ratio
@@ -467,7 +467,7 @@ export default function App() {
           )}
 
           {/* RIGHT SIDE DOCUMENT VIEW PANEL (Gently slides and cascades in depending on scroll progress) */}
-          <main 
+          <main
             id="documentation-scroller"
             className="flex-1 overflow-y-auto bg-white p-6 md:p-8 lg:p-10 space-y-6 scroll-smooth lg:h-[calc(100vh-40px)]"
             style={{

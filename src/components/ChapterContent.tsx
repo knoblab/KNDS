@@ -31,7 +31,7 @@ export default function ChapterContent({ activeChapter }: ChapterProps) {
             <div>
               <span className="font-mono text-xs tracking-widest text-zinc-400 block uppercase">SECTION 01</span>
               <h2 className="font-sans text-xl md:text-2xl font-black text-zinc-950 tracking-tight">
-                서론: 두 세계의 융합 (The Core Philosophy)
+                서론: 디자인 모티브 (The Core Philosophy)
               </h2>
             </div>
           </div>
@@ -91,7 +91,7 @@ export default function ChapterContent({ activeChapter }: ChapterProps) {
             <div>
               <span className="font-mono text-xs tracking-widest text-zinc-400 block uppercase">SECTION 02</span>
               <h2 className="font-sans text-xl md:text-2xl font-black text-zinc-950 tracking-tight">
-                출발점 분석: 기존 주류 디자인의 한계
+                출발점: 기존 주류 디자인의 한계
               </h2>
             </div>
           </div>
@@ -123,7 +123,7 @@ export default function ChapterContent({ activeChapter }: ChapterProps) {
             <div>
               <span className="font-mono text-xs tracking-widest text-zinc-400 block uppercase">SECTION 03</span>
               <h2 className="font-sans text-xl md:text-2xl font-black text-zinc-950 tracking-tight">
-                전이(Transition) 과정: 오리지널 물리 디자인 철학의 디지털 치환
+                물리 디자인 철학의 디지털 치환
               </h2>
             </div>
           </div>
