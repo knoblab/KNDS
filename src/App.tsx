@@ -70,7 +70,7 @@ export default function App() {
       if (dockProgress < 0.9) return;
 
       if (e.key === 'ArrowRight' || e.key === 'PageDown') {
-        if (activeChapter < 7) {
+        if (activeChapter < 6) {
           handleChapterSwitch(activeChapter + 1);
         }
       } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
@@ -141,7 +141,6 @@ export default function App() {
     { num: 4, title: 'Precision Typography', sub: '정밀 타이포그래피 및 다국어 처리', icon: Type },
     { num: 5, title: '38:62 Blueprint Format', sub: '구조의 완성: 비대칭 레이아웃', icon: Columns },
     { num: 6, title: 'Aesthetic Value', sub: '결론: 미학적 가치', icon: Palette },
-    { num: 7, title: 'Pure Platform Architecture', sub: '독자 플랫폼 아키텍처 가이드', icon: Terminal },
   ];
 
   // Computing smooth transitions for widths
@@ -159,6 +158,7 @@ export default function App() {
     const currentWidth = 100 - (dockProgress * (100 - sidebarWidth));
     return {
       width: `${currentWidth}%`,
+      height: '100vh',
       position: 'relative' as const
     };
   };
@@ -238,9 +238,9 @@ export default function App() {
               <ChevronLeft className="w-3.5 h-3.5" /> PREV
             </button>
             <button 
-              disabled={activeChapter === 7} 
+              disabled={activeChapter === 6} 
               onClick={() => { setActiveChapter(activeChapter + 1); window.scrollTo({top: 0, behavior: 'smooth'}); }} 
-              className={`flex items-center gap-1 text-xs font-mono font-bold px-4 py-2 rounded transition-colors ${activeChapter === 7 ? 'opacity-50 cursor-not-allowed bg-pdf-aluminum border border-pdf-seam text-pdf-focus' : 'bg-pdf-leather text-pdf-aluminum active:scale-95'}`}
+              className={`flex items-center gap-1 text-xs font-mono font-bold px-4 py-2 rounded transition-colors ${activeChapter === 6 ? 'opacity-50 cursor-not-allowed bg-pdf-aluminum border border-pdf-seam text-pdf-focus' : 'bg-pdf-leather text-pdf-aluminum active:scale-95'}`}
             >
               NEXT <ChevronRight className="w-3.5 h-3.5" />
             </button>
@@ -267,14 +267,16 @@ export default function App() {
 
 
         {/* Core Screen Layout (Asymmetric split when docked, morphing when scrolling) */}
-        <div className="pdf-shell-viewport">
+        <div className="flex-1 flex flex-col lg:flex-row overflow-hidden relative">
           
           {/* LEFT SIDE PANEL (Transitions from Full Screen landing to Left Control Sidebar) */}
           <aside 
             ref={sidebarRef}
-            className="pdf-control-panel pointer-events-auto"
+            className="bg-pdf-aluminum border-r border-pdf-seam shrink-0 z-20 relative overflow-hidden flex flex-col justify-between"
             style={{
-              ...getResponsiveSidebarStyle()
+              ...getResponsiveSidebarStyle(),
+              backgroundImage: 'linear-gradient(to right, rgba(9, 9, 11, 0.035) 1px, transparent 1px), linear-gradient(to bottom, rgba(9, 9, 11, 0.035) 1px, transparent 1px)',
+              backgroundSize: '24px 24px' // Traditional 24dp grid modulus
             }}
           >
             
@@ -282,12 +284,11 @@ export default function App() {
             {/* HERO LANDING CANVAS LAYER (Is visible when dockProgress < 0.95) */}
             {/* ========================================== */}
             <div 
-              className="absolute inset-0 flex flex-col justify-between text-pdf-leather select-none z-10 pointer-events-auto"
+              className="absolute inset-0 flex flex-col justify-between p-6 md:p-12 text-pdf-leather select-none z-10 pointer-events-auto"
               style={{
-                padding: 'calc(var(--pdf-spacing-grid) * 1.5)',
-                transform: `translateY(${-dockProgress * 40}px)`,
-                opacity: 1 - dockProgress,
+                opacity: 1 - dockProgress * 1.6,
                 pointerEvents: dockProgress > 0.6 ? 'none' : 'auto',
+                transform: `translateY(${-dockProgress * 90}px)`,
                 transition: 'opacity 0.08s ease-out, transform 0.1s ease-out'
               }}
             >
@@ -367,9 +368,8 @@ export default function App() {
             {/* SIDEBAR SYSTEM INTERFACE LAYER (Is visible when dockProgress > 0.05) */}
             {/* ========================================== */}
             <div 
-              className="absolute inset-0 flex flex-col justify-between select-none z-15 pointer-events-auto"
+              className="absolute inset-0 flex flex-col justify-between p-5 select-none z-15 pointer-events-auto"
               style={{
-                padding: 'var(--pdf-spacing-grid)',
                 opacity: (dockProgress - 0.1) * 1.11,
                 pointerEvents: dockProgress > 0.5 ? 'auto' : 'none',
                 transform: `translateY(${(1 - dockProgress) * 45}px)`,
@@ -469,7 +469,7 @@ export default function App() {
           {/* RIGHT SIDE DOCUMENT VIEW PANEL (Gently slides and cascades in depending on scroll progress) */}
           <main 
             id="documentation-scroller"
-            className="pdf-blueprint-canvas"
+            className="flex-1 overflow-y-auto bg-pdf-aluminum p-6 md:p-8 lg:p-10 space-y-6 scroll-smooth lg:h-[calc(100vh-40px)]"
             style={{
               ...getResponsiveDocStyle()
             }}
@@ -502,9 +502,9 @@ export default function App() {
                   <span className="text-[8px] font-mono text-pdf-focus block pb-0.5">SPEC PROGRESS</span>
                   <div className="flex items-center gap-2">
                     <div className="w-20 h-1 bg-pdf-aluminum rounded-full overflow-hidden border border-pdf-seam">
-                      <div className="bg-pdf-red h-full transition-all duration-300" style={{ width: `${(activeChapter / 7) * 100}%` }} />
+                      <div className="bg-pdf-red h-full transition-all duration-300" style={{ width: `${(activeChapter / 6) * 100}%` }} />
                     </div>
-                    <span className="text-[9px] font-mono font-bold text-pdf-leather">{Math.round((activeChapter / 7) * 100)}%</span>
+                    <span className="text-[9px] font-mono font-bold text-pdf-leather">{Math.round((activeChapter / 6) * 100)}%</span>
                   </div>
                 </div>
               </div>
@@ -528,14 +528,14 @@ export default function App() {
               </button>
 
               <span className="text-[9px] font-mono text-pdf-focus">
-                STAGE 0{activeChapter} / 07
+                STAGE 0{activeChapter} / 06
               </span>
 
               <button
                 id="footer-btn-next"
-                disabled={activeChapter === 7}
+                disabled={activeChapter === 6}
                 onClick={() => handleChapterSwitch(activeChapter + 1)}
-                className={`flex items-center gap-1.5 py-1.5 px-3 border text-xs font-mono font-bold rounded transition-colors ${activeChapter === 7 ? 'text-pdf-focus border-pdf-seam cursor-not-allowed bg-pdf-aluminum' : 'text-pdf-leather border-pdf-seam hover:bg-pdf-aluminum text-pdf-red hover:border-pdf-red'}`}
+                className={`flex items-center gap-1.5 py-1.5 px-3 border text-xs font-mono font-bold rounded transition-colors ${activeChapter === 6 ? 'text-pdf-focus border-pdf-seam cursor-not-allowed bg-pdf-aluminum' : 'text-pdf-leather border-pdf-seam hover:bg-pdf-aluminum text-pdf-red hover:border-pdf-red'}`}
               >
                 다음 (NEXT)
                 <ChevronRight className="w-3.5 h-3.5" />

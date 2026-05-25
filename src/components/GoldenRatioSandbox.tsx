@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function GoldenRatioSandbox() {
   return (
-    <div className="pdf-card-offset">
+    <div className="bg-pdf-aluminum border border-pdf-seam p-4 shrink-0 rounded-lg my-8 flex flex-col justify-center overflow-hidden relative shadow-sm">
       <div className="flex justify-between items-center mb-6">
         <div>
           <span className="font-mono text-xs tracking-wider text-pdf-red font-bold uppercase block">

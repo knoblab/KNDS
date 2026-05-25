@@ -181,7 +181,7 @@ public struct PdfMorphingButtonStyle: ButtonStyle {
   };
 
   return (
-    <div className="pdf-card-offset">
+    <div className="border border-pdf-seam bg-pdf-aluminum p-6 rounded-lg font-sans my-4 shadow-sm">
       <div className="flex items-center justify-between mb-4 pb-3 border-b border-pdf-seam">
         <div>
           <span className="font-mono text-xs tracking-wider text-pdf-red font-bold uppercase block">

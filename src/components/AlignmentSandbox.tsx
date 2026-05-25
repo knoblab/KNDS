@@ -34,7 +34,7 @@ export default function AlignmentSandbox() {
   };
 
   return (
-    <div className="pdf-card-offset">
+    <div className="border border-pdf-seam bg-pdf-aluminum p-6 rounded-lg font-sans my-4 shadow-sm">
       <div className="flex items-center justify-between mb-4 pb-3 border-b border-pdf-seam">
         <div>
           <span className="font-mono text-xs tracking-wider text-pdf-red font-bold uppercase block">
@@ -128,14 +128,14 @@ export default function AlignmentSandbox() {
             <button 
               id="btn-nudge-left"
               onClick={() => handleNudge('up')}
-              className="pdf-btn-morph"
+              className="flex items-center justify-center gap-1.5 py-2 px-3 border border-pdf-seam text-xs font-medium rounded bg-pdf-aluminum text-pdf-leather hover:text-pdf-red transition"
             >
               <Move className="w-3.5 h-3.5 rotate-180" /> -1px 오프셋 이동
             </button>
             <button 
               id="btn-nudge-right"
               onClick={() => handleNudge('down')}
-              className="pdf-btn-morph"
+              className="flex items-center justify-center gap-1.5 py-2 px-3 border border-pdf-seam text-xs font-medium rounded bg-pdf-aluminum text-pdf-leather hover:text-pdf-red transition"
             >
               <Move className="w-3.5 h-3.5" /> +1px 오프셋 이동
             </button>
