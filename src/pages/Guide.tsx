@@ -55,7 +55,7 @@ export default function Guide() {
       const containerRect = containerRef.current.getBoundingClientRect();
       const relativeX = e.clientX - containerRect.left;
       const percentage = (relativeX / containerRect.width) * 100;
-      
+
       // Enforce 20% to 50% boundary caps in Section 6
       if (percentage >= 20 && percentage <= 50) {
         setSidebarWidth(percentage);
@@ -92,7 +92,7 @@ export default function Guide() {
     { num: 9, title: 'Forms', sub: '입력 폼 및 데이터 제어 UI' },
     { num: 10, title: 'Modals', sub: '모달 및 다이얼로그 시스템' },
     { num: 11, title: 'Navigation', sub: '네비게이션 및 계층 이동 구조' },
-    { num: 12, title: 'PC Split Screen', sub: '비대칭 황금 분할 25:75 스크린' },
+    { num: 12, title: 'Split Screen', sub: '비대칭 황금 분할 25:75 스크린' },
     { num: 13, title: 'Mobile Screen', sub: '모바일 스택 및 반응형 레이아웃 복원' },
     { num: 14, title: 'QA & Checklist', sub: '최종 통합 실무 체크리스트 및 검수 수칙' }
   ];
@@ -119,7 +119,7 @@ export default function Guide() {
     {
       category: 'Layout',
       items: [
-        { num: 12, title: 'PC Split Screen', sub: '비대칭 황금 분할 25:75 스크린' },
+        { num: 12, title: 'Split Screen', sub: '비대칭 황금 분할 25:75 스크린' },
         { num: 13, title: 'Mobile Screen', sub: '모바일 스택 및 반응형 레이아웃 복원' },
       ]
     },
@@ -142,22 +142,22 @@ export default function Guide() {
 
   return (
     <div className="pdf-app" ref={containerRef}>
-      
+
       {/* SIDEBAR */}
-      <aside 
+      <aside
         className={`pdf-sidebar ${isMobileNavOpen ? 'mobile-nav-open' : ''}`}
         style={{ width: isMobile ? '100%' : `${sidebarWidth}%` }}
       >
         <div className="pdf-content-relative pdf-p-300">
           <div className="pdf-mb-300">
-            <span className="pdf-text-label-14-mono pdf-text-red pdf-mb-100" style={{display: 'block'}}>
+            <span className="pdf-text-label-14-mono pdf-text-red pdf-mb-100" style={{ display: 'block' }}>
               물리-디지털 융합 디자인 가이드라인
             </span>
             <div className="pdf-flex-row pdf-justify-between pdf-items-center pdf-mb-100">
               <h1 className="pdf-text-heading-32">
                 PDF-DS System
               </h1>
-              <button 
+              <button
                 onClick={() => setIsDarkMode(!isDarkMode)}
                 className="pdf-secondary-btn"
                 style={{ padding: '6px 12px', whiteSpace: 'nowrap', display: 'flex', alignItems: 'center', gap: '6px', minWidth: '85px', justifyContent: 'center' }}
@@ -175,18 +175,18 @@ export default function Guide() {
           </div>
 
           <nav>
-            <span className="pdf-text-label-14-mono pdf-text-muted pdf-border-bottom pdf-pb-100 pdf-mb-100" style={{display: 'block', fontWeight: 'bold'}}>
+            <span className="pdf-text-label-14-mono pdf-text-muted pdf-border-bottom pdf-pb-100 pdf-mb-100" style={{ display: 'block', fontWeight: 'bold' }}>
               GUIDELINES INDEX
             </span>
-            
+
             {navigationGroups.map((group, gIdx) => (
               <div key={gIdx} className="pdf-mb-200">
-                <div 
+                <div
                   className="pdf-nav-group-header"
                   onClick={() => toggleGroup(group.category)}
                 >
                   <span>{group.category}</span>
-                  <svg 
+                  <svg
                     className={`pdf-chevron ${collapsedGroups[group.category] ? 'collapsed' : ''}`}
                     viewBox="0 0 24 24"
                   >
@@ -201,7 +201,7 @@ export default function Guide() {
                       onClick={() => !item.disabled && handleChapterSwitch(item.num as number)}
                       className={`pdf-nav-item ${isSelected ? 'active' : ''} ${item.disabled ? 'disabled' : ''}`}
                     >
-                      <div className="pdf-flex-row pdf-items-center pdf-gap-150" style={{overflow: 'hidden', width: '100%'}}>
+                      <div className="pdf-flex-row pdf-items-center pdf-gap-150" style={{ overflow: 'hidden', width: '100%' }}>
                         {item.disabled ? (
                           <div className="pdf-flex-row pdf-items-center pdf-justify-center" style={{ width: '32px', height: '24px', backgroundColor: 'var(--color-bg-secondary)', borderRadius: '2px' }}>
                             <span className="pdf-text-label-14-mono pdf-text-muted" style={{ fontSize: '10px' }}>-</span>
@@ -219,8 +219,8 @@ export default function Guide() {
                             0{item.num}
                           </span>
                         )}
-                        <div className="pdf-flex-col" style={{overflow: 'hidden', flex: 1}}>
-                          <span className="pdf-text-label-16" style={{whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', display: 'flex', alignItems: 'center'}}>
+                        <div className="pdf-flex-col" style={{ overflow: 'hidden', flex: 1 }}>
+                          <span className="pdf-text-label-16" style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', display: 'flex', alignItems: 'center' }}>
                             {item.title}
                             {item.disabled && <span className="pdf-badge">준비 중</span>}
                           </span>
@@ -237,17 +237,17 @@ export default function Guide() {
 
       {/* Mobile Nav Overlay & Bottom Toggle */}
       {isMobile && isMobileNavOpen && (
-        <div 
+        <div
           style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(0,0,0,0.5)', zIndex: 999 }}
           onClick={() => setIsMobileNavOpen(false)}
         />
       )}
-      
+
       {isMobile && (
         <div className="pdf-mobile-bottom-bar" style={{ position: 'fixed', bottom: 16, left: 16, right: 16, zIndex: 1000, display: 'flex', justifyContent: 'center' }}>
-          <button 
+          <button
             onClick={() => setIsMobileNavOpen(!isMobileNavOpen)}
-            className="pdf-btn-primary" 
+            className="pdf-btn-primary"
             style={{ borderRadius: '24px', boxShadow: '0 4px 12px rgba(0,0,0,0.15)', padding: '12px 24px' }}
           >
             {isMobileNavOpen ? '닫기' : '목차 열기'}
@@ -257,7 +257,7 @@ export default function Guide() {
 
       {/* SPLITTER DRAGGABLE BAR */}
       {!isMobile && (
-        <div 
+        <div
           onMouseDown={startResizing}
           onDoubleClick={() => setSidebarWidth(38)}
           className={`pdf-splitter ${isResizing ? 'active' : ''}`}
@@ -266,14 +266,14 @@ export default function Guide() {
       )}
 
       {/* MAIN CONTENT VIEW */}
-      <main 
+      <main
         id="documentation-scroller"
         className="pdf-main-view"
       >
         <div className="pdf-main-content">
           <div className="pdf-panel pdf-grid-bg">
             <div className="pdf-content-relative">
-              <span className="pdf-text-label-14-mono pdf-text-red pdf-mb-100" style={{display: 'block'}}>
+              <span className="pdf-text-label-14-mono pdf-text-red pdf-mb-100" style={{ display: 'block' }}>
                 CHAPTER {activeChapter < 10 ? `0${activeChapter}` : activeChapter}
               </span>
               <div className="pdf-flex-row pdf-justify-between" style={{ alignItems: 'baseline' }}>

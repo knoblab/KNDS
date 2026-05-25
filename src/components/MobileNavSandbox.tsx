@@ -23,18 +23,18 @@ export default function MobileNavSandbox() {
       </p>
 
       {/* 모바일 디바이스 프레임 */}
-      <div className="pdf-border" style={{ 
-        width: '320px', 
-        height: '568px', 
-        margin: '0 auto', 
-        position: 'relative', 
+      <div className="pdf-border" style={{
+        width: '320px',
+        height: '568px',
+        margin: '0 auto',
+        position: 'relative',
         backgroundColor: 'var(--color-bg-primary)',
         borderRadius: '32px',
         border: '8px solid var(--color-border-hover)',
         overflow: 'hidden',
         boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)'
       }}>
-        
+
         {/* 상단 상태바 가짜 UI */}
         <div style={{ height: '24px', backgroundColor: 'var(--color-bg-primary)', display: 'flex', justifyContent: 'space-between', padding: '0 16px', alignItems: 'center', borderBottom: '1px solid var(--color-border-default)', fontSize: '10px', fontWeight: 'bold' }}>
           <span>9:41</span>
@@ -46,7 +46,7 @@ export default function MobileNavSandbox() {
 
         {/* 메인 콘텐츠 영역 (가짜) */}
         <div style={{ padding: '24px 16px', overflowY: 'auto', height: '100%', backgroundColor: 'var(--color-bg-primary)' }}>
-          <span className="pdf-text-label-14-mono pdf-text-red pdf-mb-100" style={{display: 'block'}}>
+          <span className="pdf-text-label-14-mono pdf-text-red pdf-mb-100" style={{ display: 'block' }}>
             CHAPTER 13
           </span>
           <h2 className="pdf-text-heading-24 pdf-mb-200">
@@ -58,28 +58,28 @@ export default function MobileNavSandbox() {
             <div style={{ width: '100%', height: '16px', backgroundColor: 'var(--color-border-default)', borderRadius: '4px', marginBottom: '8px' }}></div>
             <div style={{ width: '60%', height: '16px', backgroundColor: 'var(--color-border-default)', borderRadius: '4px' }}></div>
           </div>
-          
+
           <p className="pdf-text-copy-14 pdf-text-muted" style={{ fontSize: '12px' }}>
             스크롤을 내려 콘텐츠를 확인합니다. 하단에 고정된 버튼을 통해 언제든지 다른 챕터로 이동할 수 있습니다.
           </p>
         </div>
 
         {/* 목차 열기 버튼 (FAB) */}
-        <div style={{ 
-          position: 'absolute', 
-          bottom: '24px', 
-          left: '0', 
-          right: '0', 
-          display: 'flex', 
+        <div style={{
+          position: 'absolute',
+          bottom: '24px',
+          left: '0',
+          right: '0',
+          display: 'flex',
           justifyContent: 'center',
           zIndex: 10
         }}>
-          <button 
+          <button
             onClick={() => setIsOpen(!isOpen)}
-            className="pdf-btn-primary" 
-            style={{ 
-              borderRadius: '24px', 
-              boxShadow: '0 4px 12px rgba(0,0,0,0.25)', 
+            className="pdf-btn-primary"
+            style={{
+              borderRadius: '24px',
+              boxShadow: '0 4px 12px rgba(0,0,0,0.25)',
               padding: '12px 24px',
               display: 'flex',
               alignItems: 'center',
@@ -93,7 +93,7 @@ export default function MobileNavSandbox() {
 
         {/* 모달 오버레이 배경 */}
         {isOpen && (
-          <div 
+          <div
             onClick={() => setIsOpen(false)}
             style={{
               position: 'absolute',
@@ -129,15 +129,15 @@ export default function MobileNavSandbox() {
           <div style={{ padding: '12px 0', display: 'flex', justifyContent: 'center', flexShrink: 0 }} onClick={() => setIsOpen(false)}>
             <div style={{ width: '40px', height: '4px', backgroundColor: 'var(--color-border-hover)', borderRadius: '2px' }}></div>
           </div>
-          
+
           <div style={{ padding: '0 24px 24px 24px', overflowY: 'auto', flex: 1 }}>
-            <span className="pdf-text-label-14-mono pdf-text-muted pdf-border-bottom pdf-pb-100 pdf-mb-200" style={{display: 'block', fontWeight: 'bold'}}>
+            <span className="pdf-text-label-14-mono pdf-text-muted pdf-border-bottom pdf-pb-100 pdf-mb-200" style={{ display: 'block', fontWeight: 'bold' }}>
               GUIDELINES INDEX
             </span>
-            
+
             {/* 가짜 목차 아이템들 */}
             {[
-              { num: 12, title: 'PC Split Screen' },
+              { num: 12, title: 'Split Screen' },
               { num: 13, title: 'Mobile Screen', active: true },
               { num: 14, title: 'QA & Checklist' }
             ].map(item => (

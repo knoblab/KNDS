@@ -187,11 +187,11 @@ export default function ChapterContent({ activeChapter }: ChapterProps) {
           <div className="pdf-mb-300">
             <TypographySandbox />
           </div>
-          
+
           <details className="pdf-mt-200" style={{ cursor: 'pointer', borderTop: '1px solid var(--color-border-default)', paddingTop: '16px' }}>
             <summary className="pdf-text-label-14-mono pdf-text-muted" style={{ fontWeight: 'bold' }}>[+] 타이포그래피 구현 코드 보기</summary>
             <div className="pdf-code-block pdf-mt-100" style={{ whiteSpace: 'pre-wrap' }}>
-{`<!-- 헤딩 타이틀 -->
+              {`<!-- 헤딩 타이틀 -->
 <h1 class="pdf-text-heading-32">큰 제목 (32px)</h1>
 <h2 class="pdf-text-heading-24">중간 제목 (24px)</h2>
 
@@ -302,7 +302,7 @@ export default function ChapterContent({ activeChapter }: ChapterProps) {
           <details className="pdf-mt-200" style={{ cursor: 'pointer', borderTop: '1px solid var(--color-border-default)', paddingTop: '16px' }}>
             <summary className="pdf-text-label-14-mono pdf-text-muted" style={{ fontWeight: 'bold' }}>[+] 버튼 구현 코드 보기</summary>
             <div className="pdf-code-block pdf-mt-100" style={{ whiteSpace: 'pre-wrap' }}>
-{`<!-- 1차 액션 (Primary Button) -->
+              {`<!-- 1차 액션 (Primary Button) -->
 <!-- 붉은색 배경, 가장 중요한 단일 액션에 사용 -->
 <button class="pdf-btn-primary">
   SUBMIT DATA
@@ -339,7 +339,7 @@ export default function ChapterContent({ activeChapter }: ChapterProps) {
           <details className="pdf-mt-200" style={{ cursor: 'pointer', borderTop: '1px solid var(--color-border-default)', paddingTop: '16px' }}>
             <summary className="pdf-text-label-14-mono pdf-text-muted" style={{ fontWeight: 'bold' }}>[+] 폼 입력 구현 코드 보기</summary>
             <div className="pdf-code-block pdf-mt-100" style={{ whiteSpace: 'pre-wrap' }}>
-{`<!-- 기본 텍스트 입력 폼 -->
+              {`<!-- 기본 텍스트 입력 폼 -->
 <div class="pdf-flex-col pdf-gap-100">
   <label class="pdf-text-label-14-mono pdf-text-muted">Username</label>
   <input type="text" class="pdf-input" placeholder="Enter your name" />
@@ -373,7 +373,7 @@ export default function ChapterContent({ activeChapter }: ChapterProps) {
           <details className="pdf-mt-200" style={{ cursor: 'pointer', borderTop: '1px solid var(--color-border-default)', paddingTop: '16px' }}>
             <summary className="pdf-text-label-14-mono pdf-text-muted" style={{ fontWeight: 'bold' }}>[+] 모달 다이얼로그 구현 코드 보기</summary>
             <div className="pdf-code-block pdf-mt-100" style={{ whiteSpace: 'pre-wrap' }}>
-{`<!-- 화면 전체 배경(오버레이) -->
+              {`<!-- 화면 전체 배경(오버레이) -->
 <div class="pdf-overlay" style="position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 998;"></div>
 
 <!-- 모달 다이얼로그 창 -->
@@ -414,7 +414,7 @@ export default function ChapterContent({ activeChapter }: ChapterProps) {
         </section>
       )}
 
-      {/* 12. PC Split Screen */}
+      {/* 12. Split Screen */}
       {activeChapter === 12 && (
         <section id="ch-12">
           <div className="pdf-mb-300">

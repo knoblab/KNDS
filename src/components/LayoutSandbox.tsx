@@ -8,7 +8,7 @@ export default function LayoutSandbox() {
   return (
     <div className="pdf-panel">
       <div className="pdf-flex-row pdf-mb-300" style={{ borderBottom: '1px solid var(--color-border-default)' }}>
-        <button 
+        <button
           onClick={() => setActiveTab('pc')}
           className="pdf-text-label-16"
           style={{
@@ -21,9 +21,9 @@ export default function LayoutSandbox() {
             cursor: 'pointer'
           }}
         >
-          PC Split Screen
+          Split Screen
         </button>
-        <button 
+        <button
           onClick={() => setActiveTab('mobile')}
           className="pdf-text-label-16"
           style={{
