@@ -1,5 +1,5 @@
 import React from 'react';
-import { Compass, Ruler, Type, Palette, Columns } from 'lucide-react';
+import { Compass, Ruler, Type, Palette, Columns, Terminal } from 'lucide-react';
 
 // Import our custom interactive sandboxes (AudioSandbox was removed)
 import GridSandbox from './GridSandbox';
@@ -300,6 +300,94 @@ export default function ChapterContent({ activeChapter }: ChapterProps) {
           </div>
           <div className="mt-12">
             <CodeExport />
+          </div>
+        </section>
+      )}
+
+      {/* CHAPTER 7 */}
+      {activeChapter === 7 && (
+        <section id="ch-7" className="scroll-mt-16 animate-fade-in">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="bg-pdf-aluminum text-pdf-red p-2 rounded-lg border border-pdf-red shrink-0">
+              <Terminal className="w-6 h-6 text-pdf-red" />
+            </div>
+            <div>
+              <span className="font-mono text-xs tracking-widest text-pdf-focus block uppercase">SECTION 07</span>
+              <h2 className="font-sans text-xl md:text-2xl font-black text-pdf-leather tracking-tight">
+                독자 플랫폼 아키텍처 (Pure Platform Architecture)
+              </h2>
+            </div>
+          </div>
+
+          <div className="prose max-w-none text-pdf-leather leading-relaxed space-y-4">
+            <p>
+              PDF-DS는 외부 유틸리티(Tailwind 등)에 대한 모든 의존성을 끊고, <strong>오직 100% 순수 표준 CSS</strong>의 힘만으로 독자적 물리 법칙을 구축합니다. 아래는 단 한 줄의 임포트만으로 시스템을 구동하는 핵심 스니펫입니다.
+            </p>
+
+            <div className="pdf-card-offset mt-6">
+              <div className="flex items-center justify-between mb-3 border-b border-pdf-seam pb-2">
+                <span className="font-mono text-xs tracking-widest text-pdf-focus uppercase font-bold">
+                  CORE INTEGRATION (HTML/CSS)
+                </span>
+              </div>
+              <div className="relative bg-[#18181B] rounded-lg border border-[#27272A] overflow-hidden text-[#A1A1AA] text-xs font-mono">
+                <pre className="p-5 overflow-x-auto">
+<code className="text-[#FAFAFA]">&lt;!DOCTYPE html&gt;</code>
+<br/>
+<code className="text-[#FAFAFA]">&lt;<span className="text-pdf-red">html</span> <span className="text-[#A1A1AA]">lang="en"</span>&gt;</code>
+<br/>
+<code className="text-[#FAFAFA]">  &lt;<span className="text-pdf-red">head</span>&gt;</code>
+<br/>
+<code className="text-[#FAFAFA]">    <span className="text-[#71717A]">&lt;!-- 1. 필수 CSS 코어 임포트 --&gt;</span></code>
+<br/>
+<code className="text-[#FAFAFA]">    &lt;<span className="text-pdf-red">link</span> <span className="text-[#A1A1AA]">rel="stylesheet" href="pdf-ds-core.css"</span>&gt;</code>
+<br/>
+<code className="text-[#FAFAFA]">  &lt;/<span className="text-pdf-red">head</span>&gt;</code>
+<br/>
+<code className="text-[#FAFAFA]">  &lt;<span className="text-pdf-red">body</span>&gt;</code>
+<br/>
+<code className="text-[#FAFAFA]">    <span className="text-[#71717A]">&lt;!-- 2. 레이아웃 루트 쉘 선언 --&gt;</span></code>
+<br/>
+<code className="text-[#FAFAFA]">    &lt;<span className="text-pdf-red">div</span> <span className="text-[#A1A1AA]">class="pdf-shell-viewport"</span>&gt;</code>
+<br/>
+<code className="text-[#FAFAFA]">      </code>
+<br/>
+<code className="text-[#FAFAFA]">      <span className="text-[#71717A]">&lt;!-- 왼쪽 사이드 패널 --&gt;</span></code>
+<br/>
+<code className="text-[#FAFAFA]">      &lt;<span className="text-pdf-red">aside</span> <span className="text-[#A1A1AA]">class="pdf-control-panel" width="38%"</span>&gt;</code>
+<br/>
+<code className="text-[#FAFAFA]">        System Controls</code>
+<br/>
+<code className="text-[#FAFAFA]">      &lt;/<span className="text-pdf-red">aside</span>&gt;</code>
+<br/>
+<code className="text-[#FAFAFA]">      </code>
+<br/>
+<code className="text-[#FAFAFA]">      <span className="text-[#71717A]">&lt;!-- 오른쪽 데이터 캔버스 --&gt;</span></code>
+<br/>
+<code className="text-[#FAFAFA]">      &lt;<span className="text-pdf-red">main</span> <span className="text-[#A1A1AA]">class="pdf-blueprint-canvas"</span>&gt;</code>
+<br/>
+<code className="text-[#FAFAFA]">        &lt;<span className="text-pdf-red">div</span> <span className="text-[#A1A1AA]">class="pdf-card-offset"</span>&gt;</code>
+<br/>
+<code className="text-[#FAFAFA]">          &lt;<span className="text-pdf-red">button</span> <span className="text-[#A1A1AA]">class="pdf-btn-morph"</span>&gt;Haptic Action&lt;/<span className="text-pdf-red">button</span>&gt;</code>
+<br/>
+<code className="text-[#FAFAFA]">        &lt;/<span className="text-pdf-red">div</span>&gt;</code>
+<br/>
+<code className="text-[#FAFAFA]">      &lt;/<span className="text-pdf-red">main</span>&gt;</code>
+<br/>
+<code className="text-[#FAFAFA]">      </code>
+<br/>
+<code className="text-[#FAFAFA]">    &lt;/<span className="text-pdf-red">div</span>&gt;</code>
+<br/>
+<code className="text-[#FAFAFA]">  &lt;/<span className="text-pdf-red">body</span>&gt;</code>
+<br/>
+<code className="text-[#FAFAFA]">&lt;/<span className="text-pdf-red">html</span>&gt;</code>
+                </pre>
+              </div>
+            </div>
+
+            <p className="mt-8 p-4 bg-pdf-aluminum border border-pdf-seam rounded text-pdf-leather leading-relaxed">
+              이제 여러분은 <code>tailwind.config.js</code> 없이도, <code>npm install</code> 없이도, 완벽한 픽셀 단위의 정밀도를 가진 인터페이스를 구축할 수 있습니다. <strong>PDF-DS는 언제나 가장 원초적인 웹 표준 위에 가장 진보된 물리적 법칙을 쌓아 올립니다.</strong>
+            </p>
           </div>
         </section>
       )}

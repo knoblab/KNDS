@@ -4,7 +4,7 @@ export default function LayoutComparisonSandbox() {
   const [viewMode, setViewMode] = useState<'legacy' | 'pdfds'>('legacy');
 
   return (
-    <div className="bg-pdf-aluminum border border-pdf-seam p-4 shrink-0 rounded-lg my-8 flex flex-col justify-center overflow-hidden relative shadow-sm">
+    <div className="pdf-card-offset">
       <div className="flex justify-between items-center mb-6">
         <div>
           <span className="font-mono text-xs tracking-wider text-pdf-red font-bold uppercase block">

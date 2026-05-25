@@ -21,7 +21,7 @@ export default function ButtonSandbox() {
   };
 
   return (
-    <div className="border border-pdf-seam bg-pdf-aluminum p-6 rounded-lg font-sans my-4 shadow-sm">
+    <div className="pdf-card-offset">
       <div className="flex items-center justify-between mb-4 pb-3 border-b border-pdf-seam">
         <div>
           <span className="font-mono text-xs tracking-wider text-pdf-red font-bold uppercase block">
@@ -46,7 +46,7 @@ export default function ButtonSandbox() {
             onClick={() => {
               setShowTargets(!showTargets);
             }}
-            className="flex items-center gap-1.5 py-1.5 px-3 border border-pdf-seam bg-pdf-aluminum hover:bg-pdf-aluminum rounded text-xs font-mono text-pdf-leather font-medium active:scale-95"
+            className="pdf-btn-morph"
           >
             {showTargets ? <EyeOff className="w-3.5 h-3.5 text-pdf-red" /> : <Eye className="w-3.5 h-3.5" />}
             터치 과녁 보조선 {showTargets ? '숨기기' : '켜기 (48dp 가이드)'}
