@@ -4,7 +4,7 @@ import { Type, Globe, CheckCircle2, ZoomIn } from 'lucide-react';
 const SAMPLES = [
   { id: 'ko', title: '한국어 (Korean)', text: 'PDF-DS는 화면 내부의 요소들을 단순한 이미지나 그래픽 레이어로 취급하지 않습니다. 기하학적인 엄격함과 최소한의 시각적 요소만을 사용하여 제품의 구조적 신뢰성을 전달합니다.' },
   { id: 'en', title: '영어 (English)', text: 'PDF-DS does not treat elements inside the screen as simple images or graphic layers. It uses geometric rigor and minimal visual elements to convey the structural reliability of the product.' },
-  { id: 'ja', title: '일본어 (Japanese)', text: 'PDF-DS는, 화면 내의 요소를 단순한 이미지나 그래픽 레이어로서 다루지 않습니다.幾何학적인 엄밀함과 최소한의 시각요소만을 사용하여, 제품의 구조적 신뢰성을 전달합니다.' },
+  { id: 'ja', title: '일본어 (Japanese)', text: 'PDF-DSは、画面内部の要素を単なる画像やグラフィックレイヤーとして扱いません。幾何学的な厳格さと最小限の視覚的要素のみを使用することで、製品の構造的な信頼性を伝えます。' },
   { id: 'la', title: '라틴어 (Latin)', text: 'PDF-DS elementa intra tentorium sicut imagines simplices vel ordines graphicos non tractat. Rigore geometrico et minimis elementis visibilibus utitur ad certitudinem structurae producti transmittendam.' },
   { id: 'custom', title: '사용자 지정 (Custom)', text: '' }
 ];
@@ -56,7 +56,7 @@ export default function TypographySandbox() {
               </button>
             ))}
           </div>
-          
+
           <div className="pdf-flex-row pdf-gap-100" style={{ flexShrink: 0 }}>
             <button
               onClick={() => setUsePretext(!usePretext)}
@@ -73,7 +73,7 @@ export default function TypographySandbox() {
               <Type style={{ width: 14, height: 14 }} />
               프리텍스트(Pretext) 모드: {usePretext ? 'ON' : 'OFF'}
             </button>
-            
+
             <button
               onClick={() => setIsZoomed(!isZoomed)}
               className="pdf-text-label-14-mono pdf-flex-row pdf-items-center pdf-gap-050"
@@ -116,11 +116,11 @@ export default function TypographySandbox() {
                 <span className="pdf-text-label-14-mono pdf-text-muted" style={{ position: 'absolute', left: -8, top: -20, fontSize: '9px', fontWeight: 'bold' }}>
                   w{weight}
                 </span>
-                <p 
+                <p
                   className={usePretext ? 'pdf-font-mono' : 'pdf-font-sans'}
-                  style={{ 
+                  style={{
                     color: 'var(--color-text-primary)',
-                    fontWeight: weight, 
+                    fontWeight: weight,
                     fontSize: isZoomed ? '40px' : '20px',
                     whiteSpace: usePretext ? 'pre-wrap' : 'normal',
                     lineHeight: 1.5
@@ -132,7 +132,7 @@ export default function TypographySandbox() {
             ))}
           </div>
         </div>
-        
+
         <div className="pdf-p-200" style={{ backgroundColor: '#09090b', color: 'var(--color-text-secondary)', borderRadius: 4, fontFamily: 'var(--font-mono)', fontSize: 11, marginTop: 8 }}>
           <div className="pdf-flex-row pdf-items-center pdf-gap-100 pdf-mb-100">
             <CheckCircle2 style={{ width: 14, height: 14, color: '#34d399' }} />
