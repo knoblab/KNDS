@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Columns, Maximize2, Monitor, Tablet, Smartphone } from 'lucide-react';
 
-export default function SplitSandbox() {
-  const [viewportMode, setViewportMode] = useState<'desktop' | 'tablet' | 'mobile'>('desktop');
+export default function SplitSandbox({ defaultMode = 'desktop' }: { defaultMode?: 'desktop' | 'tablet' | 'mobile' }) {
+  const [viewportMode, setViewportMode] = useState<'desktop' | 'tablet' | 'mobile'>(defaultMode);
   const [splitRatio, setSplitRatio] = useState<number>(25);
   const [isSidebarHidden, setIsSidebarHidden] = useState<boolean>(false);
   const [savedRatio, setSavedRatio] = useState<number>(25);

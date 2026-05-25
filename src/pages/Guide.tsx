@@ -92,8 +92,9 @@ export default function Guide() {
     { num: 9, title: 'Forms', sub: '입력 폼 및 데이터 제어 UI' },
     { num: 10, title: 'Modals', sub: '모달 및 다이얼로그 시스템' },
     { num: 11, title: 'Navigation', sub: '네비게이션 및 계층 이동 구조' },
-    { num: 12, title: 'Split Screen', sub: '비대칭 스플릿 스크린 레이아웃' },
-    { num: 13, title: 'QA & Checklist', sub: '최종 통합 실무 체크리스트 및 검수 수칙' }
+    { num: 12, title: 'PC Split Screen', sub: '비대칭 황금 분할 25:75 스크린' },
+    { num: 13, title: 'Mobile Screen', sub: '모바일 스택 및 반응형 레이아웃 복원' },
+    { num: 14, title: 'QA & Checklist', sub: '최종 통합 실무 체크리스트 및 검수 수칙' }
   ];
 
   // Categorized chapter mapping for HIG style sidebar
@@ -113,7 +114,13 @@ export default function Guide() {
         { num: 5, title: 'Typography', sub: '정밀 타이포그래피 및 레이아웃 정렬 명세' },
         { num: 6, title: 'Color', sub: '아크로매틱 컬러 체계와 펑셔널 레드' },
         { num: 7, title: 'Materials', sub: '머티리얼 디자인 및 물리적 재질감' },
-        { num: 12, title: 'Split Screen', sub: '비대칭 스플릿 스크린 레이아웃' },
+      ]
+    },
+    {
+      category: 'Layout',
+      items: [
+        { num: 12, title: 'PC Split Screen', sub: '비대칭 황금 분할 25:75 스크린' },
+        { num: 13, title: 'Mobile Screen', sub: '모바일 스택 및 반응형 레이아웃 복원' },
       ]
     },
     {
@@ -128,7 +135,7 @@ export default function Guide() {
     {
       category: 'QA',
       items: [
-        { num: 13, title: 'QA & Checklist', sub: '최종 통합 실무 체크리스트 및 검수 수칙' },
+        { num: 14, title: 'QA & Checklist', sub: '최종 통합 실무 체크리스트 및 검수 수칙' },
       ]
     }
   ];
@@ -265,17 +272,17 @@ export default function Guide() {
       >
         <div className="pdf-main-content">
           <div className="pdf-panel pdf-grid-bg">
-            <div className="pdf-content-relative pdf-flex-row pdf-justify-between pdf-items-center">
-              <div>
-                <span className="pdf-text-label-14-mono pdf-text-red pdf-mb-100" style={{display: 'block'}}>
-                  CHAPTER {activeChapter < 10 ? `0${activeChapter}` : activeChapter}
-                </span>
+            <div className="pdf-content-relative">
+              <span className="pdf-text-label-14-mono pdf-text-red pdf-mb-100" style={{display: 'block'}}>
+                CHAPTER {activeChapter < 10 ? `0${activeChapter}` : activeChapter}
+              </span>
+              <div className="pdf-flex-row pdf-justify-between" style={{ alignItems: 'baseline' }}>
                 <h2 className="pdf-text-heading-32">
                   {chapters[activeChapter - 1].title}
                 </h2>
-              </div>
-              <div className="pdf-text-label-14-mono pdf-text-muted">
-                {Math.round((activeChapter / 13) * 100)}% PROGRESS
+                <div className="pdf-text-label-14-mono pdf-text-muted">
+                  {Math.round((activeChapter / 14) * 100)}% PROGRESS
+                </div>
               </div>
             </div>
           </div>
@@ -291,10 +298,10 @@ export default function Guide() {
               ← PREV
             </button>
             <span className="pdf-text-label-14-mono pdf-text-muted">
-              STAGE {activeChapter < 10 ? `0${activeChapter}` : activeChapter} / 13
+              STAGE {activeChapter < 10 ? `0${activeChapter}` : activeChapter} / 14
             </span>
             <button
-              disabled={activeChapter === 13}
+              disabled={activeChapter === 14}
               onClick={() => handleChapterSwitch(activeChapter + 1)}
               className="pdf-secondary-btn"
             >

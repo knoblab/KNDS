@@ -9,6 +9,7 @@ import GoldenRatioSandbox from './GoldenRatioSandbox';
 import ColorSandbox from './ColorSandbox';
 import ButtonSandbox from './ButtonSandbox';
 import SplitSandbox from './SplitSandbox';
+import MobileNavSandbox from './MobileNavSandbox';
 import CodeExport from './CodeExport';
 import QASandbox from './QASandbox';
 
@@ -413,7 +414,7 @@ export default function ChapterContent({ activeChapter }: ChapterProps) {
         </section>
       )}
 
-      {/* 12. Split Screen */}
+      {/* 12. PC Split Screen */}
       {activeChapter === 12 && (
         <section id="ch-12">
           <div className="pdf-mb-300">
@@ -425,6 +426,23 @@ export default function ChapterContent({ activeChapter }: ChapterProps) {
             <GoldenRatioSandbox />
           </div>
           <div className="pdf-mb-300">
+            <SplitSandbox defaultMode="desktop" />
+          </div>
+        </section>
+      )}
+
+      {/* 13. Mobile Screen */}
+      {activeChapter === 13 && (
+        <section id="ch-13">
+          <div className="pdf-mb-300">
+            <p className="pdf-text-copy-14 pdf-text-muted">
+              모바일 환경에서는 비대칭 가로 분할이 무력화되고 위아래 100% 수직 스택으로 재배치된다.
+            </p>
+          </div>
+          <div className="pdf-mb-300">
+            <MobileNavSandbox />
+          </div>
+          <div className="pdf-mb-300">
             <h3 className="pdf-text-label-16 pdf-mb-100">모바일 스택 및 반응형 레이아웃 복원 가이드라인</h3>
             <ul className="pdf-list-disc pdf-text-copy-14">
               <li><strong>수직 위계적 스택킹(Vertical Stacking):</strong> 뷰포트 크기가 수축함에 따라 두 면은 즉각적으로 수직 방향으로 정렬되어 위에서 아래로 스택킹된다.</li>
@@ -432,14 +450,14 @@ export default function ChapterContent({ activeChapter }: ChapterProps) {
             </ul>
           </div>
           <div className="pdf-mb-300">
-            <SplitSandbox />
+            <SplitSandbox defaultMode="mobile" />
           </div>
         </section>
       )}
 
-      {/* 13. QA & Checklist */}
-      {activeChapter === 13 && (
-        <section id="ch-13">
+      {/* 14. QA & Checklist */}
+      {activeChapter === 14 && (
+        <section id="ch-14">
           <div className="pdf-mb-300">
             <p className="pdf-text-copy-14 pdf-text-muted">
               이 디자인 가이드라인이 프로젝트 소스코드에서 정상적으로 완수되고 있는지 판단하기 위한 전방위 디자인 검수(QA) 기준 목록이다.
