@@ -263,16 +263,16 @@ export default function Editor() {
   // ----------------------------------------------------------------------
   if (isPreviewMode) {
     return (
-      <div className="pdf-app" style={{ flexDirection: 'column' }}>
+      <div className="pdf-app pdf-flex-col">
         <div style={{ position: 'fixed', bottom: 20, right: 20, zIndex: 999 }}>
           <button className="pdf-btn-primary" onClick={() => setIsPreviewMode(false)} style={{ boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>
             프리뷰 종료 (Exit Preview)
           </button>
         </div>
-        <main className="pdf-main-view pdf-grid-bg" style={{ width: '100%', minHeight: '100vh', padding: 'var(--space-400)' }}>
+        <main className="pdf-main-view pdf-grid-bg pdf-w-full" style={{ minHeight: '100vh', padding: 'var(--space-400)' }}>
           <div style={{ maxWidth: '1440px', margin: '0 auto' }}>
             {elements.length === 0 ? (
-              <div className="pdf-text-heading-32 pdf-text-muted" style={{ textAlign: 'center', marginTop: '100px' }}>비어 있음</div>
+              <div className="pdf-text-heading-32 pdf-text-muted pdf-text-center" style={{ marginTop: '100px' }}>비어 있음</div>
             ) : elements.map(renderVisualNode)}
           </div>
         </main>
@@ -319,7 +319,7 @@ export default function Editor() {
       </aside>
 
       {/* CENTER PANE: Canvas or Code View */}
-      <main className="pdf-main-view pdf-grid-bg" style={{ width: selectedNode ? '50%' : '75%', position: 'relative', overflowY: 'auto' }} onClick={() => setSelectedId(null)}>
+      <main className="pdf-main-view pdf-grid-bg pdf-relative" style={{ width: selectedNode ? '50%' : '75%', overflowY: 'auto' }} onClick={() => setSelectedId(null)}>
         <div style={{ position: 'absolute', top: 16, right: 16, zIndex: 10, display: 'flex', gap: '8px' }}>
           <button className="pdf-secondary-btn" onClick={(e) => { e.stopPropagation(); setIsCodeMode(!isCodeMode); }} style={{ backgroundColor: 'var(--color-bg-primary)' }}>
             {isCodeMode ? '디자인 뷰 (Design)' : '코드 뷰 (Code)'}
@@ -343,7 +343,7 @@ export default function Editor() {
           ) : (
             <>
               {elements.length === 0 ? (
-                <div className="pdf-text-heading-32 pdf-text-muted" style={{ textAlign: 'center', marginTop: '100px' }}>
+                <div className="pdf-text-heading-32 pdf-text-muted pdf-text-center" style={{ marginTop: '100px' }}>
                   좌측에서 요소를 추가하세요
                 </div>
               ) : (
@@ -356,10 +356,10 @@ export default function Editor() {
 
       {/* RIGHT PANE: Properties Inspector */}
       {selectedNode && (
-        <aside className="pdf-sidebar" style={{ width: '25%', borderLeft: '1px solid var(--color-border-default)', overflowY: 'auto', backgroundColor: 'var(--color-bg-primary)' }}>
+        <aside className="pdf-sidebar pdf-border-left" style={{ width: '25%', overflowY: 'auto', backgroundColor: 'var(--color-bg-primary)' }}>
           <div className="pdf-p-200">
             <div className="pdf-flex-row pdf-justify-between pdf-items-center pdf-mb-200">
-              <h3 className="pdf-text-label-16" style={{ fontWeight: 'bold' }}>속성 (Properties)</h3>
+              <h3 className="pdf-text-label-16 pdf-font-bold">속성 (Properties)</h3>
               <span className="pdf-text-label-14-mono pdf-text-red">{selectedNode.type}</span>
             </div>
 

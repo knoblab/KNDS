@@ -83,7 +83,7 @@ export default function Guide() {
   const chapters = [
     { num: 1, title: 'Philosophy', sub: '철학적 토대와 시스템 미학의 융합' },
     { num: 2, title: 'System Architecture', sub: '통합 소프트웨어 아키텍처 및 토큰 구현' },
-    { num: 3, title: 'Installation', sub: 'PDF-DS 시작하기 및 설치 가이드' },
+    { num: 3, title: 'Installation (준비중)', sub: 'PDF-DS 시작하기 및 설치 가이드' },
     { num: 4, title: 'Blueprint Grid & Spacing', sub: '청사진 그리드와 멀티 스케일 여백 시스템' },
     { num: 5, title: 'Typography', sub: '정밀 타이포그래피 및 레이아웃 정렬 명세' },
     { num: 6, title: 'Color', sub: '아크로매틱 컬러 체계와 펑셔널 레드' },
@@ -105,7 +105,7 @@ export default function Guide() {
       items: [
         { num: 1, title: 'Philosophy', sub: '철학적 토대와 시스템 미학의 융합' },
         { num: 2, title: 'System Architecture', sub: '통합 소프트웨어 아키텍처 및 토큰 구현' },
-        { num: 3, title: 'Installation', sub: 'PDF-DS 시작하기 및 설치 가이드', disabled: true },
+        { num: 3, title: 'Installation (준비중)', sub: 'PDF-DS 시작하기 및 설치 가이드', disabled: true },
       ]
     },
     {
@@ -161,8 +161,8 @@ export default function Guide() {
               </h1>
               <button
                 onClick={() => setIsDarkMode(!isDarkMode)}
-                className="pdf-secondary-btn"
-                style={{ padding: '6px 12px', whiteSpace: 'nowrap', display: 'flex', alignItems: 'center', gap: '6px', minWidth: '85px', justifyContent: 'center' }}
+                className="pdf-secondary-btn pdf-flex-row pdf-items-center pdf-justify-center"
+                style={{ padding: '6px 12px', whiteSpace: 'nowrap', gap: '6px', minWidth: '85px' }}
                 aria-label={isDarkMode ? "라이트 모드로 전환" : "다크 모드로 전환"}
               >
                 {isDarkMode ? '☀️ Light' : '🌙 Dark'}
@@ -177,7 +177,7 @@ export default function Guide() {
           </div>
 
           <nav>
-            <span className="pdf-text-label-14-mono pdf-text-muted pdf-border-bottom pdf-pb-100 pdf-mb-100" style={{ display: 'block', fontWeight: 'bold' }}>
+            <span className="pdf-text-label-14-mono pdf-text-muted pdf-border-bottom pdf-pb-100 pdf-mb-100 pdf-font-bold" style={{ display: 'block' }}>
               GUIDELINES INDEX
             </span>
 
@@ -203,26 +203,24 @@ export default function Guide() {
                       onClick={() => !item.disabled && handleChapterSwitch(item.num as number)}
                       className={`pdf-nav-item ${isSelected ? 'active' : ''} ${item.disabled ? 'disabled' : ''}`}
                     >
-                      <div className="pdf-flex-row pdf-items-center pdf-gap-150" style={{ overflow: 'hidden', width: '100%' }}>
+                      <div className="pdf-flex-row pdf-items-center pdf-gap-150 pdf-overflow-hidden pdf-w-full">
                         {item.disabled ? (
-                          <div className="pdf-flex-row pdf-items-center pdf-justify-center" style={{ width: '32px', height: '24px', backgroundColor: 'var(--color-bg-secondary)', borderRadius: '2px' }}>
+                          <div className="pdf-flex-row pdf-items-center pdf-justify-center pdf-bg-secondary" style={{ width: '32px', height: '24px', borderRadius: '2px' }}>
                             <span className="pdf-text-label-14-mono pdf-text-muted" style={{ fontSize: '10px' }}>-</span>
                           </div>
                         ) : (
-                          <span className="pdf-text-label-14-mono" style={{
+                          <span className="pdf-text-label-14-mono pdf-text-center pdf-font-bold" style={{
                             backgroundColor: isSelected ? 'var(--color-functional-red)' : 'var(--color-border-default)',
                             color: isSelected ? 'var(--color-bg-primary)' : 'var(--color-text-secondary)',
                             padding: '4px 8px',
                             borderRadius: '2px',
-                            fontWeight: 'bold',
-                            minWidth: '32px',
-                            textAlign: 'center'
+                            minWidth: '32px'
                           }}>
                             0{item.num}
                           </span>
                         )}
-                        <div className="pdf-flex-col" style={{ overflow: 'hidden', flex: 1 }}>
-                          <span className="pdf-text-label-16" style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', display: 'flex', alignItems: 'center' }}>
+                        <div className="pdf-flex-col pdf-overflow-hidden" style={{ flex: 1 }}>
+                          <span className="pdf-text-label-16 pdf-flex-row pdf-items-center pdf-overflow-hidden" style={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis' }}>
                             {item.title}
                             {item.disabled && <span className="pdf-badge">준비 중</span>}
                           </span>
@@ -240,13 +238,14 @@ export default function Guide() {
       {/* Mobile Nav Overlay & Bottom Toggle */}
       {isMobile && isMobileNavOpen && (
         <div
-          style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(0,0,0,0.5)', zIndex: 999 }}
+          className="pdf-fixed pdf-inset-0"
+          style={{ backgroundColor: 'rgba(0,0,0,0.5)', zIndex: 999 }}
           onClick={() => setIsMobileNavOpen(false)}
         />
       )}
 
       {isMobile && (
-        <div className="pdf-mobile-bottom-bar" style={{ position: 'fixed', bottom: 16, left: 16, right: 16, zIndex: 1000, display: 'flex', justifyContent: 'center' }}>
+        <div className="pdf-mobile-bottom-bar pdf-fixed pdf-flex-row pdf-justify-center" style={{ bottom: 16, left: 16, right: 16, zIndex: 1000 }}>
           <button
             onClick={() => setIsMobileNavOpen(!isMobileNavOpen)}
             className="pdf-btn-primary"

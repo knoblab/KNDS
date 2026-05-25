@@ -535,7 +535,7 @@ export default function ChapterContent({ activeChapter }: ChapterProps) {
               System Creators & Inspirations
             </h2>
             <p className="pdf-text-copy-14 pdf-text-muted" style={{ maxWidth: '600px', margin: '0 auto' }}>
-              물리 하드웨어의 감각을 디지털 스크린으로 확장하는 여정을 함께한 기여자와 설계에 깊은 영감을 준 철학적 거장들입니다.
+              물리 하드웨어의 감각을 디지털 스크린으로 확장하는 여정을 함께한 기여자입니다.
             </p>
           </div>
 

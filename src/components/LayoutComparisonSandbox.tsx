@@ -4,7 +4,7 @@ export default function LayoutComparisonSandbox() {
   const [viewMode, setViewMode] = useState<'legacy' | 'pdfds'>('legacy');
 
   return (
-    <div className="pdf-bg-secondary pdf-border pdf-p-200 pdf-flex-col pdf-justify-center" style={{ flexShrink: 0, borderRadius: 8, margin: '32px 0', overflow: 'hidden', position: 'relative', boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)' }}>
+    <div className="pdf-bg-secondary pdf-border pdf-p-200 pdf-flex-col pdf-justify-center pdf-relative pdf-overflow-hidden" style={{ flexShrink: 0, borderRadius: 8, margin: '32px 0', boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)' }}>
       <div className="pdf-flex-row pdf-justify-between pdf-items-center pdf-mb-300">
         <div>
           <span className="pdf-text-label-14-mono pdf-text-red pdf-mb-100" style={{ display: 'block', fontWeight: 'bold' }}>
@@ -51,7 +51,7 @@ export default function LayoutComparisonSandbox() {
       </div>
 
       {/* 16:9 윈도우 모니터 프레임 */}
-      <div style={{ margin: '0 auto', width: '100%', maxWidth: '896px', aspectRatio: '16/9', backgroundColor: '#09090b', borderRadius: 6, border: '6px solid var(--color-border-hover)', boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)', overflow: 'hidden', display: 'flex', flexDirection: 'column', position: 'relative', transition: 'all 0.5s' }}>
+      <div className="pdf-flex-col pdf-relative pdf-overflow-hidden pdf-w-full" style={{ margin: '0 auto', maxWidth: '896px', aspectRatio: '16/9', backgroundColor: '#09090b', borderRadius: 6, border: '6px solid var(--color-border-hover)', boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)', transition: 'all 0.5s' }}>
         
         {/* OS Top: Browser Tabs & URL Bar */}
         <div style={{ backgroundColor: 'var(--color-border-default)', width: '100%', flexShrink: 0, display: 'flex', flexDirection: 'column' }}>
@@ -76,11 +76,11 @@ export default function LayoutComparisonSandbox() {
         </div>
 
         {/* Website Content Area */}
-        <div style={{ flex: 1, backgroundColor: 'var(--color-bg-primary)', position: 'relative', overflow: 'hidden', display: 'flex', transition: 'all 0.5s' }}>
+        <div className="pdf-flex-row pdf-relative pdf-overflow-hidden" style={{ flex: 1, backgroundColor: 'var(--color-bg-primary)', transition: 'all 0.5s' }}>
           
           {viewMode === 'legacy' ? (
             /* LEGACY LAYOUT */
-            <div style={{ width: '100%', flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative', animation: 'fadeIn 0.5s' }}>
+            <div className="pdf-w-full pdf-flex-col pdf-items-center pdf-relative" style={{ flex: 1, animation: 'fadeIn 0.5s' }}>
               {/* Header */}
               <div style={{ width: '100%', height: 56, borderBottom: '1px solid var(--color-border-default)', backgroundColor: 'var(--color-bg-primary)', flexShrink: 0, display: 'flex', alignItems: 'center', padding: '0 24px', justifyContent: 'space-between', boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)', zIndex: 20 }}>
                 <div style={{ width: 96, height: 16, backgroundColor: 'var(--color-border-default)', borderRadius: 4 }}></div>
@@ -92,9 +92,9 @@ export default function LayoutComparisonSandbox() {
               </div>
               
               {/* Layout Wrapper */}
-              <div style={{ display: 'flex', width: '100%', flex: 1, position: 'relative', backgroundColor: 'var(--color-bg-primary)', zIndex: 10 }}>
+              <div className="pdf-flex-row pdf-w-full pdf-relative" style={{ flex: 1, backgroundColor: 'var(--color-bg-primary)', zIndex: 10 }}>
                 {/* Left Letterbox */}
-                <div style={{ flex: 1, backgroundColor: 'rgba(173, 29, 29, 0.1)', borderRight: '2px dashed var(--color-functional-red)', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center' }}>
+                <div className="pdf-flex-col pdf-justify-center pdf-items-center pdf-text-center" style={{ flex: 1, backgroundColor: 'rgba(173, 29, 29, 0.1)', borderRight: '2px dashed var(--color-functional-red)' }}>
                   <span style={{ color: 'var(--color-functional-red)', fontSize: 10, fontWeight: 'bold' }}>낭비되는</span>
                   <span style={{ color: 'var(--color-functional-red)', fontSize: 10, fontWeight: 'bold' }}>여백</span>
                 </div>
@@ -116,7 +116,7 @@ export default function LayoutComparisonSandbox() {
                 </div>
 
                 {/* Right Letterbox */}
-                <div style={{ flex: 1, backgroundColor: 'rgba(173, 29, 29, 0.1)', borderLeft: '2px dashed var(--color-functional-red)', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center' }}>
+                <div className="pdf-flex-col pdf-justify-center pdf-items-center pdf-text-center" style={{ flex: 1, backgroundColor: 'rgba(173, 29, 29, 0.1)', borderLeft: '2px dashed var(--color-functional-red)' }}>
                   <span style={{ color: 'var(--color-functional-red)', fontSize: 10, fontWeight: 'bold' }}>낭비되는</span>
                   <span style={{ color: 'var(--color-functional-red)', fontSize: 10, fontWeight: 'bold' }}>여백</span>
                 </div>
@@ -129,7 +129,7 @@ export default function LayoutComparisonSandbox() {
             </div>
           ) : (
             /* PDF-DS LAYOUT */
-            <div style={{ width: '100%', flex: 1, display: 'flex', position: 'relative', animation: 'fadeIn 0.5s' }}>
+            <div className="pdf-w-full pdf-flex-row pdf-relative" style={{ flex: 1, animation: 'fadeIn 0.5s' }}>
               {/* PDF-DS LEFT 38% */}
               <div style={{ width: '38%', backgroundColor: 'var(--color-bg-primary)', borderRight: '1px solid var(--color-border-hover)', height: '100%', display: 'flex', flexDirection: 'column' }}>
                 {/* PDF-DS Header Area */}
@@ -158,7 +158,7 @@ export default function LayoutComparisonSandbox() {
               </div>
 
               {/* PDF-DS RIGHT 62% */}
-              <div style={{ width: '62%', height: '100%', backgroundColor: 'var(--color-bg-primary)', display: 'flex', flexDirection: 'column', borderLeft: '1px solid rgba(226, 232, 240, 0.5)' }}>
+              <div className="pdf-flex-col pdf-h-full" style={{ width: '62%', backgroundColor: 'var(--color-bg-primary)', borderLeft: '1px solid rgba(226, 232, 240, 0.5)' }}>
                  {/* 62 Canvas Header */}
                  <div style={{ height: 56, display: 'flex', alignItems: 'center', padding: '0 32px', flexShrink: 0, justifyContent: 'flex-end' }}>
                     <span style={{ fontSize: 9, fontFamily: 'var(--font-mono)', color: 'var(--color-text-secondary)' }}>DATA CANVAS VIEW</span>
