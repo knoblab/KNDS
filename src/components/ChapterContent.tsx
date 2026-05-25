@@ -1,7 +1,6 @@
 import React from 'react';
-import { Compass, Ruler, Type, Palette, Columns } from 'lucide-react';
 
-// Import our custom interactive sandboxes (AudioSandbox was removed)
+// Import our custom interactive sandboxes (will be refactored next)
 import GridSandbox from './GridSandbox';
 import AlignmentSandbox from './AlignmentSandbox';
 import TypographySandbox from './TypographySandbox';
@@ -19,63 +18,29 @@ interface ChapterProps {
 
 export default function ChapterContent({ activeChapter }: ChapterProps) {
   return (
-    <div className={`space-y-12 transition-all duration-300 text-sm`}>
+    <div className="pdf-animate-fade-in">
       
       {/* CHAPTER 1 */}
       {activeChapter === 1 && (
-        <section id="ch-1" className="scroll-mt-16 animate-fade-in">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="bg-pdf-aluminum text-pdf-red p-2 rounded-lg border border-pdf-red shrink-0">
-              <Compass className="w-6 h-6" />
-            </div>
-            <div>
-              <span className="font-mono text-xs tracking-widest text-pdf-focus block uppercase">SECTION 01</span>
-              <h2 className="font-sans text-xl md:text-2xl font-black text-pdf-leather tracking-tight">
-                서론: 두 세계의 융합 (The Core Philosophy)
-              </h2>
-            </div>
+        <section id="ch-1">
+          <div className="pdf-mb-300">
+            <h2 className="pdf-text-heading-32 pdf-mb-100">1. 철학적 토대와 시스템 미학의 융합</h2>
+            <p className="pdf-text-copy-14 pdf-text-muted">
+              현대 소프트웨어 공학에서 사용자 인터페이스는 단순히 화면에 요소를 렌더링하는 것을 넘어, 하드웨어가 가진 물리적 인지성과 촉각적 정직성을 디지털 공간으로 확장하는 다리 역할을 수행해야 한다.
+            </p>
           </div>
 
-          <div className="relative w-full aspect-video md:aspect-[21/9] bg-pdf-aluminum border border-pdf-seam rounded-xl overflow-hidden mb-8 flex items-center justify-center p-8 group">
-            {/* Grid Background */}
-            <div className="absolute inset-0 z-0 pointer-events-none" style={{ backgroundImage: 'linear-gradient(to right, rgba(9, 9, 11, 0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(9, 9, 11, 0.05) 1px, transparent 1px)', backgroundSize: '16px 16px' }}></div>
-            
-            {/* Displaying Headphone image */}
-            <img 
-              src="https://soundium.com/cdn/shop/files/7a541ce0-049a-4afa-9809-ddded0f3376d.png?v=1745829736&width=1946" 
-              alt="B&W Headphones Material Design" 
-              className="relative z-10 w-full h-full object-contain drop-shadow-2xl transition-transform duration-700 ease-out group-hover:scale-105" 
-            />
-            
-            {/* Material Annotations */}
-            <div className="absolute top-4 left-4 z-20">
-              <span className="font-mono text-[9px] font-bold text-pdf-focus tracking-widest uppercase">Design Inspiration</span>
-              <h3 className="font-sans text-sm font-bold text-pdf-leather mt-1">Bowers & Wilkins Form Factor</h3>
-            </div>
-            
-            {/* Material Callouts */}
-            <div className="absolute top-1/4 left-1/4 z-20 flex items-center gap-2 pointer-events-none">
-              <div className="w-2 h-2 rounded-full bg-pdf-red animate-pulse"></div>
-              <span className="font-mono text-[9px] font-bold text-pdf-focus bg-pdf-aluminum/90 px-1.5 py-0.5 border border-pdf-seam">Fabric & Nappa Leather</span>
-            </div>
-            <div className="absolute bottom-1/4 right-1/4 z-20 flex items-center gap-2 pointer-events-none">
-              <div className="w-2 h-2 rounded-full bg-pdf-leather animate-pulse"></div>
-              <span className="font-mono text-[9px] font-bold text-pdf-focus bg-pdf-aluminum/90 px-1.5 py-0.5 border border-pdf-seam">Metal & Polymer Transitions</span>
-            </div>
-          </div>
-
-          <div className="prose max-w-none text-pdf-leather leading-relaxed space-y-4">
-            <p>
-              현대 하드웨어 디자인이 예술로 추앙받는 이유는 단순히 값비싼 소재를 써서가 아니라, <strong>타협 없이 물리적 형태를 지배하고 이질적인 물리 소재(아노다이징 금속, 무광 폴리머 플라스틱, 프리미엄 나파 가죽, 텍스처 패브릭) 간의 전이(Transition) 과정이 하나의 유기체처럼 완벽히 맞물리도록 엔지니어링 했기 때문</strong>입니다.
+          <div className="pdf-mb-300">
+            <p className="pdf-text-copy-14">
+              본 디자인 시스템(Physical-Digital Fusion Design System, 이하 PDF-DS)은 20세기 산업 디자인의 거장 디터 람스의 설계 철학과 현대 디지털 제품 설계 방법론을 유기적으로 결합하여 탄생하였다. 디터 람스의 10대 디자인 원칙은 제품의 유용성, 심미성, 이해 가능성, 신뢰성, 지속 가능성, 그리고 불필요한 장식을 배제한 '최소한의 디자인'을 극대화하는 것에 초점을 맞춘다.
             </p>
-            <p>
-              바워스 앤 윌킨스(B&W) 헤드폰 같은 명품 기기에서 관찰되는 <strong>각 부품의 확실한 재질 차이와 이를 하나로 묶어내는 극도의 통일성</strong>은 PDF-DS의 핵심 영감입니다. <strong>PDF-DS (Physical-Digital Fusion Design System)</strong>는 이러한 극한의 물리적 마감 철학을 디지털 스크린의 차가운 평면 공간에 이식하려는 대담한 시도입니다.
+            <br />
+            <p className="pdf-text-copy-14">
+              물리적 감각을 디지털 인터페이스로 전이하는 과정에서는 바우어앤윌킨스의 사운드 엔지니어링 미학과 틴에이지 엔지니어링의 정밀한 촉각적 상호작용 방식이 핵심적인 이정표를 제공한다.
             </p>
-            <p>
-              화면이라는 매체의 한계로 인해 실제 질감(Texture)을 부여할 수 없다는 한계를 극복하기 위해, PDF-DS는 <strong>'수학적으로 통제된 색상의 대비', '1px 선(Border)의 투명도 변화', 그리고 '컴포넌트의 기하학적 형태 변화(Shape Morphing)'</strong>를 웹 스크린의 가상 물리 소재로 치환합니다.
-            </p>
-            <p>
-              이 시스템은 감성적이고 인간적인 척하는 가짜 아날로그 디테일(sepia 톤 배경, 감상적 서체, 부드러운 그림자)을 철저히 배제하고, 차갑고 정교한 디지털 본연의 아름다움(Achromatic, Blueprint Grid)을 추구합니다.
+            <br />
+            <p className="pdf-text-copy-14">
+              PDF-DS는 이러한 물리적 엔지니어링 사상을 디지털 디자인 언어로 계승한다. 스크린 내부의 요소들을 단순한 이미지나 가상의 레이어로 취급하지 않고, 명확한 두께를 가진 경계선과 규칙적인 격자 체계 위에 정렬된 독립적인 조작기(Manipulator)로 정의한다.
             </p>
           </div>
         </section>
@@ -83,223 +48,223 @@ export default function ChapterContent({ activeChapter }: ChapterProps) {
 
       {/* CHAPTER 2 */}
       {activeChapter === 2 && (
-        <section id="ch-2" className="scroll-mt-16 animate-fade-in">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="bg-pdf-aluminum text-pdf-red p-2 rounded-lg border border-pdf-red shrink-0">
-              <Ruler className="w-6 h-6" />
-            </div>
-            <div>
-              <span className="font-mono text-xs tracking-widest text-pdf-focus block uppercase">SECTION 02</span>
-              <h2 className="font-sans text-xl md:text-2xl font-black text-pdf-leather tracking-tight">
-                출발점 분석: 기존 주류 디자인의 한계
-              </h2>
-            </div>
+        <section id="ch-2">
+          <div className="pdf-mb-300">
+            <h2 className="pdf-text-heading-32 pdf-mb-100">2. 청사진 그리드(Blueprint Grid)와 멀티 스케일 여백(Spacing) 시스템</h2>
+            <p className="pdf-text-copy-14 pdf-text-muted">
+              디지털 레이아웃의 구조적 정밀도를 담보하기 위해 PDF-DS는 물리적 설계 도면에서 착안한 청사진 그리드와 수학적으로 정렬된 다중 스케일 여백 시스템을 채택한다.
+            </p>
           </div>
 
-          <div className="prose max-w-none text-pdf-leather leading-relaxed space-y-4">
-            <p>
-              PDF-DS의 철학은 기존 주류 웹 디자인이 가지고 있는 <strong>구조적 비효율성</strong>과 지나친 장식주의를 비판하고 이를 해결하는 과정에서 완성되었습니다.
-            </p>
-            
-            <LayoutComparisonSandbox />
-
-            <h3 className="font-bold text-pdf-leather mt-6 pt-4 border-t border-pdf-seam">윈도우(16:9) 중심의 공간 낭비와 패러다임 전환</h3>
-            <ul className="list-disc pl-5">
-              <li><strong>극단적인 수직 공간 압축:</strong> 브라우저 탭, URL 주소창, OS 작업표시줄 등 수직 공간을 점유하는 기본 프레임에 웹사이트 자체의 헤더와 푸터까지 추가되면, 실제 메인 콘텐츠가 보여질 시야는 절망적으로 좁아집니다.</li>
-              <li><strong>레터박스(Letterbox) 방치:</strong> 와이드 스크린 환경에서 양끝의 남는 거대한 좌우 공간은 방치된 채 중앙만 좁게 활용함으로써, 전체 화면 대비 실제 콘텐츠 렌더링 효율은 30~40% 밑으로 떨어집니다.</li>
-              <li><strong>비대칭 38:62 전환:</strong> PDF-DS는 이 좌우 공간을 38%의 시스템 컨트롤 패널과 62%의 데이터 캔버스로 재배치하여 빈 버퍼를 없애고, 헤더·푸터를 걷어내어 오직 스크린 전체를 통제와 관측의 영역으로 해방시켰습니다.</li>
+          <div className="pdf-mb-300">
+            <h3 className="pdf-text-label-16 pdf-mb-100">청사진 그리드 세부 명세</h3>
+            <ul className="pdf-list-disc pdf-text-copy-14">
+              <li>선 가중치 및 스타일: 그리드 라인은 브라우저 렌더링 엔진의 서브픽셀 깨짐을 방지하기 위해 엄격히 1px 두께의 실선으로 렌더링되어야 한다.</li>
+              <li>색상 및 투명도 명세: 기본 라이트 테마에서는 중성 그레이 계열인 #E5E7EB를 사용하고, 다크 테마에서는 #27272A를 적용하며 투명도를 10%~20%로 제한한다.</li>
+              <li>격자 모듈러스: 한 변은 시스템 기본 스페이싱 토큰인 16px 또는 24px 정방형 구조로 정렬되어야 한다.</li>
             </ul>
+          </div>
+          
+          <div className="pdf-mb-300">
+            <h3 className="pdf-text-label-16 pdf-mb-100">여백 토큰 및 그리드 확장 체계</h3>
+            <table className="pdf-table pdf-text-copy-14">
+              <thead>
+                <tr>
+                  <th>토큰명</th>
+                  <th>Rem 환산값 (16px 기준)</th>
+                  <th>물리 픽셀 값 (Pixel)</th>
+                  <th>주요 사용처 및 인터페이스 적용 규칙</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className="pdf-font-mono">$space-025</td>
+                  <td>0.125rem</td>
+                  <td>2px</td>
+                  <td>미세 경계선 오프셋, 입력 필드 내 선택 표시기 정렬</td>
+                </tr>
+                <tr>
+                  <td className="pdf-font-mono">$space-100</td>
+                  <td>0.5rem</td>
+                  <td>8px</td>
+                  <td>기본 베이스라인, 콤팩트 리스트 요소 간 수직 간격</td>
+                </tr>
+                <tr>
+                  <td className="pdf-font-mono">$space-300</td>
+                  <td>1.5rem</td>
+                  <td>24px</td>
+                  <td>섹션 간 수직 간격, 표준 대화상자 여백, 마케팅 레이아웃 그리드</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <div className="pdf-mb-300">
+            <GridSandbox />
           </div>
         </section>
       )}
 
       {/* CHAPTER 3 */}
       {activeChapter === 3 && (
-        <section id="ch-3" className="scroll-mt-16 animate-fade-in">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="bg-pdf-aluminum text-pdf-red p-2 rounded-lg border border-pdf-red shrink-0">
-              <Type className="w-6 h-6" />
-            </div>
-            <div>
-              <span className="font-mono text-xs tracking-widest text-pdf-focus block uppercase">SECTION 03</span>
-              <h2 className="font-sans text-xl md:text-2xl font-black text-pdf-leather tracking-tight">
-                전이(Transition) 과정: 오리지널 물리 디자인 철학의 디지털 치환
-              </h2>
-            </div>
+        <section id="ch-3">
+          <div className="pdf-mb-300">
+            <h2 className="pdf-text-heading-32 pdf-mb-100">3. 정밀 타이포그래피 및 레이아웃 정렬 명세</h2>
+            <p className="pdf-text-copy-14 pdf-text-muted">
+              타이포그래피는 PDF-DS에서 가장 주도적인 구조체이다. 감정적인 서체를 철저히 지양하는 대신, 정교하게 조정된 지오메트릭 산세리프(Geometric Sans-serif) 서체인 Geist Sans 또는 Inter를 본문 및 타이틀용으로 선언한다.
+            </p>
           </div>
 
-          <div className="prose max-w-none text-pdf-leather leading-relaxed space-y-4">
-            <p>
-              PDF-DS는 정밀 하드웨어 부품들이 결합하는 세 가지 물리적 원리를 디지털 플랫폼의 렌더링 가이드라인으로 무결하게 재해석했습니다.
-            </p>
-
-            <h3 className="font-bold text-pdf-leather mt-6 pt-4 border-t border-pdf-seam">원리 A: 소재의 대비 → 아크로매틱 3색 스케일 (Chassis to Leather)</h3>
-            <p>
-              하이엔드 오디오에서 차가운 아노다이징 알루미늄 샤시와 묵직한 가죽 마감재가 서로 완벽한 대비를 이루며 경계를 형성하듯, PDF-DS는 소재의 대비 효과를 <strong>아크로매틱 그레이 스케일</strong>로 치환합니다.
-            </p>
-            <ul className="list-disc pl-5">
-              <li><strong>알루미늄 샤시 = Base Tone (#FFFFFF):</strong> 전체 스페이스를 바쳐주는 바탕면으로, 순수한 디지털 캔버스를 상징합니다.</li>
-              <li><strong>고급 가죽 패널 = Structure Tone (#09090B):</strong> 타이포그래피와 핵심 제어 패널에 쓰이는 극단적 다크 슬레이트 블랙으로, 알루미늄 위에 얹어진 묵직한 부품의 깊이감을 선사합니다.</li>
-              <li><strong>이음새/다이얼 = Interaction Tone (#E4E4E7):</strong> 두 물리 재료가 만나는 경계와 미세 조정 장치를 규정하는 메디움 그레이입니다.</li>
-            </ul>
-
-            <h3 className="font-bold text-pdf-leather mt-6 pt-4 border-t border-pdf-seam">원리 B: 흐릿한 그림자의 배제 → 1px 아웃라인과 물리적 단차 (Seam)</h3>
-            <p>
-              현실 세계에서 하드웨어의 부품들은 흐릿한 그림자를 만들지 않고, <strong>칼같이 맞아떨어지는 이음새(Seam)</strong>를 보여줍니다. PDF-DS는 이를 모사하기 위해 <strong>그림자(Drop Shadow)를 영구히 추방</strong>합니다.
-            </p>
-            <ul className="list-disc pl-5">
-              <li><strong>1px Crisp Border:</strong> 요소와 요소의 분리는 그림자가 아닌 명확한 1px 실선으로 제어합니다.</li>
-              <li><strong>State Interlocking (상태 연동):</strong> 마우스가 경계선 위를 지나갈 때, 그림자가 생기며 붕 뜨는 인공적인 착각 대신 선의 투명도(Opacity)가 15%에서 100%로 기계적으로 서서히 선명해지도록 처리하여, 마치 금속 섀시를 정교하게 깎아 만든 틈새에 불빛이 들어오는 듯한 촉각적 상호작용을 완성합니다.</li>
-            </ul>
-
-            <h3 className="font-bold text-pdf-leather mt-6 pt-4 border-t border-pdf-seam">원리 C: 조작의 손맛 → 형태 모핑(Shape Morphing) 메커니즘</h3>
-            <p>
-              정밀 가공된 알루미늄 노브를 돌리거나 금속 스위치를 누를 때 손가락 끝에 진실되게 전해져오는 물리적 저항을 디지털 인터랙션 텐션으로 강제 구현합니다.
-            </p>
-            <ul className="list-disc pl-5">
-              <li>
-                <strong>Corner Radius Morphing:</strong> 바탕 상태(Rest)의 버튼은 시각적 평온함을 주는 완전한 원형(Fully Rounded)을 유지합니다. 마우스가 진입하면 코너 반경이 12dp로 좁혀지며 부드러운 사각형(Soft Square)으로 조여지고, 클릭되는 순간(Pressed) 8dp의 날카로운 직사각형(Sharp Square)으로 모핑됩니다. 이는 마치 사용자의 누르는 힘에 의해 스위치의 금속 하우징이 단단하게 맞물려 고정되는 감각을 극도로 직관적인 애니메이션으로 전달합니다.
-              </li>
+          <div className="pdf-mb-300">
+            <TypographySandbox />
+          </div>
+          
+          <div className="pdf-mb-300">
+            <h3 className="pdf-text-label-16 pdf-mb-100">광학적 정렬 및 레이아웃 렌더링 규칙</h3>
+            <ul className="pdf-list-disc pdf-text-copy-14">
+              <li><strong>광학적 미세 보정 (Optical Alignment):</strong> 텍스트와 이형의 아이콘이 수평으로 결합할 때 기하학적 중앙 정렬 연산 결과가 어색해 보일 수 있다. 이 경우 ±1px 한도 내에서 수동으로 조정해야 한다.</li>
+              <li><strong>데이터 비교용 고정폭 숫자 정렬:</strong> <code>font-variant-numeric: tabular-nums</code> 설정을 의무적으로 활성화한다.</li>
+              <li><strong>구두점 및 표기식의 미학:</strong> 인용구는 둥근 따옴표(“ ”)를 사용하고, 줄바꿈으로 인해 숫자와 단위가 찢어지지 않도록 비줄바꿈 공백(Non-breaking Space) 처리를 선행해야 한다 (예: 10 MB).</li>
             </ul>
           </div>
-
-          <div className="mt-8 space-y-12">
-            <ColorSandbox />
-            <ButtonSandbox />
+          
+          <div className="pdf-mb-300">
+            <AlignmentSandbox />
           </div>
         </section>
       )}
 
       {/* CHAPTER 4 */}
       {activeChapter === 4 && (
-        <section id="ch-4" className="scroll-mt-16 animate-fade-in">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="bg-pdf-aluminum text-pdf-red p-2 rounded-lg border border-pdf-red shrink-0">
-              <Type className="w-6 h-6" />
-            </div>
-            <div>
-              <span className="font-mono text-xs tracking-widest text-pdf-focus block uppercase">SECTION 04</span>
-              <h2 className="font-sans text-xl md:text-2xl font-black text-pdf-leather tracking-tight">
-                정밀 타이포그래피 및 다국어 시스템
-              </h2>
-            </div>
+        <section id="ch-4">
+          <div className="pdf-mb-300">
+            <h2 className="pdf-text-heading-32 pdf-mb-100">4. 아크로매틱 컬러 체계와 펑셔널 레드의 위계적 운용</h2>
+            <p className="pdf-text-copy-14 pdf-text-muted">
+              PDF-DS의 색상 전술은 완전한 절제에 기반을 둔다. 형형색색의 컬러 스펙트럼과 과도한 그라디언트는 추방된다. 오직 아크로매틱(Achromatic) 토대 위에 구축된다.
+            </p>
           </div>
 
-          <div className="prose max-w-none text-pdf-leather leading-relaxed space-y-4">
-            <p>
-              타이포그래피는 PDF-DS에서 가장 주도적인 구조체입니다. 본 시스템은 범용성이 극도로 탁월한 산세리프 <strong>Pretendard Variable</strong>을 기본 본문(Base Sans)으로 선언하며, 다국어 환경(한글, 영문, 일어, 라틴 등)에서 높이와 여백의 물리적 충돌 없이 균등한 렌더링 무결성을 획득합니다.
+          <div className="pdf-mb-300">
+            <h3 className="pdf-text-label-16 pdf-mb-100">아크로매틱 기본 배경 및 경계선 시스템</h3>
+            <div className="pdf-code-block pdf-mb-200">
+              배경 1 (Background 1: #FFFFFF)<br/>
+              배경 2 (Background 2: #F4F4F5)<br/>
+              컴포넌트 Rest (Color 1: #FFFFFF)<br/>
+              경계선 Rest (Color 4: #E4E4E7)
+            </div>
+            <p className="pdf-text-copy-14">
+              페이지 전체를 감싸는 최하단 도화지 영역인 '배경 1'은 순수한 백색인 #FFFFFF를 지정하며, 제한적인 수준에서 '배경 2'인 #F4F4F5를 차용하여 깊이 단계를 제어한다.
             </p>
-
-            <ul className="list-disc pl-5">
-              <li><strong>Pretendard (Base Sans):</strong> 어떠한 운영체제나 기기에서도 Apple 타이포그래피와 유사한 최고 수준의 퀄리티와 일관된 글꼴 폭을 제공합니다.</li>
-              <li><strong>Geist Mono (Data & Interface):</strong> 코드, 토큰 규칙, 메뉴 레이블 및 렌더링 수치에는 가독성과 기술적 정교함을 극대화한 모노스페이스 서체가 전담되어 적용됩니다.</li>
-              <li><strong>다국어 호환성:</strong> Pretendard 자체가 가진 방대한 다국어 글리프 글꼴 세트는 한국어에서 영문으로, 영문에서 다시 일본어 등 다른 문자로 전환될 때 발생하는 시각적 높이 단차(Ascender/Descender 튀는 현상) 문제를 완벽히 평탄화합니다.</li>
+          </div>
+          
+          <div className="pdf-mb-300">
+            <h3 className="pdf-text-label-16 pdf-mb-100">펑셔널 레드(Functional Red) 액센트 설계</h3>
+            <p className="pdf-text-copy-14 pdf-mb-100">
+              오직 단 하나의 핵심 하이라이트 색상인 <strong>펑셔널 레드(Functional Red, #AD1D1D)</strong>가 시각적 폭발력을 획득한다. 오직 세 가지 상황에서만 제한적으로 동원된다.
+            </p>
+            <ul className="pdf-list-disc pdf-text-copy-14">
+              <li>화면 내부에서 사용자가 즉시 실행해야만 하는 단 하나의 일차적 명령 버튼(Primary Call to Action)</li>
+              <li>데이터의 영구적인 변동을 초래하는 위급한 경고성 제어 장치(Critical Destructive Action)</li>
+              <li>시스템 오류나 검증 누락 상태를 실시간으로 환기해야 하는 즉각적 위기 상태 표시기(Immediate Validation State Indicator)</li>
             </ul>
           </div>
           
-          <div className="mt-8 space-y-12">
-            <TypographySandbox />
-            <AlignmentSandbox />
+          <div className="pdf-mb-300">
+            <ColorSandbox />
           </div>
         </section>
       )}
 
       {/* CHAPTER 5 */}
       {activeChapter === 5 && (
-        <section id="ch-5" className="scroll-mt-16 animate-fade-in">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="bg-pdf-aluminum text-pdf-red p-2 rounded-lg border border-pdf-red shrink-0">
-              <Columns className="w-6 h-6" />
-            </div>
-            <div>
-              <span className="font-mono text-xs tracking-widest text-pdf-focus block uppercase">SECTION 05</span>
-              <h2 className="font-sans text-xl md:text-2xl font-black text-pdf-leather tracking-tight">
-                구조의 완성: PDF-DS 38:62 비대칭 블루프린트 레이아웃
-              </h2>
-            </div>
-          </div>
-
-          <div className="prose max-w-none text-pdf-leather leading-relaxed space-y-4">
-            <p>
-              PDF-DS는 기존의 수직 구조가 방치하던 <strong>좌우 레터박스 공간을 완전히 회수</strong>하여 화면의 100%를 통제합니다. 단조로운 대칭뷰를 탈피하여 <strong>38:62 비대칭 황금 분할</strong>을 레이아웃 표준으로 삼습니다.
+        <section id="ch-5">
+          <div className="pdf-mb-300">
+            <h2 className="pdf-text-heading-32 pdf-mb-100">5. 머티리얼 3 기반 초정밀 버튼 설계 및 형태 모핑(Shape Morphing) 상호작용</h2>
+            <p className="pdf-text-copy-14 pdf-text-muted">
+              버튼은 물리 하드웨어의 택타일 스위치를 디지털 화면 내부로 완벽하게 복제해 온 PDF-DS의 핵심 제어 컴포넌트이다. 외곽선의 예리함과 기하학적 형태 변화 메커니즘을 추가하여 정교한 피드백을 완성한다.
             </p>
-            
-            <GoldenRatioSandbox />
-
-            <ul className="list-disc pl-5 mt-6">
-              <li><strong>좌측 컨트롤 패널(38%):</strong> 마치 하드웨어 리모컨이나 제어 계측 시스템을 이식한 듯한 느낌을 주며, Geist Mono 서체를 사용하여 시스템 고유의 기계적이고 날카로운 포인트 위계를 세웁니다.</li>
-              <li><strong>우측 본문 캔버스(62%):</strong> 범용성이 극대화된 Pretendard 서체를 기반으로 다국어(한·영·일) 표기 시의 시각적 밀도가 완벽히 수평을 이루도록 통제하며, 대담한 여백(Whitespace)을 활용해 압도적인 가독성을 제공합니다.</li>
-              <li><strong>펑셔널 레드(#AD1D1D):</strong> 전체 화면이 무채색인 그레이스케일로 진공 청소된 상태에서, 오직 단 하나의 핵심 조작 장치(예: 전원, CTA, 또는 에러 상태)에만 역사적 하드웨어의 오리지널 레드 컬러인 <code>#AD1D1D</code>를 타격하여 인간의 시선을 즉각적으로 제어합니다.</li>
-            </ul>
           </div>
 
-          <div className="mt-8 space-y-12">
-            <SplitSandbox />
-            <GridSandbox />
+          <div className="pdf-mb-300">
+            <h3 className="pdf-text-label-16 pdf-mb-100">형태 모핑(Shape Morphing) 메커니즘</h3>
+            <p className="pdf-text-copy-14">
+              평상시 기본 Rest 상태에서는 완전한 원형 스타일(Fully Rounded)을 유지하다가, 마우스가 진입(Hover)하거나 손가락으로 가압(Press)하는 물리적 에너지가 전달되는 순간 코너 반경을 좁히며 엣지 있는 직사각형 형태로 탈바꿈한다.
+            </p>
+          </div>
+          
+          <div className="pdf-mb-300">
+            <ButtonSandbox />
           </div>
         </section>
       )}
 
       {/* CHAPTER 6 */}
       {activeChapter === 6 && (
-        <section id="ch-6" className="scroll-mt-16 animate-fade-in">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="bg-pdf-aluminum text-pdf-red p-2 rounded-lg border border-pdf-red shrink-0">
-              <Palette className="w-6 h-6 text-pdf-red" />
-            </div>
-            <div>
-              <span className="font-mono text-xs tracking-widest text-pdf-focus block uppercase">SECTION 06</span>
-              <h2 className="font-sans text-xl md:text-2xl font-black text-pdf-leather tracking-tight">
-                결론: PDF-DS가 가져다주는 미학적 가치
-              </h2>
-            </div>
-          </div>
-
-          <div className="prose max-w-none text-pdf-leather leading-relaxed space-y-4">
-            <div className="overflow-hidden border border-pdf-seam rounded-lg shadow-xs mt-6">
-              <table className="min-w-full divide-y divide-pdf-seam text-sm">
-                <thead className="bg-pdf-aluminum border-b border-pdf-seam">
-                  <tr>
-                    <th className="px-6 py-3 text-left text-xs font-mono font-bold text-pdf-focus uppercase tracking-wider w-1/4 border-r border-pdf-seam">구분</th>
-                    <th className="px-6 py-3 text-left text-xs font-mono font-bold text-pdf-focus uppercase tracking-wider w-3/8 border-r border-pdf-seam">기존 주류 웹 디자인</th>
-                    <th className="px-6 py-3 text-left text-xs font-mono font-bold text-pdf-leather uppercase tracking-wider bg-pdf-aluminum">진화된 PDF-DS 디자인 언어</th>
-                  </tr>
-                </thead>
-                <tbody className="bg-pdf-aluminum divide-y divide-pdf-seam">
-                  <tr className="hover:bg-pdf-aluminum">
-                    <td className="px-6 py-4 font-mono font-bold text-pdf-leather border-r border-pdf-seam whitespace-nowrap">미학적 지향</td>
-                    <td className="px-6 py-4 text-pdf-focus border-r border-pdf-seam">따뜻함, 인공적 친근성, 감성 마케팅 무드</td>
-                    <td className="px-6 py-4 font-bold text-pdf-leather">차가움, 솔직함, 정교함, 이성적 기능주의</td>
-                  </tr>
-                  <tr className="hover:bg-pdf-aluminum">
-                    <td className="px-6 py-4 font-mono font-bold text-pdf-leather border-r border-pdf-seam whitespace-nowrap">컬러 원칙</td>
-                    <td className="px-6 py-4 text-pdf-focus border-r border-pdf-seam">크림색 배경과 다채롭고 빈티지한 삼색선</td>
-                    <td className="px-6 py-4 text-pdf-leather">완전한 아크로매틱 3색 + <strong className="text-pdf-red">펑셔널 레드 포인트</strong></td>
-                  </tr>
-                  <tr className="hover:bg-pdf-aluminum">
-                    <td className="px-6 py-4 font-mono font-bold text-pdf-leather border-r border-pdf-seam whitespace-nowrap">공간감 형성</td>
-                    <td className="px-6 py-4 text-pdf-focus border-r border-pdf-seam">평범한 2차원 화면 분할</td>
-                    <td className="px-6 py-4 text-pdf-leather">1px 미세 경계면과 투명도 조절을 통한 하드웨어 단차감</td>
-                  </tr>
-                  <tr className="hover:bg-pdf-aluminum">
-                    <td className="px-6 py-4 font-mono font-bold text-pdf-leather border-r border-pdf-seam whitespace-nowrap">조작 피드백</td>
-                    <td className="px-6 py-4 text-pdf-focus border-r border-pdf-seam">단순한 마우스 오버 시 텍스트 컬러 반전</td>
-                    <td className="px-6 py-4 text-pdf-leather">손끝 감각을 모사하는 <strong>스프링 기반의 형태 모핑</strong></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-            <p className="mt-8 p-4 bg-pdf-aluminum border border-pdf-seam rounded text-pdf-leather leading-relaxed">
-              물리적 기계 공학과 필연적 기능주의가 역사적 명품 디자인으로 승화되었듯, PDF-DS 역시 주류 웹의 <strong>비효율적인 공간 낭비를 100% 비대칭 풀스크린으로 회수</strong>하고 억지스러운 인간미의 노이즈를 거세함으로써, <strong>가장 압도적인 화면 밀도와 강력한 촉각적 상호작용</strong>을 제공하는 초정밀 가이드라인을 증명해냅니다.
+        <section id="ch-6">
+          <div className="pdf-mb-300">
+            <h2 className="pdf-text-heading-32 pdf-mb-100">6. 비대칭 스플릿 스크린 레이아웃 및 디바이스 반응형 통합 가이드라인</h2>
+            <p className="pdf-text-copy-14 pdf-text-muted">
+              화면 분할 철학은 대칭 분리를 타파하고 황금 비율에 준하는 38:62 비율의 비대칭 스플릿 스크린을 기본 표준으로 채택한다.
             </p>
           </div>
 
-          <div className="mt-12">
-            <QASandbox />
+          <div className="pdf-mb-300">
+            <GoldenRatioSandbox />
           </div>
-          <div className="mt-12">
+          
+          <div className="pdf-mb-300">
+            <h3 className="pdf-text-label-16 pdf-mb-100">모바일 스택 및 반응형 레이아웃 복원 가이드라인</h3>
+            <ul className="pdf-list-disc pdf-text-copy-14">
+              <li><strong>수직 위계적 스택킹(Vertical Stacking):</strong> 뷰포트 크기가 수축함에 따라 두 면은 즉각적으로 수직 방향으로 정렬되어 위에서 아래로 스택킹된다.</li>
+              <li><strong>콘텐츠 최소 크기 타겟:</strong> 스택 카드는 어떠한 경우에도 너비 또는 높이 기준 220dp 미만으로 축소되지 않도록 최소 공간 제한치를 확보한다.</li>
+              <li><strong>레이아웃 시프트(Layout Shift) 방지를 위한 스켈레톤:</strong> 데이터 로딩 전의 임시 로딩 스켈레톤(Skeleton UI)은 실제 컴포넌트의 패딩 높이와 모서리 둥글기 스펙을 1px 오차도 없이 100% 동일하게 복제한다.</li>
+            </ul>
+          </div>
+          
+          <div className="pdf-mb-300">
+            <SplitSandbox />
+          </div>
+        </section>
+      )}
+
+      {/* CHAPTER 7 */}
+      {activeChapter === 7 && (
+        <section id="ch-7">
+          <div className="pdf-mb-300">
+            <h2 className="pdf-text-heading-32 pdf-mb-100">7. 통합 소프트웨어 아키텍처 및 토큰 구현 가이드라인</h2>
+            <p className="pdf-text-copy-14 pdf-text-muted">
+              디자인 시스템 PDF-DS의 궁극적인 존재 가치는 여러 이종 플랫폼 위에서 단일한 명도의 통제력을 유지하는 코드 기반 무결성에 있다.
+            </p>
+          </div>
+
+          <div className="pdf-mb-300">
             <CodeExport />
+          </div>
+        </section>
+      )}
+
+      {/* CHAPTER 8 */}
+      {activeChapter === 8 && (
+        <section id="ch-8">
+          <div className="pdf-mb-300">
+            <h2 className="pdf-text-heading-32 pdf-mb-100">8. 최종 통합 실무 체크리스트 및 검수 수칙</h2>
+            <p className="pdf-text-copy-14 pdf-text-muted">
+              이 디자인 가이드라인이 프로젝트 소스코드에서 정상적으로 완수되고 있는지 판단하기 위한 전방위 디자인 검수(QA) 기준 목록이다.
+            </p>
+          </div>
+
+          <div className="pdf-mb-300">
+            <ul className="pdf-list-disc pdf-text-copy-14">
+              <li><strong>하드코딩 배제 검수:</strong> 모든 여백 및 내부 패딩 코드가 기하학적인 정수형 픽셀 단위로 선언되어 있지 않고, 반드시 $space- 계열의 토큰으로 올바르게 대체되었는지 정적 분석 툴을 통해 확인한다.</li>
+              <li><strong>청사진 그리드 대비 수준 확보:</strong> 배경 격자선의 명도 투명도 수치가 10% - 20% 임계를 넘어 사용자의 시선을 방해하지 않는지 검측한다.</li>
+              <li><strong>버튼 터치 영역의 최소 사양 준수:</strong> 48x48dp 이상을 정상 확보하여 손가락 터치 누락을 방지하고 있는지 추적 확인한다.</li>
+              <li><strong>펑셔널 레드의 위계적 제한 수칙:</strong> 펑셔널 레드 액센트 색상이 적용된 컴포넌트 및 레이블 표지기의 개수가 최대 3개 이하로 통제되고 있는지 체크한다.</li>
+              <li><strong>텍스트 200% 확장 시의 레이아웃 무결성:</strong> 서체의 크기를 200%까지 강제 격상시켰을 때 레이아웃 컨테이너가 다른 요소를 덮어씌우지 않는지 검증한다.</li>
+            </ul>
+          </div>
+          
+          <div className="pdf-mb-300">
+            <QASandbox />
           </div>
         </section>
       )}

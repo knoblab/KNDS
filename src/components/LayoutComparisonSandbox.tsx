@@ -4,37 +4,45 @@ export default function LayoutComparisonSandbox() {
   const [viewMode, setViewMode] = useState<'legacy' | 'pdfds'>('legacy');
 
   return (
-    <div className="bg-pdf-aluminum border border-pdf-seam p-4 shrink-0 rounded-lg my-8 flex flex-col justify-center overflow-hidden relative shadow-sm">
-      <div className="flex justify-between items-center mb-6">
+    <div className="pdf-bg-secondary pdf-border pdf-p-200 pdf-flex-col pdf-justify-center" style={{ flexShrink: 0, borderRadius: 8, margin: '32px 0', overflow: 'hidden', position: 'relative', boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)' }}>
+      <div className="pdf-flex-row pdf-justify-between pdf-items-center pdf-mb-300">
         <div>
-          <span className="font-mono text-xs tracking-wider text-pdf-red font-bold uppercase block">
+          <span className="pdf-text-label-14-mono pdf-text-red pdf-mb-100" style={{ display: 'block', fontWeight: 'bold' }}>
             CH.2 STRUCTURAL ANALYSIS
           </span>
-          <h4 className="font-sans text-base font-semibold text-pdf-leather mt-1">
+          <h4 className="pdf-text-label-16" style={{ fontWeight: 'bold', marginTop: 4 }}>
             주류 웹 레이아웃 vs PDF-DS 블루프린트
           </h4>
         </div>
-        <div className="flex bg-pdf-seam p-1 rounded-md shrink-0">
+        <div className="pdf-flex-row" style={{ backgroundColor: 'var(--color-border-default)', padding: 4, borderRadius: 6, flexShrink: 0 }}>
           <button
             onClick={() => setViewMode('legacy')}
-            className={`px-3 py-1.5 text-xs font-bold font-mono rounded transition-colors ${
-              viewMode === 'legacy' ? 'bg-pdf-aluminum text-pdf-leather shadow-sm' : 'text-pdf-focus hover:text-pdf-leather'
-            }`}
+            className="pdf-text-label-14-mono"
+            style={{
+              padding: '6px 12px', fontWeight: 'bold', borderRadius: 4, cursor: 'pointer', border: 'none', transition: 'background-color 0.2s',
+              backgroundColor: viewMode === 'legacy' ? 'var(--color-bg-primary)' : 'transparent',
+              color: viewMode === 'legacy' ? 'var(--color-text-primary)' : 'var(--color-text-secondary)',
+              boxShadow: viewMode === 'legacy' ? '0 1px 2px rgba(0,0,0,0.05)' : 'none'
+            }}
           >
             LEGACY WEB
           </button>
           <button
             onClick={() => setViewMode('pdfds')}
-            className={`px-3 py-1.5 text-xs font-bold font-mono rounded transition-colors ${
-              viewMode === 'pdfds' ? 'bg-pdf-red text-pdf-aluminum shadow-sm' : 'text-pdf-focus hover:text-pdf-leather'
-            }`}
+            className="pdf-text-label-14-mono"
+            style={{
+              padding: '6px 12px', fontWeight: 'bold', borderRadius: 4, cursor: 'pointer', border: 'none', transition: 'background-color 0.2s',
+              backgroundColor: viewMode === 'pdfds' ? 'var(--color-functional-red)' : 'transparent',
+              color: viewMode === 'pdfds' ? 'var(--color-bg-primary)' : 'var(--color-text-secondary)',
+              boxShadow: viewMode === 'pdfds' ? '0 1px 2px rgba(0,0,0,0.05)' : 'none'
+            }}
           >
             PDF-DS
           </button>
         </div>
       </div>
 
-      <div className="text-xs text-pdf-focus mb-6 leading-relaxed">
+      <div className="pdf-text-copy-14 pdf-text-muted pdf-mb-300" style={{ lineHeight: 1.6 }}>
         {viewMode === 'legacy' ? (
             <p><strong>윈도우 데스크톱 환경(16:9)의 수직 압축:</strong> 브라우저 탭, URL 바, 작업표시줄 등 OS 레벨의 UI에 의해 이미 화면의 수직 공간이 소모된 상태에서, 웹사이트 자체의 헤더와 푸터까지 더해지면 실제 콘텐츠 영역은 극도로 비좁아집니다. 동시에 좌우 레터박스는 방치됩니다.</p>
         ) : (
@@ -43,134 +51,134 @@ export default function LayoutComparisonSandbox() {
       </div>
 
       {/* 16:9 윈도우 모니터 프레임 */}
-      <div className="mx-auto w-full max-w-4xl aspect-video bg-pdf-leather rounded-md border-[6px] border-pdf-focus shadow-xl overflow-hidden flex flex-col relative transition-all duration-500">
+      <div style={{ margin: '0 auto', width: '100%', maxWidth: '896px', aspectRatio: '16/9', backgroundColor: '#09090b', borderRadius: 6, border: '6px solid var(--color-border-hover)', boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)', overflow: 'hidden', display: 'flex', flexDirection: 'column', position: 'relative', transition: 'all 0.5s' }}>
         
         {/* OS Top: Browser Tabs & URL Bar */}
-        <div className="bg-pdf-seam w-full shrink-0 flex flex-col">
+        <div style={{ backgroundColor: 'var(--color-border-default)', width: '100%', flexShrink: 0, display: 'flex', flexDirection: 'column' }}>
           {/* Tabs */}
-          <div className="flex items-end h-8 px-2 gap-1 pt-2 bg-pdf-seam">
-            <div className="w-32 h-full bg-pdf-aluminum rounded-t-md flex items-center px-2 text-[8px] font-sans text-pdf-leather">
+          <div style={{ display: 'flex', alignItems: 'flex-end', height: 32, padding: '0 8px', gap: 4, paddingTop: 8, backgroundColor: 'var(--color-border-default)' }}>
+            <div style={{ width: 128, height: '100%', backgroundColor: 'var(--color-bg-primary)', borderTopLeftRadius: 6, borderTopRightRadius: 6, display: 'flex', alignItems: 'center', padding: '0 8px', fontSize: 8, fontFamily: 'var(--font-sans)', color: 'var(--color-text-primary)' }}>
               New Tab
             </div>
-            <div className="w-8 h-6 bg-pdf-seam rounded-full flex items-center justify-center text-[10px] text-pdf-focus">+</div>
+            <div style={{ width: 32, height: 24, backgroundColor: 'var(--color-border-default)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 10, color: 'var(--color-text-secondary)' }}>+</div>
           </div>
           {/* URL Bar */}
-          <div className="h-10 bg-pdf-aluminum flex items-center px-2 gap-2 border-b border-pdf-focus">
-            <div className="flex gap-1">
-              <div className="w-4 h-4 rounded-full bg-pdf-seam"></div>
-              <div className="w-4 h-4 rounded-full bg-pdf-seam"></div>
-              <div className="w-4 h-4 rounded-full bg-pdf-seam"></div>
+          <div style={{ height: 40, backgroundColor: 'var(--color-bg-primary)', display: 'flex', alignItems: 'center', padding: '0 8px', gap: 8, borderBottom: '1px solid var(--color-border-hover)' }}>
+            <div style={{ display: 'flex', gap: 4 }}>
+              <div style={{ width: 16, height: 16, borderRadius: '50%', backgroundColor: 'var(--color-border-default)' }}></div>
+              <div style={{ width: 16, height: 16, borderRadius: '50%', backgroundColor: 'var(--color-border-default)' }}></div>
+              <div style={{ width: 16, height: 16, borderRadius: '50%', backgroundColor: 'var(--color-border-default)' }}></div>
             </div>
-            <div className="flex-1 h-6 bg-pdf-aluminum border border-pdf-focus rounded-full text-[8px] flex items-center px-3 text-pdf-focus font-mono">
+            <div style={{ flex: 1, height: 24, backgroundColor: 'var(--color-bg-primary)', border: '1px solid var(--color-border-hover)', borderRadius: 9999, fontSize: 8, display: 'flex', alignItems: 'center', padding: '0 12px', color: 'var(--color-text-secondary)', fontFamily: 'var(--font-mono)' }}>
               https://legacy.web/
             </div>
           </div>
         </div>
 
         {/* Website Content Area */}
-        <div className="flex-1 bg-pdf-aluminum relative overflow-hidden flex transition-all duration-500">
+        <div style={{ flex: 1, backgroundColor: 'var(--color-bg-primary)', position: 'relative', overflow: 'hidden', display: 'flex', transition: 'all 0.5s' }}>
           
           {viewMode === 'legacy' ? (
             /* LEGACY LAYOUT */
-            <div className="w-full flex-1 flex flex-col items-center relative animate-fade-in">
+            <div style={{ width: '100%', flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative', animation: 'fadeIn 0.5s' }}>
               {/* Header */}
-              <div className="w-full h-14 border-b border-pdf-seam bg-pdf-aluminum shrink-0 flex items-center px-6 justify-between shadow-sm z-20">
-                <div className="w-24 h-4 bg-pdf-seam rounded"></div>
-                <div className="flex gap-4">
-                  <div className="w-10 h-2 bg-pdf-aluminum rounded"></div>
-                  <div className="w-10 h-2 bg-pdf-aluminum rounded"></div>
-                  <div className="w-10 h-2 bg-pdf-aluminum rounded"></div>
+              <div style={{ width: '100%', height: 56, borderBottom: '1px solid var(--color-border-default)', backgroundColor: 'var(--color-bg-primary)', flexShrink: 0, display: 'flex', alignItems: 'center', padding: '0 24px', justifyContent: 'space-between', boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)', zIndex: 20 }}>
+                <div style={{ width: 96, height: 16, backgroundColor: 'var(--color-border-default)', borderRadius: 4 }}></div>
+                <div style={{ display: 'flex', gap: 16 }}>
+                  <div style={{ width: 40, height: 8, backgroundColor: 'var(--color-bg-primary)', borderRadius: 4 }}></div>
+                  <div style={{ width: 40, height: 8, backgroundColor: 'var(--color-bg-primary)', borderRadius: 4 }}></div>
+                  <div style={{ width: 40, height: 8, backgroundColor: 'var(--color-bg-primary)', borderRadius: 4 }}></div>
                 </div>
               </div>
               
               {/* Layout Wrapper */}
-              <div className="flex w-full flex-1 relative bg-pdf-aluminum z-10">
+              <div style={{ display: 'flex', width: '100%', flex: 1, position: 'relative', backgroundColor: 'var(--color-bg-primary)', zIndex: 10 }}>
                 {/* Left Letterbox */}
-                <div className="flex-1 bg-pdf-red/40 border-r-2 border-pdf-red border-dashed flex flex-col justify-center items-center text-center">
-                  <span className="text-pdf-red text-[10px] font-bold">낭비되는</span>
-                  <span className="text-pdf-red text-[10px] font-bold">여백</span>
+                <div style={{ flex: 1, backgroundColor: 'rgba(173, 29, 29, 0.1)', borderRight: '2px dashed var(--color-functional-red)', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center' }}>
+                  <span style={{ color: 'var(--color-functional-red)', fontSize: 10, fontWeight: 'bold' }}>낭비되는</span>
+                  <span style={{ color: 'var(--color-functional-red)', fontSize: 10, fontWeight: 'bold' }}>여백</span>
                 </div>
                 
                 {/* Main Content (Narrow and Stretched) */}
-                <div className="w-[50%] bg-pdf-aluminum shadow-lg flex flex-col items-center pt-8 px-6 pb-2 overflow-hidden relative">
-                  <span className="text-xs font-bold text-pdf-red border border-pdf-red leading-none bg-pdf-aluminum px-2 py-1 rounded absolute top-2 right-2 animate-pulse">
+                <div style={{ width: '50%', backgroundColor: 'var(--color-bg-primary)', boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)', display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: 32, paddingLeft: 24, paddingRight: 24, paddingBottom: 8, overflow: 'hidden', position: 'relative' }}>
+                  <span style={{ fontSize: 12, fontWeight: 'bold', color: 'var(--color-functional-red)', border: '1px solid var(--color-functional-red)', lineHeight: 1, backgroundColor: 'var(--color-bg-primary)', padding: '4px 8px', borderRadius: 4, position: 'absolute', top: 8, right: 8 }}>
                     수직 압축됨
                   </span>
-                  <div className="w-3/4 h-6 bg-pdf-seam rounded mb-4"></div>
-                  <div className="w-full h-3 bg-pdf-aluminum rounded mb-2"></div>
-                  <div className="w-[90%] h-3 bg-pdf-aluminum rounded mb-2"></div>
-                  <div className="w-[95%] h-3 bg-pdf-aluminum rounded mb-6"></div>
-                  <div className="w-full h-32 bg-pdf-aluminum border border-pdf-seam rounded shrink-0"></div>
+                  <div style={{ width: '75%', height: 24, backgroundColor: 'var(--color-border-default)', borderRadius: 4, marginBottom: 16 }}></div>
+                  <div style={{ width: '100%', height: 12, backgroundColor: 'var(--color-bg-primary)', borderRadius: 4, marginBottom: 8 }}></div>
+                  <div style={{ width: '90%', height: 12, backgroundColor: 'var(--color-bg-primary)', borderRadius: 4, marginBottom: 8 }}></div>
+                  <div style={{ width: '95%', height: 12, backgroundColor: 'var(--color-bg-primary)', borderRadius: 4, marginBottom: 24 }}></div>
+                  <div style={{ width: '100%', height: 128, backgroundColor: 'var(--color-bg-primary)', border: '1px solid var(--color-border-default)', borderRadius: 4, flexShrink: 0 }}></div>
                   
-                  <div className="w-full h-16 bg-gradient-to-b from-white/0 via-white/80 to-white absolute bottom-0 left-0 flex justify-center items-end pb-2 point-events-none">
-                     <span className="text-[9px] bg-pdf-leather text-pdf-aluminum px-2 py-1 rounded-full flex gap-1">▼ 무한 스크롤</span>
+                  <div style={{ width: '100%', height: 64, background: 'linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0.8), rgba(255,255,255,1))', position: 'absolute', bottom: 0, left: 0, display: 'flex', justifyContent: 'center', alignItems: 'flex-end', paddingBottom: 8, pointerEvents: 'none' }}>
+                     <span style={{ fontSize: 9, backgroundColor: '#09090b', color: 'var(--color-bg-primary)', padding: '4px 8px', borderRadius: 9999, display: 'flex', gap: 4 }}>▼ 무한 스크롤</span>
                   </div>
                 </div>
 
                 {/* Right Letterbox */}
-                <div className="flex-1 bg-pdf-red/40 border-l-2 border-pdf-red border-dashed flex flex-col justify-center items-center text-center">
-                  <span className="text-pdf-red text-[10px] font-bold">낭비되는</span>
-                  <span className="text-pdf-red text-[10px] font-bold">여백</span>
+                <div style={{ flex: 1, backgroundColor: 'rgba(173, 29, 29, 0.1)', borderLeft: '2px dashed var(--color-functional-red)', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center' }}>
+                  <span style={{ color: 'var(--color-functional-red)', fontSize: 10, fontWeight: 'bold' }}>낭비되는</span>
+                  <span style={{ color: 'var(--color-functional-red)', fontSize: 10, fontWeight: 'bold' }}>여백</span>
                 </div>
               </div>
 
                {/* Footer */}
-               <div className="w-full h-12 bg-pdf-leather shrink-0 z-20 flex justify-center items-center">
-                 <div className="w-32 h-2 bg-pdf-seam rounded"></div>
+               <div style={{ width: '100%', height: 48, backgroundColor: '#09090b', flexShrink: 0, zIndex: 20, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                 <div style={{ width: 128, height: 8, backgroundColor: 'var(--color-border-default)', borderRadius: 4 }}></div>
                </div>
             </div>
           ) : (
             /* PDF-DS LAYOUT */
-            <div className="w-full flex-1 flex relative animate-fade-in">
+            <div style={{ width: '100%', flex: 1, display: 'flex', position: 'relative', animation: 'fadeIn 0.5s' }}>
               {/* PDF-DS LEFT 38% */}
-              <div className="w-[38%] bg-pdf-aluminum border-r border-pdf-focus h-full flex flex-col">
+              <div style={{ width: '38%', backgroundColor: 'var(--color-bg-primary)', borderRight: '1px solid var(--color-border-hover)', height: '100%', display: 'flex', flexDirection: 'column' }}>
                 {/* PDF-DS Header Area */}
-                <div className="h-14 border-b border-pdf-seam flex items-center px-4 shrink-0">
-                  <div className="w-4 h-4 bg-pdf-red"></div>
-                  <span className="text-[10px] font-mono text-pdf-leather font-bold ml-2">PDF-DS SYSTEM</span>
+                <div style={{ height: 56, borderBottom: '1px solid var(--color-border-default)', display: 'flex', alignItems: 'center', padding: '0 16px', flexShrink: 0 }}>
+                  <div style={{ width: 16, height: 16, backgroundColor: 'var(--color-functional-red)' }}></div>
+                  <span style={{ fontSize: 10, fontFamily: 'var(--font-mono)', color: 'var(--color-text-primary)', fontWeight: 'bold', marginLeft: 8 }}>PDF-DS SYSTEM</span>
                 </div>
                 {/* PDF-DS Controls */}
-                <div className="p-4 flex flex-col gap-3 flex-1 overflow-y-auto">
-                   <div className="w-full h-6 bg-pdf-seam rounded-sm"></div>
-                   <div className="flex gap-2">
-                     <div className="w-1/2 h-8 bg-pdf-aluminum border border-pdf-seam rounded-sm"></div>
-                     <div className="w-1/2 h-8 bg-pdf-aluminum border border-pdf-seam rounded-sm"></div>
+                <div style={{ padding: 16, display: 'flex', flexDirection: 'column', gap: 12, flex: 1, overflowY: 'auto' }}>
+                   <div style={{ width: '100%', height: 24, backgroundColor: 'var(--color-border-default)', borderRadius: 2 }}></div>
+                   <div style={{ display: 'flex', gap: 8 }}>
+                     <div style={{ width: '50%', height: 32, backgroundColor: 'var(--color-bg-primary)', border: '1px solid var(--color-border-default)', borderRadius: 2 }}></div>
+                     <div style={{ width: '50%', height: 32, backgroundColor: 'var(--color-bg-primary)', border: '1px solid var(--color-border-default)', borderRadius: 2 }}></div>
                    </div>
-                   <div className="w-full h-24 bg-pdf-aluminum border border-pdf-seam rounded-sm mt-2 flex flex-col gap-2 p-3">
-                     <div className="w-3/4 h-2 bg-pdf-aluminum"></div>
-                     <div className="w-1/2 h-2 bg-pdf-aluminum"></div>
+                   <div style={{ width: '100%', height: 96, backgroundColor: 'var(--color-bg-primary)', border: '1px solid var(--color-border-default)', borderRadius: 2, marginTop: 8, display: 'flex', flexDirection: 'column', gap: 8, padding: 12 }}>
+                     <div style={{ width: '75%', height: 8, backgroundColor: 'var(--color-bg-primary)' }}></div>
+                     <div style={{ width: '50%', height: 8, backgroundColor: 'var(--color-bg-primary)' }}></div>
                    </div>
-                      <div className="mt-auto pt-4">
-                     <div className="w-full h-10 rounded-full bg-pdf-red flex items-center justify-center">
-                        <div className="w-4 h-4 bg-pdf-aluminum/20 rounded-full mr-2"></div>
-                        <span className="w-12 h-2 bg-pdf-aluminum/40 rounded"></span>
+                      <div style={{ marginTop: 'auto', paddingTop: 16 }}>
+                     <div style={{ width: '100%', height: 40, borderRadius: 9999, backgroundColor: 'var(--color-functional-red)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <div style={{ width: 16, height: 16, backgroundColor: 'rgba(255,255,255,0.2)', borderRadius: '50%', marginRight: 8 }}></div>
+                        <span style={{ width: 48, height: 8, backgroundColor: 'rgba(255,255,255,0.4)', borderRadius: 4 }}></span>
                      </div>
                    </div>
                 </div>
               </div>
 
               {/* PDF-DS RIGHT 62% */}
-              <div className="w-[62%] h-full bg-pdf-aluminum flex flex-col border-l border-pdf-seam/50">
+              <div style={{ width: '62%', height: '100%', backgroundColor: 'var(--color-bg-primary)', display: 'flex', flexDirection: 'column', borderLeft: '1px solid rgba(226, 232, 240, 0.5)' }}>
                  {/* 62 Canvas Header */}
-                 <div className="h-14 flex items-center px-8 shrink-0 justify-end">
-                    <span className="text-[9px] font-mono text-pdf-focus">DATA CANVAS VIEW</span>
+                 <div style={{ height: 56, display: 'flex', alignItems: 'center', padding: '0 32px', flexShrink: 0, justifyContent: 'flex-end' }}>
+                    <span style={{ fontSize: 9, fontFamily: 'var(--font-mono)', color: 'var(--color-text-secondary)' }}>DATA CANVAS VIEW</span>
                  </div>
                  {/* 62 Canvas Body */}
-                 <div className="flex-1 p-8 grid grid-cols-2 gap-4">
-                    <div className="col-span-2 h-12 flex items-center border-b border-pdf-seam">
-                      <div className="w-48 h-6 bg-pdf-seam rounded"></div>
+                 <div style={{ flex: 1, padding: 32, display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: 16 }}>
+                    <div style={{ gridColumn: 'span 2 / span 2', height: 48, display: 'flex', alignItems: 'center', borderBottom: '1px solid var(--color-border-default)' }}>
+                      <div style={{ width: 192, height: 24, backgroundColor: 'var(--color-border-default)', borderRadius: 4 }}></div>
                     </div>
-                    <div className="bg-pdf-aluminum border border-pdf-seam h-32 rounded-lg p-4">
-                      <div className="w-1/3 h-4 bg-pdf-seam rounded mb-4"></div>
-                      <div className="w-full h-2 bg-pdf-aluminum rounded mb-2"></div>
-                      <div className="w-full h-2 bg-pdf-aluminum rounded mb-2"></div>
-                      <div className="w-2/3 h-2 bg-pdf-aluminum rounded"></div>
+                    <div style={{ backgroundColor: 'var(--color-bg-primary)', border: '1px solid var(--color-border-default)', height: 128, borderRadius: 8, padding: 16 }}>
+                      <div style={{ width: '33%', height: 16, backgroundColor: 'var(--color-border-default)', borderRadius: 4, marginBottom: 16 }}></div>
+                      <div style={{ width: '100%', height: 8, backgroundColor: 'var(--color-bg-primary)', borderRadius: 4, marginBottom: 8 }}></div>
+                      <div style={{ width: '100%', height: 8, backgroundColor: 'var(--color-bg-primary)', borderRadius: 4, marginBottom: 8 }}></div>
+                      <div style={{ width: '66%', height: 8, backgroundColor: 'var(--color-bg-primary)', borderRadius: 4 }}></div>
                     </div>
-                    <div className="bg-pdf-aluminum border border-pdf-seam h-32 rounded-lg p-4">
-                      <div className="w-1/3 h-4 bg-pdf-seam rounded mb-4"></div>
-                      <div className="w-full h-2 bg-pdf-aluminum rounded mb-2"></div>
-                      <div className="w-full h-2 bg-pdf-aluminum rounded mb-2"></div>
-                      <div className="w-2/3 h-2 bg-pdf-aluminum rounded"></div>
+                    <div style={{ backgroundColor: 'var(--color-bg-primary)', border: '1px solid var(--color-border-default)', height: 128, borderRadius: 8, padding: 16 }}>
+                      <div style={{ width: '33%', height: 16, backgroundColor: 'var(--color-border-default)', borderRadius: 4, marginBottom: 16 }}></div>
+                      <div style={{ width: '100%', height: 8, backgroundColor: 'var(--color-bg-primary)', borderRadius: 4, marginBottom: 8 }}></div>
+                      <div style={{ width: '100%', height: 8, backgroundColor: 'var(--color-bg-primary)', borderRadius: 4, marginBottom: 8 }}></div>
+                      <div style={{ width: '66%', height: 8, backgroundColor: 'var(--color-bg-primary)', borderRadius: 4 }}></div>
                     </div>
                  </div>
               </div>
@@ -179,15 +187,15 @@ export default function LayoutComparisonSandbox() {
         </div>
 
         {/* OS Bottom: Windows Taskbar */}
-        <div className="h-10 bg-pdf-leather w-full shrink-0 flex items-center px-2 justify-between z-30 ring-1 ring-black/50">
-           <div className="flex items-center gap-2">
-             <div className="w-6 h-6 rounded bg-blue-500/20 flex items-center justify-center text-blue-400 text-[10px]">W</div>
-             <div className="w-6 h-6 rounded bg-pdf-leather"></div>
-             <div className="w-6 h-6 rounded bg-pdf-leather border-b-2 border-blue-400 shadow-sm"></div>
+        <div style={{ height: 40, backgroundColor: '#09090b', width: '100%', flexShrink: 0, display: 'flex', alignItems: 'center', padding: '0 8px', justifyContent: 'space-between', zIndex: 30, boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.5)' }}>
+           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+             <div style={{ width: 24, height: 24, borderRadius: 4, backgroundColor: 'rgba(59, 130, 246, 0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#60a5fa', fontSize: 10 }}>W</div>
+             <div style={{ width: 24, height: 24, borderRadius: 4, backgroundColor: '#09090b' }}></div>
+             <div style={{ width: 24, height: 24, borderRadius: 4, backgroundColor: '#09090b', borderBottom: '2px solid #60a5fa', boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)' }}></div>
            </div>
-           <div className="flex gap-3 text-[8px] text-pdf-focus font-mono items-center">
+           <div style={{ display: 'flex', gap: 12, fontSize: 8, color: 'var(--color-text-secondary)', fontFamily: 'var(--font-mono)', alignItems: 'center' }}>
              <span>ENG</span>
-             <div className="flex flex-col items-end leading-tight">
+             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', lineHeight: 1.2 }}>
                <span>12:00 PM</span>
                <span>2024-05-23</span>
              </div>

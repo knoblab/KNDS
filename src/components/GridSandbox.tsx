@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { LayoutGrid, Eye, Check } from 'lucide-react';
+import { LayoutGrid } from 'lucide-react';
 import { SpacingToken } from '../types';
 
 export default function GridSandbox() {
@@ -20,53 +20,50 @@ export default function GridSandbox() {
   const currentToken = tokens.find(t => t.name === selectedToken) || tokens[4];
 
   return (
-    <div className="border border-pdf-seam bg-pdf-aluminum p-6 rounded-lg font-sans my-4 shadow-sm relative">
-      <div className="flex items-center justify-between mb-4 pb-3 border-b border-pdf-seam">
+    <div className="pdf-panel">
+      <div className="pdf-panel-header pdf-flex-row pdf-justify-between pdf-items-center">
         <div>
-          <span className="font-mono text-xs tracking-wider text-pdf-red font-bold uppercase block">
-            CH.2 INTERACTIVE SANBOX
+          <span className="pdf-text-label-14-mono pdf-text-red pdf-mb-100" style={{ display: 'block', fontWeight: 'bold' }}>
+            CH.2 INTERACTIVE SANDBOX
           </span>
-          <h4 className="font-sans text-base font-semibold text-pdf-leather">
+          <h4 className="pdf-text-label-16" style={{ fontWeight: 'bold' }}>
             실시간 다중 스케일 여백(Spacing Scale) 조작기
           </h4>
         </div>
-        <LayoutGrid className="text-pdf-focus w-4 h-4" />
+        <LayoutGrid className="pdf-text-muted" style={{ width: 16, height: 16 }} />
       </div>
 
-      <p className="text-xs text-pdf-focus mb-6 leading-relaxed">
+      <p className="pdf-text-copy-14 pdf-text-muted pdf-mb-300">
         아래 표에서 여백 토큰을 선택하면 <strong>물리적 부피와 간격 구조</strong>가 우측 다이어그램에 즉각적으로 반영됩니다. 이 가상 컴포넌트는 모든 마진, 패딩, 갭 계산이 엄밀한 토큰 가스 배수를 유지함을 보증합니다.
       </p>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      <div className="pdf-flex-row pdf-gap-300" style={{ flexWrap: 'wrap' }}>
         {/* Token Table selector */}
-        <div className="lg:col-span-7 overflow-x-auto text-[11px] font-mono border border-pdf-seam rounded">
-          <table className="min-w-full divide-y divide-pdf-seam">
-            <thead className="bg-pdf-aluminum">
+        <div style={{ flex: '1 1 50%', overflowX: 'auto', border: '1px solid var(--color-border-default)', borderRadius: 4 }}>
+          <table className="pdf-table" style={{ margin: 0 }}>
+            <thead>
               <tr>
-                <th className="px-3 py-2 text-left text-[10px] font-bold text-pdf-focus uppercase tracking-wider">토큰명</th>
-                <th className="px-3 py-2 text-left text-[10px] font-bold text-pdf-focus uppercase tracking-wider">Rem</th>
-                <th className="px-3 py-2 text-left text-[10px] font-bold text-pdf-focus uppercase tracking-wider">Pixel</th>
-                <th className="px-3 py-2 text-left text-[10px] font-bold text-pdf-focus uppercase tracking-wider">시각 바</th>
+                <th style={{ fontSize: '10px', fontFamily: 'var(--font-mono)' }}>토큰명</th>
+                <th style={{ fontSize: '10px', fontFamily: 'var(--font-mono)' }}>Rem</th>
+                <th style={{ fontSize: '10px', fontFamily: 'var(--font-mono)' }}>Pixel</th>
+                <th style={{ fontSize: '10px', fontFamily: 'var(--font-mono)' }}>시각 바</th>
               </tr>
             </thead>
-            <tbody className="bg-pdf-aluminum divide-y divide-pdf-seam">
+            <tbody>
               {tokens.map((token) => (
                 <tr 
                   key={token.name}
                   onClick={() => setSelectedToken(token.name)}
-                  className={`cursor-pointer transition-colors ${selectedToken === token.name ? 'bg-pdf-red/70 font-bold' : 'hover:bg-pdf-aluminum'}`}
+                  style={{ cursor: 'pointer', backgroundColor: selectedToken === token.name ? 'var(--color-red-light)' : 'transparent', fontWeight: selectedToken === token.name ? 'bold' : 'normal' }}
                 >
-                  <td className="px-3 py-2.5 text-pdf-leather flex items-center gap-1.5">
-                    <span className={`w-1.5 h-1.5 rounded-full ${selectedToken === token.name ? 'bg-pdf-red' : 'bg-transparent'}`} />
+                  <td className="pdf-text-label-14-mono" style={{ fontSize: '11px', color: 'var(--color-text-primary)' }}>
+                    <span style={{ display: 'inline-block', width: 6, height: 6, borderRadius: '50%', backgroundColor: selectedToken === token.name ? 'var(--color-functional-red)' : 'transparent', marginRight: 6 }} />
                     {token.name}
                   </td>
-                  <td className="px-3 py-2.5 text-pdf-focus">{token.rem}</td>
-                  <td className="px-3 py-2.5 text-pdf-leather font-bold">{token.px}px</td>
-                  <td className="px-3 py-2.5">
-                    <div 
-                      className={`h-2.5 rounded ${selectedToken === token.name ? 'bg-pdf-red' : 'bg-pdf-seam'}`} 
-                      style={{ width: `${Math.min(100, Math.max(4, token.px * 1.5))}px` }}
-                    />
+                  <td className="pdf-text-label-14-mono pdf-text-muted" style={{ fontSize: '11px' }}>{token.rem}</td>
+                  <td className="pdf-text-label-14-mono" style={{ fontSize: '11px', fontWeight: 'bold' }}>{token.px}px</td>
+                  <td>
+                    <div style={{ height: 10, borderRadius: 2, backgroundColor: selectedToken === token.name ? 'var(--color-functional-red)' : 'var(--color-border-default)', width: `${Math.min(100, Math.max(4, token.px * 1.5))}px` }} />
                   </td>
                 </tr>
               ))}
@@ -75,52 +72,56 @@ export default function GridSandbox() {
         </div>
 
         {/* Dynamic visual preview panel */}
-        <div className="lg:col-span-5 bg-pdf-aluminum border border-pdf-seam rounded p-4 flex flex-col justify-between">
+        <div className="pdf-bg-secondary pdf-border" style={{ flex: '1 1 40%', padding: 'var(--space-200)', borderRadius: 4, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
           <div>
-            <span className="text-[10px] font-mono text-pdf-focus block mb-1">SELECTED SPACING VISUALIZATION</span>
-            <div className="p-3 bg-pdf-aluminum border border-pdf-seam rounded mb-4">
-              <div className="flex justify-between items-center mb-2">
-                <span className="text-xs font-bold text-pdf-leather font-sans">{currentToken.name}</span>
-                <span className="text-xs font-mono font-bold text-pdf-red">{currentToken.px}px</span>
+            <span className="pdf-text-label-14-mono pdf-text-muted" style={{ fontSize: '10px', display: 'block', marginBottom: 4 }}>SELECTED SPACING VISUALIZATION</span>
+            <div className="pdf-bg-secondary pdf-border pdf-p-150" style={{ borderRadius: 4, marginBottom: 'var(--space-200)' }}>
+              <div className="pdf-flex-row pdf-justify-between pdf-items-center pdf-mb-100">
+                <span className="pdf-text-label-14-mono" style={{ fontWeight: 'bold' }}>{currentToken.name}</span>
+                <span className="pdf-text-label-14-mono pdf-text-red" style={{ fontWeight: 'bold' }}>{currentToken.px}px</span>
               </div>
-              <p className="text-[11px] text-pdf-focus font-sans leading-normal">{currentToken.useCase}</p>
+              <p className="pdf-text-copy-14 pdf-text-muted" style={{ fontSize: '11px' }}>{currentToken.useCase}</p>
             </div>
           </div>
 
           {/* Precision mockup layout demonstrating the spacing */}
-          <div className="border border-dashed border-pdf-focus p-2 rounded relative bg-pdf-aluminum overflow-hidden min-h-[160px] flex flex-col justify-center">
-            {/* The Outer Margin visualizer */}
-            <div className="text-[9px] font-mono text-pdf-focus absolute top-1 left-2">PARENT WRAPPER</div>
+          <div className="pdf-bg-secondary pdf-p-100 pdf-border" style={{ borderStyle: 'dashed', borderColor: 'var(--color-border-hover)', borderRadius: 4, position: 'relative', minHeight: '160px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+            <div className="pdf-text-label-14-mono pdf-text-muted" style={{ fontSize: '9px', position: 'absolute', top: 4, left: 8 }}>PARENT WRAPPER</div>
 
-            {/* Gap visualizer block */}
-            <div className="flex flex-col gap-2">
-              <div className="bg-pdf-aluminum border border-pdf-seam p-2 rounded text-center text-[10px] font-mono text-pdf-focus">
+            <div className="pdf-flex-col" style={{ gap: 8, marginTop: 16, marginBottom: 16 }}>
+              <div className="pdf-bg-secondary pdf-border pdf-p-100" style={{ borderRadius: 4, textAlign: 'center', fontSize: '10px', fontFamily: 'var(--font-mono)', color: 'var(--color-text-secondary)' }}>
                 컨테이너 요소 A
               </div>
               
               {/* This is the spacer representing selected token */}
-              <div className="relative flex items-center justify-center py-1">
-                {/* Horizontal dimension lines */}
-                <div className="absolute inset-x-0 h-[1px] bg-pdf-red opacity-40 top-1/2" />
+              <div style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '4px 0' }}>
+                <div style={{ position: 'absolute', left: 0, right: 0, height: 1, backgroundColor: 'var(--color-functional-red)', opacity: 0.4, top: '50%' }} />
                 
-                {/* Visual Gap Representation block */}
-                <div 
-                  className="bg-pdf-red border-t border-b border-pdf-red transition-all duration-300 flex items-center justify-center overflow-hidden z-10"
-                  style={{ height: `${currentToken.px}px`, minHeight: '6px' }}
-                >
-                  <span className="text-[8px] font-mono text-pdf-red font-bold leading-none bg-pdf-aluminum px-1 rounded transform scale-75">
+                <div style={{ 
+                  backgroundColor: 'var(--color-functional-red)', 
+                  borderTop: '1px solid var(--color-functional-red)', 
+                  borderBottom: '1px solid var(--color-functional-red)', 
+                  height: `${currentToken.px}px`, 
+                  minHeight: '6px', 
+                  transition: 'height 0.3s ease',
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'center', 
+                  overflow: 'hidden', 
+                  zIndex: 10 
+                }}>
+                  <span className="pdf-text-label-14-mono pdf-text-red" style={{ fontSize: '8px', fontWeight: 'bold', backgroundColor: 'var(--color-bg-primary)', padding: '0 4px', borderRadius: 2, transform: 'scale(0.75)' }}>
                     {currentToken.name}
                   </span>
                 </div>
               </div>
 
-              <div className="bg-pdf-aluminum border border-pdf-seam p-2 rounded text-center text-[10px] font-mono text-pdf-focus">
+              <div className="pdf-bg-secondary pdf-border pdf-p-100" style={{ borderRadius: 4, textAlign: 'center', fontSize: '10px', fontFamily: 'var(--font-mono)', color: 'var(--color-text-secondary)' }}>
                 컨테이너 요소 B
               </div>
             </div>
 
-            {/* Scale indicator inside diagram */}
-            <div className="mt-4 pt-2 border-t border-pdf-seam flex justify-between items-center text-[9px] font-mono text-pdf-focus">
+            <div className="pdf-border-top pdf-pt-100 pdf-flex-row pdf-justify-between pdf-items-center pdf-text-label-14-mono pdf-text-muted" style={{ fontSize: '9px' }}>
               <span>수치 배수: ×{currentToken.px / 8} (8dp Base)</span>
               <span>Rem 환율: {currentToken.rem}</span>
             </div>

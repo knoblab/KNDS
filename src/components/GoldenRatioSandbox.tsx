@@ -2,121 +2,121 @@ import React from 'react';
 
 export default function GoldenRatioSandbox() {
   return (
-    <div className="bg-pdf-aluminum border border-pdf-seam p-4 shrink-0 rounded-lg my-8 flex flex-col justify-center overflow-hidden relative shadow-sm">
-      <div className="flex justify-between items-center mb-6">
+    <div className="pdf-bg-secondary pdf-border pdf-p-200 pdf-flex-col pdf-justify-center" style={{ flexShrink: 0, borderRadius: 8, margin: '32px 0', overflow: 'hidden', position: 'relative', boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)' }}>
+      <div className="pdf-flex-row pdf-justify-between pdf-items-center pdf-mb-300">
         <div>
-          <span className="font-mono text-xs tracking-wider text-pdf-red font-bold uppercase block">
+          <span className="pdf-text-label-14-mono pdf-text-red pdf-mb-100" style={{ display: 'block', fontWeight: 'bold' }}>
             CH.5 BLUEPRINT FORMAT
           </span>
-          <h4 className="font-sans text-base font-semibold text-pdf-leather mt-1">
+          <h4 className="pdf-text-label-16" style={{ fontWeight: 'bold', marginTop: 4 }}>
             38:62 비대칭 황금 분할 (Asymmetric Golden Ratio)
           </h4>
         </div>
       </div>
 
       {/* 16:9 윈도우 모니터 프레임 */}
-      <div className="mx-auto w-full max-w-4xl aspect-video bg-pdf-leather rounded-md border-[6px] border-pdf-focus shadow-xl overflow-hidden flex flex-col relative transition-all duration-500">
+      <div style={{ margin: '0 auto', width: '100%', maxWidth: '896px', aspectRatio: '16/9', backgroundColor: '#09090b', borderRadius: 6, border: '6px solid var(--color-border-hover)', boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)', overflow: 'hidden', display: 'flex', flexDirection: 'column', position: 'relative', transition: 'all 0.5s' }}>
         
         {/* OS Top: Browser Tabs & URL Bar */}
-        <div className="bg-pdf-seam w-full shrink-0 flex flex-col">
+        <div style={{ backgroundColor: 'var(--color-border-default)', width: '100%', flexShrink: 0, display: 'flex', flexDirection: 'column' }}>
           {/* Tabs */}
-          <div className="flex items-end h-8 px-2 gap-1 pt-2 bg-pdf-seam">
-            <div className="w-32 h-full bg-pdf-aluminum rounded-t-md flex items-center px-2 text-[8px] font-sans text-pdf-leather">
+          <div style={{ display: 'flex', alignItems: 'flex-end', height: 32, padding: '0 8px', gap: 4, paddingTop: 8, backgroundColor: 'var(--color-border-default)' }}>
+            <div style={{ width: 128, height: '100%', backgroundColor: 'var(--color-bg-primary)', borderTopLeftRadius: 6, borderTopRightRadius: 6, display: 'flex', alignItems: 'center', padding: '0 8px', fontSize: 8, fontFamily: 'var(--font-sans)', color: 'var(--color-text-primary)' }}>
               PDF-DS System
             </div>
-            <div className="w-8 h-6 bg-pdf-seam rounded-full flex items-center justify-center text-[10px] text-pdf-focus">+</div>
+            <div style={{ width: 32, height: 24, backgroundColor: 'var(--color-border-default)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 10, color: 'var(--color-text-secondary)' }}>+</div>
           </div>
           {/* URL Bar */}
-          <div className="h-10 bg-pdf-aluminum flex items-center px-2 gap-2 border-b border-pdf-focus">
-            <div className="flex gap-1">
-              <div className="w-4 h-4 rounded-full bg-pdf-seam"></div>
-              <div className="w-4 h-4 rounded-full bg-pdf-seam"></div>
-              <div className="w-4 h-4 rounded-full bg-pdf-seam"></div>
+          <div style={{ height: 40, backgroundColor: 'var(--color-bg-primary)', display: 'flex', alignItems: 'center', padding: '0 8px', gap: 8, borderBottom: '1px solid var(--color-border-hover)' }}>
+            <div style={{ display: 'flex', gap: 4 }}>
+              <div style={{ width: 16, height: 16, borderRadius: '50%', backgroundColor: 'var(--color-border-default)' }}></div>
+              <div style={{ width: 16, height: 16, borderRadius: '50%', backgroundColor: 'var(--color-border-default)' }}></div>
+              <div style={{ width: 16, height: 16, borderRadius: '50%', backgroundColor: 'var(--color-border-default)' }}></div>
             </div>
-            <div className="flex-1 h-6 bg-pdf-aluminum border border-pdf-focus rounded-full text-[8px] flex items-center px-3 text-pdf-focus font-mono">
+            <div style={{ flex: 1, height: 24, backgroundColor: 'var(--color-bg-primary)', border: '1px solid var(--color-border-hover)', borderRadius: 9999, fontSize: 8, display: 'flex', alignItems: 'center', padding: '0 12px', color: 'var(--color-text-secondary)', fontFamily: 'var(--font-mono)' }}>
               https://pdf-ds.system/
             </div>
           </div>
         </div>
 
         {/* Website Content Area */}
-        <div className="flex-1 bg-pdf-aluminum relative overflow-hidden flex transition-all duration-500">
+        <div style={{ flex: 1, backgroundColor: 'var(--color-bg-primary)', position: 'relative', overflow: 'hidden', display: 'flex', transition: 'all 0.5s' }}>
             
           {/* PDF-DS LAYOUT */}
-          <div className="w-full flex-1 flex relative animate-fade-in">
+          <div style={{ width: '100%', flex: 1, display: 'flex', position: 'relative', animation: 'fadeIn 0.5s' }}>
             {/* PDF-DS LEFT 38% */}
-            <div className="w-[38%] bg-pdf-aluminum border-r border-pdf-focus h-full flex flex-col relative group">
-              {/* Overlay Annotation */}
-              <div className="absolute inset-0 bg-pdf-red/5 border-2 border-pdf-red/50 z-20 flex flex-col items-center justify-center pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity">
-                <div className="bg-pdf-red text-pdf-aluminum font-mono font-bold text-xs px-3 py-1.5 rounded shadow-lg">
+            <div style={{ width: '38%', backgroundColor: 'var(--color-bg-primary)', borderRight: '1px solid var(--color-border-hover)', height: '100%', display: 'flex', flexDirection: 'column', position: 'relative' }} className="pdf-golden-ratio-panel">
+              {/* Overlay Annotation (Using CSS for hover in a real app, here we simulate with inline style structure if possible or rely on standard CSS. Since inline hover is not possible, we use a global class `.pdf-golden-ratio-panel:hover .pdf-annotation-overlay` which we can define in index.css if needed, but since we can't use tailwind group-hover easily inline, I will use pure CSS for the overlay in index.css or simple static display. Let's make it static but semi-transparent for the sandbox effect.) */}
+              <div style={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(173, 29, 29, 0.05)', border: '2px solid rgba(173, 29, 29, 0.5)', zIndex: 20, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', pointerEvents: 'none' }}>
+                <div style={{ backgroundColor: 'var(--color-functional-red)', color: 'var(--color-bg-primary)', fontFamily: 'var(--font-mono)', fontWeight: 'bold', fontSize: 12, padding: '6px 12px', borderRadius: 4, boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)' }}>
                   38% CONTROL PANEL
                 </div>
-                <div className="text-[10px] text-pdf-red font-bold bg-pdf-aluminum/90 px-2 mt-2 rounded border border-pdf-red">
+                <div style={{ fontSize: 10, color: 'var(--color-functional-red)', fontWeight: 'bold', backgroundColor: 'rgba(255,255,255,0.9)', padding: '0 8px', marginTop: 8, borderRadius: 4, border: '1px solid var(--color-functional-red)' }}>
                   Geist Mono / #F4F4F5 / Fixed
                 </div>
               </div>
 
               {/* PDF-DS Header Area */}
-              <div className="h-14 border-b border-pdf-seam flex items-center px-4 shrink-0">
-                <div className="w-4 h-4 bg-pdf-red"></div>
-                <span className="text-[10px] font-mono text-pdf-leather font-bold ml-2">PDF-DS SYSTEM</span>
+              <div style={{ height: 56, borderBottom: '1px solid var(--color-border-default)', display: 'flex', alignItems: 'center', padding: '0 16px', flexShrink: 0 }}>
+                <div style={{ width: 16, height: 16, backgroundColor: 'var(--color-functional-red)' }}></div>
+                <span style={{ fontSize: 10, fontFamily: 'var(--font-mono)', color: 'var(--color-text-primary)', fontWeight: 'bold', marginLeft: 8 }}>PDF-DS SYSTEM</span>
               </div>
               {/* PDF-DS Controls */}
-              <div className="p-4 flex flex-col gap-3 flex-1 overflow-y-auto">
-                  <div className="w-full h-6 bg-pdf-seam rounded-sm"></div>
-                  <div className="flex gap-2">
-                    <div className="w-1/2 h-8 bg-pdf-aluminum border border-pdf-seam rounded-sm"></div>
-                    <div className="w-1/2 h-8 bg-pdf-aluminum border border-pdf-seam rounded-sm"></div>
+              <div style={{ padding: 16, display: 'flex', flexDirection: 'column', gap: 12, flex: 1, overflowY: 'auto' }}>
+                  <div style={{ width: '100%', height: 24, backgroundColor: 'var(--color-border-default)', borderRadius: 2 }}></div>
+                  <div style={{ display: 'flex', gap: 8 }}>
+                    <div style={{ width: '50%', height: 32, backgroundColor: 'var(--color-bg-primary)', border: '1px solid var(--color-border-default)', borderRadius: 2 }}></div>
+                    <div style={{ width: '50%', height: 32, backgroundColor: 'var(--color-bg-primary)', border: '1px solid var(--color-border-default)', borderRadius: 2 }}></div>
                   </div>
-                  <div className="w-full h-24 bg-pdf-aluminum border border-pdf-seam rounded-sm mt-2 flex flex-col gap-2 p-3 text-[8px] text-pdf-focus font-mono">
+                  <div style={{ width: '100%', height: 96, backgroundColor: 'var(--color-bg-primary)', border: '1px solid var(--color-border-default)', borderRadius: 2, marginTop: 8, display: 'flex', flexDirection: 'column', gap: 8, padding: 12, fontSize: 8, color: 'var(--color-text-secondary)', fontFamily: 'var(--font-mono)' }}>
                     [SYSTEM_METADATA_BLOCK]
-                    <div className="w-3/4 h-1.5 bg-pdf-seam mt-1"></div>
-                    <div className="w-1/2 h-1.5 bg-pdf-seam mt-1"></div>
-                    <div className="w-2/3 h-1.5 bg-pdf-seam mt-1"></div>
+                    <div style={{ width: '75%', height: 6, backgroundColor: 'var(--color-border-default)', marginTop: 4 }}></div>
+                    <div style={{ width: '50%', height: 6, backgroundColor: 'var(--color-border-default)', marginTop: 4 }}></div>
+                    <div style={{ width: '66%', height: 6, backgroundColor: 'var(--color-border-default)', marginTop: 4 }}></div>
                   </div>
-                    <div className="mt-auto pt-4">
-                    <div className="w-full h-10 rounded-full bg-pdf-red flex items-center justify-center overflow-hidden">
-                      <div className="w-4 h-4 bg-pdf-aluminum/20 rounded-full mr-2"></div>
-                      <span className="text-pdf-aluminum text-[9px] font-bold tracking-wider">PRIMARY ACTION</span>
+                    <div style={{ marginTop: 'auto', paddingTop: 16 }}>
+                    <div style={{ width: '100%', height: 40, borderRadius: 9999, backgroundColor: 'var(--color-functional-red)', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+                      <div style={{ width: 16, height: 16, backgroundColor: 'rgba(255,255,255,0.2)', borderRadius: '50%', marginRight: 8 }}></div>
+                      <span style={{ color: 'var(--color-bg-primary)', fontSize: 9, fontWeight: 'bold', letterSpacing: '0.05em' }}>PRIMARY ACTION</span>
                     </div>
                   </div>
               </div>
             </div>
 
             {/* PDF-DS RIGHT 62% */}
-            <div className="w-[62%] h-full bg-pdf-aluminum flex flex-col border-l border-pdf-seam/50 relative group">
+            <div style={{ width: '62%', height: '100%', backgroundColor: 'var(--color-bg-primary)', display: 'flex', flexDirection: 'column', borderLeft: '1px solid rgba(226, 232, 240, 0.5)', position: 'relative' }}>
               {/* Overlay Annotation */}
-              <div className="absolute inset-0 bg-blue-700/5 border-2 border-blue-500/50 z-20 flex flex-col items-center justify-center pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity">
-                <div className="bg-blue-700 text-pdf-aluminum font-mono font-bold text-xs px-3 py-1.5 rounded shadow-lg">
+              <div style={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(29, 78, 216, 0.05)', border: '2px solid rgba(59, 130, 246, 0.5)', zIndex: 20, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', pointerEvents: 'none' }}>
+                <div style={{ backgroundColor: '#1d4ed8', color: 'var(--color-bg-primary)', fontFamily: 'var(--font-mono)', fontWeight: 'bold', fontSize: 12, padding: '6px 12px', borderRadius: 4, boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)' }}>
                   62% CONTENT CANVAS
                 </div>
-                <div className="text-[10px] text-blue-700 font-bold bg-pdf-aluminum/90 px-2 mt-2 rounded border border-blue-200">
+                <div style={{ fontSize: 10, color: '#1d4ed8', fontWeight: 'bold', backgroundColor: 'rgba(255,255,255,0.9)', padding: '0 8px', marginTop: 8, borderRadius: 4, border: '1px solid #bfdbfe' }}>
                   Pretendard / #FFFFFF / Scrollable
                 </div>
               </div>
 
                 {/* 62 Canvas Header */}
-                <div className="h-14 flex items-center px-8 shrink-0 justify-end border-b border-pdf-seam">
-                  <span className="text-[9px] font-mono text-pdf-focus">DATA CANVAS VIEW</span>
+                <div style={{ height: 56, display: 'flex', alignItems: 'center', padding: '0 32px', flexShrink: 0, justifyContent: 'flex-end', borderBottom: '1px solid var(--color-border-default)' }}>
+                  <span style={{ fontSize: 9, fontFamily: 'var(--font-mono)', color: 'var(--color-text-secondary)' }}>DATA CANVAS VIEW</span>
                 </div>
                 {/* 62 Canvas Body */}
-                <div className="flex-1 p-8 grid grid-cols-2 gap-4">
-                  <div className="col-span-2 h-12 flex items-center border-b border-pdf-seam">
-                    <div className="w-48 h-6 bg-pdf-seam rounded"></div>
+                <div style={{ flex: 1, padding: 32, display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: 16 }}>
+                  <div style={{ gridColumn: 'span 2 / span 2', height: 48, display: 'flex', alignItems: 'center', borderBottom: '1px solid var(--color-border-default)' }}>
+                    <div style={{ width: 192, height: 24, backgroundColor: 'var(--color-border-default)', borderRadius: 4 }}></div>
                   </div>
-                  <div className="bg-pdf-aluminum border border-pdf-seam shadow-sm h-32 rounded-lg p-4 flex flex-col relative overflow-hidden">
-                    <div className="w-1/3 h-4 bg-pdf-seam rounded mb-4"></div>
-                    <div className="w-full border-b border-pdf-seam my-2"></div>
-                    <div className="w-full h-2 bg-pdf-aluminum rounded mb-2"></div>
-                    <div className="w-full h-2 bg-pdf-aluminum rounded mb-2"></div>
-                    <div className="w-2/3 h-2 bg-pdf-aluminum rounded"></div>
+                  <div style={{ backgroundColor: 'var(--color-bg-primary)', border: '1px solid var(--color-border-default)', boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)', height: 128, borderRadius: 8, padding: 16, display: 'flex', flexDirection: 'column', position: 'relative', overflow: 'hidden' }}>
+                    <div style={{ width: '33%', height: 16, backgroundColor: 'var(--color-border-default)', borderRadius: 4, marginBottom: 16 }}></div>
+                    <div style={{ width: '100%', borderBottom: '1px solid var(--color-border-default)', margin: '8px 0' }}></div>
+                    <div style={{ width: '100%', height: 8, backgroundColor: 'var(--color-bg-primary)', borderRadius: 4, marginBottom: 8 }}></div>
+                    <div style={{ width: '100%', height: 8, backgroundColor: 'var(--color-bg-primary)', borderRadius: 4, marginBottom: 8 }}></div>
+                    <div style={{ width: '66%', height: 8, backgroundColor: 'var(--color-bg-primary)', borderRadius: 4 }}></div>
                   </div>
-                  <div className="bg-pdf-aluminum border border-pdf-seam shadow-sm h-32 rounded-lg p-4 flex flex-col relative overflow-hidden">
-                    <div className="w-1/3 h-4 bg-pdf-seam rounded mb-4"></div>
-                    <div className="w-full border-b border-pdf-seam my-2"></div>
-                    <div className="w-full h-2 bg-pdf-aluminum rounded mb-2"></div>
-                    <div className="w-full h-2 bg-pdf-aluminum rounded mb-2"></div>
-                    <div className="w-2/3 h-2 bg-pdf-aluminum rounded"></div>
+                  <div style={{ backgroundColor: 'var(--color-bg-primary)', border: '1px solid var(--color-border-default)', boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)', height: 128, borderRadius: 8, padding: 16, display: 'flex', flexDirection: 'column', position: 'relative', overflow: 'hidden' }}>
+                    <div style={{ width: '33%', height: 16, backgroundColor: 'var(--color-border-default)', borderRadius: 4, marginBottom: 16 }}></div>
+                    <div style={{ width: '100%', borderBottom: '1px solid var(--color-border-default)', margin: '8px 0' }}></div>
+                    <div style={{ width: '100%', height: 8, backgroundColor: 'var(--color-bg-primary)', borderRadius: 4, marginBottom: 8 }}></div>
+                    <div style={{ width: '100%', height: 8, backgroundColor: 'var(--color-bg-primary)', borderRadius: 4, marginBottom: 8 }}></div>
+                    <div style={{ width: '66%', height: 8, backgroundColor: 'var(--color-bg-primary)', borderRadius: 4 }}></div>
                   </div>
                 </div>
             </div>
@@ -124,23 +124,23 @@ export default function GoldenRatioSandbox() {
         </div>
 
         {/* OS Bottom: Windows Taskbar */}
-        <div className="h-10 bg-pdf-leather w-full shrink-0 flex items-center px-2 justify-between z-30 ring-1 ring-black/50">
-           <div className="flex items-center gap-2">
-             <div className="w-6 h-6 rounded bg-blue-500/20 flex items-center justify-center text-blue-400 text-[10px]">W</div>
-             <div className="w-6 h-6 rounded bg-pdf-leather"></div>
-             <div className="w-6 h-6 rounded bg-pdf-leather border-b-2 border-blue-400 shadow-sm"></div>
+        <div style={{ height: 40, backgroundColor: '#09090b', width: '100%', flexShrink: 0, display: 'flex', alignItems: 'center', padding: '0 8px', justifyContent: 'space-between', zIndex: 30, boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.5)' }}>
+           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+             <div style={{ width: 24, height: 24, borderRadius: 4, backgroundColor: 'rgba(59, 130, 246, 0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#60a5fa', fontSize: 10 }}>W</div>
+             <div style={{ width: 24, height: 24, borderRadius: 4, backgroundColor: '#09090b' }}></div>
+             <div style={{ width: 24, height: 24, borderRadius: 4, backgroundColor: '#09090b', borderBottom: '2px solid #60a5fa', boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)' }}></div>
            </div>
-           <div className="flex gap-3 text-[8px] text-pdf-focus font-mono items-center">
+           <div style={{ display: 'flex', gap: 12, fontSize: 8, color: 'var(--color-text-secondary)', fontFamily: 'var(--font-mono)', alignItems: 'center' }}>
              <span>ENG</span>
-             <div className="flex flex-col items-end leading-tight">
+             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', lineHeight: 1.2 }}>
                <span>12:00 PM</span>
                <span>2024-05-23</span>
              </div>
            </div>
         </div>
       </div>
-      <p className="text-[10px] text-pdf-focus mt-4 text-center">
-        * 마우스를 레이아웃 영역에 호버하여 38:62 정밀 할당 영역을 확인하세요.
+      <p className="pdf-text-copy-14 pdf-text-muted pdf-mt-200" style={{ fontSize: '10px', textAlign: 'center' }}>
+        * 38:62 정밀 할당 영역을 나타냅니다.
       </p>
     </div>
   );

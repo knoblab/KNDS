@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ClipboardCheck, Sparkles, CheckSquare, Square } from 'lucide-react';
+import { ClipboardCheck, CheckSquare, Square } from 'lucide-react';
 import { QACheckItem } from '../types';
 
 export default function QASandbox() {
@@ -27,52 +27,57 @@ export default function QASandbox() {
   const score = completedCount * 20;
 
   const getSlogan = (s: number) => {
-    if (s === 100) return { title: 'PERFECTION (시스템 승인 결함 제로)', desc: '피지컬 하드웨어와 아크로매틱 디지털이 완벽하게 융합된 무결점 명세 상태입니다.', color: 'text-emerald-700 bg-emerald-50 border-emerald-200' };
-    if (s >= 60) return { title: 'APPROVED (표준 가이드 준수)', desc: '모바일 및 저시력 접근성을 충분히 대비한 양질의 릴리즈 승인 규격입니다.', color: 'text-pdf-leather bg-pdf-aluminum border-pdf-seam' };
-    return { title: 'CRITICAL WARNING (실격 및 보류)', desc: '사용자 포인팅 유실 우려 및 접근성 규격 누락이 관측됩니다. 신속히 보정하세요.', color: 'text-pdf-red bg-pdf-aluminum border-pdf-red' };
+    if (s === 100) return { title: 'PERFECTION (시스템 승인 결함 제로)', desc: '피지컬 하드웨어와 아크로매틱 디지털이 완벽하게 융합된 무결점 명세 상태입니다.', color: { text: '#047857', bg: '#ecfdf5', border: '#a7f3d0' } };
+    if (s >= 60) return { title: 'APPROVED (표준 가이드 준수)', desc: '모바일 및 저시력 접근성을 충분히 대비한 양질의 릴리즈 승인 규격입니다.', color: { text: 'var(--color-text-primary)', bg: 'var(--color-bg-primary)', border: 'var(--color-border-default)' } };
+    return { title: 'CRITICAL WARNING (실격 및 보류)', desc: '사용자 포인팅 유실 우려 및 접근성 규격 누락이 관측됩니다. 신속히 보정하세요.', color: { text: 'var(--color-functional-red)', bg: 'var(--color-bg-primary)', border: 'var(--color-functional-red)' } };
   };
 
   const slogan = getSlogan(score);
 
   return (
-    <div className="border border-pdf-seam bg-pdf-aluminum p-6 rounded-lg font-sans my-4 shadow-sm">
-      <div className="flex items-center justify-between mb-4 pb-3 border-b border-pdf-seam">
+    <div className="pdf-panel">
+      <div className="pdf-panel-header pdf-flex-row pdf-justify-between pdf-items-center">
         <div>
-          <span className="font-mono text-xs tracking-wider text-pdf-red font-bold uppercase block">
-            CH.8 INTERACTIVE SANBOX
+          <span className="pdf-text-label-14-mono pdf-text-red pdf-mb-100" style={{ display: 'block', fontWeight: 'bold' }}>
+            CH.8 INTERACTIVE SANDBOX
           </span>
-          <h4 className="font-sans text-base font-semibold text-pdf-leather">
+          <h4 className="pdf-text-label-16" style={{ fontWeight: 'bold' }}>
             실시간 디자인 검수(QA) 규칙성 자가 채점기
           </h4>
         </div>
-        <ClipboardCheck className="text-pdf-focus w-4 h-4" />
+        <ClipboardCheck className="pdf-text-muted" style={{ width: 16, height: 16 }} />
       </div>
 
-      <p className="text-xs text-pdf-focus mb-6 leading-relaxed">
+      <p className="pdf-text-copy-14 pdf-text-muted pdf-mb-300">
         PDF-DS 릴리즈 자격을 획득하기 위한 <strong>5대 물리 검수 강제 수칙</strong>입니다. 항목을 조작하면 감도 지수에 따른 실시간 무결 상태 점수(Compliance Score)가 반영됩니다.
       </p>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+      <div className="pdf-flex-row pdf-gap-300 pdf-items-center" style={{ flexWrap: 'wrap' }}>
         {/* CHECKLIST LIST */}
-        <div className="lg:col-span-7 space-y-2">
+        <div className="pdf-flex-col pdf-gap-100" style={{ flex: '1 1 50%' }}>
           {items.map((item) => (
             <div 
               key={item.id}
               onClick={() => toggleCheck(item.id)}
-              className={`flex items-start gap-3 p-3 border rounded-lg cursor-pointer transition-all ${item.checked ? 'border-pdf-focus bg-pdf-aluminum/50' : 'border-pdf-seam hover:bg-pdf-aluminum/30'}`}
+              className="pdf-flex-row pdf-gap-150 pdf-border pdf-p-150"
+              style={{
+                alignItems: 'flex-start', borderRadius: 8, cursor: 'pointer', transition: 'all 0.2s',
+                backgroundColor: item.checked ? 'var(--color-bg-secondary)' : 'transparent',
+                borderColor: item.checked ? 'var(--color-border-hover)' : 'var(--color-border-default)'
+              }}
             >
-              <button className="text-pdf-red mt-0.5 shrink-0 focus:outline-none">
+              <button style={{ color: 'var(--color-functional-red)', background: 'none', border: 'none', padding: 0, marginTop: 2, cursor: 'pointer', flexShrink: 0 }}>
                 {item.checked ? (
-                  <CheckSquare className="w-4 h-4" />
+                  <CheckSquare style={{ width: 16, height: 16 }} />
                 ) : (
-                  <Square className="w-4 h-4 text-pdf-focus" />
+                  <Square style={{ width: 16, height: 16, color: 'var(--color-text-secondary)' }} />
                 )}
               </button>
               <div>
-                <span className="text-[9px] font-mono text-pdf-red bg-pdf-aluminum px-1 font-bold rounded">
+                <span className="pdf-text-label-14-mono pdf-text-red" style={{ fontSize: 9, backgroundColor: 'var(--color-bg-secondary)', padding: '0 4px', fontWeight: 'bold', borderRadius: 2 }}>
                   {item.category}
                 </span>
-                <p className="text-xs text-pdf-leather font-medium mt-1 leading-normal">
+                <p className="pdf-text-copy-14" style={{ fontSize: 12, fontWeight: 500, marginTop: 4, lineHeight: 1.5 }}>
                   {item.label}
                 </p>
               </div>
@@ -81,32 +86,37 @@ export default function QASandbox() {
         </div>
 
         {/* COMPLIANCE RADIAL/LINEAR SCOREGUARD METER */}
-        <div className="lg:col-span-5 border border-pdf-seam rounded p-4 flex flex-col items-center justify-between bg-pdf-aluminum min-h-[220px]">
-          <div className="text-center w-full">
-            <span className="text-[10px] font-mono text-pdf-focus block mb-3">SYSTEM COMPLIANCE SCORE</span>
+        <div className="pdf-border pdf-p-200 pdf-bg-secondary pdf-flex-col pdf-justify-between pdf-items-center" style={{ flex: '1 1 40%', borderRadius: 4, minHeight: 220 }}>
+          <div style={{ textAlign: 'center', width: '100%' }}>
+            <span className="pdf-text-label-14-mono pdf-text-muted" style={{ fontSize: 10, display: 'block', marginBottom: 12 }}>SYSTEM COMPLIANCE SCORE</span>
             
             {/* Elegant physical battery/gauge graphic */}
-            <div className="flex items-center justify-center gap-1.5 w-full px-4 mb-4">
+            <div className="pdf-flex-row pdf-justify-center pdf-gap-100 pdf-mb-200" style={{ width: '100%', padding: '0 16px' }}>
               {[20, 40, 60, 80, 100].map((t) => (
                 <div 
                   key={t}
-                  className={`h-8 flex-1 rounded-sm border transition-all duration-300 ${score >= t ? 'bg-pdf-red border-pdf-red' : 'bg-pdf-seam border-pdf-focus'}`}
+                  className="pdf-border"
+                  style={{
+                    height: 32, flex: 1, borderRadius: 2, transition: 'all 0.3s',
+                    backgroundColor: score >= t ? 'var(--color-functional-red)' : 'var(--color-bg-secondary)',
+                    borderColor: score >= t ? 'var(--color-functional-red)' : 'var(--color-border-hover)'
+                  }}
                 />
               ))}
             </div>
 
-            <div className="font-mono text-3xl font-extrabold text-pdf-leather flex items-center justify-center gap-1">
+            <div className="pdf-font-mono pdf-flex-row pdf-items-center pdf-justify-center pdf-gap-050" style={{ fontSize: 30, fontWeight: 800, color: 'var(--color-text-primary)' }}>
               {score}
-              <span className="text-sm font-normal text-pdf-focus">/ 100%</span>
+              <span style={{ fontSize: 14, fontWeight: 'normal', color: 'var(--color-text-secondary)' }}>/ 100%</span>
             </div>
           </div>
 
           {/* Dynamic feedback notice */}
-          <div className={`border p-3 rounded text-center w-full transition-all duration-300 ${slogan.color}`}>
-            <span className="text-[10px] font-mono font-bold block mb-1 uppercase tracking-wider">
+          <div className="pdf-border pdf-p-150" style={{ textAlign: 'center', width: '100%', borderRadius: 4, transition: 'all 0.3s', color: slogan.color.text, backgroundColor: slogan.color.bg, borderColor: slogan.color.border }}>
+            <span className="pdf-text-label-14-mono" style={{ fontSize: 10, fontWeight: 'bold', display: 'block', marginBottom: 4, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
               {slogan.title}
             </span>
-            <p className="text-[10px] font-sans leading-normal">
+            <p className="pdf-text-copy-14" style={{ fontSize: 10, lineHeight: 1.5 }}>
               {slogan.desc}
             </p>
           </div>

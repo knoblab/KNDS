@@ -32,76 +32,86 @@ export default function ColorSandbox() {
   const getSimulatedText = () => theme === 'light' ? '#09090B' : '#FAFAFA';
 
   return (
-    <div className="border border-pdf-seam bg-pdf-aluminum p-6 rounded-lg font-sans my-4 shadow-sm">
-      <div className="flex items-center justify-between mb-4 pb-3 border-b border-pdf-seam">
+    <div className="pdf-panel">
+      <div className="pdf-panel-header pdf-flex-row pdf-justify-between pdf-items-center">
         <div>
-          <span className="font-mono text-xs tracking-wider text-pdf-red font-bold uppercase block">
-            CH.4 INTERACTIVE SANBOX
+          <span className="pdf-text-label-14-mono pdf-text-red pdf-mb-100" style={{ display: 'block', fontWeight: 'bold' }}>
+            CH.4 INTERACTIVE SANDBOX
           </span>
-          <h4 className="font-sans text-base font-semibold text-pdf-leather">
+          <h4 className="pdf-text-label-16" style={{ fontWeight: 'bold' }}>
             아크로매틱 컬러 & 테마 시뮬레이터 (Light & Dark Mode)
           </h4>
         </div>
-        <Palette className="text-pdf-focus w-4 h-4" />
+        <Palette className="pdf-text-muted" style={{ width: 16, height: 16 }} />
       </div>
 
-      <p className="text-xs text-pdf-focus mb-6 leading-relaxed">
+      <p className="pdf-text-copy-14 pdf-text-muted pdf-mb-300">
         PDF-DS는 복잡한 그라디언트를 배제하고 <strong>완벽한 모노크롬 대비(Achromatic Scale)</strong>와 오직 하나의 펑셔널 레드로만 구성됩니다. 우측 상단의 테마를 전환하여, 두 극단(White & Black)의 완벽한 반전 균형을 검측하십시오.
       </p>
 
       {/* Simulator mode controller buttons */}
-      <div className="flex gap-2 mb-4 bg-pdf-aluminum p-1.5 rounded-lg border border-pdf-seam w-full sm:max-w-xs">
+      <div className="pdf-flex-row pdf-gap-100 pdf-mb-200 pdf-bg-secondary pdf-p-050 pdf-border" style={{ borderRadius: 8, maxWidth: 320 }}>
         <button
           onClick={() => { setTheme('light'); }}
-          className={`flex items-center justify-center gap-1.5 text-[11px] font-semibold py-1.5 px-3 rounded font-mono transition-all flex-1 ${theme === 'light' ? 'bg-pdf-aluminum text-pdf-leather shadow-xs ring-1 ring-pdf-seam' : 'text-pdf-focus hover:text-pdf-leather'}`}
+          className="pdf-text-label-14-mono pdf-flex-row pdf-items-center pdf-justify-center pdf-gap-100"
+          style={{
+            flex: 1, padding: '6px 12px', fontWeight: 'bold', borderRadius: 4, cursor: 'pointer', border: 'none', transition: 'all 0.2s',
+            backgroundColor: theme === 'light' ? 'var(--color-bg-primary)' : 'transparent',
+            color: theme === 'light' ? 'var(--color-text-primary)' : 'var(--color-text-secondary)',
+            boxShadow: theme === 'light' ? '0 1px 2px rgba(0,0,0,0.05)' : 'none'
+          }}
         >
-          <Sun className="w-3.5 h-3.5" /> Light Theme
+          <Sun style={{ width: 14, height: 14 }} /> Light Theme
         </button>
         <button
           onClick={() => { setTheme('dark'); }}
-          className={`flex items-center justify-center gap-1.5 text-[11px] font-semibold py-1.5 px-3 rounded font-mono transition-all flex-1 ${theme === 'dark' ? 'bg-[#09090B] text-[#FAFAFA] shadow-xs' : 'text-pdf-focus hover:text-pdf-leather'}`}
+          className="pdf-text-label-14-mono pdf-flex-row pdf-items-center pdf-justify-center pdf-gap-100"
+          style={{
+            flex: 1, padding: '6px 12px', fontWeight: 'bold', borderRadius: 4, cursor: 'pointer', border: 'none', transition: 'all 0.2s',
+            backgroundColor: theme === 'dark' ? '#09090B' : 'transparent',
+            color: theme === 'dark' ? '#FAFAFA' : 'var(--color-text-secondary)',
+            boxShadow: theme === 'dark' ? '0 1px 2px rgba(0,0,0,0.05)' : 'none'
+          }}
         >
-          <Moon className="w-3.5 h-3.5" /> Dark Theme
+          <Moon style={{ width: 14, height: 14 }} /> Dark Theme
         </button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-6 relative p-4 rounded-xl border border-pdf-seam shadow-inner" style={{ backgroundColor: getSimulatedBg(), transition: 'background-color 0.3s' }}>
+      <div className="pdf-flex-row pdf-gap-300 pdf-p-200 pdf-border" style={{ flexWrap: 'wrap', borderRadius: 12, backgroundColor: getSimulatedBg(), transition: 'background-color 0.3s' }}>
         
         {/* SWATCH PANEL LIST */}
-        <div className="md:col-span-7 flex flex-col gap-2">
+        <div className="pdf-flex-col pdf-gap-100" style={{ flex: '1 1 50%' }}>
           {colors.map((color) => {
             const displayColor = getDisplayColor(color);
             return (
               <div 
                 key={color.token}
-                className="flex items-center justify-between p-2.5 rounded-lg transition-colors border"
-                style={{ borderColor: getDisplayColor(colors[2]), backgroundColor: theme === 'light' ? '#ffffff' : '#18181B' }}
+                className="pdf-flex-row pdf-items-center pdf-justify-between pdf-border"
+                style={{ padding: 10, borderRadius: 8, transition: 'colors 0.3s', borderColor: getDisplayColor(colors[2]), backgroundColor: theme === 'light' ? '#ffffff' : '#18181B' }}
               >
-                <div className="flex items-center gap-3">
+                <div className="pdf-flex-row pdf-items-center pdf-gap-150">
                   <div 
-                    className="w-10 h-10 rounded border shadow-inner transition-all duration-300"
-                    style={{ backgroundColor: displayColor, borderColor: getDisplayColor(colors[3]) }}
+                    style={{ width: 40, height: 40, borderRadius: 4, border: '1px solid', boxShadow: 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.05)', transition: 'all 0.3s', backgroundColor: displayColor, borderColor: getDisplayColor(colors[3]) }}
                   />
-                  <div>
-                    <span className="text-[11px] font-mono font-bold block" style={{ color: getSimulatedText() }}>{color.token}</span>
-                    <span className="text-[9px] font-mono block" style={{ color: getDisplayColor(colors[5]) }}>{color.layer} — {displayColor}</span>
+                  <div className="pdf-flex-col">
+                    <span className="pdf-text-label-14-mono" style={{ fontWeight: 'bold', color: getSimulatedText(), fontSize: 11 }}>{color.token}</span>
+                    <span className="pdf-text-label-14-mono" style={{ color: getDisplayColor(colors[5]), fontSize: 9 }}>{color.layer} — {displayColor}</span>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-2">
-                  <span className="text-[10px] max-w-[140px] text-right font-sans hidden sm:block" style={{ color: getDisplayColor(colors[5]) }}>
+                <div className="pdf-flex-row pdf-items-center pdf-gap-100">
+                  <span className="pdf-text-copy-14" style={{ fontSize: 10, maxWidth: 140, textAlign: 'right', color: getDisplayColor(colors[5]) }}>
                     {color.rule}
                   </span>
                   <button
                     onClick={() => triggerCopy(displayColor, color.token)}
-                    className="p-1.5 rounded transition-colors"
-                    style={{ color: getDisplayColor(colors[5]) }}
+                    style={{ padding: 6, borderRadius: 4, transition: 'colors 0.2s', cursor: 'pointer', border: 'none', background: 'none', color: getDisplayColor(colors[5]) }}
                     title="Hex 코드 복사"
                   >
                     {copiedToken === color.token ? (
-                      <Check className="w-3.5 h-3.5" style={{ color: getDisplayColor(colors[6]) }} />
+                      <Check style={{ width: 14, height: 14, color: getDisplayColor(colors[6]) }} />
                     ) : (
-                      <Copy className="w-3.5 h-3.5" />
+                      <Copy style={{ width: 14, height: 14 }} />
                     )}
                   </button>
                 </div>
@@ -111,41 +121,40 @@ export default function ColorSandbox() {
         </div>
 
         {/* CONTRAST WARNING SYSTEM DEMONSTRATOR */}
-        <div className="md:col-span-5 rounded p-4 flex flex-col justify-between border" style={{ backgroundColor: getDisplayColor(colors[1]), borderColor: getDisplayColor(colors[2]) }}>
+        <div className="pdf-flex-col pdf-justify-between pdf-border pdf-p-200" style={{ flex: '1 1 40%', borderRadius: 4, backgroundColor: getDisplayColor(colors[1]), borderColor: getDisplayColor(colors[2]) }}>
           <div>
-            <span className="text-[10px] font-mono block mb-2 font-bold" style={{ color: getDisplayColor(colors[5]) }}>PART B: DOUBLE SAFE-GUARD</span>
-            <div className="border p-4 rounded-lg shadow-sm" style={{ backgroundColor: getSimulatedBg(), borderColor: getDisplayColor(colors[2]) }}>
+            <span className="pdf-text-label-14-mono" style={{ display: 'block', marginBottom: 8, fontWeight: 'bold', fontSize: 10, color: getDisplayColor(colors[5]) }}>PART B: DOUBLE SAFE-GUARD</span>
+            <div className="pdf-border pdf-p-200" style={{ borderRadius: 8, boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)', backgroundColor: getSimulatedBg(), borderColor: getDisplayColor(colors[2]) }}>
               
               <div 
-                className="border p-3 rounded mb-4 transition-colors duration-300"
+                className="pdf-border pdf-p-150 pdf-mb-200"
                 style={{ 
-                  backgroundColor: theme === 'light' ? '#FEF2F2' : '#7F1D1D20',
-                  borderColor: theme === 'light' ? '#FEE2E2' : '#7F1D1D80'
+                  borderRadius: 4, transition: 'colors 0.3s',
+                  backgroundColor: theme === 'light' ? '#FEF2F2' : 'rgba(127, 29, 29, 0.12)',
+                  borderColor: theme === 'light' ? '#FEE2E2' : 'rgba(127, 29, 29, 0.5)'
                 }}
               >
-                <div className="flex gap-2 items-start">
+                <div className="pdf-flex-row pdf-gap-100" style={{ alignItems: 'flex-start' }}>
                   <div 
-                    className="w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold text-pdf-aluminum shrink-0"
-                    style={{ backgroundColor: getDisplayColor(colors[6]) }}
+                    style={{ width: 20, height: 20, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 'bold', color: 'var(--color-bg-primary)', flexShrink: 0, backgroundColor: getDisplayColor(colors[6]) }}
                   >
                     !
                   </div>
                   <div>
                     <span 
-                      className="text-xs font-bold block transition-colors"
-                      style={{ color: getDisplayColor(colors[6]) }}
+                      style={{ fontSize: 12, fontWeight: 'bold', display: 'block', transition: 'colors 0.3s', color: getDisplayColor(colors[6]) }}
                     >
                       실패: 검증 연산 누락
                     </span>
-                    <p className="text-[10px] font-sans mt-1 leading-normal transition-colors" style={{ color: theme === 'light' ? '#52525B' : '#A1A1AA' }}>
+                    <p style={{ fontSize: 10, fontFamily: 'var(--font-sans)', marginTop: 4, lineHeight: 1.5, transition: 'colors 0.3s', color: theme === 'light' ? '#52525B' : '#A1A1AA' }}>
                       데이터베이스와 실시간 소켓 바운딩 터널이 끊겼습니다. 네트워크 라우트 세팅값을 지금 바로 점검하세요.
                     </p>
                   </div>
                 </div>
               </div>
 
-              <div className="text-[10px] leading-relaxed gap-1 flex flex-col" style={{ color: getDisplayColor(colors[5]) }}>
-                <span className="font-bold" style={{ color: getSimulatedText() }}>완벽한 반전 균형 (Light & Dark):</span>
+              <div className="pdf-flex-col pdf-gap-050 pdf-text-copy-14" style={{ fontSize: 10, lineHeight: 1.6, color: getDisplayColor(colors[5]) }}>
+                <span style={{ fontWeight: 'bold', color: getSimulatedText() }}>완벽한 반전 균형 (Light & Dark):</span>
                 <span>
                   시스템은 밝은 테마와 어두운 테마 환경에서 <strong>완벽한 1:1 대칭 명도</strong>를 유지합니다. 가장 순수한 흑과 백의 대비를 통해, 사용자는 어떠한 환경 설정에서도 콘텐츠 유실 없이 완벽한 정밀도로 작업을 계속할 수 있습니다.
                 </span>

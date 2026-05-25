@@ -181,44 +181,62 @@ public struct PdfMorphingButtonStyle: ButtonStyle {
   };
 
   return (
-    <div className="border border-pdf-seam bg-pdf-aluminum p-6 rounded-lg font-sans my-4 shadow-sm">
-      <div className="flex items-center justify-between mb-4 pb-3 border-b border-pdf-seam">
+    <div className="pdf-panel">
+      <div className="pdf-panel-header pdf-flex-row pdf-justify-between pdf-items-center">
         <div>
-          <span className="font-mono text-xs tracking-wider text-pdf-red font-bold uppercase block">
-            CH.7 INTERACTIVE SANBOX
+          <span className="pdf-text-label-14-mono pdf-text-red pdf-mb-100" style={{ display: 'block', fontWeight: 'bold' }}>
+            CH.7 INTERACTIVE SANDBOX
           </span>
-          <h4 className="font-sans text-base font-semibold text-pdf-leather">
+          <h4 className="pdf-text-label-16" style={{ fontWeight: 'bold' }}>
             크로스플랫폼 통합 토큰 및 코드 명세 보드 (JSON & Code Exporter)
           </h4>
         </div>
-        <Terminal className="text-pdf-focus w-4 h-4" />
+        <Terminal className="pdf-text-muted" style={{ width: 16, height: 16 }} />
       </div>
 
-      <p className="text-xs text-pdf-focus mb-6 leading-relaxed">
+      <p className="pdf-text-copy-14 pdf-text-muted pdf-mb-300">
         이종 플랫폼(Web, Jetpack Compose, SwiftUI)에서 단 하나의 물리 디자인 규칙을 준수하여 가동되도록 작성된 <strong>피지컬 통합 컴파일 서식</strong>입니다. 탭을 변경하면 각각의 프레임워크 명세에 일체가 맞춰집니다.
       </p>
 
       {/* Code exporter platform selector tabs */}
-      <div className="flex items-center justify-between gap-2 flex-wrap mb-4">
-        <div className="flex bg-pdf-aluminum p-1 rounded-lg border border-pdf-seam">
+      <div className="pdf-flex-row pdf-items-center pdf-justify-between pdf-gap-150 pdf-mb-200" style={{ flexWrap: 'wrap' }}>
+        <div className="pdf-flex-row pdf-bg-secondary pdf-p-050 pdf-border" style={{ borderRadius: 8 }}>
           <button
-            id="tab-export-web"
             onClick={() => handleTabChange('web')}
-            className={`text-xs font-mono py-1.5 px-4 rounded transition-all ${platform === 'web' ? 'bg-pdf-aluminum text-pdf-leather font-extrabold shadow-xs' : 'text-pdf-focus hover:text-pdf-leather'}`}
+            className="pdf-text-label-14-mono"
+            style={{
+              padding: '6px 16px', borderRadius: 4, cursor: 'pointer', border: 'none', transition: 'all 0.2s',
+              backgroundColor: platform === 'web' ? 'var(--color-bg-primary)' : 'transparent',
+              color: platform === 'web' ? 'var(--color-text-primary)' : 'var(--color-text-secondary)',
+              fontWeight: platform === 'web' ? '800' : 'normal',
+              boxShadow: platform === 'web' ? '0 1px 2px rgba(0,0,0,0.05)' : 'none'
+            }}
           >
             Web (CSS Token)
           </button>
           <button
-            id="tab-export-android"
             onClick={() => handleTabChange('android')}
-            className={`text-xs font-mono py-1.5 px-4 rounded transition-all ${platform === 'android' ? 'bg-pdf-aluminum text-pdf-leather font-extrabold shadow-xs' : 'text-pdf-focus hover:text-pdf-leather'}`}
+            className="pdf-text-label-14-mono"
+            style={{
+              padding: '6px 16px', borderRadius: 4, cursor: 'pointer', border: 'none', transition: 'all 0.2s',
+              backgroundColor: platform === 'android' ? 'var(--color-bg-primary)' : 'transparent',
+              color: platform === 'android' ? 'var(--color-text-primary)' : 'var(--color-text-secondary)',
+              fontWeight: platform === 'android' ? '800' : 'normal',
+              boxShadow: platform === 'android' ? '0 1px 2px rgba(0,0,0,0.05)' : 'none'
+            }}
           >
             Android (Kotlin Compose)
           </button>
           <button
-            id="tab-export-ios"
             onClick={() => handleTabChange('ios')}
-            className={`text-xs font-mono py-1.5 px-4 rounded transition-all ${platform === 'ios' ? 'bg-pdf-aluminum text-pdf-leather font-extrabold shadow-xs' : 'text-pdf-focus hover:text-pdf-leather'}`}
+            className="pdf-text-label-14-mono"
+            style={{
+              padding: '6px 16px', borderRadius: 4, cursor: 'pointer', border: 'none', transition: 'all 0.2s',
+              backgroundColor: platform === 'ios' ? 'var(--color-bg-primary)' : 'transparent',
+              color: platform === 'ios' ? 'var(--color-text-primary)' : 'var(--color-text-secondary)',
+              fontWeight: platform === 'ios' ? '800' : 'normal',
+              boxShadow: platform === 'ios' ? '0 1px 2px rgba(0,0,0,0.05)' : 'none'
+            }}
           >
             iOS (SwiftUI Swift)
           </button>
@@ -226,18 +244,21 @@ public struct PdfMorphingButtonStyle: ButtonStyle {
 
         {/* Copy trigger button */}
         <button
-          id="btn-copy-export"
           onClick={handleCopy}
-          className="flex items-center gap-1.5 py-1.5 px-3.5 bg-pdf-leather hover:bg-pdf-leather text-pdf-aluminum rounded text-xs font-mono active:scale-95 transition-all"
+          className="pdf-text-label-14-mono pdf-flex-row pdf-items-center pdf-gap-050"
+          style={{
+            padding: '6px 14px', borderRadius: 4, cursor: 'pointer', border: 'none',
+            backgroundColor: 'var(--color-text-primary)', color: 'var(--color-bg-primary)'
+          }}
         >
           {copied ? (
             <>
-              <Check className="w-3.5 h-3.5 text-green-400" />
+              <Check style={{ width: 14, height: 14, color: '#4ade80' }} />
               복사 완료!
             </>
           ) : (
             <>
-              <Copy className="w-3.5 h-3.5" />
+              <Copy style={{ width: 14, height: 14 }} />
               클립보드 복사
             </>
           )}
@@ -245,16 +266,16 @@ public struct PdfMorphingButtonStyle: ButtonStyle {
       </div>
 
       {/* Editor view screen pane */}
-      <div className="bg-pdf-leather text-pdf-focus p-4 rounded-lg font-mono text-[11px] leading-relaxed relative overflow-x-auto border border-pdf-focus shadow-inner max-h-[340px]">
-        <div className="text-[9px] text-pdf-focus uppercase sticky top-0 right-0 text-right bg-pdf-leather/80 backdrop-blur-xs py-1 px-2 border border-pdf-focus rounded inline-block float-right">
+      <div className="pdf-p-200 pdf-border" style={{ backgroundColor: '#09090b', color: 'var(--color-text-secondary)', borderRadius: 8, fontFamily: 'var(--font-mono)', fontSize: 11, lineHeight: 1.6, position: 'relative', overflowX: 'auto', maxHeight: 340 }}>
+        <div className="pdf-border" style={{ position: 'sticky', top: 0, right: 0, textAlign: 'right', backgroundColor: 'rgba(9, 9, 11, 0.8)', padding: '4px 8px', borderRadius: 4, display: 'inline-block', float: 'right', fontSize: 9, color: 'var(--color-text-secondary)', textTransform: 'uppercase' }}>
           {platform === 'web' ? 'CSS / Variables' : platform === 'android' ? 'KOTLIN / COMPOSE' : 'SWIFT / SWIFTUI'}
         </div>
-        <pre className="whitespace-pre">{codeBlocks[platform]}</pre>
+        <pre style={{ whiteSpace: 'pre', margin: 0, paddingBottom: 16 }}>{codeBlocks[platform]}</pre>
       </div>
 
-      <div className="mt-4 flex items-center gap-2 text-emerald-800 bg-emerald-50 border border-emerald-150 p-3 rounded-lg">
-        <ShieldCheck className="w-5 h-5 text-emerald-700 shrink-0" />
-        <span className="text-[11px] font-sans font-medium">
+      <div className="pdf-flex-row pdf-items-center pdf-gap-100 pdf-mt-200" style={{ backgroundColor: '#ecfdf5', borderColor: '#a7f3d0', borderStyle: 'solid', borderWidth: 1, padding: 12, borderRadius: 8, color: '#065f46' }}>
+        <ShieldCheck style={{ width: 20, height: 20, color: '#047857', flexShrink: 0 }} />
+        <span className="pdf-text-copy-14" style={{ fontSize: 11, fontWeight: 500 }}>
           ✓ 본 코드는 각 하드웨어 플랫폼의 그래픽 파이프라인(Web GPU/Skia/CoreGraphics) 및 인터랙션 상태 인디케이터 스펙에 부합하게 자동 변환된 피지컬 모핑 스펙입니다.
         </span>
       </div>
