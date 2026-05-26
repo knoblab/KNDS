@@ -1,122 +1,133 @@
 # 🎛️ PDF-DS (Physical-Digital Fusion Design System)
 
-> **Physical-Digital Fusion Design System (PDF-DS)**는 물리적 제품의 촉각적 경험과 디지털 인터페이스의 유연성을 결합한 크로스 플랫폼 디자인 가이드라인 웹 애플리케이션입니다.
+**PDF-DS**는 물리적 제품의 촉각적 경험과 디지털 인터페이스의 미니멀리즘을 결합한 CSS 디자인 가이드라인 및 라이브러리입니다. 복잡한 설치 없이 여러분의 웹사이트에 빠르고 일관된 디자인 시스템을 적용할 수 있습니다.
 
-[Design Guideline](http://pdf-ds.qpi.digital)
-
----
-
-## ⚙️ 사전 요구 사항 (Prerequisites)
-
-본 프로젝트를 로컬 환경에서 실행하고 빌드하기 위해서는 다음 소프트웨어가 설치되어 있어야 합니다.
-
-- **Node.js**: v18.0.0 이상 권장
-- **npm**: v9.0.0 이상 권장 (또는 yarn, pnpm)
-- **Git** (프로젝트 클론 및 버전 관리를 위해)
+<br/>
+<a href="http://pdf-ds.qpi.digital" class="pdf-btn-primary pdf-btn-md" style="text-decoration: none;">Design Guideline & 샌드박스 보기</a>
+<br/><br/>
 
 ---
 
-## 🚀 설치 가이드 (Installation Guide)
+## 🚀 내 웹사이트에 적용하기 (Getting Started)
 
-### 1. 저장소 클론 (Clone the Repository)
-```bash
-git clone <repository-url>
-cd PDF-DS
-```
+PDF-DS는 순수 CSS(Vanilla CSS) 기반으로 작성되어 있어 어떠한 프레임워크(React, Vue, HTML 등)와도 쉽게 호환됩니다.
 
-### 2. 패키지 의존성 설치 (Install Dependencies)
-```bash
-npm install
-```
-
-### 3. 환경 변수 설정 (Environment Variables)
-프로젝트 내 `.env.example` 파일이 존재할 경우, 이를 복사하여 `.env` 파일을 생성하고 필요한 값을 설정합니다.
-```bash
-cp .env.example .env
-```
-> *(로컬 개발 환경에서만 사용할 경우 별도로 수정하지 않아도 기본값으로 동작합니다.)*
-
----
-
-## 🛠️ 개발 및 빌드 (Development & Build)
-
-`package.json`에 정의된 주요 스크립트를 통해 개발 서버 실행 및 빌드를 진행할 수 있습니다.
-
-### 로컬 개발 서버 실행
-```bash
-npm run dev
-```
-> Vite 기반의 개발 서버가 실행됩니다. 기본적으로 `http://localhost:3000` (또는 터미널에 표시된 주소)에서 확인할 수 있습니다.
-
-### 프로덕션 빌드
-```bash
-npm run build
-```
-> `dist/` 디렉토리에 최적화된 정적 웹사이트 에셋이 생성됩니다.
-
-### 프로덕션 빌드 로컬 미리보기
-```bash
-npm run preview
-```
-> `build` 커맨드를 먼저 실행한 후, Wrangler(또는 로컬 서버)를 통해 빌드된 결과물을 로컬에서 미리 확인합니다.
-
-### 빌드 결과물 캐시 정리
-```bash
-npm run clean
-```
-> `dist/` 디렉토리와 기타 빌드 임시 파일들을 제거합니다.
-
-### 타입스크립트 린트 검사
-```bash
-npm run lint
-```
-> 코드를 컴파일하지 않고(emit 없이) TypeScript 타입 에러를 검사합니다.
-
----
-
-## ☁️ 배포 가이드 (Deployment)
-
-본 프로젝트는 Cloudflare Pages (또는 Workers) 환경에 배포되도록 `wrangler.jsonc`가 구성되어 있습니다.
-
-### 1. Wrangler 인증
-처음 배포하는 경우 Cloudflare 계정 인증이 필요합니다.
-```bash
-npx wrangler login
-```
-
-### 2. 프로젝트 배포
-빌드와 배포를 동시에 수행하는 스크립트를 실행합니다.
-```bash
-npm run deploy
-```
-> 내부적으로 `npm run build` 수행 후 `wrangler deploy` 명령어가 실행되어 Cloudflare 네트워크에 배포됩니다.
-
----
-
-## 📦 CSS 라이브러리로 사용하기 (Usage as a CDN Library)
-
-프로젝트 전체를 클론하지 않고 **디자인 토큰과 전역 스타일(CSS)**만 기존 프로젝트에 빠르게 적용하려면, HTML 파일의 `<head>` 태그 안에 아래 코드를 추가하세요.
+### 옵션 1. CDN을 통한 빠른 적용 (권장)
+가장 쉬운 방법은 HTML 파일의 `<head>` 영역에 아래의 CDN 링크를 추가하는 것입니다.
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/qpi-labels/PDF-DS@main/src/index.css">
+<!-- index.html -->
+<head>
+  <!-- ...기타 태그들... -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/qpi-labels/PDF-DS@main/src/index.css">
+</head>
+```
+
+### 옵션 2. 로컬 파일로 적용
+전체 CSS 파일을 다운로드하여 커스터마이징하고 싶다면, `src/index.css` 파일을 프로젝트의 스타일 폴더로 복사한 뒤 임포트하세요.
+
+```javascript
+// React/Vue 등 진입점 파일 (예: main.tsx, App.vue)
+import './styles/pdf-ds.css'; 
 ```
 
 ---
 
-## 📂 주요 디렉토리 구조 (Directory Structure)
+## 🎨 주요 컴포넌트 사용 가이드 (Usage Guide)
 
-- `src/` : 애플리케이션 소스 코드
-  - `components/` : 버튼, 레이아웃, 컬러 등 샌드박스 컴포넌트 모음
-  - `pages/` : `Landing`, `Guide`, `Editor` 등 주요 라우트 페이지
-  - `utils/` : 압축 파일 다운로드 등 유틸리티 함수
-  - `index.css` : **(핵심)** 디자인 시스템 전역 CSS 변수 및 토큰
-- `public/` : 파비콘, 폰트 등 정적 에셋
-- `.wrangler/` : Cloudflare 배포 관련 로컬 캐시 디렉토리
-- `wrangler.jsonc` : Cloudflare 배포 설정 파일
-- `vite.config.ts` : Vite 빌더 설정 파일
+CSS가 로드되었다면, HTML 클래스명(`pdf-`)을 부여하는 것만으로 디자인이 즉시 적용됩니다.
+
+### 1. 기본 레이아웃 구성 (Layout)
+전체 앱의 형태를 잡고, 사이드바와 메인 뷰를 나눌 수 있습니다.
+
+```html
+<div class="pdf-app">
+  <!-- 좌측 사이드바 (데스크탑에서만 노출, 모바일에서는 하단 팝업) -->
+  <aside class="pdf-sidebar">
+    <nav>
+      <div class="pdf-nav-item active">홈</div>
+      <div class="pdf-nav-item">설정</div>
+    </nav>
+  </aside>
+
+  <!-- 우측 메인 콘텐츠 영역 -->
+  <main class="pdf-main-view">
+    <div class="pdf-main-content">
+      <!-- 콘텐츠 입력 -->
+    </div>
+  </main>
+</div>
+```
+
+### 2. 버튼 및 인터랙션 (Buttons)
+물리적 버튼의 저항감과 형태 변형(Shape-morphing) 애니메이션이 기본적으로 포함되어 있습니다. 사이즈(`sm`, `md`, `lg`)를 조합하여 사용하세요.
+
+```html
+<!-- 프라이머리 버튼 (레드 포인트) -->
+<button class="pdf-btn-primary pdf-btn-md">
+  시작하기
+</button>
+
+<!-- 세컨더리 버튼 (모노톤 테두리) -->
+<button class="pdf-secondary-btn">
+  취소
+</button>
+```
+
+### 3. 패널 및 카드 (Panels)
+정보를 그룹화할 때 사용하는 하드웨어 디스플레이 느낌의 미세한 곡률(Bevel) 패널입니다.
+
+```html
+<div class="pdf-panel">
+  <div class="pdf-panel-header">
+    <h3 class="pdf-text-label-16">시스템 설정</h3>
+  </div>
+  <p class="pdf-text-copy-14 pdf-text-muted">
+    이곳에 세부 설정 내용을 입력합니다.
+  </p>
+</div>
+```
+
+### 4. 타이포그래피 (Typography)
+황금비(Golden Ratio) 기반의 시각적 안정감을 주는 폰트 크기 및 굵기를 제공합니다.
+
+```html
+<h1 class="pdf-text-heading-72">72px 거대한 헤딩</h1>
+<h2 class="pdf-text-heading-32">32px 기본 제목</h2>
+<strong class="pdf-text-label-16">16px 강조 라벨</strong>
+<p class="pdf-text-copy-14">14px 본문 텍스트입니다. 가독성을 최우선으로 합니다.</p>
+```
+
+### 5. 폼 및 입력 창 (Inputs)
+
+```html
+<input type="text" class="pdf-input pdf-input-md" placeholder="텍스트를 입력하세요" />
+```
 
 ---
 
-## 📝 라이선스 (License)
+## 🌙 다크 모드 (Dark Mode)
 
-이 프로젝트는 비공개(Private) 프로젝트로 설정되어 있습니다. (참고: `package.json` - `"private": true`)
+PDF-DS는 다크 모드를 완벽하게 지원합니다. 다크 모드를 활성화하려면 `<body>` 또는 최상위 부모 컨테이너에 `data-theme="dark"` 속성을 추가하기만 하면 됩니다.
+
+```html
+<!-- 다크 모드 활성화 -->
+<body data-theme="dark">
+  <div class="pdf-app">
+    ...
+  </div>
+</body>
+```
+
+---
+
+## 🛠️ 유틸리티 클래스 (Utility Classes)
+
+CSS 파일을 흩트리지 않고 HTML 태그 내에서 간격과 배치를 빠르게 조절할 수 있습니다.
+
+- **Flexbox**: `pdf-flex-row`, `pdf-flex-col`, `pdf-items-center`, `pdf-justify-between`
+- **여백 (Margin/Padding)**: `pdf-mt-200`, `pdf-mb-300`, `pdf-p-200`, `pdf-px-200`
+- **색상**: `pdf-text-red`, `pdf-text-muted`, `pdf-bg-secondary`
+- **시각 효과**: `pdf-shadow-bevel`, `pdf-shadow-glow`
+
+*모든 여백 토큰(`100`, `200`, `300` 등)은 자체 디자인 시스템의 황금비 배수를 따릅니다.*
