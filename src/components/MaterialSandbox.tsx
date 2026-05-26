@@ -16,7 +16,7 @@ export default function MaterialSandbox() {
       </div>
 
       <div className="pdf-flex-col pdf-gap-300">
-        
+
         {/* Layer 1 */}
         <div className="pdf-flex-col pdf-gap-100">
           <div className="pdf-text-label-14-mono pdf-text-muted">1. Flat Surface (평면)</div>
@@ -47,18 +47,18 @@ export default function MaterialSandbox() {
         {/* Layer 4 */}
         <div className="pdf-flex-col pdf-gap-100">
           <div className="pdf-text-label-14-mono pdf-text-muted">4. Frosted Glass (반투명 유리 / 블러)</div>
-          <div 
-            className="pdf-p-300 pdf-border" 
-            style={{ 
-              backgroundColor: 'rgba(255, 255, 255, 0.65)', 
-              backdropFilter: 'blur(24px) saturate(180%)', 
+          <div
+            className="pdf-p-300 pdf-border"
+            style={{
+              backgroundColor: 'rgba(255, 255, 255, 0.65)',
+              backdropFilter: 'blur(24px) saturate(180%)',
               WebkitBackdropFilter: 'blur(24px) saturate(180%)',
               backgroundImage: 'var(--blueprint-grid-pattern)',
               backgroundSize: '24px 24px'
             }}
           >
             <span className="pdf-text-label-16">사이드바 및 네비게이션 표면 (Navigation Surface)</span>
-            <p className="pdf-text-copy-14 pdf-text-muted pdf-mt-100">뒤에 있는 콘텐츠의 형태를 부드럽게 투과시키면서도 가독성을 유지하는 소재입니다. 애플 HIG의 Material 규칙과 유사하며, 주로 플로팅 네비게이션바 등에 사용됩니다.</p>
+            <p className="pdf-text-copy-14 pdf-text-muted pdf-mt-100">뒤에 있는 콘텐츠의 형태를 부드럽게 투과시키면서도 가독성을 유지하는 소재입니다. 주로 플로팅 네비게이션바 등에 사용됩니다.</p>
           </div>
         </div>
 
