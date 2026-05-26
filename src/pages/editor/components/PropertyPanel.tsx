@@ -1,9 +1,51 @@
 import React from 'react';
 import { useEditorStore } from '../store';
+import { EditorNode } from '../types';
 
 export default function PropertyPanel() {
-  const { getSelectedNode, updateNode, appTitle, appDescription, setAppTitle, setAppDescription } = useEditorStore();
+  const { 
+    getSelectedNode, 
+    updateNode, 
+    appTitle, 
+    appDescription, 
+    setAppTitle, 
+    setAppDescription,
+    getActivePageRoot,
+    setSelectedNodeId,
+    selectedNodeId,
+    removeNode
+  } = useEditorStore();
+  
   const node = getSelectedNode();
+  const rootNode = getActivePageRoot();
+
+  const renderTree = (node: EditorNode, level = 0) => {
+    return (
+      <div key={node.id} style={{ paddingLeft: level === 0 ? 0 : 12, marginTop: 4 }}>
+        <div 
+          onClick={(e) => { e.stopPropagation(); setSelectedNodeId(node.id); }}
+          className="pdf-flex-row pdf-items-center pdf-justify-between"
+          style={{ 
+            cursor: 'pointer', 
+            padding: '4px 8px',
+            backgroundColor: selectedNodeId === node.id ? 'var(--color-bg-secondary)' : 'transparent',
+            borderLeft: selectedNodeId === node.id ? '2px solid var(--color-functional-red)' : '2px solid transparent',
+            borderRadius: '4px'
+          }}
+        >
+          <span className="pdf-text-label-14-mono" style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', flex: 1, paddingRight: '8px', fontSize: '13px' }}>
+            {node.type} {node.classes.length > 0 && <span className="pdf-text-muted" style={{ fontSize: '11px' }}>.{node.classes[0]}</span>}
+          </span>
+          <div className="pdf-flex-row pdf-gap-100">
+            {level > 0 && (
+              <button onClick={(e) => { e.stopPropagation(); removeNode(node.id); }} className="pdf-text-label-14-mono pdf-text-red" style={{background: 'none', border: 'none', cursor: 'pointer', fontSize: '12px'}}>X</button>
+            )}
+          </div>
+        </div>
+        {node.children.map(c => renderTree(c, level + 1))}
+      </div>
+    );
+  };
 
   if (!node) {
     return (
@@ -29,6 +71,19 @@ export default function PropertyPanel() {
               value={appDescription}
               onChange={(e) => setAppDescription(e.target.value)}
             />
+          </div>
+
+          <hr className="pdf-border-bottom pdf-mb-300" style={{ border: 'none', marginTop: '24px' }} />
+
+          <div className="pdf-mb-300">
+            <h3 className="pdf-text-label-16 pdf-mb-200" style={{ fontWeight: 700 }}>요소 탐색기 (DOM Tree)</h3>
+            {rootNode && rootNode.children.length > 0 ? (
+              <div style={{ maxHeight: '350px', overflowY: 'auto', border: '1px solid var(--color-border-default)', borderRadius: '6px', padding: '8px', backgroundColor: 'var(--color-bg-secondary)' }}>
+                {renderTree(rootNode)}
+              </div>
+            ) : (
+              <p className="pdf-text-copy-14 pdf-text-muted">요소가 없습니다.</p>
+            )}
           </div>
         </div>
       </aside>
@@ -329,12 +384,73 @@ export default function PropertyPanel() {
                   </button>
                 </div>
               </div>
+
+              <div className="pdf-flex-col pdf-gap-050">
+                <span className="pdf-text-label-13-mono pdf-text-muted">정렬 설정 (Alignment):</span>
+                <div className="pdf-flex-row pdf-gap-050">
+                  <button 
+                    className={`pdf-btn-sm ${node.styles?.marginLeft === '0' && node.styles?.marginRight === 'auto' ? 'pdf-btn-primary' : 'pdf-secondary-btn'}`}
+                    style={{ padding: '4px 8px', fontSize: '11px', height: '28px' }}
+                    onClick={() => updateNode(node.id, { 
+                      styles: { 
+                        ...node.styles, 
+                        display: 'block', 
+                        marginLeft: '0', 
+                        marginRight: 'auto' 
+                      } 
+                    })}
+                  >
+                    좌측 정렬
+                  </button>
+                  <button 
+                    className={`pdf-btn-sm ${node.styles?.marginLeft === 'auto' && node.styles?.marginRight === 'auto' ? 'pdf-btn-primary' : 'pdf-secondary-btn'}`}
+                    style={{ padding: '4px 8px', fontSize: '11px', height: '28px' }}
+                    onClick={() => updateNode(node.id, { 
+                      styles: { 
+                        ...node.styles, 
+                        display: 'block', 
+                        marginLeft: 'auto', 
+                        marginRight: 'auto' 
+                      } 
+                    })}
+                  >
+                    중앙 정렬
+                  </button>
+                  <button 
+                    className={`pdf-btn-sm ${node.styles?.marginLeft === 'auto' && node.styles?.marginRight === '0' ? 'pdf-btn-primary' : 'pdf-secondary-btn'}`}
+                    style={{ padding: '4px 8px', fontSize: '11px', height: '28px' }}
+                    onClick={() => updateNode(node.id, { 
+                      styles: { 
+                        ...node.styles, 
+                        display: 'block', 
+                        marginLeft: 'auto', 
+                        marginRight: '0' 
+                      } 
+                    })}
+                  >
+                    우측 정렬
+                  </button>
+                </div>
+              </div>
             </div>
           )}
           {node.type === 'input' && (
             <div className="pdf-mt-100">
               <input type="text" className="pdf-input pdf-input-sm" placeholder="placeholder" value={node.attributes.placeholder || ''} onChange={(e) => handleAttrChange('placeholder', e.target.value)} />
             </div>
+          )}
+        </div>
+
+        <hr className="pdf-border-bottom pdf-mb-300" style={{ border: 'none', marginTop: '24px' }} />
+
+        <div className="pdf-mb-300">
+          <h3 className="pdf-text-label-16 pdf-mb-200" style={{ fontWeight: 700 }}>요소 탐색기 (DOM Tree)</h3>
+          {rootNode && rootNode.children.length > 0 ? (
+            <div style={{ maxHeight: '350px', overflowY: 'auto', border: '1px solid var(--color-border-default)', borderRadius: '6px', padding: '8px', backgroundColor: 'var(--color-bg-secondary)' }}>
+              {renderTree(rootNode)}
+            </div>
+          ) : (
+            <p className="pdf-text-copy-14 pdf-text-muted">요소가 없습니다.</p>
           )}
         </div>
 

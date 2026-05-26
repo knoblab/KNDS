@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useRef, useEffect, ReactNode } from 'react';
 import { EditorPageItem, EditorNode, NodeType } from './types';
 
 // Helper to generate UUID-like string
@@ -39,6 +39,12 @@ interface EditorContextProps {
   // Project actions
   loadProject: (pages: EditorPageItem[], title: string, desc: string) => void;
   
+  // History actions
+  undo: () => void;
+  redo: () => void;
+  canUndo: boolean;
+  canRedo: boolean;
+  
   // Utils
   getActivePageRoot: () => EditorNode | null;
   getSelectedNode: () => EditorNode | null;
@@ -65,17 +71,109 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
   const [activePageId, setActivePageId] = useState<string | null>('home');
   const [selectedNodeId, setSelectedNodeId] = useState<string | null>(null);
   const [customCategories, setCustomCategories] = useState<string[]>([]);
+  
+  const [history, setHistory] = useState<{ pages: EditorPageItem[]; appTitle: string; appDescription: string }[]>([]);
+  const [historyIndex, setHistoryIndex] = useState(-1);
+  
+  const historyRef = useRef(history);
+  const historyIndexRef = useRef(historyIndex);
+  
+  useEffect(() => {
+    historyRef.current = history;
+    historyIndexRef.current = historyIndex;
+  }, [history, historyIndex]);
+
+  useEffect(() => {
+    const initialEntry = { 
+      pages: JSON.parse(JSON.stringify(pages)), 
+      appTitle, 
+      appDescription 
+    };
+    setHistory([initialEntry]);
+    setHistoryIndex(0);
+  }, []);
+  const updatePagesWithHistory = (newPages: EditorPageItem[]) => {
+    setPages(newPages);
+    const cleanHistory = historyRef.current.slice(0, historyIndexRef.current + 1);
+    const newEntry = { 
+      pages: JSON.parse(JSON.stringify(newPages)), 
+      appTitle, 
+      appDescription 
+    };
+    setHistory([...cleanHistory, newEntry]);
+    setHistoryIndex(cleanHistory.length);
+  };
+
+  const undo = () => {
+    if (historyIndexRef.current > 0) {
+      const nextIndex = historyIndexRef.current - 1;
+      const entry = historyRef.current[nextIndex];
+      setPages(JSON.parse(JSON.stringify(entry.pages)));
+      setAppTitle(entry.appTitle);
+      setAppDescription(entry.appDescription);
+      setHistoryIndex(nextIndex);
+    }
+  };
+
+  const redo = () => {
+    if (historyIndexRef.current < historyRef.current.length - 1) {
+      const nextIndex = historyIndexRef.current + 1;
+      const entry = historyRef.current[nextIndex];
+      setPages(JSON.parse(JSON.stringify(entry.pages)));
+      setAppTitle(entry.appTitle);
+      setAppDescription(entry.appDescription);
+      setHistoryIndex(nextIndex);
+    }
+  };
+
+  const canUndo = historyIndex > 0;
+  const canRedo = historyIndex < history.length - 1;
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      const activeEl = document.activeElement;
+      if (activeEl) {
+        const tagName = activeEl.tagName.toLowerCase();
+        const isEditable = activeEl.getAttribute('contenteditable') === 'true';
+        if (tagName === 'input' || tagName === 'textarea' || tagName === 'select' || isEditable) {
+          return;
+        }
+      }
+
+      const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+      const modifier = isMac ? e.metaKey : e.ctrlKey;
+
+      if (modifier) {
+        if (e.key.toLowerCase() === 'z') {
+          e.preventDefault();
+          if (e.shiftKey) {
+            redo();
+          } else {
+            undo();
+          }
+        } else if (e.key.toLowerCase() === 'y') {
+          e.preventDefault();
+          redo();
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [pages, history, historyIndex, appTitle, appDescription]);
 
   const addPage = (title: string, category?: string) => {
     const newId = title.toLowerCase().replace(/[^a-z0-9]/g, '-') + '-' + generateId();
-    setPages([...pages, { id: newId, title, category: category || undefined, rootNode: createEmptyRoot() }]);
+    updatePagesWithHistory([...pages, { id: newId, title, category: category || undefined, rootNode: createEmptyRoot() }]);
     setActivePageId(newId);
   };
 
   const removePage = (id: string) => {
     if (pages.length <= 1) return;
     const newPages = pages.filter(p => p.id !== id);
-    setPages(newPages);
+    updatePagesWithHistory(newPages);
     if (activePageId === id) {
       setActivePageId(newPages[0].id);
       setSelectedNodeId(null);
@@ -88,11 +186,11 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const updatePageTitle = (id: string, title: string) => {
-    setPages(pages.map(p => p.id === id ? { ...p, title } : p));
+    updatePagesWithHistory(pages.map(p => p.id === id ? { ...p, title } : p));
   };
 
   const updatePageTitleAndCategory = (id: string, title: string, category: string | undefined) => {
-    setPages(pages.map(p => p.id === id ? { ...p, title, category: category?.trim() || undefined } : p));
+    updatePagesWithHistory(pages.map(p => p.id === id ? { ...p, title, category: category?.trim() || undefined } : p));
   };
 
   const addCategory = (name: string) => {
@@ -103,14 +201,14 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const deleteCategory = (name: string) => {
-    setPages(pages.map(p => p.category === name ? { ...p, category: undefined } : p));
+    updatePagesWithHistory(pages.map(p => p.category === name ? { ...p, category: undefined } : p));
     setCustomCategories(customCategories.filter(c => c !== name));
   };
 
   const renameCategory = (oldName: string, newName: string) => {
     const trimmedNew = newName.trim();
     if (!trimmedNew) return;
-    setPages(pages.map(p => p.category === oldName ? { ...p, category: trimmedNew } : p));
+    updatePagesWithHistory(pages.map(p => p.category === oldName ? { ...p, category: trimmedNew } : p));
     setCustomCategories(customCategories.map(c => c === oldName ? trimmedNew : c));
   };
 
@@ -128,7 +226,7 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
     
     const insertIdx = newPages.findIndex(p => p.id === targetId);
     newPages.splice(insertIdx, 0, draggedPage);
-    setPages(newPages);
+    updatePagesWithHistory(newPages);
   };
 
   const movePageToCategory = (pageId: string, category: string) => {
@@ -145,11 +243,11 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
     }, -1);
 
     if (lastIndexInCat === -1) {
-      setPages([...rest, updatedPage]);
+      updatePagesWithHistory([...rest, updatedPage]);
     } else {
       const result = [...rest];
       result.splice(lastIndexInCat + 1, 0, updatedPage);
-      setPages(result);
+      updatePagesWithHistory(result);
     }
   };
 
@@ -163,7 +261,7 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
 
   const addNode = (node: EditorNode, parentId?: string, index?: number) => {
     if (!activePageId) return;
-    setPages(pages.map(page => {
+    updatePagesWithHistory(pages.map(page => {
       if (page.id !== activePageId) return page;
       const targetId = parentId || page.rootNode.id;
       
@@ -185,7 +283,7 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
 
   const removeNode = (id: string) => {
     if (!activePageId) return;
-    setPages(pages.map(page => {
+    updatePagesWithHistory(pages.map(page => {
       if (page.id !== activePageId) return page;
       if (page.rootNode.id === id) return page; // Cannot remove root
 
@@ -203,7 +301,7 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
 
   const moveNode = (id: string, targetParentId: string, targetIndex: number) => {
     if (!activePageId) return;
-    setPages(pages.map(page => {
+    updatePagesWithHistory(pages.map(page => {
       if (page.id !== activePageId) return page;
       
       // 1. Find the node
@@ -237,7 +335,7 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
 
   const updateNode = (id: string, updates: Partial<EditorNode>) => {
     if (!activePageId) return;
-    setPages(pages.map(page => {
+    updatePagesWithHistory(pages.map(page => {
       if (page.id !== activePageId) return page;
       const newRoot = updateTree(page.rootNode, (n) => {
         if (n.id === id) {
@@ -282,6 +380,7 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
       addNode, removeNode, moveNode, updateNode,
       setSelectedNodeId,
       loadProject,
+      undo, redo, canUndo, canRedo,
       getActivePageRoot, getSelectedNode
     }}>
       {children}

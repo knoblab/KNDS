@@ -139,55 +139,17 @@ export default function CanvasArea() {
     }
   };
 
-  const renderTree = (node: EditorNode, level = 0) => {
-    return (
-      <div key={node.id} style={{ paddingLeft: level === 0 ? 0 : 12, marginTop: 4 }}>
-        <div 
-          onClick={(e) => { e.stopPropagation(); setSelectedNodeId(node.id); }}
-          className="pdf-flex-row pdf-items-center pdf-justify-between"
-          style={{ 
-            cursor: 'pointer', 
-            padding: '4px 8px',
-            backgroundColor: selectedNodeId === node.id ? 'var(--color-bg-secondary)' : 'transparent',
-            borderLeft: selectedNodeId === node.id ? '2px solid var(--color-functional-red)' : '2px solid transparent'
-          }}
-        >
-          <span className="pdf-text-label-14-mono" style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', flex: 1, paddingRight: '8px' }}>
-            {node.type} {node.classes.length > 0 && <span className="pdf-text-muted">.{node.classes[0]}</span>}
-          </span>
-          <div className="pdf-flex-row pdf-gap-100">
-            {level > 0 && (
-              <button onClick={(e) => { e.stopPropagation(); removeNode(node.id); }} className="pdf-text-label-14-mono pdf-text-red" style={{background: 'none', border: 'none', cursor: 'pointer'}}>X</button>
-            )}
-          </div>
-        </div>
-        {node.children.map(c => renderTree(c, level + 1))}
-      </div>
-    );
-  };
-
   if (!rootNode) return null;
 
   return (
-    <div style={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
-      {/* Visual Canvas */}
-      <main className="pdf-main-view pdf-grid-bg pdf-relative" style={{ flex: 1, overflowY: 'auto', padding: 'var(--space-400)' }} onClick={() => setSelectedNodeId(null)}>
-        <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
-          <div style={{ maxWidth: '1440px', margin: '0 auto', minHeight: '100%' }}>
-            <SortableContext items={rootNode.children.map(c => c.id)} strategy={verticalListSortingStrategy}>
-              {rootNode.children.map(child => <SortableNode key={child.id} node={child} />)}
-            </SortableContext>
-          </div>
-        </DndContext>
-      </main>
-
-      {/* DOM Tree Sidebar */}
-      <aside className="pdf-sidebar pdf-border-left" style={{ width: '250px', overflowY: 'auto' }}>
-        <div className="pdf-p-200">
-          <h3 className="pdf-text-label-16 pdf-mb-200">요소 탐색기 (DOM Tree)</h3>
-          {renderTree(rootNode)}
+    <main className="pdf-main-view pdf-grid-bg pdf-relative" style={{ flex: 1, overflowY: 'auto', padding: 'var(--space-400)' }} onClick={() => setSelectedNodeId(null)}>
+      <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+        <div style={{ maxWidth: '1440px', margin: '0 auto', minHeight: '100%' }}>
+          <SortableContext items={rootNode.children.map(c => c.id)} strategy={verticalListSortingStrategy}>
+            {rootNode.children.map(child => <SortableNode key={child.id} node={child} />)}
+          </SortableContext>
         </div>
-      </aside>
-    </div>
+      </DndContext>
+    </main>
   );
 }

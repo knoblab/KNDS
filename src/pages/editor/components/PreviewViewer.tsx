@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useEditorStore } from '../store';
 import { EditorNode } from '../types';
 
@@ -6,6 +6,17 @@ export default function PreviewViewer({ onExit }: { onExit: () => void }) {
   const { pages, appTitle, appDescription } = useEditorStore();
   const [activePreviewPageId, setActivePreviewPageId] = useState(pages[0]?.id || null);
   const [collapsedCategories, setCollapsedCategories] = useState<Record<string, boolean>>({});
+  const [isMobile, setIsMobile] = useState(false);
+  const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1200);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const activePage = pages.find(p => p.id === activePreviewPageId) || pages[0];
 
@@ -56,15 +67,54 @@ export default function PreviewViewer({ onExit }: { onExit: () => void }) {
   });
 
   return (
-    <div className="pdf-app" style={{ display: 'flex', width: '100vw', height: '100vh', overflow: 'hidden' }}>
-      <aside className="pdf-sidebar" style={{ width: '25%', borderRight: '1px solid var(--color-border-default)', display: 'flex', flexDirection: 'column' }}>
+    <div className="pdf-app" style={{ display: 'flex', width: '100vw', height: '100vh', overflow: 'hidden', position: 'relative' }}>
+      
+      {/* 모바일 암전 오버레이 레이어 */}
+      {isMobile && isMobileNavOpen && (
+        <div 
+          onClick={() => setIsMobileNavOpen(false)}
+          className="pdf-fixed pdf-inset-0"
+          style={{ backgroundColor: 'rgba(0,0,0,0.5)', zIndex: 1000, animation: 'pdfFadeIn 0.2s ease forwards' }}
+        />
+      )}
+
+      {/* 모바일 전용 상단 Exit 플로팅 버튼 */}
+      {isMobile && !isMobileNavOpen && (
+        <div style={{ position: 'fixed', top: 16, right: 16, zIndex: 999 }}>
+          <button 
+            className="pdf-secondary-btn pdf-btn-sm" 
+            onClick={onExit} 
+            style={{ 
+              boxShadow: '0 4px 12px rgba(0,0,0,0.1)', 
+              backgroundColor: 'var(--color-bg-primary)', 
+              borderRadius: '20px', 
+              padding: '0 16px' 
+            }}
+          >
+            나가기 (Exit)
+          </button>
+        </div>
+      )}
+
+      {/* 사이드바 */}
+      <aside 
+        className={`pdf-sidebar ${isMobileNavOpen ? 'mobile-nav-open' : ''}`} 
+        style={{ 
+          width: isMobile ? '100%' : '25%', 
+          borderRight: isMobile ? 'none' : '1px solid var(--color-border-default)',
+          display: isMobile && !isMobileNavOpen ? 'none' : 'flex',
+          flexDirection: 'column'
+        }}
+      >
         <div className="pdf-content-relative pdf-p-300">
           <div className="pdf-mb-300">
             <div className="pdf-flex-row pdf-justify-between pdf-items-center pdf-mb-100">
               <span className="pdf-text-label-14-mono pdf-text-red pdf-mb-100" style={{ display: 'block' }}>
                 PREVIEW MODE
               </span>
-              <button className="pdf-secondary-btn" onClick={onExit} style={{ padding: '4px 8px' }}>Exit</button>
+              {!isMobile && (
+                <button className="pdf-secondary-btn" onClick={onExit} style={{ padding: '4px 8px' }}>Exit</button>
+              )}
             </div>
             <div className="pdf-flex-row pdf-justify-between pdf-items-center pdf-mb-100">
               <h1 className="pdf-text-heading-32">{appTitle || '사이트 제목'}</h1>
@@ -130,7 +180,10 @@ export default function PreviewViewer({ onExit }: { onExit: () => void }) {
                             <div 
                               key={page.id} 
                               className={`pdf-nav-item ${isSelected ? 'active' : ''}`}
-                              onClick={() => setActivePreviewPageId(page.id)}
+                              onClick={() => {
+                                setActivePreviewPageId(page.id);
+                                if (isMobile) setIsMobileNavOpen(false); // Close sidebar on switch on mobile
+                              }}
                               style={{ marginBottom: '4px', cursor: 'pointer', borderRadius: '4px' }}
                             >
                               <div className="pdf-flex-row pdf-items-center pdf-gap-150 pdf-overflow-hidden pdf-w-full" style={{ padding: '2px 0' }}>
@@ -180,6 +233,19 @@ export default function PreviewViewer({ onExit }: { onExit: () => void }) {
           {activePage ? activePage.rootNode.children.map(renderNode) : null}
         </div>
       </main>
+
+      {/* 모바일 하단 플로팅 목차 열기 바 (FAB) */}
+      {isMobile && (
+        <div className="pdf-mobile-bottom-bar pdf-fixed pdf-flex-row pdf-justify-center" style={{ bottom: 16, left: 16, right: 16, zIndex: 1002 }}>
+          <button
+            onClick={() => setIsMobileNavOpen(!isMobileNavOpen)}
+            className="pdf-btn-primary"
+            style={{ borderRadius: '24px', boxShadow: '0 4px 12px rgba(0,0,0,0.15)', padding: '12px 24px', fontSize: '14px', fontWeight: 600 }}
+          >
+            {isMobileNavOpen ? '닫기' : '📂 목차 열기'}
+          </button>
+        </div>
+      )}
     </div>
   );
 }
