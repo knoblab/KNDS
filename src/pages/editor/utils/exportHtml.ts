@@ -48,26 +48,73 @@ export const exportToZip = async (pages: EditorPageItem[], appTitle: string, app
   pages.forEach((page, pageIndex) => {
     const bodyContent = page.rootNode.children.map(generateNodeHtml).join('\\n');
 
-    const navItems = pages.map((p, idx) => {
-      const num = idx + 1;
-      const numStr = num < 10 ? `0${num}` : `${num}`;
-      const isCurrent = p.id === page.id;
-      const href = idx === 0 ? 'index.html' : `page_${p.id}.html`;
-      
-      const activeStyleBg = isCurrent ? 'var(--color-functional-red)' : 'var(--color-border-default)';
-      const activeStyleColor = isCurrent ? 'var(--color-bg-primary)' : 'var(--color-text-secondary)';
-      
+    // Group pages by category
+    const categoriesMap: Record<string, typeof pages> = {};
+    pages.forEach(p => {
+      const cat = p.category || '';
+      if (!categoriesMap[cat]) {
+        categoriesMap[cat] = [];
+      }
+      categoriesMap[cat].push(p);
+    });
+
+    const sortedCategories = Object.keys(categoriesMap).sort((a, b) => {
+      if (a === '') return 1;
+      if (b === '') return -1;
+      return a.localeCompare(b);
+    });
+
+    const navItems = sortedCategories.map(cat => {
+      const catPages = categoriesMap[cat];
+      const catDisplayName = cat === '' ? '미분류 페이지' : cat;
+
+      const pageItemsHtml = catPages.map(p => {
+        const isCurrent = p.id === page.id;
+        const globalIdx = pages.findIndex(x => x.id === p.id);
+        const num = globalIdx + 1;
+        const numStr = num < 10 ? `0${num}` : `${num}`;
+        const href = globalIdx === 0 ? 'index.html' : `page_${p.id}.html`;
+
+        const activeStyleBg = isCurrent ? 'var(--color-functional-red)' : 'var(--color-border-default)';
+        const activeStyleColor = isCurrent ? 'var(--color-bg-primary)' : 'var(--color-text-secondary)';
+
+        return `
+          <div class="pdf-nav-item ${isCurrent ? 'active' : ''}" style="margin-bottom: 4px; cursor: pointer; border-radius: 4px;" onclick="window.location.href='${href}'">
+            <div class="pdf-flex-row pdf-items-center pdf-gap-150 pdf-overflow-hidden pdf-w-full" style="padding: 2px 0;">
+              <span class="pdf-text-label-14-mono pdf-text-center pdf-font-bold" style="background-color: ${activeStyleBg}; color: ${activeStyleColor}; padding: 2px 6px; border-radius: 2px; font-size: 11px; min-width: 24px;">
+                ${numStr}
+              </span>
+              <div class="pdf-flex-col pdf-overflow-hidden" style="flex: 1;">
+                <span class="pdf-text-label-16 pdf-flex-row pdf-items-center pdf-overflow-hidden" style="font-size: 14px; white-space: nowrap; text-overflow: ellipsis;">
+                  ${p.title}
+                </span>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('\n');
+
       return `
-        <div class="pdf-nav-item ${isCurrent ? 'active' : ''}" style="margin-bottom: 8px; cursor: pointer;" onclick="window.location.href='${href}'">
-          <div class="pdf-flex-row pdf-items-center pdf-gap-150 pdf-overflow-hidden pdf-w-full">
-            <span class="pdf-text-label-14-mono pdf-text-center pdf-font-bold" style="background-color: ${activeStyleBg}; color: ${activeStyleColor}; padding: 4px 8px; border-radius: 2px; min-width: 32px;">
-              ${numStr}
-            </span>
-            <div class="pdf-flex-col pdf-overflow-hidden" style="flex: 1;">
-              <span class="pdf-text-label-16 pdf-flex-row pdf-items-center pdf-overflow-hidden" style="white-space: nowrap; text-overflow: ellipsis;">
-                ${p.title}
+        <div class="pdf-mb-150">
+          <div 
+            class="pdf-nav-group-header" 
+            onclick="toggleNavGroup(this)"
+            style="display: flex; justify-content: space-between; align-items: center; margin: 12px 0 6px 0; padding: 4px 8px; background-color: var(--color-bg-secondary); border-radius: 4px; cursor: pointer;"
+          >
+            <div class="pdf-flex-row pdf-items-center pdf-gap-100">
+              <span class="pdf-text-label-14-mono" style="font-weight: 700; display: inline-flex; align-items: center; gap: 6px;">
+                📁 ${catDisplayName}
+              </span>
+              <span class="pdf-text-label-14-mono pdf-text-muted" style="font-size: 11px;">
+                (${catPages.length})
               </span>
             </div>
+            <svg class="pdf-chevron" viewBox="0 0 24 24" style="width: 12px; height: 12px; fill: currentColor;">
+              <path d="M7 10l5 5 5-5z" />
+            </svg>
+          </div>
+          <div class="pdf-nav-group-content pdf-flex-col" style="padding-left: 8px; border-left: 1px solid var(--color-border-default); margin-left: 8px; gap: 4px; display: flex;">
+            ${pageItemsHtml}
           </div>
         </div>
       `;
@@ -96,7 +143,7 @@ export const exportToZip = async (pages: EditorPageItem[], appTitle: string, app
           <span class="pdf-text-label-14-mono pdf-text-red pdf-mb-100" style="display: block;">
             ${appDescription}
           </span>
-          <div class="pdf-flex-row pdf-justify-between pdf-items-center pdf-mb-100">
+          <div className="pdf-flex-row pdf-justify-between pdf-items-center pdf-mb-100">
             <h1 class="pdf-text-heading-32">${appTitle}</h1>
           </div>
         </div>
@@ -126,6 +173,19 @@ export const exportToZip = async (pages: EditorPageItem[], appTitle: string, app
       </div>
     </main>
   </div>
+  <script>
+    function toggleNavGroup(el) {
+      var content = el.nextElementSibling;
+      var chevron = el.querySelector('.pdf-chevron');
+      if (content.style.display === 'none') {
+        content.style.display = 'flex';
+        chevron.classList.remove('collapsed');
+      } else {
+        content.style.display = 'none';
+        chevron.classList.add('collapsed');
+      }
+    }
+  </script>
 </body>
 </html>`.trim();
 

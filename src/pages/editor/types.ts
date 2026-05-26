@@ -25,5 +25,6 @@ export interface EditorNode {
 export interface EditorPageItem {
   id: string;
   title: string;
+  category?: string;
   rootNode: EditorNode;
 }

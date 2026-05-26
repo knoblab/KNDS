@@ -5,6 +5,7 @@ import { EditorNode } from '../types';
 export default function PreviewViewer({ onExit }: { onExit: () => void }) {
   const { pages, appTitle, appDescription } = useEditorStore();
   const [activePreviewPageId, setActivePreviewPageId] = useState(pages[0]?.id || null);
+  const [collapsedCategories, setCollapsedCategories] = useState<Record<string, boolean>>({});
 
   const activePage = pages.find(p => p.id === activePreviewPageId) || pages[0];
 
@@ -37,6 +38,23 @@ export default function PreviewViewer({ onExit }: { onExit: () => void }) {
     }
   };
 
+  // Group pages by category
+  const categoriesMap: Record<string, typeof pages> = {};
+  pages.forEach(page => {
+    const cat = page.category || '';
+    if (!categoriesMap[cat]) {
+      categoriesMap[cat] = [];
+    }
+    categoriesMap[cat].push(page);
+  });
+
+  // Sort categories: Uncategorized ('') last, others alphabetically
+  const sortedCategories = Object.keys(categoriesMap).sort((a, b) => {
+    if (a === '') return 1;
+    if (b === '') return -1;
+    return a.localeCompare(b);
+  });
+
   return (
     <div className="pdf-app" style={{ display: 'flex', width: '100vw', height: '100vh', overflow: 'hidden' }}>
       <aside className="pdf-sidebar" style={{ width: '25%', borderRight: '1px solid var(--color-border-default)', display: 'flex', flexDirection: 'column' }}>
@@ -61,32 +79,82 @@ export default function PreviewViewer({ onExit }: { onExit: () => void }) {
               SITE NAVIGATOR
             </span>
             <div className="pdf-mb-200">
-              {pages.map((page, idx) => {
-                const isSelected = activePreviewPageId === page.id;
-                const num = idx + 1;
+              {sortedCategories.map(cat => {
+                const catPages = categoriesMap[cat];
+                const catDisplayName = cat === '' ? '미분류 페이지' : cat;
+                const isCollapsed = collapsedCategories[cat] || false;
+
                 return (
-                  <div 
-                    key={page.id} 
-                    className={`pdf-nav-item ${isSelected ? 'active' : ''}`}
-                    onClick={() => setActivePreviewPageId(page.id)}
-                    style={{ marginBottom: '8px', cursor: 'pointer' }}
-                  >
-                    <div className="pdf-flex-row pdf-items-center pdf-gap-150 pdf-overflow-hidden pdf-w-full">
-                      <span className="pdf-text-label-14-mono pdf-text-center pdf-font-bold" style={{
-                        backgroundColor: isSelected ? 'var(--color-functional-red)' : 'var(--color-border-default)',
-                        color: isSelected ? 'var(--color-bg-primary)' : 'var(--color-text-secondary)',
+                  <div key={cat} className="pdf-mb-150">
+                    {/* Category Header */}
+                    <div 
+                      className="pdf-nav-group-header" 
+                      onClick={() => setCollapsedCategories(prev => ({ ...prev, [cat]: !prev[cat] }))}
+                      style={{ 
+                        display: 'flex', 
+                        justifyContent: 'space-between', 
+                        alignItems: 'center', 
+                        margin: '12px 0 6px 0', 
                         padding: '4px 8px',
-                        borderRadius: '2px',
-                        minWidth: '32px'
-                      }}>
-                        {num < 10 ? `0${num}` : num}
-                      </span>
-                      <div className="pdf-flex-col pdf-overflow-hidden" style={{ flex: 1 }}>
-                        <span className="pdf-text-label-16 pdf-flex-row pdf-items-center pdf-overflow-hidden" style={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis' }}>
-                          {page.title}
+                        backgroundColor: 'var(--color-bg-secondary)',
+                        borderRadius: '4px',
+                        cursor: 'pointer'
+                      }}
+                    >
+                      <div className="pdf-flex-row pdf-items-center pdf-gap-100">
+                        <span className="pdf-text-label-14-mono" style={{ fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+                          📁 {catDisplayName}
+                        </span>
+                        <span className="pdf-text-label-14-mono pdf-text-muted" style={{ fontSize: '11px' }}>
+                          ({catPages.length})
                         </span>
                       </div>
+                      <svg 
+                        className={`pdf-chevron ${isCollapsed ? 'collapsed' : ''}`} 
+                        viewBox="0 0 24 24"
+                        style={{ width: '12px', height: '12px', fill: 'currentColor' }}
+                      >
+                        <path d="M7 10l5 5 5-5z" />
+                      </svg>
                     </div>
+
+                    {/* Pages list under category */}
+                    {!isCollapsed && (
+                      <div className="pdf-flex-col pdf-gap-050" style={{ paddingLeft: '8px', borderLeft: '1px solid var(--color-border-default)', marginLeft: '8px' }}>
+                        {catPages.map(page => {
+                          const isSelected = activePreviewPageId === page.id;
+                          const globalIdx = pages.findIndex(p => p.id === page.id);
+                          const num = globalIdx + 1;
+
+                          return (
+                            <div 
+                              key={page.id} 
+                              className={`pdf-nav-item ${isSelected ? 'active' : ''}`}
+                              onClick={() => setActivePreviewPageId(page.id)}
+                              style={{ marginBottom: '4px', cursor: 'pointer', borderRadius: '4px' }}
+                            >
+                              <div className="pdf-flex-row pdf-items-center pdf-gap-150 pdf-overflow-hidden pdf-w-full" style={{ padding: '2px 0' }}>
+                                <span className="pdf-text-label-14-mono pdf-text-center pdf-font-bold" style={{
+                                  backgroundColor: isSelected ? 'var(--color-functional-red)' : 'var(--color-border-default)',
+                                  color: isSelected ? 'var(--color-bg-primary)' : 'var(--color-text-secondary)',
+                                  padding: '2px 6px',
+                                  borderRadius: '2px',
+                                  fontSize: '11px',
+                                  minWidth: '24px'
+                                }}>
+                                  {num < 10 ? `0${num}` : num}
+                                </span>
+                                <div className="pdf-flex-col pdf-overflow-hidden" style={{ flex: 1 }}>
+                                  <span className="pdf-text-label-16 pdf-flex-row pdf-items-center pdf-overflow-hidden" style={{ fontSize: '14px', whiteSpace: 'nowrap', textOverflow: 'ellipsis' }}>
+                                    {page.title}
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
                   </div>
                 );
               })}

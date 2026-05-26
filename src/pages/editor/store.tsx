@@ -15,10 +15,19 @@ interface EditorContextProps {
   selectedNodeId: string | null;
   
   // Page actions
-  addPage: (title: string) => void;
+  addPage: (title: string, category?: string) => void;
   removePage: (id: string) => void;
   setActivePage: (id: string) => void;
   updatePageTitle: (id: string, title: string) => void;
+  updatePageTitleAndCategory: (id: string, title: string, category: string | undefined) => void;
+  
+  // Category actions
+  customCategories: string[];
+  addCategory: (name: string) => void;
+  deleteCategory: (name: string) => void;
+  renameCategory: (oldName: string, newName: string) => void;
+  movePage: (draggedId: string, targetId: string) => void;
+  movePageToCategory: (pageId: string, category: string) => void;
   
   // Node actions
   addNode: (node: EditorNode, parentId?: string, index?: number) => void;
@@ -55,10 +64,11 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
   ]);
   const [activePageId, setActivePageId] = useState<string | null>('home');
   const [selectedNodeId, setSelectedNodeId] = useState<string | null>(null);
+  const [customCategories, setCustomCategories] = useState<string[]>([]);
 
-  const addPage = (title: string) => {
+  const addPage = (title: string, category?: string) => {
     const newId = title.toLowerCase().replace(/[^a-z0-9]/g, '-') + '-' + generateId();
-    setPages([...pages, { id: newId, title, rootNode: createEmptyRoot() }]);
+    setPages([...pages, { id: newId, title, category: category || undefined, rootNode: createEmptyRoot() }]);
     setActivePageId(newId);
   };
 
@@ -79,6 +89,68 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
 
   const updatePageTitle = (id: string, title: string) => {
     setPages(pages.map(p => p.id === id ? { ...p, title } : p));
+  };
+
+  const updatePageTitleAndCategory = (id: string, title: string, category: string | undefined) => {
+    setPages(pages.map(p => p.id === id ? { ...p, title, category: category?.trim() || undefined } : p));
+  };
+
+  const addCategory = (name: string) => {
+    const trimmed = name.trim();
+    if (trimmed && !customCategories.includes(trimmed)) {
+      setCustomCategories([...customCategories, trimmed]);
+    }
+  };
+
+  const deleteCategory = (name: string) => {
+    setPages(pages.map(p => p.category === name ? { ...p, category: undefined } : p));
+    setCustomCategories(customCategories.filter(c => c !== name));
+  };
+
+  const renameCategory = (oldName: string, newName: string) => {
+    const trimmedNew = newName.trim();
+    if (!trimmedNew) return;
+    setPages(pages.map(p => p.category === oldName ? { ...p, category: trimmedNew } : p));
+    setCustomCategories(customCategories.map(c => c === oldName ? trimmedNew : c));
+  };
+
+  const movePage = (draggedId: string, targetId: string) => {
+    if (draggedId === targetId) return;
+    const draggedIdx = pages.findIndex(p => p.id === draggedId);
+    const targetIdx = pages.findIndex(p => p.id === targetId);
+    if (draggedIdx === -1 || targetIdx === -1) return;
+
+    const targetPage = pages[targetIdx];
+    const newPages = [...pages];
+    const [draggedPage] = newPages.splice(draggedIdx, 1);
+    
+    draggedPage.category = targetPage.category;
+    
+    const insertIdx = newPages.findIndex(p => p.id === targetId);
+    newPages.splice(insertIdx, 0, draggedPage);
+    setPages(newPages);
+  };
+
+  const movePageToCategory = (pageId: string, category: string) => {
+    const pageToMove = pages.find(p => p.id === pageId);
+    if (!pageToMove) return;
+
+    const targetCategory = category || undefined;
+    const rest = pages.filter(p => p.id !== pageId);
+    const updatedPage = { ...pageToMove, category: targetCategory };
+
+    const lastIndexInCat = rest.reduce((lastIdx, p, idx) => {
+      if ((p.category || '') === (category || '')) return idx;
+      return lastIdx;
+    }, -1);
+
+    if (lastIndexInCat === -1) {
+      setPages([...rest, updatedPage]);
+    } else {
+      const result = [...rest];
+      result.splice(lastIndexInCat + 1, 0, updatedPage);
+      setPages(result);
+    }
   };
 
   const updateTree = (root: EditorNode, updater: (node: EditorNode) => EditorNode): EditorNode => {
@@ -205,7 +277,8 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
     <EditorContext.Provider value={{
       appTitle, appDescription, setAppTitle, setAppDescription,
       pages, activePageId, selectedNodeId,
-      addPage, removePage, setActivePage, updatePageTitle,
+      addPage, removePage, setActivePage, updatePageTitle, updatePageTitleAndCategory,
+      customCategories, addCategory, deleteCategory, renameCategory, movePage, movePageToCategory,
       addNode, removeNode, moveNode, updateNode,
       setSelectedNodeId,
       loadProject,
