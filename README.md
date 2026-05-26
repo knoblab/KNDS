@@ -4,6 +4,8 @@
 
 Dieter Rams의 디자인 원칙을 바탕으로, 고대비 무채색 레이아웃과 형태 변형(shape-morphing)이 가능한 촉각적 컴포넌트를 제공합니다.
 
+[Design Guideline](http://pdf-ds.qpi.digital).
+
 ---
 
 ## ✨ 핵심 철학 및 특징 (Core Philosophy & Features)
