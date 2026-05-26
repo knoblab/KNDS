@@ -279,6 +279,56 @@ export default function PropertyPanel() {
               </div>
               <input type="text" className="pdf-input pdf-input-sm" placeholder="src (이미지 주소)" value={node.attributes.src || ''} onChange={(e) => handleAttrChange('src', e.target.value)} />
               <input type="text" className="pdf-input pdf-input-sm" placeholder="alt (대체 텍스트)" value={node.attributes.alt || ''} onChange={(e) => handleAttrChange('alt', e.target.value)} />
+              
+              <div className="pdf-flex-row pdf-gap-100">
+                <div className="pdf-flex-col pdf-gap-050" style={{ flex: 1 }}>
+                  <label className="pdf-text-label-13-mono pdf-text-muted">너비 (Width)</label>
+                  <input 
+                    type="text" 
+                    className="pdf-input pdf-input-sm" 
+                    placeholder="e.g. 100%, 300px, auto" 
+                    value={node.styles?.width || ''} 
+                    onChange={(e) => updateNode(node.id, { styles: { ...node.styles, width: e.target.value } })} 
+                  />
+                </div>
+                <div className="pdf-flex-col pdf-gap-050" style={{ flex: 1 }}>
+                  <label className="pdf-text-label-13-mono pdf-text-muted">높이 (Height)</label>
+                  <input 
+                    type="text" 
+                    className="pdf-input pdf-input-sm" 
+                    placeholder="e.g. auto, 200px" 
+                    value={node.styles?.height || ''} 
+                    onChange={(e) => updateNode(node.id, { styles: { ...node.styles, height: e.target.value } })} 
+                  />
+                </div>
+              </div>
+
+              <div className="pdf-flex-col pdf-gap-050">
+                <span className="pdf-text-label-13-mono pdf-text-muted">크기 간편 설정:</span>
+                <div className="pdf-flex-row pdf-gap-050 pdf-flex-wrap">
+                  <button 
+                    className="pdf-secondary-btn pdf-btn-sm" 
+                    style={{ padding: '2px 8px', fontSize: '11px', height: '28px' }}
+                    onClick={() => updateNode(node.id, { styles: { ...node.styles, width: '100%', height: 'auto' } })}
+                  >
+                    가로 100%
+                  </button>
+                  <button 
+                    className="pdf-secondary-btn pdf-btn-sm" 
+                    style={{ padding: '2px 8px', fontSize: '11px', height: '28px' }}
+                    onClick={() => updateNode(node.id, { styles: { ...node.styles, width: '50%', height: 'auto' } })}
+                  >
+                    가로 50%
+                  </button>
+                  <button 
+                    className="pdf-secondary-btn pdf-btn-sm" 
+                    style={{ padding: '2px 8px', fontSize: '11px', height: '28px' }}
+                    onClick={() => updateNode(node.id, { styles: { ...node.styles, width: 'auto', height: 'auto' } })}
+                  >
+                    원본 크기
+                  </button>
+                </div>
+              </div>
             </div>
           )}
           {node.type === 'input' && (
