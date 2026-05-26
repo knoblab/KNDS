@@ -252,6 +252,31 @@ export default function PropertyPanel() {
           ) : null}
           {node.type === 'img' && (
             <div className="pdf-mt-100 pdf-flex-col pdf-gap-100">
+              <div className="pdf-flex-col pdf-gap-050">
+                <input 
+                  type="file" 
+                  accept="image/*" 
+                  style={{ display: 'none' }} 
+                  id="image-upload-input"
+                  onChange={(e) => {
+                    const file = e.target.files?.[0];
+                    if (file) {
+                      const reader = new FileReader();
+                      reader.onload = (event) => {
+                        handleAttrChange('src', event.target?.result as string);
+                      };
+                      reader.readAsDataURL(file);
+                    }
+                  }}
+                />
+                <button 
+                  className="pdf-btn-primary pdf-btn-sm" 
+                  onClick={() => document.getElementById('image-upload-input')?.click()}
+                >
+                  내 PC에서 이미지 업로드
+                </button>
+                <span className="pdf-text-label-13-mono pdf-text-muted" style={{ textAlign: 'center', margin: '4px 0' }}>또는 인터넷 주소(URL) 입력:</span>
+              </div>
               <input type="text" className="pdf-input pdf-input-sm" placeholder="src (이미지 주소)" value={node.attributes.src || ''} onChange={(e) => handleAttrChange('src', e.target.value)} />
               <input type="text" className="pdf-input pdf-input-sm" placeholder="alt (대체 텍스트)" value={node.attributes.alt || ''} onChange={(e) => handleAttrChange('alt', e.target.value)} />
             </div>
