@@ -44,7 +44,7 @@ export default function CodeExport() {
   border: none;
   font-family: 'Pretendard Variable', Pretendard, -apple-system, sans-serif;
   font-weight: 500;
-  border-radius: 9999px; /* 완전 둥근 상태 */
+  border-radius: 20px; /* 완전 둥근 상태 (높이 40px의 절반으로 설정하여 부드러운 형태 모핑 애니메이션 보장) */
   transition: border-radius 0.28s cubic-bezier(0.4, 0, 0.2, 1),
               background-color 0.2s ease;
 }
@@ -104,7 +104,7 @@ fun PdfMorphingButton(
         targetValue = when {
             isPressed -> 8.dp   // Sharp Square
             isHovered -> 12.dp  // Soft Square
-            else -> 100.dp      // Fully Rounded
+            else -> 20.dp      // Fully Rounded (Height 40.dp / 2)
         },
         animationSpec = spring(dampingRatio = 0.65f, stiffness = 400f)
     )
@@ -160,7 +160,7 @@ public struct PdfMorphingButtonStyle: ButtonStyle {
             )
             .foregroundColor(PdfDsColors.bgPrimary)
             // SwiftUI 엔진의 스프링 보간을 통한 형태 모핑 물리 연산 구사
-            .cornerRadius(configuration.isPressed ? 8 : 100)
+            .cornerRadius(configuration.isPressed ? 8 : 20) // Height 40 / 2
             .animation(.spring(response: 0.25, dampingFraction: 0.62), value: configuration.isPressed)
     }
 }

@@ -254,14 +254,17 @@ button {
 /* Buttons */
 .pdf-btn-primary {
   /* Default to MD size */
-  height: 44px;
+  --btn-height: 44px;
+  --btn-hover-radius: 14px;
+  --btn-active-radius: 8px;
+  height: var(--btn-height);
   padding: 0 var(--space-200);
   background-color: var(--color-functional-red);
   color: var(--color-bg-primary);
   border: none;
   font-family: var(--font-sans);
   font-weight: 500;
-  border-radius: 9999px;
+  border-radius: calc(var(--btn-height) / 2); /* Capsule shape as the base */
   transition: border-radius 0.28s cubic-bezier(0.4, 0, 0.2, 1),
               background-color 0.2s ease;
   display: inline-flex;
@@ -274,11 +277,12 @@ button {
 
 .pdf-btn-primary:hover {
   background-color: var(--color-red-hover);
+  border-radius: var(--btn-hover-radius);
 }
 
 .pdf-btn-primary:active {
   background-color: var(--color-red-active);
-  border-radius: 8px;
+  border-radius: var(--btn-active-radius);
 }
 
 .pdf-btn-primary:focus-visible {
@@ -309,11 +313,20 @@ button {
 }
 
 /* Button & Input Size Modifiers */
-.pdf-btn-xs, .pdf-input-xs { height: 32px; padding: 0 var(--space-100); font-size: 12px; }
-.pdf-btn-sm, .pdf-input-sm { height: 40px; padding: 0 var(--space-150); font-size: 13px; }
-.pdf-btn-md, .pdf-input-md { height: 44px; padding: 0 var(--space-200); font-size: 14px; }
-.pdf-btn-lg, .pdf-input-lg { height: 48px; padding: 0 24px; font-size: 15px; }
-.pdf-btn-xl, .pdf-input-xl { height: 56px; padding: 0 32px; font-size: 16px; }
+.pdf-btn-xs { --btn-height: 32px; --btn-hover-radius: 10px; --btn-active-radius: 4px; height: var(--btn-height); padding: 0 var(--space-100); font-size: 12px; }
+.pdf-input-xs { height: 32px; padding: 0 var(--space-100); font-size: 12px; }
+
+.pdf-btn-sm { --btn-height: 40px; --btn-hover-radius: 12px; --btn-active-radius: 8px; height: var(--btn-height); padding: 0 var(--space-150); font-size: 13px; }
+.pdf-input-sm { height: 40px; padding: 0 var(--space-150); font-size: 13px; }
+
+.pdf-btn-md { --btn-height: 44px; --btn-hover-radius: 14px; --btn-active-radius: 8px; height: var(--btn-height); padding: 0 var(--space-200); font-size: 14px; }
+.pdf-input-md { height: 44px; padding: 0 var(--space-200); font-size: 14px; }
+
+.pdf-btn-lg { --btn-height: 48px; --btn-hover-radius: 16px; --btn-active-radius: 12px; height: var(--btn-height); padding: 0 24px; font-size: 15px; }
+.pdf-input-lg { height: 48px; padding: 0 24px; font-size: 15px; }
+
+.pdf-btn-xl { --btn-height: 56px; --btn-hover-radius: 20px; --btn-active-radius: 12px; height: var(--btn-height); padding: 0 32px; font-size: 16px; }
+.pdf-input-xl { height: 56px; padding: 0 32px; font-size: 16px; }
 
 .pdf-secondary-btn:disabled {
   opacity: 0.5;
