@@ -196,6 +196,40 @@ npm run build`}
   </div>
 </div>`}
             </div>
+            
+            <div className="pdf-mt-300">
+              <p className="pdf-text-label-14-mono pdf-text-muted pdf-mb-100">디자인 미리보기 (사이드바 하단 예시)</p>
+              <div className="pdf-panel" style={{ width: '280px', padding: 'var(--space-200)', backgroundColor: 'var(--color-bg-secondary)' }}>
+                {/* 가상의 네비게이션 아이템들 */}
+                <div className="pdf-nav-item" style={{ marginBottom: '4px', borderRadius: '4px', padding: '2px 0' }}>
+                  <div className="pdf-flex-row pdf-items-center pdf-gap-100">
+                    <span className="pdf-text-label-14-mono pdf-text-center pdf-font-bold" style={{ backgroundColor: 'var(--color-border-default)', color: 'var(--color-text-secondary)', padding: '2px 6px', borderRadius: '2px', fontSize: '11px' }}>01</span>
+                    <span className="pdf-text-label-16" style={{ fontSize: '14px' }}>프로젝트 개요</span>
+                  </div>
+                </div>
+                <div className="pdf-nav-item" style={{ marginBottom: '4px', borderRadius: '4px', padding: '2px 0' }}>
+                  <div className="pdf-flex-row pdf-items-center pdf-gap-100">
+                    <span className="pdf-text-label-14-mono pdf-text-center pdf-font-bold" style={{ backgroundColor: 'var(--color-border-default)', color: 'var(--color-text-secondary)', padding: '2px 6px', borderRadius: '2px', fontSize: '11px' }}>02</span>
+                    <span className="pdf-text-label-16" style={{ fontSize: '14px' }}>시뮬레이션 파이프라인</span>
+                  </div>
+                </div>
+                
+                {/* 출처 표시 미리보기 */}
+                <div className="pdf-mt-400 pdf-pt-200 pdf-border-top" style={{ marginTop: '32px', paddingTop: '16px' }}>
+                  <div className="pdf-text-label-14-mono pdf-text-muted pdf-mb-050">
+                    <a href="https://github.com/qpi-labels/PDF-DS" target="_blank" rel="noreferrer"
+                      style={{ color: 'var(--color-text-secondary)', textDecoration: 'none', transition: 'color 0.2s' }}
+                      onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-text-primary)'}
+                      onMouseLeave={(e) => e.currentTarget.style.color = 'var(--color-text-secondary)'}>
+                      View on GitHub ↗
+                    </a>
+                  </div>
+                  <div className="pdf-text-label-14-mono pdf-text-muted">
+                    Made with PDF-DS
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
       )}
