@@ -1,22 +1,40 @@
 # Dependencies
 node_modules/
+.pnpm-store/
 
 # Build output
 build/
 dist/
+dist-ssr/
+out/
 
 # Coverage
 coverage/
 
 # OS files
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
+desktop.ini
+$RECYCLE.BIN/
 
 # Logs
 *.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
 
 # Environment variables
-.env*
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 !.env.example
 
 # Wrangler (Cloudflare)
@@ -24,6 +42,17 @@ Thumbs.db
 .dev.vars*
 !.dev.vars.example
 
-# IDE
+# TypeScript cache
+*.tsbuildinfo
+
+# ESLint cache
+.eslintcache
+
+# IDE / Editor
 .vscode/
 .idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
