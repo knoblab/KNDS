@@ -1,133 +1,251 @@
-# 🎛️ PDF-DS (Physical-Digital Fusion Design System)
+# PDF-DS
 
-**PDF-DS**는 물리적 제품의 촉각적 경험과 디지털 인터페이스의 미니멀리즘을 결합한 CSS 디자인 가이드라인 및 라이브러리입니다. 복잡한 설치 없이 여러분의 웹사이트에 빠르고 일관된 디자인 시스템을 적용할 수 있습니다.
+**Physical-Digital Fusion Design System**
+
+[![Release](https://img.shields.io/github/v/release/qpi-labels/PDF-DS?label=Latest%20Release&style=flat-square)](https://github.com/qpi-labels/PDF-DS/releases/latest)
+[![License](https://img.shields.io/badge/License-Proprietary-lightgrey?style=flat-square)]()
+[![CSS](https://img.shields.io/badge/Pure%20CSS-No%20Runtime-blue?style=flat-square)]()
+
+> **PDF-DS**는 물리적 제품이 가진 촉각적 피드백(tactile feedback)과 디지털 인터페이스의 구조적 미니멀리즘을 단일 디자인 언어로 통합한 CSS 기반 디자인 시스템이다. Dieter Rams의 10가지 원칙과 고대비 무채색(achromatic) 팔레트를 근간으로 하며, 형태 변형(shape-morphing) 마이크로인터랙션을 통해 하드웨어 조작감을 스크린 위에 재현한다.
 
 <br/>
-<a href="http://pdf-ds.qpi.digital" class="pdf-btn-primary pdf-btn-md" style="text-decoration: none;">Design Guideline & 샌드박스 보기</a>
-<br/><br/>
+
+<p>
+  <a href="http://pdf-ds.qpi.digital">Design Guideline & Interactive Sandbox →</a>
+</p>
 
 ---
 
-## 🚀 내 웹사이트에 적용하기 (Getting Started)
+## Table of Contents
 
-PDF-DS는 순수 CSS(Vanilla CSS) 기반으로 작성되어 있어 어떠한 프레임워크(React, Vue, HTML 등)와도 쉽게 호환됩니다.
+1. [Design Philosophy](#design-philosophy)
+2. [Architecture](#architecture)
+3. [Installation](#installation)
+4. [Token System](#token-system)
+5. [Component Reference](#component-reference)
+6. [Theming](#theming)
+7. [Utility Classes](#utility-classes)
 
-### 옵션 1. CDN을 통한 빠른 적용 (권장)
-가장 쉬운 방법은 HTML 파일의 `<head>` 영역에 아래의 CDN 링크를 추가하는 것입니다.
+---
+
+## Design Philosophy
+
+PDF-DS는 세 가지 설계 원칙 위에 구축되었다.
+
+| Principle | Description |
+|---|---|
+| **Tactile Fidelity** | 물리적 버튼의 저항감, 표면의 미세한 곡률(bevel), 누름 시의 광원 반전을 `box-shadow` 레이어 스택으로 시뮬레이션한다. |
+| **Achromatic Discipline** | 무채색 그레이스케일을 주조색으로 사용하고, 기능적 의미를 전달해야 하는 단일 지점에만 Red(`#ad1d1d`)를 허용한다. |
+| **Golden Ratio Spacing** | 모든 여백 토큰은 8px 기본 단위의 배수 체계를 따르며, 시각적 리듬의 수학적 일관성을 보장한다. |
+
+이 원칙들은 프레임워크에 비종속적(framework-agnostic)인 순수 CSS로 구현되어 있으므로, HTML 마크업에 클래스명을 부여하는 것만으로 어떠한 환경에서든 즉시 적용된다.
+
+---
+
+## Architecture
+
+```
+PDF-DS/
+├── src/
+│   └── index.css          # 디자인 토큰, 컴포넌트, 유틸리티를 포함하는 단일 스타일시트
+├── .env.example            # 환경 변수 템플릿
+├── vite.config.ts          # Vite 빌드 설정
+├── wrangler.jsonc          # Cloudflare Workers 배포 설정
+└── metadata.json           # 프로젝트 메타데이터
+```
+
+`src/index.css`는 다음의 논리적 섹션으로 구성된다:
+
+1. **Design Tokens** — 색상, 간격, 타이포그래피, 그림자 등 모든 시각적 속성의 원자적 변수 선언
+2. **Base Styles** — 전역 리셋 및 기본 요소 스타일링
+3. **Component Styles** — 레이아웃, 버튼, 패널, 입력 필드 등 재사용 가능한 컴포넌트
+4. **Utility Classes** — 인라인 레벨의 간격·배치·색상 제어를 위한 단축 클래스
+
+---
+
+## Installation
+
+> **주의**: `git clone`으로 본 리포지토리를 복제하면 원격 origin이 자동으로 연결되어 의도치 않은 source control 충돌이 발생할 수 있다. 아래의 방법 중 하나를 사용할 것을 권장한다.
+>
+> **[→ Releases 페이지에서 ZIP 다운로드](https://github.com/qpi-labels/PDF-DS/releases/latest)**
+
+### Method 1 — CDN (권장)
+
+외부 의존성 없이 `<link>` 태그 하나로 전체 디자인 시스템을 로드한다.
 
 ```html
-<!-- index.html -->
 <head>
-  <!-- ...기타 태그들... -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/qpi-labels/PDF-DS@main/src/index.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/qpi-labels/PDF-DS@main/src/index.css">
 </head>
 ```
 
-### 옵션 2. 로컬 파일로 적용
-전체 CSS 파일을 다운로드하여 커스터마이징하고 싶다면, `src/index.css` 파일을 프로젝트의 스타일 폴더로 복사한 뒤 임포트하세요.
+### Method 2 — Local Import
+
+CSS 파일을 프로젝트에 직접 포함하여 토큰 수준의 커스터마이징이 필요한 경우에 사용한다.
 
 ```javascript
-// React/Vue 등 진입점 파일 (예: main.tsx, App.vue)
-import './styles/pdf-ds.css'; 
+// 진입점 파일 (main.tsx, App.vue, etc.)
+import './styles/pdf-ds.css';
+```
+
+### Method 3 — Development Server
+
+샌드박스 환경을 로컬에서 실행한다.
+
+```bash
+npm install
+npm run dev        # http://localhost:3000
 ```
 
 ---
 
-## 🎨 주요 컴포넌트 사용 가이드 (Usage Guide)
+## Token System
 
-CSS가 로드되었다면, HTML 클래스명(`pdf-`)을 부여하는 것만으로 디자인이 즉시 적용됩니다.
+모든 시각적 속성은 CSS Custom Properties로 선언되며, 테마 전환 시 변수 값만 교체된다.
 
-### 1. 기본 레이아웃 구성 (Layout)
-전체 앱의 형태를 잡고, 사이드바와 메인 뷰를 나눌 수 있습니다.
+### Spacing
+
+| Token | Value | Usage |
+|---|---|---|
+| `--space-025` | 2px | 미세 간격, 아이콘 내부 패딩 |
+| `--space-050` | 4px | 인접 요소 간 최소 간격 |
+| `--space-100` | 8px | 기본 단위 |
+| `--space-200` | 16px | 컴포넌트 내부 패딩 |
+| `--space-300` | 24px | 섹션 간 간격 |
+| `--space-400` | 32px | 카드·패널 내부 여백 |
+| `--space-600` | 48px | 페이지 레벨 섹션 구분 |
+| `--space-800` | 64px | 최상위 레이아웃 마진 |
+
+### Color Palette
+
+```
+Light Mode                          Dark Mode
+──────────────────────────          ──────────────────────────
+bg-primary:    #ffffff              bg-primary:    #09090b
+bg-secondary:  #f4f4f5              bg-secondary:  #18181b
+border:        #e4e4e7              border:        #27272a
+text-primary:  #09090b              text-primary:  #ffffff
+text-secondary:#71717a              text-secondary:#a1a1aa
+──────────────────────────          ──────────────────────────
+functional-red:#ad1d1d   (공통)
+```
+
+### Elevation
+
+그림자 시스템은 하드웨어 표면의 광원 반응을 모델링한다.
+
+| Token | Description |
+|---|---|
+| `--shadow-hardware-bevel` | 상단 하이라이트 + 하단 암부. 볼록한 버튼의 기본 상태를 표현 |
+| `--shadow-hardware-bevel-active` | 광원 방향 반전. 버튼이 눌린 오목한 상태를 표현 |
+| `--shadow-functional-glow` | Red 기능색의 확산 광(diffuse glow). 주요 액션 강조 |
+| `--shadow-functional-glow-active` | 축소된 광원 반경. 액션 활성화 상태 |
+
+### Typography
+
+| Font Stack | Role |
+|---|---|
+| `Pretendard Variable` → `Geist Sans` → system | 본문 및 UI 텍스트 |
+| `JetBrains Mono` | 코드 블록 및 모노스페이스 컨텍스트 |
+
+---
+
+## Component Reference
+
+모든 컴포넌트는 `pdf-` 접두사 네임스페이스를 사용한다.
+
+### Layout
+
+앱 셸(App Shell)은 사이드바-메인 뷰 이중 구조를 기본 패턴으로 한다. 반응형 분기점에서 사이드바는 하단 시트로 전환된다.
 
 ```html
 <div class="pdf-app">
-  <!-- 좌측 사이드바 (데스크탑에서만 노출, 모바일에서는 하단 팝업) -->
   <aside class="pdf-sidebar">
     <nav>
-      <div class="pdf-nav-item active">홈</div>
-      <div class="pdf-nav-item">설정</div>
+      <div class="pdf-nav-item active">Dashboard</div>
+      <div class="pdf-nav-item">Settings</div>
     </nav>
   </aside>
-
-  <!-- 우측 메인 콘텐츠 영역 -->
   <main class="pdf-main-view">
     <div class="pdf-main-content">
-      <!-- 콘텐츠 입력 -->
+      <!-- Content -->
     </div>
   </main>
 </div>
 ```
 
-### 2. 버튼 및 인터랙션 (Buttons)
-물리적 버튼의 저항감과 형태 변형(Shape-morphing) 애니메이션이 기본적으로 포함되어 있습니다. 사이즈(`sm`, `md`, `lg`)를 조합하여 사용하세요.
+### Button
+
+버튼은 `primary`(기능색 배경)와 `secondary`(무채색 테두리)의 두 가지 변형을 제공하며, 각각 `sm`, `md`, `lg` 크기 토큰을 조합할 수 있다.
 
 ```html
-<!-- 프라이머리 버튼 (레드 포인트) -->
-<button class="pdf-btn-primary pdf-btn-md">
-  시작하기
-</button>
-
-<!-- 세컨더리 버튼 (모노톤 테두리) -->
-<button class="pdf-secondary-btn">
-  취소
-</button>
+<button class="pdf-btn-primary pdf-btn-md">Confirm</button>
+<button class="pdf-secondary-btn">Cancel</button>
 ```
 
-### 3. 패널 및 카드 (Panels)
-정보를 그룹화할 때 사용하는 하드웨어 디스플레이 느낌의 미세한 곡률(Bevel) 패널입니다.
+눌림 시 `--shadow-hardware-bevel`에서 `--shadow-hardware-bevel-active`로의 전환이 자동 적용되어, 물리적 버튼의 깊이감 변화를 재현한다.
+
+### Panel
+
+정보 그룹화를 위한 컨테이너. 하드웨어 디스플레이의 미세 곡률(bevel)이 적용된다.
 
 ```html
 <div class="pdf-panel">
   <div class="pdf-panel-header">
-    <h3 class="pdf-text-label-16">시스템 설정</h3>
+    <h3 class="pdf-text-label-16">System Configuration</h3>
   </div>
   <p class="pdf-text-copy-14 pdf-text-muted">
-    이곳에 세부 설정 내용을 입력합니다.
+    Subsystem parameters and runtime options.
   </p>
 </div>
 ```
 
-### 4. 타이포그래피 (Typography)
-황금비(Golden Ratio) 기반의 시각적 안정감을 주는 폰트 크기 및 굵기를 제공합니다.
+### Typography Scale
 
 ```html
-<h1 class="pdf-text-heading-72">72px 거대한 헤딩</h1>
-<h2 class="pdf-text-heading-32">32px 기본 제목</h2>
-<strong class="pdf-text-label-16">16px 강조 라벨</strong>
-<p class="pdf-text-copy-14">14px 본문 텍스트입니다. 가독성을 최우선으로 합니다.</p>
+<h1 class="pdf-text-heading-72">Display</h1>
+<h2 class="pdf-text-heading-32">Heading</h2>
+<strong class="pdf-text-label-16">Label</strong>
+<p class="pdf-text-copy-14">Body text.</p>
 ```
 
-### 5. 폼 및 입력 창 (Inputs)
+### Input
 
 ```html
-<input type="text" class="pdf-input pdf-input-md" placeholder="텍스트를 입력하세요" />
+<input type="text" class="pdf-input pdf-input-md" placeholder="Enter value" />
 ```
 
 ---
 
-## 🌙 다크 모드 (Dark Mode)
+## Theming
 
-PDF-DS는 다크 모드를 완벽하게 지원합니다. 다크 모드를 활성화하려면 `<body>` 또는 최상위 부모 컨테이너에 `data-theme="dark"` 속성을 추가하기만 하면 됩니다.
+PDF-DS는 Light/Dark 이중 테마를 지원한다. 최상위 컨테이너에 `data-theme` 속성을 선언하여 전환한다.
 
 ```html
-<!-- 다크 모드 활성화 -->
+<!-- Dark Mode -->
 <body data-theme="dark">
-  <div class="pdf-app">
-    ...
-  </div>
+  <div class="pdf-app">...</div>
 </body>
 ```
 
+토큰 시스템이 `:root`와 `[data-theme='dark']` 선택자에 이중 선언되어 있으므로, 테마 전환 시 컴포넌트 수준의 코드 변경은 불필요하다. JavaScript에서 `document.body.dataset.theme`을 토글하는 것만으로 런타임 전환이 가능하다.
+
 ---
 
-## 🛠️ 유틸리티 클래스 (Utility Classes)
+## Utility Classes
 
-CSS 파일을 흩트리지 않고 HTML 태그 내에서 간격과 배치를 빠르게 조절할 수 있습니다.
+인라인 레벨에서 레이아웃과 시각적 속성을 빠르게 제어하기 위한 단축 클래스를 제공한다.
 
-- **Flexbox**: `pdf-flex-row`, `pdf-flex-col`, `pdf-items-center`, `pdf-justify-between`
-- **여백 (Margin/Padding)**: `pdf-mt-200`, `pdf-mb-300`, `pdf-p-200`, `pdf-px-200`
-- **색상**: `pdf-text-red`, `pdf-text-muted`, `pdf-bg-secondary`
-- **시각 효과**: `pdf-shadow-bevel`, `pdf-shadow-glow`
+| Category | Classes | Description |
+|---|---|---|
+| **Flexbox** | `pdf-flex-row`, `pdf-flex-col`, `pdf-items-center`, `pdf-justify-between` | 축 방향 및 정렬 |
+| **Spacing** | `pdf-mt-{token}`, `pdf-mb-{token}`, `pdf-p-{token}`, `pdf-px-{token}` | 마진·패딩 (토큰: `100`–`800`) |
+| **Color** | `pdf-text-red`, `pdf-text-muted`, `pdf-bg-secondary` | 의미론적 색상 적용 |
+| **Elevation** | `pdf-shadow-bevel`, `pdf-shadow-glow` | 그림자 효과 |
 
-*모든 여백 토큰(`100`, `200`, `300` 등)은 자체 디자인 시스템의 황금비 배수를 따릅니다.*
+모든 간격 토큰(`100`, `200`, `300`, …)은 8px 기본 단위의 정수 배수 체계를 따른다.
+
+---
+
+<sub>PDF-DS is maintained by <a href="https://github.com/qpi-labels">qpi-labels</a>.</sub>
