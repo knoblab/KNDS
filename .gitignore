@@ -1,13 +1,29 @@
+# Dependencies
 node_modules/
+
+# Build output
 build/
 dist/
+
+# Coverage
 coverage/
+
+# OS files
 .DS_Store
+Thumbs.db
+
+# Logs
 *.log
+
+# Environment variables
 .env*
 !.env.example
 
-# wrangler files
-.wrangler
+# Wrangler (Cloudflare)
+.wrangler/
 .dev.vars*
 !.dev.vars.example
+
+# IDE
+.vscode/
+.idea/
