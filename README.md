@@ -1,14 +1,14 @@
-# PDF-DS
+# KNDS
 
-**Physical-Digital Fusion Design System**
+**Knoblab Design System**
 
 [![Release](https://img.shields.io/github/v/release/qpi-labels/PDF-DS?label=Latest%20Release&style=flat-square)](https://github.com/qpi-labels/PDF-DS/releases/latest)
 [![CSS](https://img.shields.io/badge/Pure%20CSS-No%20Build%20Tools-blue?style=flat-square)]()
 [![Runtime](https://img.shields.io/badge/JS%20Runtime-Not%20Required-lightgrey?style=flat-square)]()
 
-> PDF-DS는 물리적 제품의 촉각적 피드백(tactile feedback)과 디지털 인터페이스의 구조적 미니멀리즘을 단일 CSS 디자인 언어로 통합한 유틸리티-퍼스트 디자인 시스템이다. `<link>` 태그 하나로 어떠한 프레임워크, 어떠한 환경에서든 즉시 적용된다.
+> KNDS는 물리적 제품의 촉각적 피드백과 디지털 인터페이스의 구조적 미니멀리즘을 단일 CSS 디자인 언어로 통합한 유틸리티-퍼스트 디자인 시스템이다.
 
-<a href="http://pdf-ds.qpi.digital">Interactive Sandbox &rarr;</a>
+<a href="https://pdf-ds.qpi.digital">Interactive Sandbox &rarr;</a>
 
 ---
 
