@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KNDS Starter - HTML Skeleton</title>
+  <!-- KNDS Web Design Language Stylesheet -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/knoblab/KNDS@main/knds.css">
+  <style>
+    /* Custom page skeleton structure */
+    body {
+      background-color: var(--color-bg-primary);
+      color: var(--color-text-primary);
+      margin: 0;
+      padding: 0;
+    }
+    .skeleton-header {
+      border-bottom: 1px solid var(--color-border-default);
+      padding: var(--space-200) var(--space-400);
+      background-color: var(--bg-sidebar);
+      backdrop-filter: blur(16px);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+  </style>
+</head>
+<body>
+  <!-- Top Navigation Skeleton -->
+  <header class="skeleton-header knds-flex-row knds-justify-between knds-items-center">
+    <div class="knds-flex-row knds-items-center knds-gap-150">
+      <span class="knds-text-label-14-mono knds-text-red">KNDS</span>
+      <h1 class="knds-text-label-16">Knoblab Design Language Skeleton</h1>
+    </div>
+    <div class="knds-flex-row knds-gap-100">
+      <button class="knds-secondary-btn knds-btn-sm" onclick="document.documentElement.toggleAttribute('data-theme')">
+        Toggle Dark Mode
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content Layout Skeleton -->
+  <main class="knds-p-400" style="max-width: 960px; margin: 0 auto;">
+    
+    <!-- Hero Section Panel -->
+    <section class="knds-panel knds-grid-bg knds-mb-400">
+      <div class="knds-content-relative">
+        <span class="knds-text-label-14-mono knds-text-red knds-mb-100" style="display: block;">
+          STARTER TEMPLATE
+        </span>
+        <h2 class="knds-text-heading-32 knds-mb-200">Welcome to KNDS</h2>
+        <p class="knds-text-copy-14 knds-text-muted knds-mb-300">
+          이 HTML 뼈대는 빌드 도구나 JS 프레임워크 없이 바로 작동합니다. knds.css가 선사하는 촉각적 하드웨어 베벨 섀도우와 아크로매틱 고대비 레이아웃을 확인하세요.
+        </p>
+        <div class="knds-flex-row knds-gap-150">
+          <button class="knds-btn-primary">Primary Action</button>
+          <button class="knds-secondary-btn">Secondary Button</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Split Grid Layout Skeleton -->
+    <section class="knds-grid knds-grid-cols-1 knds-md:grid-cols-2 knds-gap-300">
+      <div class="knds-panel">
+        <div class="knds-panel-header">
+          <h3 class="knds-text-heading-24">Form Controls Skeleton</h3>
+        </div>
+        <div class="knds-flex-col knds-gap-200">
+          <div>
+            <label class="knds-text-label-14-mono knds-mb-050 knds-block">USERNAME / ID</label>
+            <input type="text" class="knds-input" placeholder="enter user id...">
+          </div>
+          <div>
+            <label class="knds-text-label-14-mono knds-mb-050 knds-block">SYSTEM KEY</label>
+            <input type="password" class="knds-input" placeholder="••••••••••••">
+          </div>
+          <button class="knds-btn-primary knds-w-full">Submit Data</button>
+        </div>
+      </div>
+
+      <div class="knds-panel">
+        <div class="knds-panel-header">
+          <h3 class="knds-text-heading-24">System Status Skeleton</h3>
+        </div>
+        <p class="knds-text-copy-14 knds-mb-200">
+          KNDS 내비게이션 라벨과 상태 뱃지는 고정폭(Monospace) 타이포그래피 규칙을 따릅니다.
+        </p>
+        <div class="knds-flex-col knds-gap-100">
+          <div class="knds-nav-item active">
+            <span class="knds-text-label-14-mono">01. CORE_SUBSYSTEM</span>
+            <span class="knds-badge" style="color: var(--color-functional-red); border-color: var(--color-functional-red);">ONLINE</span>
+          </div>
+          <div class="knds-nav-item">
+            <span class="knds-text-label-14-mono">02. TACTILE_FEEDBACK</span>
+            <span class="knds-badge">READY</span>
+          </div>
+          <div class="knds-nav-item disabled">
+            <span class="knds-text-label-14-mono">03. ARCHIVE_MODULE</span>
+            <span class="knds-badge">LOCKED</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</body>
+</html>
