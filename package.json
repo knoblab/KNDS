@@ -9,6 +9,8 @@
   ],
   "scripts": {
     "dev": "npm --workspace=@knoblab/knds-docs run dev",
+    "build": "npm --workspace=@knoblab/knds-docs run build",
+    "preview": "npm --workspace=@knoblab/knds-docs run preview",
     "dev:docs": "npm --workspace=@knoblab/knds-docs run dev",
     "build:docs": "npm --workspace=@knoblab/knds-docs run build",
     "preview:docs": "npm --workspace=@knoblab/knds-docs run preview"
