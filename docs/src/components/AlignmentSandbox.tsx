@@ -57,7 +57,7 @@ export default function AlignmentSandbox() {
           <div>
             <span className="knds-text-label-14-mono knds-text-muted" style={{ fontSize: '10px', display: 'block', marginBottom: '8px' }}>PART A: OPTICAL VS GEOMETRIC NUDGE</span>
             <div className="knds-flex-row knds-gap-100 knds-mb-150">
-              <span className="knds-text-label-14-mono" style={{ fontSize: '12px', backgroundColor: 'var(--color-border-default)', padding: '8px 16px', borderRadius: '4px' }}>
+              <span className="knds-text-label-14-mono" style={{ fontSize: '12px', backgroundColor: 'var(--color-border-default)', padding: '8px 16px', borderRadius: '8px'}}>
                 미세 보정 값: {opticalOffset}px
               </span>
               {opticalOffset !== 0 && (
@@ -107,7 +107,7 @@ export default function AlignmentSandbox() {
 
               <div className="knds-text-copy-14 knds-text-muted knds-text-center knds-flex-row knds-items-center knds-justify-center" style={{ fontSize: '12px', maxWidth: '280px', height: '32px' }}>
                 {opticalOffset === 0 ? (
-                  <span>우측 재생기 내부 삼각 화살표 아이콘을 좌우로 미조 조정해보세요. (추천 광학 오프셋: <code style={{ backgroundColor: 'var(--color-bg-primary)', padding: '0 8px', border: '1px solid var(--color-border-default)', borderRadius: '4px', fontWeight: 'bold', color: 'var(--color-text-primary)' }}>+1px</code>)</span>
+                  <span>우측 재생기 내부 삼각 화살표 아이콘을 좌우로 미조 조정해보세요. (추천 광학 오프셋: <code style={{ backgroundColor: 'var(--color-bg-primary)', padding: '0 8px', border: '1px solid var(--color-border-default)', borderRadius: '8px', fontWeight: 'bold', color: 'var(--color-text-primary)' }}>+1px</code>)</span>
                 ) : opticalOffset === 1 ? (
                   <span className="knds-text-red" style={{ fontWeight: 'bold' }}>정답! 삼각 아이콘이 물리적 중앙에서 우측으로 1px 이동하여 광학적 안구 균형을 성취했습니다.</span>
                 ) : (
@@ -144,7 +144,7 @@ export default function AlignmentSandbox() {
                 onClick={() => setTabularNumsActive(!tabularNumsActive)}
                 className="knds-text-label-14-mono"
                 style={{
-                  fontSize: '12px', padding: '8px 16px', borderRadius: '4px', border: '1px solid', cursor: 'pointer',
+                  fontSize: '12px', padding: '8px 16px', borderRadius: '8px', border: '1px solid', cursor: 'pointer',
                   backgroundColor: tabularNumsActive ? 'var(--color-functional-red)' : 'var(--color-bg-primary)',
                   color: tabularNumsActive ? 'var(--color-bg-primary)' : 'var(--color-text-secondary)',
                   borderColor: tabularNumsActive ? 'var(--color-functional-red)' : 'var(--color-border-default)'

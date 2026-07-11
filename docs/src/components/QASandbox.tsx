@@ -66,7 +66,7 @@ export default function QASandbox() {
                 borderColor: item.checked ? 'var(--color-border-hover)' : 'var(--color-border-default)'
               }}
             >
-              <button className="knds-cursor-pointer knds-flex-shrink-0" style={{ color: 'var(--color-functional-red)', background: 'none', border: 'none', padding: 0, marginTop: 2 }}>
+              <button className="knds-cursor-pointer knds-flex-shrink-0" style={{ color: 'var(--color-functional-red)', background: 'none', border: 'none', padding: 0, marginTop: 8}}>
                 {item.checked ? (
                   <CheckSquare style={{ width: 16, height: 16 }} />
                 ) : (
@@ -74,10 +74,10 @@ export default function QASandbox() {
                 )}
               </button>
               <div>
-                <span className="knds-text-label-14-mono knds-text-red knds-font-bold" style={{ fontSize: 9, backgroundColor: 'var(--color-bg-secondary)', padding: '0 4px', borderRadius: 2 }}>
+                <span className="knds-text-label-14-mono knds-text-red knds-font-bold" style={{ fontSize: 9, backgroundColor: 'var(--color-bg-secondary)', padding: '0 8px', borderRadius: 8}}>
                   {item.category}
                 </span>
-                <p className="knds-text-copy-14" style={{ fontSize: 12, fontWeight: 500, marginTop: 4, lineHeight: 1.5 }}>
+                <p className="knds-text-copy-14" style={{ fontSize: 12, fontWeight: 500, marginTop: 8, lineHeight: 1.5 }}>
                   {item.label}
                 </p>
               </div>
@@ -97,7 +97,7 @@ export default function QASandbox() {
                   key={t}
                   className="knds-border"
                   style={{
-                    height: 32, flex: 1, borderRadius: '4px', transition: 'all 0.3s',
+                    height: 32, flex: 1, borderRadius: '8px', transition: 'all 0.3s',
                     backgroundColor: score >= t ? 'var(--color-functional-red)' : 'var(--color-bg-secondary)',
                     borderColor: score >= t ? 'var(--color-functional-red)' : 'var(--color-border-hover)'
                   }}
@@ -113,7 +113,7 @@ export default function QASandbox() {
 
           {/* Dynamic feedback notice */}
           <div className="knds-border knds-p-150 knds-text-center knds-w-full knds-radius-sm" style={{ transition: 'all 0.3s', color: slogan.color.text, backgroundColor: slogan.color.bg, borderColor: slogan.color.border }}>
-            <span className="knds-text-label-14-mono knds-font-bold" style={{ fontSize: 10, display: 'block', marginBottom: 4, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+            <span className="knds-text-label-14-mono knds-font-bold" style={{ fontSize: 10, display: 'block', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
               {slogan.title}
             </span>
             <p className="knds-text-copy-14" style={{ fontSize: 10, lineHeight: 1.5 }}>

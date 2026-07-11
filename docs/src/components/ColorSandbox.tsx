@@ -150,7 +150,7 @@ export default function ColorSandbox() {
                     >
                       실패: 검증 연산 누락
                     </span>
-                    <p style={{ fontSize: 10, fontFamily: 'var(--font-sans)', marginTop: 4, lineHeight: 1.5, transition: 'colors 0.3s', color: theme === 'light' ? '#52525B' : '#A1A1AA' }}>
+                    <p style={{ fontSize: 10, fontFamily: 'var(--font-sans)', marginTop: 8, lineHeight: 1.5, transition: 'colors 0.3s', color: theme === 'light' ? '#52525B' : '#A1A1AA' }}>
                       데이터베이스와 실시간 소켓 바운딩 터널이 끊겼습니다. 네트워크 라우트 세팅값을 지금 바로 점검하세요.
                     </p>
                   </div>

@@ -19,7 +19,7 @@ export default function LayoutComparisonSandbox() {
             onClick={() => setViewMode('legacy')}
             className="knds-text-label-14-mono"
             style={{
-              padding: '8px 16px', fontWeight: 'bold', borderRadius: '4px', cursor: 'pointer', border: 'none', transition: 'background-color 0.2s',
+              padding: '8px 16px', fontWeight: 'bold', borderRadius: '8px', cursor: 'pointer', border: 'none', transition: 'background-color 0.2s',
               backgroundColor: viewMode === 'legacy' ? 'var(--color-bg-primary)' : 'transparent',
               color: viewMode === 'legacy' ? 'var(--color-text-primary)' : 'var(--color-text-secondary)',
               boxShadow: viewMode === 'legacy' ? '0 1px 2px rgba(0,0,0,0.05)' : 'none'
@@ -31,7 +31,7 @@ export default function LayoutComparisonSandbox() {
             onClick={() => setViewMode('pdfds')}
             className="knds-text-label-14-mono"
             style={{
-              padding: '8px 16px', fontWeight: 'bold', borderRadius: '4px', cursor: 'pointer', border: 'none', transition: 'background-color 0.2s',
+              padding: '8px 16px', fontWeight: 'bold', borderRadius: '8px', cursor: 'pointer', border: 'none', transition: 'background-color 0.2s',
               backgroundColor: viewMode === 'pdfds' ? 'var(--color-functional-red)' : 'transparent',
               color: viewMode === 'pdfds' ? 'var(--color-bg-primary)' : 'var(--color-text-secondary)',
               boxShadow: viewMode === 'pdfds' ? '0 1px 2px rgba(0,0,0,0.05)' : 'none'
@@ -56,7 +56,7 @@ export default function LayoutComparisonSandbox() {
         {/* OS Top: Browser Tabs & URL Bar */}
         <div style={{ backgroundColor: 'var(--color-border-default)', width: '100%', flexShrink: 0, display: 'flex', flexDirection: 'column' }}>
           {/* Tabs */}
-          <div style={{ display: 'flex', alignItems: 'flex-end', height: 32, padding: '0 8px', gap: 4, paddingTop: 8, backgroundColor: 'var(--color-border-default)' }}>
+          <div style={{ display: 'flex', alignItems: 'flex-end', height: 32, padding: '0 8px', gap: 8, paddingTop: 8, backgroundColor: 'var(--color-border-default)' }}>
             <div style={{ width: 128, height: '100%', backgroundColor: 'var(--color-bg-primary)', borderTopLeftRadius: 8, borderTopRightRadius: 8, display: 'flex', alignItems: 'center', padding: '0 8px', fontSize: 8, fontFamily: 'var(--font-sans)', color: 'var(--color-text-primary)' }}>
               New Tab
             </div>
@@ -64,12 +64,12 @@ export default function LayoutComparisonSandbox() {
           </div>
           {/* URL Bar */}
           <div style={{ height: 40, backgroundColor: 'var(--color-bg-primary)', display: 'flex', alignItems: 'center', padding: '0 8px', gap: 8, borderBottom: '1px solid var(--color-border-hover)' }}>
-            <div style={{ display: 'flex', gap: 4 }}>
+            <div style={{ display: 'flex', gap: 8}}>
               <div style={{ width: 16, height: 16, borderRadius: '50%', backgroundColor: 'var(--color-border-default)' }}></div>
               <div style={{ width: 16, height: 16, borderRadius: '50%', backgroundColor: 'var(--color-border-default)' }}></div>
               <div style={{ width: 16, height: 16, borderRadius: '50%', backgroundColor: 'var(--color-border-default)' }}></div>
             </div>
-            <div style={{ flex: 1, height: 24, backgroundColor: 'var(--color-bg-primary)', border: '1px solid var(--color-border-hover)', borderRadius: 9999, fontSize: 8, display: 'flex', alignItems: 'center', padding: '0 12px', color: 'var(--color-text-secondary)', fontFamily: 'var(--font-mono)' }}>
+            <div style={{ flex: 1, height: 24, backgroundColor: 'var(--color-bg-primary)', border: '1px solid var(--color-border-hover)', borderRadius: 9999, fontSize: 8, display: 'flex', alignItems: 'center', padding: '0 16px', color: 'var(--color-text-secondary)', fontFamily: 'var(--font-mono)' }}>
               https://legacy.web/
             </div>
           </div>
@@ -83,11 +83,11 @@ export default function LayoutComparisonSandbox() {
             <div className="knds-w-full knds-flex-col knds-items-center knds-relative" style={{ flex: 1, animation: 'fadeIn 0.5s' }}>
               {/* Header */}
               <div style={{ width: '100%', height: 56, borderBottom: '1px solid var(--color-border-default)', backgroundColor: 'var(--color-bg-primary)', flexShrink: 0, display: 'flex', alignItems: 'center', padding: '0 24px', justifyContent: 'space-between', boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)', zIndex: 20 }}>
-                <div style={{ width: 96, height: 16, backgroundColor: 'var(--color-border-default)', borderRadius: 4 }}></div>
+                <div style={{ width: 96, height: 16, backgroundColor: 'var(--color-border-default)', borderRadius: 8}}></div>
                 <div style={{ display: 'flex', gap: 16 }}>
-                  <div style={{ width: 40, height: 8, backgroundColor: 'var(--color-bg-primary)', borderRadius: 4 }}></div>
-                  <div style={{ width: 40, height: 8, backgroundColor: 'var(--color-bg-primary)', borderRadius: 4 }}></div>
-                  <div style={{ width: 40, height: 8, backgroundColor: 'var(--color-bg-primary)', borderRadius: 4 }}></div>
+                  <div style={{ width: 40, height: 8, backgroundColor: 'var(--color-bg-primary)', borderRadius: 8}}></div>
+                  <div style={{ width: 40, height: 8, backgroundColor: 'var(--color-bg-primary)', borderRadius: 8}}></div>
+                  <div style={{ width: 40, height: 8, backgroundColor: 'var(--color-bg-primary)', borderRadius: 8}}></div>
                 </div>
               </div>
               
@@ -101,17 +101,17 @@ export default function LayoutComparisonSandbox() {
                 
                 {/* Main Content (Narrow and Stretched) */}
                 <div style={{ width: '50%', backgroundColor: 'var(--color-bg-primary)', boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)', display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: 32, paddingLeft: 24, paddingRight: 24, paddingBottom: 8, overflow: 'hidden', position: 'relative' }}>
-                  <span style={{ fontSize: 12, fontWeight: 'bold', color: 'var(--color-functional-red)', border: '1px solid var(--color-functional-red)', lineHeight: 1, backgroundColor: 'var(--color-bg-primary)', padding: '4px 8px', borderRadius: 4, position: 'absolute', top: 8, right: 8 }}>
+                  <span style={{ fontSize: 12, fontWeight: 'bold', color: 'var(--color-functional-red)', border: '1px solid var(--color-functional-red)', lineHeight: 1, backgroundColor: 'var(--color-bg-primary)', padding: '8px 8px', borderRadius: 8, position: 'absolute', top: 8, right: 8 }}>
                     수직 압축됨
                   </span>
-                  <div style={{ width: '75%', height: 24, backgroundColor: 'var(--color-border-default)', borderRadius: 4, marginBottom: 16 }}></div>
-                  <div style={{ width: '100%', height: 12, backgroundColor: 'var(--color-bg-primary)', borderRadius: 4, marginBottom: 8 }}></div>
-                  <div style={{ width: '90%', height: 12, backgroundColor: 'var(--color-bg-primary)', borderRadius: 4, marginBottom: 8 }}></div>
-                  <div style={{ width: '95%', height: 12, backgroundColor: 'var(--color-bg-primary)', borderRadius: 4, marginBottom: 24 }}></div>
-                  <div style={{ width: '100%', height: 128, backgroundColor: 'var(--color-bg-primary)', border: '1px solid var(--color-border-default)', borderRadius: 4, flexShrink: 0 }}></div>
+                  <div style={{ width: '75%', height: 24, backgroundColor: 'var(--color-border-default)', borderRadius: 8, marginBottom: 16 }}></div>
+                  <div style={{ width: '100%', height: 12, backgroundColor: 'var(--color-bg-primary)', borderRadius: 8, marginBottom: 8 }}></div>
+                  <div style={{ width: '90%', height: 12, backgroundColor: 'var(--color-bg-primary)', borderRadius: 8, marginBottom: 8 }}></div>
+                  <div style={{ width: '95%', height: 12, backgroundColor: 'var(--color-bg-primary)', borderRadius: 8, marginBottom: 24 }}></div>
+                  <div style={{ width: '100%', height: 128, backgroundColor: 'var(--color-bg-primary)', border: '1px solid var(--color-border-default)', borderRadius: 8, flexShrink: 0 }}></div>
                   
                   <div style={{ width: '100%', height: 64, background: 'linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0.8), rgba(255,255,255,1))', position: 'absolute', bottom: 0, left: 0, display: 'flex', justifyContent: 'center', alignItems: 'flex-end', paddingBottom: 8, pointerEvents: 'none' }}>
-                     <span style={{ fontSize: 9, backgroundColor: '#09090b', color: 'var(--color-bg-primary)', padding: '4px 8px', borderRadius: 9999, display: 'flex', gap: 4 }}>▼ 무한 스크롤</span>
+                     <span style={{ fontSize: 9, backgroundColor: '#09090b', color: 'var(--color-bg-primary)', padding: '8px 8px', borderRadius: 9999, display: 'flex', gap: 8}}>▼ 무한 스크롤</span>
                   </div>
                 </div>
 
@@ -124,7 +124,7 @@ export default function LayoutComparisonSandbox() {
 
                {/* Footer */}
                <div style={{ width: '100%', height: 48, backgroundColor: '#09090b', flexShrink: 0, zIndex: 20, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                 <div style={{ width: 128, height: 8, backgroundColor: 'var(--color-border-default)', borderRadius: 4 }}></div>
+                 <div style={{ width: 128, height: 8, backgroundColor: 'var(--color-border-default)', borderRadius: 8}}></div>
                </div>
             </div>
           ) : (
@@ -139,19 +139,19 @@ export default function LayoutComparisonSandbox() {
                 </div>
                 {/* KNDS Controls */}
                 <div style={{ padding: '16px', display: 'flex', flexDirection: 'column', gap: '16px', flex: 1, overflowY: 'auto' }}>
-                   <div style={{ width: '100%', height: 24, backgroundColor: 'var(--color-border-default)', borderRadius: '4px' }}></div>
+                   <div style={{ width: '100%', height: 24, backgroundColor: 'var(--color-border-default)', borderRadius: '8px'}}></div>
                    <div style={{ display: 'flex', gap: '8px' }}>
-                     <div style={{ width: '50%', height: 32, backgroundColor: 'var(--color-bg-primary)', border: '1px solid var(--color-border-default)', borderRadius: '4px' }}></div>
-                     <div style={{ width: '50%', height: 32, backgroundColor: 'var(--color-bg-primary)', border: '1px solid var(--color-border-default)', borderRadius: '4px' }}></div>
+                     <div style={{ width: '50%', height: 32, backgroundColor: 'var(--color-bg-primary)', border: '1px solid var(--color-border-default)', borderRadius: '8px'}}></div>
+                     <div style={{ width: '50%', height: 32, backgroundColor: 'var(--color-bg-primary)', border: '1px solid var(--color-border-default)', borderRadius: '8px'}}></div>
                    </div>
-                   <div style={{ width: '100%', height: 96, backgroundColor: 'var(--color-bg-primary)', border: '1px solid var(--color-border-default)', borderRadius: '4px', marginTop: '8px', display: 'flex', flexDirection: 'column', gap: '8px', padding: '16px' }}>
+                   <div style={{ width: '100%', height: 96, backgroundColor: 'var(--color-bg-primary)', border: '1px solid var(--color-border-default)', borderRadius: '8px', marginTop: '8px', display: 'flex', flexDirection: 'column', gap: '8px', padding: '16px' }}>
                      <div style={{ width: '75%', height: '8px', backgroundColor: 'var(--color-bg-primary)' }}></div>
                      <div style={{ width: '50%', height: '8px', backgroundColor: 'var(--color-bg-primary)' }}></div>
                    </div>
                    <div style={{ marginTop: 'auto', paddingTop: '16px' }}>
                      <div style={{ width: '100%', height: 40, borderRadius: '9999px', backgroundColor: 'var(--color-functional-red)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                         <div style={{ width: 16, height: 16, backgroundColor: 'rgba(255,255,255,0.2)', borderRadius: '50%', marginRight: '8px' }}></div>
-                        <span style={{ width: 48, height: '8px', backgroundColor: 'rgba(255,255,255,0.4)', borderRadius: '4px' }}></span>
+                        <span style={{ width: 48, height: '8px', backgroundColor: 'rgba(255,255,255,0.4)', borderRadius: '8px'}}></span>
                      </div>
                    </div>
                 </div>
@@ -166,19 +166,19 @@ export default function LayoutComparisonSandbox() {
                  {/* 75 Canvas Body */}
                  <div style={{ flex: 1, padding: '32px', display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: '16px' }}>
                     <div style={{ gridColumn: 'span 2 / span 2', height: 48, display: 'flex', alignItems: 'center', borderBottom: '1px solid var(--color-border-default)' }}>
-                      <div style={{ width: 192, height: 24, backgroundColor: 'var(--color-border-default)', borderRadius: '4px' }}></div>
+                      <div style={{ width: 192, height: 24, backgroundColor: 'var(--color-border-default)', borderRadius: '8px'}}></div>
                     </div>
                     <div style={{ backgroundColor: 'var(--color-bg-primary)', border: '1px solid var(--color-border-default)', height: 128, borderRadius: '8px', padding: '16px' }}>
-                      <div style={{ width: '33%', height: 16, backgroundColor: 'var(--color-border-default)', borderRadius: '4px', marginBottom: '16px' }}></div>
-                      <div style={{ width: '100%', height: '8px', backgroundColor: 'var(--color-bg-primary)', borderRadius: '4px', marginBottom: '8px' }}></div>
-                      <div style={{ width: '100%', height: '8px', backgroundColor: 'var(--color-bg-primary)', borderRadius: '4px', marginBottom: '8px' }}></div>
-                      <div style={{ width: '66%', height: '8px', backgroundColor: 'var(--color-bg-primary)', borderRadius: '4px' }}></div>
+                      <div style={{ width: '33%', height: 16, backgroundColor: 'var(--color-border-default)', borderRadius: '8px', marginBottom: '16px' }}></div>
+                      <div style={{ width: '100%', height: '8px', backgroundColor: 'var(--color-bg-primary)', borderRadius: '8px', marginBottom: '8px' }}></div>
+                      <div style={{ width: '100%', height: '8px', backgroundColor: 'var(--color-bg-primary)', borderRadius: '8px', marginBottom: '8px' }}></div>
+                      <div style={{ width: '66%', height: '8px', backgroundColor: 'var(--color-bg-primary)', borderRadius: '8px'}}></div>
                     </div>
                     <div style={{ backgroundColor: 'var(--color-bg-primary)', border: '1px solid var(--color-border-default)', height: 128, borderRadius: '8px', padding: '16px' }}>
-                      <div style={{ width: '33%', height: 16, backgroundColor: 'var(--color-border-default)', borderRadius: '4px', marginBottom: '16px' }}></div>
-                      <div style={{ width: '100%', height: '8px', backgroundColor: 'var(--color-bg-primary)', borderRadius: '4px', marginBottom: '8px' }}></div>
-                      <div style={{ width: '100%', height: '8px', backgroundColor: 'var(--color-bg-primary)', borderRadius: '4px', marginBottom: '8px' }}></div>
-                      <div style={{ width: '66%', height: '8px', backgroundColor: 'var(--color-bg-primary)', borderRadius: '4px' }}></div>
+                      <div style={{ width: '33%', height: 16, backgroundColor: 'var(--color-border-default)', borderRadius: '8px', marginBottom: '16px' }}></div>
+                      <div style={{ width: '100%', height: '8px', backgroundColor: 'var(--color-bg-primary)', borderRadius: '8px', marginBottom: '8px' }}></div>
+                      <div style={{ width: '100%', height: '8px', backgroundColor: 'var(--color-bg-primary)', borderRadius: '8px', marginBottom: '8px' }}></div>
+                      <div style={{ width: '66%', height: '8px', backgroundColor: 'var(--color-bg-primary)', borderRadius: '8px'}}></div>
                     </div>
                  </div>
               </div>
@@ -189,9 +189,9 @@ export default function LayoutComparisonSandbox() {
         {/* OS Bottom: Windows Taskbar */}
         <div style={{ height: 40, backgroundColor: '#09090b', width: '100%', flexShrink: 0, display: 'flex', alignItems: 'center', padding: '0 8px', justifyContent: 'space-between', zIndex: 30, boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.5)' }}>
            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-             <div style={{ width: 24, height: 24, borderRadius: '4px', backgroundColor: 'var(--color-bg-tertiary)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--color-text-secondary)', fontSize: '12px', fontWeight: 'bold' }}>W</div>
-             <div style={{ width: 24, height: 24, borderRadius: '4px', backgroundColor: '#09090b' }}></div>
-             <div style={{ width: 24, height: 24, borderRadius: '4px', backgroundColor: '#09090b', borderBottom: '2px solid var(--color-text-secondary)', boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)' }}></div>
+             <div style={{ width: 24, height: 24, borderRadius: '8px', backgroundColor: 'var(--color-bg-tertiary)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--color-text-secondary)', fontSize: '12px', fontWeight: 'bold' }}>W</div>
+             <div style={{ width: 24, height: 24, borderRadius: '8px', backgroundColor: '#09090b' }}></div>
+             <div style={{ width: 24, height: 24, borderRadius: '8px', backgroundColor: '#09090b', borderBottom: '2px solid var(--color-text-secondary)', boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)' }}></div>
            </div>
            <div style={{ display: 'flex', gap: '16px', fontSize: '12px', color: 'var(--color-text-secondary)', fontFamily: 'var(--font-mono)', alignItems: 'center' }}>
              <span>ENG</span>

@@ -55,37 +55,37 @@ export default function SplitSandbox({ defaultMode = 'desktop' }: { defaultMode?
             onClick={() => setViewportMode('desktop')}
             className="knds-text-label-14-mono knds-cursor-pointer knds-radius-sm"
             style={{
-              padding: '4px 14px', border: 'none',
+              padding: '8px 16px', border: 'none',
               backgroundColor: viewportMode === 'desktop' ? 'var(--color-bg-primary)' : 'transparent',
               fontWeight: viewportMode === 'desktop' ? 'bold' : 'normal',
               color: viewportMode === 'desktop' ? 'var(--color-text-primary)' : 'var(--color-text-secondary)'
             }}
           >
-            <Monitor style={{ width: 12, height: 12, marginRight: 4 }} /> Desktop
+            <Monitor style={{ width: 12, height: 12, marginRight: 8}} /> Desktop
           </button>
           <button
             onClick={() => setViewportMode('tablet')}
             className="knds-text-label-14-mono knds-cursor-pointer knds-radius-sm"
             style={{
-              padding: '4px 14px', border: 'none',
+              padding: '8px 16px', border: 'none',
               backgroundColor: viewportMode === 'tablet' ? 'var(--color-bg-primary)' : 'transparent',
               fontWeight: viewportMode === 'tablet' ? 'bold' : 'normal',
               color: viewportMode === 'tablet' ? 'var(--color-text-primary)' : 'var(--color-text-secondary)'
             }}
           >
-            <Tablet style={{ width: 12, height: 12, marginRight: 4 }} /> Tablet
+            <Tablet style={{ width: 12, height: 12, marginRight: 8}} /> Tablet
           </button>
           <button
             onClick={() => setViewportMode('mobile')}
             className="knds-text-label-14-mono knds-cursor-pointer knds-radius-sm"
             style={{
-              padding: '4px 14px', border: 'none',
+              padding: '8px 16px', border: 'none',
               backgroundColor: viewportMode === 'mobile' ? 'var(--color-bg-primary)' : 'transparent',
               fontWeight: viewportMode === 'mobile' ? 'bold' : 'normal',
               color: viewportMode === 'mobile' ? 'var(--color-text-primary)' : 'var(--color-text-secondary)'
             }}
           >
-            <Smartphone style={{ width: 12, height: 12, marginRight: 4 }} /> Mobile
+            <Smartphone style={{ width: 12, height: 12, marginRight: 8}} /> Mobile
           </button>
         </div>
 
@@ -103,12 +103,12 @@ export default function SplitSandbox({ defaultMode = 'desktop' }: { defaultMode?
         </div>
 
         <div className="knds-border" style={{
-          marginTop: '20px',
+          marginTop: '24px',
           height: '220px',
           backgroundColor: 'var(--color-bg-primary)',
           display: 'flex',
           flexDirection: viewportMode === 'mobile' ? 'column' : 'row',
-          margin: '20px auto 0 auto',
+          margin: '24px auto 0 auto',
           maxWidth: viewportMode === 'desktop' ? '100%' : viewportMode === 'tablet' ? '600px' : '320px',
           transition: 'max-width 0.5s ease'
         }}>
@@ -117,7 +117,7 @@ export default function SplitSandbox({ defaultMode = 'desktop' }: { defaultMode?
               <div style={{
                 width: `${splitRatio}%`,
                 borderRight: '1px solid var(--color-border-default)',
-                padding: '12px',
+                padding: '16px',
                 display: splitRatio === 0 ? 'none' : 'flex',
                 flexDirection: 'column',
                 justifyContent: 'space-between',
@@ -126,10 +126,10 @@ export default function SplitSandbox({ defaultMode = 'desktop' }: { defaultMode?
                 transition: 'all 0.3s'
               }}>
                 <div>
-                  <div style={{ width: 16, height: 16, backgroundColor: 'var(--color-functional-red)', borderRadius: 4, marginBottom: 8 }} />
+                  <div style={{ width: 16, height: 16, backgroundColor: 'var(--color-functional-red)', borderRadius: 8, marginBottom: 8 }} />
                   <span className="knds-text-copy-14" style={{ fontWeight: 'bold' }}>메타 컨트롤 ({splitRatio}%)</span>
-                  <div style={{ height: 4, width: '50%', backgroundColor: 'var(--color-border-default)', borderRadius: 2, margin: '4px 0' }} />
-                  <div style={{ height: 4, width: '75%', backgroundColor: 'var(--color-border-default)', borderRadius: 2 }} />
+                  <div style={{ height: 4, width: '50%', backgroundColor: 'var(--color-border-default)', borderRadius: 8, margin: '8px 0'}} />
+                  <div style={{ height: 4, width: '75%', backgroundColor: 'var(--color-border-default)', borderRadius: 8}} />
                 </div>
                 <div className="knds-text-label-14-mono knds-text-muted" style={{ fontSize: '9px' }}>사이드 정보판</div>
               </div>
@@ -143,10 +143,10 @@ export default function SplitSandbox({ defaultMode = 'desktop' }: { defaultMode?
                 <div className="knds-radius-sm" style={{ width: 2, height: 24, backgroundColor: 'var(--color-border-hover)' }} />
               </div>
 
-              <div className="knds-flex-col knds-justify-between knds-overflow-hidden" style={{ flex: 1, padding: '12px 15% 12px 12px', backgroundColor: 'var(--color-bg-primary)' }}>
+              <div className="knds-flex-col knds-justify-between knds-overflow-hidden" style={{ flex: 1, padding: '16px 15% 16px 16px', backgroundColor: 'var(--color-bg-primary)' }}>
                 <div>
                   <span className="knds-text-copy-14 knds-font-bold">코어 캔버스 ({100 - splitRatio}%)</span>
-                  <p className="knds-text-copy-14 knds-text-muted" style={{ fontSize: '10px', marginTop: 4 }}>
+                  <p className="knds-text-copy-14 knds-text-muted" style={{ fontSize: '10px', marginTop: 8}}>
                     이곳은 주 작업 스페이스 영역으로 스플릿 비율에 따라 유동적인 반응형 리플로우가 적용됩니다. 1:3 스플릿 상태에서 가장 이상적인 가독 호흡을 보장합니다.
                   </p>
                 </div>
@@ -158,14 +158,14 @@ export default function SplitSandbox({ defaultMode = 'desktop' }: { defaultMode?
             </>
           ) : (
             <>
-              <div style={{ flex: '0 0 40%', borderBottom: '1px solid var(--color-border-default)', padding: 12, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+              <div style={{ flex: '0 0 40%', borderBottom: '1px solid var(--color-border-default)', padding: 16, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                 <div>
                   <span className="knds-text-copy-14" style={{ fontWeight: 'bold' }}>상단 제어 레이어</span>
-                  <div style={{ height: 4, width: '66%', backgroundColor: 'var(--color-border-default)', borderRadius: 2, margin: '4px 0' }} />
+                  <div style={{ height: 4, width: '66%', backgroundColor: 'var(--color-border-default)', borderRadius: 8, margin: '8px 0'}} />
                 </div>
                 <span className="knds-text-label-14-mono knds-text-muted" style={{ fontSize: '8px', textAlign: 'right' }}>TOP LAYER</span>
               </div>
-              <div style={{ flex: '0 0 60%', padding: 12, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+              <div style={{ flex: '0 0 60%', padding: 16, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                 <span className="knds-text-copy-14" style={{ fontWeight: 'bold' }}>코어 주 영역 (100% 면적 확장)</span>
                 <p className="knds-text-copy-14 knds-text-muted" style={{ fontSize: '9px', lineHeight: 1.2 }}>
                   모바일에서는 비대칭 가로 분할이 무력화되고 위아래 100% 수직 스택으로 재배치됩니다. 터치 충돌 방지 법칙을 수호하기 위해 가로 스와이프 제스처는 자동 중단됩니다.
@@ -195,7 +195,7 @@ export default function SplitSandbox({ defaultMode = 'desktop' }: { defaultMode?
               max="50"
               value={splitRatio}
               onChange={handleSliderChange}
-              style={{ flex: 1, height: 4, backgroundColor: 'var(--color-border-default)', borderRadius: 2, cursor: 'pointer', appearance: 'none' }}
+              style={{ flex: 1, height: 4, backgroundColor: 'var(--color-border-default)', borderRadius: 8, cursor: 'pointer', appearance: 'none' }}
             />
             <span className="knds-text-label-14-mono knds-text-muted" style={{ fontSize: '10px' }}>50% 최대</span>
           </div>
@@ -205,7 +205,7 @@ export default function SplitSandbox({ defaultMode = 'desktop' }: { defaultMode?
               onClick={() => changeRatioDirectly(25)}
               className="knds-text-label-14-mono knds-radius-sm knds-cursor-pointer"
               style={{
-                padding: '4px 8px', border: '1px solid', fontSize: '10px',
+                padding: '8px 8px', border: '1px solid', fontSize: '10px',
                 backgroundColor: splitRatio === 25 ? 'var(--color-functional-red)' : 'var(--color-bg-primary)',
                 color: splitRatio === 25 ? 'var(--color-bg-primary)' : 'var(--color-text-secondary)',
                 borderColor: splitRatio === 25 ? 'var(--color-functional-red)' : 'var(--color-border-default)'
@@ -217,7 +217,7 @@ export default function SplitSandbox({ defaultMode = 'desktop' }: { defaultMode?
               onClick={() => changeRatioDirectly(30)}
               className="knds-text-label-14-mono knds-radius-sm knds-cursor-pointer"
               style={{
-                padding: '4px 8px', border: '1px solid', fontSize: '10px',
+                padding: '8px 8px', border: '1px solid', fontSize: '10px',
                 backgroundColor: splitRatio === 30 ? 'var(--color-functional-red)' : 'var(--color-bg-primary)',
                 color: splitRatio === 30 ? 'var(--color-bg-primary)' : 'var(--color-text-secondary)',
                 borderColor: splitRatio === 30 ? 'var(--color-functional-red)' : 'var(--color-border-default)'
@@ -229,7 +229,7 @@ export default function SplitSandbox({ defaultMode = 'desktop' }: { defaultMode?
               onClick={() => changeRatioDirectly(20)}
               className="knds-text-label-14-mono knds-radius-sm knds-cursor-pointer"
               style={{
-                padding: '4px 8px', border: '1px solid', fontSize: '10px',
+                padding: '8px 8px', border: '1px solid', fontSize: '10px',
                 backgroundColor: splitRatio === 20 ? 'var(--color-functional-red)' : 'var(--color-bg-primary)',
                 color: splitRatio === 20 ? 'var(--color-bg-primary)' : 'var(--color-text-secondary)',
                 borderColor: splitRatio === 20 ? 'var(--color-functional-red)' : 'var(--color-border-default)'

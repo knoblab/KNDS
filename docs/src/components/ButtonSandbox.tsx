@@ -9,7 +9,7 @@ export default function ButtonSandbox() {
 
   const buttonConfigs = [
     { size: 'XS (초소형)', height: '32px', padding: '0 8px', icon: 16, restRadius: 16, hoverRadius: 10, pressedRadius: 4, label: 'Secondary Action' },
-    { size: 'S (소형-표준)', height: '40px', padding: '0 12px', icon: 20, restRadius: 20, hoverRadius: 12, pressedRadius: 8, label: 'Default Tactile' },
+    { size: 'S (소형-표준)', height: '40px', padding: '0 16px', icon: 20, restRadius: 20, hoverRadius: 12, pressedRadius: 8, label: 'Default Tactile' },
     { size: 'M (중형)', height: '44px', padding: '0 16px', icon: 20, restRadius: 22, hoverRadius: 14, pressedRadius: 8, label: 'Control Switch' },
     { size: 'L (대형)', height: '48px', padding: '0 24px', icon: 24, restRadius: 24, hoverRadius: 16, pressedRadius: 12, label: 'Primary System' },
     { size: 'XL (초대형)', height: '56px', padding: '0 32px', icon: 24, restRadius: 28, hoverRadius: 20, pressedRadius: 12, label: 'Launch Module' },
@@ -99,7 +99,7 @@ export default function ButtonSandbox() {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    gap: '6px',
+                    gap: '8px',
                     zIndex: 10
                   }}
                   whileHover={{
@@ -121,7 +121,7 @@ export default function ButtonSandbox() {
               </div>
 
               {/* Dynamic Formula Specs details */}
-              <div className="knds-font-mono knds-bg-secondary knds-p-100 knds-radius-sm knds-flex-col" style={{ flex: '1 1 30%', fontSize: '12px', color: 'var(--color-text-secondary)', gap: '4px' }}>
+              <div className="knds-font-mono knds-bg-secondary knds-p-100 knds-radius-sm knds-flex-col" style={{ flex: '1 1 30%', fontSize: '12px', color: 'var(--color-text-secondary)', gap: '8px'}}>
                 <div className="knds-flex-row knds-justify-between">
                   <span>Rest 코너 반경:</span>
                   <span className="knds-font-bold" style={{ color: 'var(--color-text-primary)' }}>

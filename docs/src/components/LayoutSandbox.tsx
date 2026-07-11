@@ -12,7 +12,7 @@ export default function LayoutSandbox() {
           onClick={() => setActiveTab('pc')}
           className="knds-text-label-16"
           style={{
-            padding: '12px 24px',
+            padding: '16px 24px',
             backgroundColor: 'transparent',
             border: 'none',
             borderBottom: activeTab === 'pc' ? '2px solid var(--color-functional-red)' : '2px solid transparent',
@@ -27,7 +27,7 @@ export default function LayoutSandbox() {
           onClick={() => setActiveTab('mobile')}
           className="knds-text-label-16"
           style={{
-            padding: '12px 24px',
+            padding: '16px 24px',
             backgroundColor: 'transparent',
             border: 'none',
             borderBottom: activeTab === 'mobile' ? '2px solid var(--color-functional-red)' : '2px solid transparent',

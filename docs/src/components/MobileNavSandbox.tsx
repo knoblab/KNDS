@@ -36,7 +36,7 @@ export default function MobileNavSandbox() {
         {/* 상단 상태바 가짜 UI */}
         <div className="knds-flex-row knds-justify-between knds-items-center knds-border-bottom knds-font-bold" style={{ height: '24px', backgroundColor: 'var(--color-bg-primary)', padding: '0 16px', fontSize: '10px' }}>
           <span>9:41</span>
-          <div className="knds-flex-row" style={{ gap: '4px' }}>
+          <div className="knds-flex-row" style={{ gap: '8px'}}>
             <div style={{ width: 12, height: 10, backgroundColor: 'var(--color-text-primary)' }}></div>
             <div style={{ width: 16, height: 10, backgroundColor: 'var(--color-text-primary)' }}></div>
           </div>
@@ -52,9 +52,9 @@ export default function MobileNavSandbox() {
           </h2>
           <div className="knds-mb-300">
             <div style={{ width: '100%', height: '120px', backgroundColor: 'var(--color-bg-secondary)', borderRadius: '8px', border: '1px solid var(--color-border-default)', marginBottom: '16px' }}></div>
-            <div style={{ width: '80%', height: '16px', backgroundColor: 'var(--color-border-default)', borderRadius: '4px', marginBottom: '8px' }}></div>
-            <div style={{ width: '100%', height: '16px', backgroundColor: 'var(--color-border-default)', borderRadius: '4px', marginBottom: '8px' }}></div>
-            <div style={{ width: '60%', height: '16px', backgroundColor: 'var(--color-border-default)', borderRadius: '4px' }}></div>
+            <div style={{ width: '80%', height: '16px', backgroundColor: 'var(--color-border-default)', borderRadius: '8px', marginBottom: '8px' }}></div>
+            <div style={{ width: '100%', height: '16px', backgroundColor: 'var(--color-border-default)', borderRadius: '8px', marginBottom: '8px' }}></div>
+            <div style={{ width: '60%', height: '16px', backgroundColor: 'var(--color-border-default)', borderRadius: '8px'}}></div>
           </div>
 
           <p className="knds-text-copy-14 knds-text-muted" style={{ fontSize: '12px' }}>
@@ -75,7 +75,7 @@ export default function MobileNavSandbox() {
             style={{
               borderRadius: '24px',
               boxShadow: '0 4px 12px rgba(0,0,0,0.25)',
-              padding: '12px 24px',
+              padding: '16px 24px',
               gap: '8px'
             }}
           >
@@ -116,7 +116,7 @@ export default function MobileNavSandbox() {
         }}>
           {/* 드래그 핸들 (가짜) */}
           <div className="knds-flex-row knds-justify-center knds-flex-shrink-0 knds-cursor-pointer" style={{ padding: '8px 0' }} onClick={() => setIsOpen(false)}>
-            <div style={{ width: '40px', height: '4px', backgroundColor: 'var(--color-border-hover)', borderRadius: '2px' }}></div>
+            <div style={{ width: '40px', height: '4px', backgroundColor: 'var(--color-border-hover)', borderRadius: '8px'}}></div>
           </div>
 
           <div style={{ padding: '0 24px 24px 24px', overflowY: 'auto', flex: 1 }}>
@@ -135,8 +135,8 @@ export default function MobileNavSandbox() {
                   <span className="knds-text-label-14-mono knds-font-bold" style={{
                     backgroundColor: item.active ? 'var(--color-functional-red)' : 'var(--color-border-default)',
                     color: item.active ? 'var(--color-bg-primary)' : 'var(--color-text-secondary)',
-                    padding: '4px 8px',
-                    borderRadius: '2px'
+                    padding: '8px 8px',
+                    borderRadius: '8px'
                   }}>
                     0{item.num}
                   </span>

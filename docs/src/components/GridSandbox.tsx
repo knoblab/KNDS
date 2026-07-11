@@ -58,13 +58,13 @@ export default function GridSandbox() {
                   style={{ backgroundColor: selectedToken === token.name ? 'var(--color-red-light)' : 'transparent', fontWeight: selectedToken === token.name ? 'bold' : 'normal' }}
                 >
                   <td className="knds-text-label-14-mono" style={{ fontSize: '11px', color: 'var(--color-text-primary)' }}>
-                    <span className="knds-inline-block knds-radius-full" style={{ width: 6, height: 6, backgroundColor: selectedToken === token.name ? 'var(--color-functional-red)' : 'transparent', marginRight: 6 }} />
+                    <span className="knds-inline-block knds-radius-full" style={{ width: 6, height: 6, backgroundColor: selectedToken === token.name ? 'var(--color-functional-red)' : 'transparent', marginRight: 8}} />
                     {token.name}
                   </td>
                   <td className="knds-text-label-14-mono knds-text-muted" style={{ fontSize: '11px' }}>{token.rem}</td>
                   <td className="knds-text-label-14-mono knds-font-bold" style={{ fontSize: '11px' }}>{token.px}px</td>
                   <td>
-                    <div style={{ height: 10, borderRadius: 2, backgroundColor: selectedToken === token.name ? 'var(--color-functional-red)' : 'var(--color-border-default)', width: `${Math.min(100, Math.max(4, token.px * 1.5))}px` }} />
+                    <div style={{ height: 10, borderRadius: 8, backgroundColor: selectedToken === token.name ? 'var(--color-functional-red)' : 'var(--color-border-default)', width: `${Math.min(100, Math.max(4, token.px * 1.5))}px` }} />
                   </td>
                 </tr>
               ))}
@@ -75,7 +75,7 @@ export default function GridSandbox() {
         {/* Dynamic visual preview panel */}
         <div className="knds-bg-secondary knds-border knds-p-200 knds-radius-sm knds-flex-col knds-justify-between" style={{ flex: '1 1 40%' }}>
           <div>
-            <span className="knds-text-label-14-mono knds-text-muted" style={{ fontSize: '10px', display: 'block', marginBottom: 4 }}>SELECTED SPACING VISUALIZATION</span>
+            <span className="knds-text-label-14-mono knds-text-muted" style={{ fontSize: '10px', display: 'block', marginBottom: 8}}>SELECTED SPACING VISUALIZATION</span>
             <div className="knds-bg-secondary knds-border knds-p-150 knds-radius-sm knds-mb-200">
               <div className="knds-flex-row knds-justify-between knds-items-center knds-mb-100">
                 <span className="knds-text-label-14-mono knds-font-bold">{currentToken.name}</span>
@@ -95,7 +95,7 @@ export default function GridSandbox() {
               </div>
               
               {/* This is the spacer representing selected token */}
-              <div className="knds-relative knds-flex-row knds-items-center knds-justify-center" style={{ padding: '4px 0' }}>
+              <div className="knds-relative knds-flex-row knds-items-center knds-justify-center" style={{ padding: '8px 0'}}>
                 <div className="knds-absolute" style={{ left: 0, right: 0, height: 1, backgroundColor: 'var(--color-functional-red)', opacity: 0.4, top: '50%' }} />
                 
                 <div className="knds-flex-row knds-items-center knds-justify-center knds-overflow-hidden" style={{ 
@@ -107,7 +107,7 @@ export default function GridSandbox() {
                   transition: 'height 0.3s ease',
                   zIndex: 10 
                 }}>
-                  <span className="knds-text-label-14-mono knds-text-red knds-font-bold" style={{ fontSize: '8px', backgroundColor: 'var(--color-bg-primary)', padding: '0 4px', borderRadius: 2, transform: 'scale(0.75)' }}>
+                  <span className="knds-text-label-14-mono knds-text-red knds-font-bold" style={{ fontSize: '8px', backgroundColor: 'var(--color-bg-primary)', padding: '0 8px', borderRadius: 8, transform: 'scale(0.75)' }}>
                     {currentToken.name}
                   </span>
                 </div>

@@ -27,32 +27,32 @@ export default function NavigationSandbox() {
             }}
           >
             <div className="knds-flex-col" style={{ padding: '8px 0' }}>
-              <div className="knds-flex-row knds-items-center knds-justify-between knds-cursor-pointer" style={{ padding: '4px 16px', marginBottom: '8px' }}>
+              <div className="knds-flex-row knds-items-center knds-justify-between knds-cursor-pointer" style={{ padding: '8px 16px', marginBottom: '8px' }}>
                 <span className="knds-text-label-16 knds-font-bold">Components</span>
                 <svg width="12" height="12" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z" fill="currentColor" /></svg>
               </div>
 
               <div className="knds-nav-item">
                 <div className="knds-flex-row knds-items-center knds-gap-150" style={{ width: '100%' }}>
-                  <span className="knds-text-label-14-mono knds-font-bold knds-text-center" style={{ backgroundColor: 'var(--color-border-default)', color: 'var(--color-text-secondary)', padding: '4px 8px', borderRadius: '2px', minWidth: '32px' }}>08</span>
+                  <span className="knds-text-label-14-mono knds-font-bold knds-text-center" style={{ backgroundColor: 'var(--color-border-default)', color: 'var(--color-text-secondary)', padding: '8px 8px', borderRadius: '8px', minWidth: '32px' }}>08</span>
                   <span className="knds-text-label-16" style={{ color: 'var(--color-text-secondary)' }}>Buttons & Morphing</span>
                 </div>
               </div>
               <div className="knds-nav-item">
                 <div className="knds-flex-row knds-items-center knds-gap-150" style={{ width: '100%' }}>
-                  <span className="knds-text-label-14-mono knds-font-bold knds-text-center" style={{ backgroundColor: 'var(--color-border-default)', color: 'var(--color-text-secondary)', padding: '4px 8px', borderRadius: '2px', minWidth: '32px' }}>09</span>
+                  <span className="knds-text-label-14-mono knds-font-bold knds-text-center" style={{ backgroundColor: 'var(--color-border-default)', color: 'var(--color-text-secondary)', padding: '8px 8px', borderRadius: '8px', minWidth: '32px' }}>09</span>
                   <span className="knds-text-label-16" style={{ color: 'var(--color-text-secondary)' }}>Forms</span>
                 </div>
               </div>
               <div className="knds-nav-item">
                 <div className="knds-flex-row knds-items-center knds-gap-150" style={{ width: '100%' }}>
-                  <span className="knds-text-label-14-mono knds-font-bold knds-text-center" style={{ backgroundColor: 'var(--color-border-default)', color: 'var(--color-text-secondary)', padding: '4px 8px', borderRadius: '2px', minWidth: '32px' }}>010</span>
+                  <span className="knds-text-label-14-mono knds-font-bold knds-text-center" style={{ backgroundColor: 'var(--color-border-default)', color: 'var(--color-text-secondary)', padding: '8px 8px', borderRadius: '8px', minWidth: '32px' }}>010</span>
                   <span className="knds-text-label-16" style={{ color: 'var(--color-text-secondary)' }}>Modals</span>
                 </div>
               </div>
               <div className="knds-nav-item active">
                 <div className="knds-flex-row knds-items-center knds-gap-150" style={{ width: '100%' }}>
-                  <span className="knds-text-label-14-mono knds-font-bold knds-text-center" style={{ backgroundColor: 'var(--color-functional-red)', color: 'var(--color-bg-primary)', padding: '4px 8px', borderRadius: '2px', minWidth: '32px' }}>011</span>
+                  <span className="knds-text-label-14-mono knds-font-bold knds-text-center" style={{ backgroundColor: 'var(--color-functional-red)', color: 'var(--color-bg-primary)', padding: '8px 8px', borderRadius: '8px', minWidth: '32px' }}>011</span>
                   <span className="knds-text-label-16 knds-font-bold">Navigation</span>
                 </div>
               </div>
@@ -72,13 +72,13 @@ export default function NavigationSandbox() {
               backgroundColor: 'var(--color-bg-primary)'
             }}
           >
-            <div className="knds-flex-row" style={{ display: 'inline-flex', backgroundColor: 'var(--color-bg-secondary)', border: '1px solid var(--color-border-default)', borderRadius: '8px', padding: '4px', gap: '4px', width: '100%', overflowX: 'auto' }}>
+            <div className="knds-flex-row" style={{ display: 'inline-flex', backgroundColor: 'var(--color-bg-secondary)', border: '1px solid var(--color-border-default)', borderRadius: '8px', padding: '8px', gap: '8px', width: '100%', overflowX: 'auto' }}>
               <button
                 onClick={() => setActiveTab('web')}
                 style={{
                   flex: 1,
                   padding: '8px 16px',
-                  borderRadius: '6px',
+                  borderRadius: '8px',
                   backgroundColor: activeTab === 'web' ? 'var(--color-bg-primary)' : 'transparent',
                   color: activeTab === 'web' ? 'var(--color-text-primary)' : 'var(--color-text-secondary)',
                   boxShadow: activeTab === 'web' ? 'var(--shadow-hardware-bevel)' : 'none',
@@ -96,7 +96,7 @@ export default function NavigationSandbox() {
                 style={{
                   flex: 1,
                   padding: '8px 16px',
-                  borderRadius: '6px',
+                  borderRadius: '8px',
                   backgroundColor: activeTab === 'android' ? 'var(--color-bg-primary)' : 'transparent',
                   color: activeTab === 'android' ? 'var(--color-text-primary)' : 'var(--color-text-secondary)',
                   boxShadow: activeTab === 'android' ? 'var(--shadow-hardware-bevel)' : 'none',
@@ -114,7 +114,7 @@ export default function NavigationSandbox() {
                 style={{
                   flex: 1,
                   padding: '8px 16px',
-                  borderRadius: '6px',
+                  borderRadius: '8px',
                   backgroundColor: activeTab === 'ios' ? 'var(--color-bg-primary)' : 'transparent',
                   color: activeTab === 'ios' ? 'var(--color-text-primary)' : 'var(--color-text-secondary)',
                   boxShadow: activeTab === 'ios' ? 'var(--shadow-hardware-bevel)' : 'none',

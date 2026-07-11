@@ -45,7 +45,7 @@ export default function JitCompilerSandbox() {
     sortedTokens.forEach(token => {
       // Static components
       if (token === 'knds-panel') {
-        componentsCss.push(`.knds-panel {\n  background-color: var(--color-bg-primary);\n  border: 1px solid var(--color-border-default);\n  box-shadow: var(--shadow-hardware-bevel);\n  padding: var(--space-200);\n  border-radius: 4px;\n}`);
+        componentsCss.push(`.knds-panel {\n  background-color: var(--color-bg-primary);\n  border: 1px solid var(--color-border-default);\n  box-shadow: var(--shadow-hardware-bevel);\n  padding: var(--space-200);\n  border-radius: 8px;\n}`);
       } else if (token === 'knds-btn-primary') {
         componentsCss.push(`.knds-btn-primary {\n  background-color: var(--color-bg-primary);\n  border: 1px solid var(--color-border-default);\n  box-shadow: var(--shadow-hardware-bevel);\n  padding: var(--space-100) var(--space-200);\n  color: var(--color-text-primary);\n}`);
       } 
@@ -170,7 +170,7 @@ export default function JitCompilerSandbox() {
                     onClick={() => togglePreset(preset.value)}
                     style={{
                       padding: '8px 16px',
-                      borderRadius: '4px',
+                      borderRadius: '8px',
                       border: '1px solid',
                       borderColor: isActive ? 'var(--color-functional-red)' : 'var(--color-border-default)',
                       backgroundColor: isActive ? 'var(--color-bg-secondary)' : 'var(--color-bg-primary)',
@@ -218,7 +218,7 @@ export default function JitCompilerSandbox() {
                   <span>Monolithic Static (knds.css): 46.7 KB</span>
                   <span className="knds-text-red">JIT Bundle: ~4.57 KB (-90.2%)</span>
                 </div>
-                <div style={{ width: '100%', height: '8px', backgroundColor: 'var(--color-bg-secondary)', borderRadius: '4px', overflow: 'hidden', position: 'relative' }}>
+                <div style={{ width: '100%', height: '8px', backgroundColor: 'var(--color-bg-secondary)', borderRadius: '8px', overflow: 'hidden', position: 'relative' }}>
                   <div style={{ width: '9.8%', height: '100%', backgroundColor: 'var(--color-functional-red)' }} />
                 </div>
               </div>
