@@ -99,13 +99,25 @@ export default function ChapterContent({ activeChapter }: ChapterProps) {
           </div>
 
           <HigSpecSection
+            overview={{
+              summary: 'KNDS(Knoblab Design System)는 디터 람스의 기능주의 철학과 하드웨어적 정밀함을 웹 인터페이스에 완벽히 이식한 물리-디지털 융합(Physical-Digital Fusion) 디자인 시스템입니다.',
+              purpose: '가상의 그래픽 레이어가 아닌 물리적 두께와 질감을 지닌 독립적인 조작기(Manipulator)를 제공하여, 사용자에게 높은 어포던스(Affordance)와 직관적인 촉각 피드백을 전달합니다.'
+            }}
             anatomy={[
-              { id: 'ph-1', name: 'Physical Hardware Bevels (.knds-panel)', tokenOrClass: '--shadow-hardware-bevel', description: '물리적 음각과 양각을 모사하여 빛을 반사하는 다층 박스 섀도우' },
-              { id: 'ph-2', name: 'Structural Minimalism Grid (.knds-grid-bg)', tokenOrClass: '--blueprint-grid-pattern', description: '장식을 배제하고 기능적 위치를 증명하는 기하학적 청사진 도면' }
+              { id: 'ph-1', name: 'Physical Hardware Bevels (.knds-panel)', tokenOrClass: '--shadow-hardware-bevel', description: '물리적 음각과 양각을 모사하여 빛을 반사하는 다층 박스 섀도우 표면' },
+              { id: 'ph-2', name: 'Structural Minimalism Grid (.knds-grid-bg)', tokenOrClass: '--blueprint-grid-pattern', description: '장식을 배제하고 기능적 좌표와 위치를 증명하는 기하학적 청사진 도면' }
             ]}
             doDont={[
-              { type: 'do', title: '설계의 정직성과 기능성 집중', description: '모든 요소는 사용자의 조작(Click, Input, Scroll)과 직결되거나 명확한 정보 위계를 가질 때만 렌더링하십시오.', codeSnippet: '<div class="knds-panel knds-grid-bg">기능적 패널</div>' },
-              { type: 'dont', title: '불필요한 과장 장식 및 장식성 입체 효과 금지', description: '의미 없는 3D 회전이나 유채색 네온사인 글로우를 남발하여 하드웨어적 정직성을 흐리지 마십시오.', codeSnippet: '<!-- ❌ Avoid -->\n<div style="box-shadow: 0 0 50px pink;">...</div>' }
+              { type: 'do', title: '설계의 정직성과 기능적 위계(Hierarchy) 집중', description: '모든 요소는 사용자의 조작(Click, Input, Scroll)과 직결되거나 명확한 정보 위계를 가질 때만 렌더링하세요. 단순한 비주얼 장식을 배제하고 컴포넌트 본연의 목적에 충실해야 합니다.', codeSnippet: '<div class="knds-panel knds-grid-bg knds-p-300">기능적 기판 패널</div>' },
+              { type: 'dont', title: '무의미한 3D 회전 및 장식성 입체 글로우 사용 금지', description: '사용자에게 조작 오인을 유발하는 유채색 네온사인 글로우나 과도한 입체 효과를 남발하지 마세요. KNDS의 고대비 물리적 정직성이 훼손됩니다.', codeSnippet: '<!-- ❌ Avoid -->\n<div style="box-shadow: 0 0 50px pink; transform: rotate3d(1, 1, 1, 45deg);">...</div>' }
+            ]}
+            interactions={[
+              { state: 'Rest (기본 상태)', visualChange: '1px 화이트 상단 하이라이트와 2px 하단 음영 (.knds-panel)', functionalRole: '물리적 기판 위에 부유하는 하드웨어 표면임을 직관적으로 안내' },
+              { state: 'Manipulate (조작 상태)', visualChange: '코너 곡률 수축 및 섀도우 압착 (Scale Down & Radius Morph)', functionalRole: '스위치 가압 시 발생하는 즉각적 촉각 에너지 피드백 전달' }
+            ]}
+            accessibility={[
+              { category: 'Achromatic Contrast (고대비 명도)', description: '아크로매틱 고대비(#FFFFFF ~ #09090B)를 유지하여 시각 장애 및 저시력 사용자에게도 명확한 정보 분할과 가독성을 보장합니다.' },
+              { category: 'Retina / 4K Rendering (서브픽셀 렌더링)', description: '모든 1px 경계선과 베벨 그림자는 고해상도 화면에서 서브픽셀 렌더링을 통해 깨짐 없이 선명하게 출력됩니다.' }
             ]}
             tokens={[
               { name: '--shadow-hardware-bevel', defaultValue: 'inset 0 1px 0 rgba(255,255,255,1)...', description: '하드웨어 베벨 효과의 상단 빛 반사 및 하단 그림자 공식' },
@@ -155,14 +167,26 @@ export default function ChapterContent({ activeChapter }: ChapterProps) {
           </div>
 
           <HigSpecSection
+            overview={{
+              summary: 'KNDS JIT 컴파일러는 소스 코드를 스캔하여 실제 사용된 클래스만 즉시 생성하는 온디맨드(On-Demand) CSS 엔진이자 3-Layer 특이도(Specificity) 정렬 체계입니다.',
+              purpose: '스타일시트 용량을 극단적으로 압축(4.5KB 미만)하여 페이지 로드 성능을 극대화하고, CSS 특이도 충돌 없이 예측 가능한 UI 컴포넌트 제어 환경을 보장합니다.'
+            }}
             anatomy={[
               { id: 'ar-1', name: 'Lexical Scanner Engine (compiler/scanner.js)', tokenOrClass: 'Regex Tokenizer (~0.5ms)', description: 'AST 파싱의 무거운 부하를 제거하고 정규식(/[^<>"\'`\\s,;{}()]+/g)을 통해 소스 텍스트 스트림에서 유효한 유틸리티 후보만 초고속으로 추출합니다.' },
               { id: 'ar-2', name: 'Arbitrary Value Extractor (knds-prop-[value])', tokenOrClass: 'knds-w-[342px] → width: 342px;', description: '사전에 정의되지 않은 너비, 높이, 색상, 간격, 그리드 컬럼 등을 동적 파싱하여 즉시 CSS 규칙과 이스케이프 클래스로 생성합니다.' },
               { id: 'ar-3', name: 'Variant Modifier Chain (variants:coreClass)', tokenOrClass: 'hover:dark:sm:knds-...', description: '상태 수식어(hover, focus, active)와 반응형 브레이크포인트(sm, md, lg) 및 다크 모드(dark)를 정확한 Media Query와 Selector로 중첩 래핑합니다.' }
             ]}
             doDont={[
-              { type: 'do', title: '프로덕션 빌드 시 JIT 컴파일러 또는 Minify 옵션 활성화', description: '실제 마크업에서 사용된 15~30여 개 클래스만 정렬하여 출력하는 JIT CLI(`knds -o output.min.css --minify`)를 사용하면 번들 용량을 4.5KB 미만으로 최적화할 수 있습니다.', codeSnippet: 'npx knds -o dist/output.min.css --minify' },
-              { type: 'dont', title: 'knds.config.js의 content 경로 누락 방지', description: 'JIT 컴파일러가 유틸리티 클래스를 감지할 수 있도록 HTML, JSX, TSX, Vue 파일의 경로가 `content` 배열에 정확히 지정되어야 합니다.', codeSnippet: '<!-- ❌ Avoid missing glob patterns -->\ncontent: ["./src/**/*.tsx"] // HTML 파일이 누락되면 index.html의 클래스가 스캔되지 않음' }
+              { type: 'do', title: '프로덕션 빌드 시 JIT 컴파일러 또는 Minify 옵션 활성화', description: '실제 마크업에서 사용된 15~30여 개 클래스만 정렬하여 출력하는 JIT CLI(`knds -o output.min.css --minify`)를 사용하여 번들 용량을 4.5KB 미만으로 최적화하세요.', codeSnippet: 'npx knds -o dist/output.min.css --minify' },
+              { type: 'dont', title: 'knds.config.js의 content 경로 누락 방지', description: 'JIT 컴파일러가 유틸리티 클래스를 정확히 감지할 수 있도록 HTML, JSX, TSX, Vue 파일의 경로가 `content` 배열에서 누락되지 않도록 주의하세요.', codeSnippet: '<!-- ❌ Avoid missing glob patterns -->\ncontent: ["./src/**/*.tsx"] // HTML 파일이 누락되면 index.html의 클래스가 스캔되지 않음' }
+            ]}
+            interactions={[
+              { state: 'Incremental Watch (증분 감지)', visualChange: '소스 파일 변경 감지 후 15ms 이내 증분 컴파일 및 갱신', functionalRole: '개발 모드(HMR)에서 브라우저 새로고침 없이 즉각적인 스타일 핫 리로딩 제공' },
+              { state: 'Zero-Overhead Build (프로덕션 압축)', visualChange: '미사용 유틸리티 제거 후 4.5KB 단일 스타일시트로 압축', functionalRole: '최종 사용자에게 최초 로딩 지연(LCP 0.1초 미만) 없는 최적 렌더링 속도 보장' }
+            ]}
+            accessibility={[
+              { category: 'Performance Accessibility (저사양 기기 배려)', description: '경량화된 단일 CSS는 저사양 모바일 기기 및 열악한 네트워크 환경에서도 스타일 렌더링 병목 현상을 방지합니다.' },
+              { category: 'Layer Specificity (계층 안전성)', description: 'base, components, utilities 3레이어 격리를 통해 고대비 및 스크린 리더용 오버라이드 유틸리티가 충돌 없이 안전하게 우선 적용됩니다.' }
             ]}
             tokens={[
               { name: 'knds.config.js # prefix', defaultValue: "'knds-'", description: '클래스 네임스페이스 충돌 방지 접두사 설정' },
@@ -302,18 +326,32 @@ export default {
           </div>
 
           <HigSpecSection
+            overview={{
+              summary: 'CDN 정적 링크(Mode A)와 온디맨드 NPM 파이프라인(Mode B)을 지원하여 프론트엔드 환경 제약 없이 즉시 통합되는 셋업 규격입니다.',
+              purpose: '초기 프로토타이핑부터 엔터프라이즈 프로덕션 환경까지, 복잡한 보일러플레이트 없이 KNDS의 물리-디지털 융합 UI를 즉시 가동합니다.'
+            }}
             anatomy={[
-              { id: 'in-1', name: 'CDN & Starter Templates', tokenOrClass: 'template/starter-html & template/starter-vite', description: '단 한 줄의 link 태그나 GitHub 템플릿 클론으로 즉각 구동되는 초경량 셋업' }
+              { id: 'in-1', name: 'Mode A: CDN Static Linkage', tokenOrClass: 'https://cdn.jsdelivr.net/.../knds.css', description: '단 한 줄의 `<link>` 태그 선언만으로 빌드 체인 없이 즉각 구동되는 초경량 셋업' },
+              { id: 'in-2', name: 'Mode B: NPM Package & JIT CLI', tokenOrClass: '@knoblab/knds & PostCSS Plugin', description: 'AST 스캐닝과 온디맨드 유틸리티 트리를 생성하는 프로덕션 전용 바이너리' },
+              { id: 'in-3', name: 'Optional Attribution Badge', tokenOrClass: 'Made with KNDS Badge', description: '사이드바 또는 푸터 하단에 부착하여 디자인 시스템 출처와 정직성을 표시하는 컴포넌트' }
             ]}
             doDont={[
-              { type: 'do', title: 'GitHub Starter Template 활용', description: '신규 프로젝트 시작 시 저장소의 template/starter-vite 또는 template/starter-html 폴더를 복사하여 가장 빠른 보일러플레이트를 구성하십시오.', codeSnippet: 'cp -r template/starter-vite my-app' },
-              { type: 'dont', title: 'knds.css 내부 코드를 무단 수정하여 파편화 금지', description: '코어 CSS를 직접 수정하지 않고 CSS Custom Properties(:root 오버라이드)를 통해 안전하게 커스텀하십시오.', codeSnippet: '<!-- ❌ Avoid -->' }
+              { type: 'do', title: '프로덕션 웹앱에서는 Mode B(JIT CLI) 파이프라인 구축 권장', description: '임의 픽셀 값(`[...]`)과 반응형 분기(`hover:`, `sm:`) 및 최고 수준의 번들 최적화를 위해 NPM 패키지와 CLI 바이너리를 사용하세요.', codeSnippet: 'npx knds -o dist/output.min.css --minify' },
+              { type: 'dont', title: '타 CSS 프레임워크 리셋과의 임의 중첩 및 파편화 금지', description: 'Tailwind 등 타 CSS 프레임워크의 글로벌 리셋과 중복 로드하거나 knds.css 내부를 직접 수정하지 마세요. 스타일 우선순위 및 박스 모델 충돌이 발생합니다.', codeSnippet: '<!-- ❌ Avoid modifying core knds.css or mixing reset stylesheets -->' }
+            ]}
+            interactions={[
+              { state: 'Mode A (Zero-Build CDN)', visualChange: 'HTML `<head>` 선언 즉시 100여 개 핵심 UI 토큰 및 스타일 활성화', functionalRole: '별도의 Node.js 설치나 빌드 지연 없는 즉각적 시각화 및 디자인 검증' },
+              { state: 'Mode B (PostCSS Integration)', visualChange: 'Vite / Next.js 소스 코드 저장 시 15ms 내 트리 쉐이핑 및 핫 리로딩', functionalRole: '임의 속성 및 동적 뷰포트 변화에 실시간 대응하는 초정밀 빌드 결과물 반환' }
+            ]}
+            accessibility={[
+              { category: 'Network Fallback (장애 복구 보장)', description: '외부 CDN 유실 또는 열악한 네트워크 환경에 대비하여 프로덕션 배포 시에는 Mode B 로컬 번들링을 권장합니다.' },
+              { category: 'Zero-JS Dependency (순수 CSS 구동)', description: '자바스크립트 엔진 차단 환경 또는 화면 읽기 프로그램에서도 스타일과 계층 구조가 정상적으로 렌더링됩니다.' }
             ]}
             tokens={[
-              { name: 'Package Version', defaultValue: 'v1.0.0 (Pre-release)', description: 'KNDS 공식 배포 패키지 및 CDN 버전 관리' }
+              { name: 'Package Version', defaultValue: 'v1.0.0 (Stable)', description: 'KNDS 공식 배포 NPM 패키지 및 CDN 버전 관리표' }
             ]}
             responsiveRules={[
-              '제로 번들 부하: CDN 사용 시 Gzip 압축 기준 8KB 미만의 극소 용량으로 초기 페이지 로딩 속도를 극대화합니다.'
+              '제로 번들 부하: CDN 사용 시 Gzip 압축 기준 8KB 미만의 극소 용량으로 LCP 및 초기 렌더링 속도를 최적화합니다.'
             ]}
           />
         </section>
@@ -346,13 +384,25 @@ export default {
           </div>
 
           <HigSpecSection
+            overview={{
+              summary: '물리적 설계 도면에서 착안한 24px 청사진 그리드(`.knds-grid-bg`)와 8px 기하학적 배수 여백 스케일(`--space-100` ~ `800`) 시스템입니다.',
+              purpose: '시각적 리듬(Visual Rhythm)과 레이아웃의 수학적 질서를 확립하여, 화면 구성 요소 간의 간격을 예측 가능하고 일관성 있게 통제합니다.'
+            }}
             anatomy={[
-              { id: 'sp-1', name: 'Blueprint Grid Canvas (.knds-grid-bg)', tokenOrClass: '--blueprint-grid-pattern', description: '24px x 24px 간격의 하이 테크닉 청사진 그리드 배경 도화지' },
-              { id: 'sp-2', name: 'Spacing Utilities (.knds-p-*, .knds-m-*)', tokenOrClass: '--space-100 to --space-800', description: '8px 배수에 기반한 기하학적 패딩 및 마진 클래스' }
+              { id: 'sp-1', name: 'Blueprint Grid Canvas (.knds-grid-bg)', tokenOrClass: '--blueprint-grid-pattern', description: '24px x 24px 간격으로 정밀 교차하는 하이 테크닉 청사진 그리드 배경 도화지' },
+              { id: 'sp-2', name: 'Spacing Utilities (.knds-p-*, .knds-m-*)', tokenOrClass: '--space-100 to --space-800', description: '8px 배수 체계에 기반한 기하학적 패딩 및 마진 제어 클래스' }
             ]}
             doDont={[
-              { type: 'do', title: '8px 기하학적 여백 스케일 사용', description: '여백은 항상 --space-100(8px), --space-200(16px), --space-300(24px) 등의 표준 스케일을 준수하여 요소를 배치하십시오.', codeSnippet: '<div class="knds-p-300 knds-gap-200">...</div>' },
-              { type: 'dont', title: '비정형 임의 픽셀 하드코딩 금지', description: '7px, 13px 등 비표준 픽셀을 인라인 스타일이나 임의 CSS로 부여하면 시각적 리듬이 깨지게 됩니다.', codeSnippet: '<!-- ❌ Avoid -->\n<div style="padding: 13px; margin-top: 27px;">...</div>' }
+              { type: 'do', title: '8px 기하학적 여백 스케일(Spacing Scale) 준수', description: '여백은 항상 --space-100(8px), --space-200(16px), --space-300(24px) 등의 표준 배수 스케일을 준수하여 요소를 배치하세요.', codeSnippet: '<div class="knds-p-300 knds-gap-200">...</div>' },
+              { type: 'dont', title: '7px, 13px 등 비정형 임의 픽셀 하드코딩 금지', description: '표준 격자에 어긋나는 비정형 홀수 픽셀을 인라인 스타일이나 임의 CSS로 부여하지 마세요. 화면 전체의 시각적 리듬이 파괴됩니다.', codeSnippet: '<!-- ❌ Avoid -->\n<div style="padding: 13px; margin-top: 27px;">...</div>' }
+            ]}
+            interactions={[
+              { state: 'Desktop Spacing (>= 1200px)', visualChange: '--space-400(32px) ~ --space-600(48px)의 대형 간격 확장', functionalRole: '넓은 뷰포트에서 정보 그룹 간의 독립성과 구조적 숨통(White Space) 확보' },
+              { state: 'Mobile Compression (< 1199px)', visualChange: '대형 간격을 --space-200(16px) 또는 --space-300(24px)으로 자동 수축', functionalRole: '제한된 모바일 스크린 내에서 콘텐츠 밀도를 최적화하고 터치 도달 범위 유지' }
+            ]}
+            accessibility={[
+              { category: 'Dynamic Type (폰트 확대 유연성)', description: '브라우저 폰트 확대(200% 등) 시에도 8px 여백 그리드가 텍스트 블록과 충돌하거나 잘리지 않도록 유연한 박스 모델을 제공합니다.' },
+              { category: 'Grid Contrast (그리드 명도 제어)', description: '청사진 그리드 배경 패턴(`.knds-grid-bg`)은 배경과의 명도 대비를 10%~15% 이하로 유지하여 본문 텍스트의 판독성을 방해하지 않습니다.' }
             ]}
             tokens={[
               { name: '--space-100', defaultValue: '8px', description: '컴포넌트 내부 아이콘과 텍스트 또는 뱃지 간의 최소 간격' },
@@ -461,13 +511,25 @@ export default {
           </div>
 
           <HigSpecSection
+            overview={{
+              summary: '네오 그로테스크 산세리프 서체(Pretendard)와 고정폭 서체(JetBrains Mono)로 이원화된 정밀 타이포그래피 시스템입니다.',
+              purpose: '감정적인 장식 서체를 배제하고 명확한 정보 위계(Hierarchy)와 최고 수준의 판독성(Legibility)을 달성하여 사용자의 정보 인지 속도를 극대화합니다.'
+            }}
             anatomy={[
-              { id: 'ty-1', name: 'Heading Hierarchy (.knds-text-heading-*)', tokenOrClass: '--font-sans (Pretendard)', description: '72px, 32px, 24px의 엄격한 무게감(700~800 weight)과 타이트한 자간(-0.02em)' },
-              { id: 'ty-2', name: 'Monospace Data Labels (.knds-text-label-*-mono)', tokenOrClass: '--font-mono (JetBrains Mono)', description: '숫자, 상태값, 시스템 로그를 위한 고정폭 기하학적 폰트 및 다국어 Pretendard 자동 폴백' }
+              { id: 'ty-1', name: 'Heading Hierarchy (.knds-text-heading-*)', tokenOrClass: '--font-sans (Pretendard)', description: '72px, 32px, 24px의 엄격한 무게감(700~800 weight)과 타이트한 자간(-0.02em)으로 화면 내 최고 위계 설정' },
+              { id: 'ty-2', name: 'Monospace Data Labels (.knds-text-label-*-mono)', tokenOrClass: '--font-mono (JetBrains Mono)', description: '숫자, 상태값, 시스템 로그를 위한 고정폭 기하학적 폰트 및 다국어 Pretendard 자동 폴백 시스템' }
             ]}
             doDont={[
-              { type: 'do', title: '계층화된 타이포그래피 스케일 엄수', description: '화면의 제목과 라벨은 사전에 정의된 72px, 32px, 24px, 16px, 14px 스케일 내에서 선택해야 합니다.', codeSnippet: '<h1 class="knds-text-heading-32">Title</h1>\n<p class="knds-text-copy-14">Body text</p>' },
-              { type: 'dont', title: '문장 전체를 Mono 폰트로 장문 작성 금지', description: 'JetBrains Mono 고정폭 서체는 2줄 이상의 일반 산문 본문에 사용할 시 판독성이 급격히 떨어지므로 금지됩니다.', codeSnippet: '<!-- ❌ Avoid -->\n<p class="knds-text-copy-13-mono">이 긴 단락은 모노스페이스로 작성되면 안 됩니다...</p>' }
+              { type: 'do', title: '계층화된 타이포그래피 스케일 및 위계 엄수', description: '화면의 제목과 라벨은 사전에 정의된 72px, 32px, 24px, 16px, 14px 스케일 내에서 선택하여 정보의 중요도에 맞는 위계를 설정하세요.', codeSnippet: '<h1 class="knds-text-heading-32">Title</h1>\n<p class="knds-text-copy-14">Body text</p>' },
+              { type: 'dont', title: '2줄 이상의 산문 본문에 고정폭(Mono) 폰트 남용 금지', description: 'JetBrains Mono 고정폭 서체를 일반 본문 단락(Copy text) 전체에 사용하지 마세요. 균일 자간으로 인해 단어 판독성과 시선 이동이 저하됩니다.', codeSnippet: '<!-- ❌ Avoid -->\n<p class="knds-text-copy-13-mono">이 긴 단락은 모노스페이스로 작성되면 안 됩니다...</p>' }
+            ]}
+            interactions={[
+              { state: 'Multilingual Fallback (다국어 혼용)', visualChange: '영문/숫자는 JetBrains Mono, 한글 및 기타 언어는 Pretendard로 실시간 자동 매칭', functionalRole: 'API 키나 날짜 표기 시 숫자 기하 정렬을 유지하면서 한글 설명이 깨짐 없이 부드럽게 렌더링' },
+              { state: 'Responsive Scaling (헤딩 수축)', visualChange: '72px 히어로 타이틀(`.knds-text-heading-72`)이 모바일(< 1199px)에서 36~48px로 자동 적응', functionalRole: '작은 화면에서 텍스트 줄바꿈 폭주를 막고 뷰포트 가로 넘침(Overflow) 방지' }
+            ]}
+            accessibility={[
+              { category: 'Screen Reader Hierarchy (시맨틱 구조화)', description: '시각적 헤딩 크기와 HTML 시맨틱 태그(`<h1>` ~ `<h4>`)를 일치시켜 스크린 리더(VoiceOver) 사용자에게 올바른 문서 계층 구조를 안내하세요.' },
+              { category: 'Line Height & Spacing (줄 간격 접근성)', description: '본문 텍스트는 최소 1.5배, 헤딩은 1.25배 이상의 줄 간격(Line Height)을 확보하여 난독증 및 저시력 사용자의 텍스트 중첩 오류를 방지합니다.' }
             ]}
             tokens={[
               { name: '--font-sans', defaultValue: '"Pretendard Variable", -apple-system, sans-serif', description: '기본 네오 그로테스크 산세리프 서체 스택' },
@@ -540,13 +602,26 @@ export default {
           />
 
           <HigSpecSection
+            overview={{
+              summary: '순도 높은 아크로매틱 고대비(#09090B ~ #FFFFFF) 토대 위에 유일한 액션 유도 색상인 펑셔널 레드(#AD1D1D)를 결합한 색상 체계입니다.',
+              purpose: '불필요한 색상 간섭을 모두 제거하여 화면의 시각적 피로도를 최소화하고, 사용자가 실행해야 할 명확한 목표 지점(Primary Action)으로 시선을 즉시 인도합니다.'
+            }}
             anatomy={[
-              { id: 'co-1', name: 'Achromatic Background & Borders', tokenOrClass: '--color-bg-primary, --color-border-default', description: '#FFFFFF ~ #09090B 간의 순도 높은 극대 대비와 #E4E4E7 경계선' },
-              { id: 'co-2', name: 'Functional Red Accent', tokenOrClass: '--color-functional-red (#AD1D1D)', description: '화면 내 핵심 인터랙션(Primary Action) 및 위급 경고에만 투입되는 유일한 컬러 포인트' }
+              { id: 'co-1', name: 'Achromatic Surface & Borders', tokenOrClass: '--color-bg-primary, --color-border-default', description: '#FFFFFF ~ #09090B 간의 순도 높은 극대 대비 도화지와 #E4E4E7 구조 분기 경계선' },
+              { id: 'co-2', name: 'Functional Red Accent', tokenOrClass: '--color-functional-red (#AD1D1D)', description: '화면 내 핵심 인터랙션(Primary Call to Action) 및 위급 경고에만 투입되는 유일한 유채색 포인트' }
             ]}
             doDont={[
-              { type: 'do', title: 'Functional Red의 희소성 보존', description: '화면당 펑셔널 레드 요소는 Primary 버튼 및 핵심 뱃지 포함 1~3개 이내로 제한하여 액션 시선을 집중시키십시오.', codeSnippet: '<button class="knds-btn-primary">유일한 핵심 액션</button>' },
-              { type: 'dont', title: '파스텔톤, 임의의 블루/그린 등 장식 컬러 혼합 금지', description: 'KNDS의 고대비 물리 아크로매틱 톤앤매너를 훼손하는 임의의 유채색 장식 사용을 금합니다.', codeSnippet: '<!-- ❌ Avoid -->\n<div style="background: #3B82F6; color: white;">...</div>' }
+              { type: 'do', title: 'Functional Red(#AD1D1D)의 극단적 희소성 보존', description: '화면당 펑셔널 레드 요소는 Primary 버튼 및 핵심 상태 뱃지를 포함하여 1~3개 이내로 제한하여 액션 어포던스(Affordance)를 집중시키세요.', codeSnippet: '<button class="knds-btn-primary">유일한 핵심 실행 액션</button>' },
+              { type: 'dont', title: '파스텔/네온, 블루/그린 등 임의의 장식 컬러 혼합 금지', description: 'KNDS의 물리 아크로매틱 톤앤매너를 훼손하는 타 유채색을 장식 목적으로 섞지 마세요. 시각적 계층과 조작 정직성이 무너집니다.', codeSnippet: '<!-- ❌ Avoid -->\n<div style="background: #3B82F6; color: white;">...</div>' }
+            ]}
+            interactions={[
+              { state: 'Hover State (마우스 오버)', visualChange: '--color-red-hover (#C21F1F)로 명도 상승', functionalRole: '조작 기판 버튼의 반응 준비 상태 및 커서 도달 피드백' },
+              { state: 'Active State (가압 상호작용)', visualChange: '--color-red-active (#941a1a)로 짙은 압착 및 색상 침잠', functionalRole: '물리적 버튼 스위치가 바닥까지 완전히 눌렸음을 촉각/시각적으로 인지' },
+              { state: 'Dark Mode Inversion (테마 반전)', visualChange: '#FFFFFF 도화지가 #09090B로 전환되며 경계선은 #27272A로 동기화', functionalRole: '저조도 환경에서 눈부심 방지 및 동일한 계층 대비 유지' }
+            ]}
+            accessibility={[
+              { category: 'WCAG AA 4.5:1 Contrast Ratio (명도 대비)', description: '본문 텍스트와 배경 간의 대비는 언제나 WCAG AA 최소 기준(4.5:1) 및 AAA(7:1)를 충족하여 저시력 사용자에게도 선명한 읽기 환경을 보장합니다.' },
+              { category: 'Color Blindness Safe (색약 배려)', description: '색상 단독으로만 상태를 표기하지 마세요. 에러나 경고는 항상 텍스트 라벨(`OVERHEAT`, `ERROR`)과 아이콘(`⚠️`)을 병기하여 색각 이상 사용자도 상태를 파악할 수 있도록 해야 합니다.' }
             ]}
             tokens={[
               { name: '--color-bg-primary', defaultValue: '#ffffff', darkValue: '#09090b', description: '최상위 도화지 및 패널 기본 배경색' },
@@ -600,16 +675,28 @@ export default {
           <CodeExport />
 
           <HigSpecSection
+            overview={{
+              summary: '하드웨어 표면의 정밀 음각/양각 베벨(`.knds-panel`)과 광학 반투명 글래스(`backdrop-filter`) 효과로 화면의 깊이(Elevation)를 구분하는 재질 시스템입니다.',
+              purpose: '단순한 평면을 넘어 물리적 표면 간의 깊이와 전후 관계를 명확히 하여, 사용자가 어떤 창을 제어 중인지 즉각적으로 인지할 수 있도록 돕습니다.'
+            }}
             anatomy={[
-              { id: 'ma-1', name: 'Standard Bevel Surface (.knds-panel)', tokenOrClass: '--shadow-hardware-bevel', description: '상단 1px 화이트 하이라이트와 하단 보더 그림자가 만드는 물리적 표면' },
-              { id: 'ma-2', name: 'Frosted Glass Layer (.knds-sidebar / .knds-overlay)', tokenOrClass: 'backdrop-filter: blur(24px) saturate(180%)', description: '하위 레이어의 그리드와 색상을 은은하게 투과시키는 광학 유리 효과' }
+              { id: 'ma-1', name: 'Standard Bevel Surface (.knds-panel)', tokenOrClass: '--shadow-hardware-bevel', description: '상단 1px 화이트 하이라이트와 하단 보더 음영이 결합하여 만드는 정밀 물리 표면' },
+              { id: 'ma-2', name: 'Frosted Glass Layer (.knds-sidebar / .knds-overlay)', tokenOrClass: 'backdrop-filter: blur(24px) saturate(180%)', description: '하위 레이어의 청사진 그리드와 색상을 은은하게 투과시키는 광학 반투명 유리 효과' }
             ]}
             doDont={[
-              { type: 'do', title: '계층별 머티리얼 고유 역할 존중', description: '기본 정보 표면에는 .knds-panel을, 고정 헤더나 사이드바 네비게이션에는 반투명 블러 머티리얼을 적용하여 깊이 단계를 부여하십시오.', codeSnippet: '<div class="knds-panel">...</div>' },
-              { type: 'dont', title: '블러 레이어의 과도한 중첩 금지', description: 'backdrop-filter가 적용된 요소를 3겹 이상 중첩하면 GPU 연산 부하가 발생하고 표면 투명도가 혼탁해지므로 지양하십시오.', codeSnippet: '<!-- ❌ Avoid -->\n<div style="backdrop-filter:blur(24px)">\n  <div style="backdrop-filter:blur(24px)">...</div>\n</div>' }
+              { type: 'do', title: '계층 위계에 따른 적합한 머티리얼 부여', description: '본문 정보 표면에는 불투명 고대비 `.knds-panel`을, 부유하는 네비게이션이나 모달 오버레이에는 반투명 블러 머티리얼을 적용하여 깊이 단계를 설계하세요.', codeSnippet: '<div class="knds-panel knds-p-300">본문 하드웨어 표면</div>' },
+              { type: 'dont', title: '블러(`backdrop-filter`) 레이어 3중 이상 중첩 금지', description: '블러 필터가 적용된 요소를 3겹 이상 겹치지 마세요. GPU 연산 부하가 심화되고 배경 투명도가 혼탁해져 계층 판독성이 저하됩니다.', codeSnippet: '<!-- ❌ Avoid -->\n<div style="backdrop-filter:blur(24px)">\n  <div style="backdrop-filter:blur(24px)">...</div>\n</div>' }
+            ]}
+            interactions={[
+              { state: 'Scroll Transparency (스크롤 투과)', visualChange: '콘텐츠가 네비게이션/사이드바 밑을 지날 때 빛과 형태가 은은하게 굴절되어 표시', functionalRole: '전체 화면 문맥(Context)을 잃지 않으면서 현재 상단 레이어에 시선을 유지하게 하는 융합 효과' },
+              { state: 'Bevel Depression (가압 상태)', visualChange: '상단 1px 화이트 하이라이트 소멸 및 내측 음영(`inset`) 강화', functionalRole: '물리 기판이 섀시 아래로 안착되는 압착감을 시각화' }
+            ]}
+            accessibility={[
+              { category: 'Reduce Transparency (투명도 줄이기 대응)', description: 'OS 설정에서 투명도 줄이기 기능이 켜진 경우, `backdrop-filter`를 무효화하고 불투명 단색 배경(`#FFFFFF` / `#09090B`)으로 안전하게 폴백(Fallback)합니다.' },
+              { category: 'GPU Performance (렌더링 최적화)', description: '모바일 및 저사양 기기에서 60fps 스크롤 성능을 유지하기 위해 뷰포트 영역 바깥의 불필요한 블러 렌더링을 자동 차단합니다.' }
             ]}
             tokens={[
-              { name: '--shadow-hardware-bevel', defaultValue: 'inset 0 1px 0 rgba(255, 255, 255, 1)...', darkValue: 'inset 0 1px 0 rgba(255, 255, 255, 0.05)...', description: '표면 상단 하이라이트 및 음영 콤비네이션' },
+              { name: '--shadow-hardware-bevel', defaultValue: 'inset 0 1px 0 rgba(255, 255, 255, 1)...', darkValue: 'inset 0 1px 0 rgba(255, 255, 255, 0.05)...', description: '표면 상단 빛 반사 및 하단 그림자 공식' },
               { name: '--bg-sidebar', defaultValue: 'rgba(255, 255, 255, 0.65)', darkValue: 'rgba(9, 9, 11, 0.65)', description: '블러 효과와 결합되는 반투명 표면 토큰' }
             ]}
             responsiveRules={[
@@ -661,13 +748,27 @@ export default {
           />
 
           <HigSpecSection
+            overview={{
+              summary: '물리적 택타일 스위치의 촉각적 가압감을 모사하며, 조작 상태에 따라 캡슐에서 직사각형으로 변형(Morphing)되는 핵심 제어 컴포넌트입니다.',
+              purpose: '사용자의 커서나 터치가 진입하는 순간 직관적인 형태 변화를 보여줌으로써, 실행 가능한 상호작용 요소(Interactive Affordance)임을 명확히 각인시킵니다.'
+            }}
             anatomy={[
-              { id: 'bt-1', name: 'Primary Capsule-to-Rect Morphing Button (.knds-btn-primary)', tokenOrClass: '--btn-height: 44px, border-radius transition', description: 'Rest 시 곡률 calc(--btn-height / 2)의 알약 형태에서 Hover 시 14px, Active 시 8px로 수축하는 동역학 스위치' },
-              { id: 'bt-2', name: 'Secondary Monospace Hardware Button (.knds-secondary-btn)', tokenOrClass: 'border: 1px solid --color-border-default', description: 'JetBrains Mono 13px 기반의 정밀 기기 보조 조작 버튼' }
+              { id: 'bt-1', name: 'Primary Capsule-to-Rect Morphing Button (.knds-btn-primary)', tokenOrClass: '--btn-height: 44px, border-radius transition', description: 'Rest 시 완전 원형(Capsule, 9999px)에서 Hover 시 14px, Active 시 8px 반경으로 동역학 수축하는 스위치' },
+              { id: 'bt-2', name: 'Secondary Monospace Hardware Button (.knds-secondary-btn)', tokenOrClass: 'border: 1px solid --color-border-default', description: 'JetBrains Mono 13px 고정폭 폰트 기반의 보조 제어 및 시스템 기능 실행 버튼' }
             ]}
             doDont={[
-              { type: 'do', title: '버튼 사이즈와 인풋 사이즈 1:1 수평 대응', description: '폼 요소 배치 시 .knds-btn-md(44px)와 .knds-input-md(44px)를 일치시켜 하드웨어 기판처럼 단정한 수평선을 만드십시오.', codeSnippet: '<div class="knds-flex-row knds-gap-100">\n  <input class="knds-input knds-input-md" />\n  <button class="knds-btn-primary knds-btn-md">SEND</button>\n</div>' },
-              { type: 'dont', title: '한 섹션 내 Primary 버튼 다중 병치 금지', description: '사용자의 판단을 흐리게 하는 2개 이상의 Primary Red 버튼 동시 노출을 피하고 보조 버튼으로 위계를 분리하십시오.', codeSnippet: '<!-- ❌ Avoid -->\n<button class="knds-btn-primary">Save</button>\n<button class="knds-btn-primary">Delete</button>' }
+              { type: 'do', title: '버튼 높이와 인풋 높이의 1:1 수평 대응', description: '폼 요소 배치 시 `.knds-btn-md(44px)`와 `.knds-input-md(44px)`를 일치시켜 하드웨어 제어 기판처럼 단정한 수평 축선을 구축하세요.', codeSnippet: '<div class="knds-flex-row knds-gap-100">\n  <input class="knds-input knds-input-md" />\n  <button class="knds-btn-primary knds-btn-md">SEND</button>\n</div>' },
+              { type: 'dont', title: '동일 영역 내 Primary 버튼 다중 병치 금지', description: '사용자의 결정 시선을 분산시키는 2개 이상의 Primary 버튼 동시 노출을 피하세요. 주 행동(Primary)과 보조 행동(Secondary)으로 위계를 분리해야 합니다.', codeSnippet: '<!-- ❌ Avoid -->\n<button class="knds-btn-primary">Save</button>\n<button class="knds-btn-primary">Delete</button>' }
+            ]}
+            interactions={[
+              { state: 'Default State (Rest 상태)', visualChange: '아크로매틱 고대비 배경 + 9999px 완전 원형(Capsule) 캡슐 외곽선', functionalRole: '화면 내에서 대기 중인 독립 조작 스위치로서 시각적 안정성 제공' },
+              { state: 'Hover State (마우스 진입)', visualChange: '코너 반경이 14px로 날카롭게 수축하며 펑셔널 레드(#AD1D1D)로 색상 모핑', functionalRole: '조작 준비 완료 상태를 알리고 클릭에 대한 시각적 기대감 형성' },
+              { state: 'Active / Pressed (가압 상호작용)', visualChange: '코너 반경 8px 압축 + 0.98 스케일 다운 및 --color-red-active 적용', functionalRole: '스위치가 바닥까지 물리적으로 눌렸음을 나타내는 촉각 에너지 반환' },
+              { state: 'Disabled State (비활성화)', visualChange: '투명도(`opacity: 0.4`) 저하 및 마우스 포인터 차단(`cursor: not-allowed`)', functionalRole: '현재 입력 조건 미충족 또는 시스템 제어 불가 상태 안내' }
+            ]}
+            accessibility={[
+              { category: 'Touch Target Minimum (44x44px 준수)', description: '모바일 및 터치 디바이스에서 손가락 터치 오류(Fat-finger error)를 방지하기 위해 최소 조작 영역 규격(`--btn-height: 44px`) 이상을 엄격히 유지하세요.' },
+              { category: 'Keyboard Focus Ring (키보드 접근성)', description: 'Tab 키 이동 시 2px 두께의 명확한 외부 포커스 링(`outline`)이 표시되어 마우스 없이도 버튼 위치를 식별하고 Enter/Space로 조작할 수 있습니다.' }
             ]}
             tokens={[
               { name: '--btn-height', defaultValue: '44px (MD)', description: '버튼 수직 높이 (XS: 32px, SM: 40px, MD: 44px, LG: 48px, XL: 56px)' },
@@ -718,16 +819,32 @@ export default {
           />
 
           <HigSpecSection
+            overview={{
+              summary: '사용자의 데이터를 정밀하게 입력받고 실시간 유효성 검증 결과를 직관적으로 반환하는 데이터 콘솔 폼 인터페이스입니다.',
+              purpose: '오입력 발생 가능성을 원천 차단하고, 입력 필드의 각 상호작용 상태(Focus, Error, Disabled)마다 명확한 시각 피드백을 전달하여 데이터 입력 정확성을 보장합니다.'
+            }}
             anatomy={[
-              { id: 'fo-1', name: 'Text & Select Control (.knds-input)', tokenOrClass: 'border: 1px solid --color-border-default', description: '8px 곡률 반경과 아크로매틱 1px 경계선을 갖는 정밀 입력기' },
-              { id: 'fo-2', name: 'Input Focus Ring (:focus)', tokenOrClass: 'box-shadow: 0 0 0 2px --color-border-hover', description: '포커스 진입 시 키보드 접근성을 보장하는 2px 아우터 링' }
+              { id: 'fo-1', name: 'Text & Select Control (.knds-input)', tokenOrClass: 'border: 1px solid --color-border-default', description: '6px 곡률 반경과 아크로매틱 1px 경계선을 갖는 정밀 입력 필드' },
+              { id: 'fo-2', name: 'Input Focus Ring (:focus)', tokenOrClass: 'box-shadow: 0 0 0 2px rgba(...)', description: '포커스 진입 시 키보드 및 마우스 조작 명확성을 담보하는 2px 아우터 링' },
+              { id: 'fo-3', name: 'Monospace Label (.knds-text-label-*-mono)', tokenOrClass: 'font-family: var(--font-mono)', description: '입력창 상단에 위치하여 데이터 속성명과 필수 입력 여부를 안내하는 고정폭 라벨' }
             ]}
             doDont={[
-              { type: 'do', title: '입력창 상단 고정폭 라벨 매칭', description: '모든 .knds-input 요소 상단에는 .knds-text-label-14-mono 라벨을 위치시켜 데이터 속성을 명확히 안내하십시오.', codeSnippet: '<label class="knds-text-label-14-mono">SYSTEM_ID</label>\n<input class="knds-input" />' },
-              { type: 'dont', title: '플레이스홀더를 라벨 대용으로 단독 사용 금지', description: '플레이스홀더(placeholder) 텍스트는 입력 시 사라지므로 필수 라벨을 대체할 수 없습니다.', codeSnippet: '<!-- ❌ Avoid -->\n<input class="knds-input" placeholder="라벨 없이 플레이스홀더만 사용" />' }
+              { type: 'do', title: '입력창 상단 고정폭 라벨 명시적 바인딩', description: '모든 `.knds-input` 요소 상단에는 `<label class="knds-text-label-14-mono">` 라벨을 명시적으로 바인딩(HTML `for`/`id`)하여 데이터 속성을 뚜렷하게 안내하세요.', codeSnippet: '<label for="sys-id" class="knds-text-label-14-mono">SYSTEM_ID</label>\n<input id="sys-id" class="knds-input" />' },
+              { type: 'dont', title: '플레이스홀더를 필수 라벨 대용으로 단독 사용 금지', description: '플레이스홀더(`placeholder`) 텍스트는 사용자가 타이핑을 시작하는 순간 사라지므로 필수 라벨을 절대 대체할 수 없습니다. 기억 부담(Cognitive load)을 가중시키지 마세요.', codeSnippet: '<!-- ❌ Avoid -->\n<input class="knds-input" placeholder="라벨 없이 플레이스홀더만 단독 기입" />' }
+            ]}
+            interactions={[
+              { state: 'Default State (Rest 상태)', visualChange: '1px `#E4E4E7` 아크로매틱 보더 및 `#FFFFFF` 배경', functionalRole: '사용자의 데이터 입력을 대기하는 기본 콘솔 필드' },
+              { state: 'Focus State (포커스 진입)', visualChange: '보더 색상이 `#09090B`로 짙어지며 2px 외곽 포커스 링 생성', functionalRole: '현재 타이핑 대상 필드임을 명확히 안내하여 시선 이탈 방지' },
+              { state: 'Error State (유효성 오류)', visualChange: '경계선이 펑셔널 레드(`knds-border-red`)로 바뀌며 에러 글로우 발산', functionalRole: '필수 항목 누락 또는 데이터 형식 오입력 시 즉각적인 경고 렌더링' },
+              { state: 'Disabled State (비활성화)', visualChange: '배경이 `#F4F4F5`로 전환되며 투명도(`opacity: 0.7`) 저하', functionalRole: '현재 권한 부족 또는 선행 조건 미결로 입력이 차단되었음을 표시' }
+            ]}
+            accessibility={[
+              { category: 'Explicit Labeling (`<label for>` 바인딩)', description: '스크린 리더(VoiceOver)가 입력 필드의 목적을 정확히 낭독할 수 있도록 HTML `<label>` 태그의 `for` 속성과 `<input>`의 `id`를 1:1로 일치시키세요.' },
+              { category: 'Error ARIA Announcement (`aria-invalid`)', description: '에러 상태 발생 시 `<input aria-invalid="true" aria-describedby="error-id">` 속성을 부여하여 시각 장애 사용자에게도 에러 발생 사유를 실시간 낭독합니다.' }
             ]}
             tokens={[
-              { name: '.knds-input', defaultValue: 'height: 44px, padding: 12px 16px', description: '표준 MD 입력 필드 높이 및 내부 여백' },
+              { name: '.knds-input', defaultValue: 'height: 44px, padding: 0 16px', description: '표준 MD 입력 필드 높이 및 내부 좌우 여백' },
+              { name: '.knds-input:focus', defaultValue: 'border-color: var(--color-text-primary)', description: '포커스 진입 시 강조되는 아크로매틱 텍스트 컬러 보더' },
               { name: '.knds-input:disabled', defaultValue: 'opacity: 0.7, background: var(--color-bg-secondary)', description: '입력 불가능 상태의 회색 반투명 비주얼' }
             ]}
             responsiveRules={[
@@ -773,13 +890,26 @@ export default {
           />
 
           <HigSpecSection
+            overview={{
+              summary: '사용자의 작업 흐름을 일시 중단하고 치명적 결정이나 필수 입력을 즉각적으로 유도하는 최상위 오버레이 다이얼로그 시스템입니다.',
+              purpose: '배경 인터랙션을 차단하고 심리적 집중도를 극대화하여, 데이터 삭제나 결제 승인과 같이 복구할 수 없는 주요 의사결정의 무게감을 전달합니다.'
+            }}
             anatomy={[
-              { id: 'mo-1', name: 'Modal Backdrop (.knds-overlay)', tokenOrClass: 'z-index: 998, backdrop-filter: blur(4px)', description: '배경 인터랙션을 차단하고 사용자의 시선을 다이얼로그로 집중시키는 암전 층' },
-              { id: 'mo-2', name: 'Elevated Hardware Dialog (.knds-panel)', tokenOrClass: 'z-index: 999, box-shadow: 0 20px 40px...', description: '최상위 레이어에 부유하는 고대비 하드웨어 다이얼로그 박스' }
+              { id: 'mo-1', name: 'Modal Backdrop Dim overlay (.knds-overlay)', tokenOrClass: 'z-index: 998, backdrop-filter: blur(4px)', description: '배경 상호작용을 완전 차단하고 사용자의 시선을 다이얼로그 콘솔로 유도하는 반투명 암전 층' },
+              { id: 'mo-2', name: 'Elevated Hardware Dialog (.knds-panel)', tokenOrClass: 'z-index: 999, box-shadow: 0 20px 40px...', description: '최상위 고대비 입체 섀도우를 안고 부유하는 정밀 다이얼로그 본체' },
+              { id: 'mo-3', name: 'Dialog Header & Action Footer', tokenOrClass: '.knds-border-bottom / .knds-border-top', description: '다이얼로그의 목적을 고지하는 타이틀 영역과 취소/실행 버튼이 위치한 조작 푸터' }
             ]}
             doDont={[
-              { type: 'do', title: '취소 버튼은 좌측, 확인 버튼은 우측 배치', description: '모달 푸터에서는 취소(Cancel)를 왼쪽, 실행(Confirm/Delete)을 오른쪽에 두어 OS 네이티브 버튼 패턴과 일치시키십시오.', codeSnippet: '<div class="knds-flex-row knds-justify-end knds-gap-100">\n  <button class="knds-secondary-btn">Cancel</button>\n  <button class="knds-btn-primary">Confirm</button>\n</div>' },
-              { type: 'dont', title: '다중 중첩 모달(Modal inside Modal) 금지', description: '모달 다이얼로그 위로 또 다른 모달이 뜨는 구조는 인지적 혼란을 초래하므로 금지됩니다.', codeSnippet: '<!-- ❌ Avoid -->' }
+              { type: 'do', title: '취소 버튼은 좌측, 실행 버튼은 우측 배치', description: '모달 푸터에서는 취소(Cancel)를 왼쪽, 실행(Confirm/Destructive)을 오른쪽에 두어 OS 네이티브 버튼 패턴과 일치시키세요.', codeSnippet: '<div class="knds-flex-row knds-justify-end knds-gap-100">\n  <button class="knds-secondary-btn">Cancel</button>\n  <button class="knds-btn-primary">Confirm</button>\n</div>' },
+              { type: 'dont', title: '다이얼로그 내부 다중 중첩 모달(Modal inside Modal) 금지', description: '모달 다이얼로그 위로 또 다른 모달을 중첩하여 띄우지 마세요. 사용자의 공간 인지 지도가 상실되고 포커스 트랩 충돌이 유발됩니다.', codeSnippet: '<!-- ❌ Avoid -->' }
+            ]}
+            interactions={[
+              { state: 'Open Transition (다이얼로그 진입)', visualChange: '배경 블러(`backdrop-filter: blur(4px)`) 암전과 함께 다이얼로그 0.95 -> 1.0 스케일 업 및 페이드 인', functionalRole: '사용자의 시선을 기존 페이지 작업에서 오버레이 다이얼로그로 부드럽게 전이' },
+              { state: 'Escape / Dismiss (다이얼로그 닫기)', visualChange: 'ESC 키 입력 또는 배경 백드롭 클릭 시 페이드 아웃 종료', functionalRole: '치명적 작업이 아닐 때 빠르고 손쉽게 원래 화면으로 복귀할 수 있는 탈출구 보장' }
+            ]}
+            accessibility={[
+              { category: 'Keyboard Focus Trap (포커스 트랩 보장)', description: '모달 활성화 시 Tab 키 이동 범위는 반드시 다이얼로그 내부의 입력창과 버튼으로만 제한(Focus Trap)되어야 합니다. 배경 요소로 포커스가 이탈하지 않도록 차단하세요.' },
+              { category: 'ESC Key & ARIA Dialog (`role="dialog"`)', description: '다이얼로그 컨테이너에 `role="dialog"`와 `aria-modal="true"`를 부여하고, ESC 키 감지 이벤트 리스너를 연동하여 접근성을 완벽히 충족하세요.' }
             ]}
             tokens={[
               { name: 'z-index: 998 / 999', defaultValue: '998 (Backdrop), 999 (Dialog)', description: '전체 화면 오버레이 및 모달 레이어 고정 인덱스' }
@@ -827,13 +957,26 @@ export default {
           />
 
           <HigSpecSection
+            overview={{
+              summary: '사용자가 복잡한 정보 체계 속에서 자신의 현재 위치를 혼동 없이 인지하고 계층 간을 빠르고 정확하게 이동하도록 돕는 네비게이션 트리 시스템입니다.',
+              purpose: '과도한 중첩 메뉴가 유발하는 미로화 현상을 방지하고, 좌측 3px 기능성 레드 엣지(`border-left`)를 통해 현재 활성 공간을 명명백백히 가리킵니다.'
+            }}
             anatomy={[
-              { id: 'na-1', name: 'Navigation Group Header (.knds-nav-group-header)', tokenOrClass: 'font-weight: 700, chevron toggle', description: '카테고리 폴더를 열고 닫는 아크로매틱 그룹 타이틀' },
-              { id: 'na-2', name: 'Active Indicator Item (.knds-nav-item.active)', tokenOrClass: 'border-left: 3px solid --color-functional-red', description: '현재 활성 페이지를 가리키는 좌측 3px 기능성 레드 엣지' }
+              { id: 'na-1', name: 'Navigation Group Header (.knds-nav-group-header)', tokenOrClass: 'font-weight: 700, chevron toggle', description: '카테고리 폴더를 열고 닫는 고대비 아크로매틱 그룹 타이틀' },
+              { id: 'na-2', name: 'Active Indicator Item (.knds-nav-item.active)', tokenOrClass: 'border-left: 3px solid --color-functional-red', description: '현재 활성 페이지를 시각적으로 확정 짓는 좌측 3px 기능성 레드 엣지' },
+              { id: 'na-3', name: 'Nested Sub-item (.knds-nav-subitem)', tokenOrClass: 'padding-left: var(--space-400)', description: '상위 그룹 하위에 속한 2뎁스 상세 항목을 나타내는 인덴트 계층' }
             ]}
             doDont={[
-              { type: 'do', title: '현재 위치의 명확한 시각적 표지', description: '사용자가 어느 페이지에 있는지 1초 내로 파악할 수 있도록 active 클래스와 기능성 레드 인디케이터를 반드시 부여하십시오.', codeSnippet: '<div class="knds-nav-item active">...</div>' },
-              { type: 'dont', title: '3단계 이상 깊은 중첩 네비게이션 금지', description: '메뉴 하위에 하위 메뉴, 그 하위에 또 하위 메뉴가 열리는 복잡한 트리 구조는 인지 피로를 높이므로 2뎁스 이내로 수평화하십시오.', codeSnippet: '<!-- ❌ Avoid -->' }
+              { type: 'do', title: '현재 위치의 명시적 인디케이터 표지', description: '사용자가 어느 페이지에 체류 중인지 단 1초 만에 파악할 수 있도록 `.active` 클래스와 좌측 기능성 레드 엣지를 반드시 매칭하세요.', codeSnippet: '<div class="knds-nav-item active">현재 체류 페이지</div>' },
+              { type: 'dont', title: '3단계 이상 깊은 중첩(3-Depth+) 네비게이션 금지', description: '메뉴 하위에 하위 메뉴, 그 하위에 또 하위 폴더가 열리는 트리 구조를 만들지 마세요. 사용자의 기억 한계를 초과하므로 2뎁스 이내로 수평화해야 합니다.', codeSnippet: '<!-- ❌ Avoid -->' }
+            ]}
+            interactions={[
+              { state: 'Hover State (마우스 오버)', visualChange: '배경색이 `--color-bg-secondary`(`#F4F4F5`)로 전환되어 반응성 제공', functionalRole: '클릭 가능한 네비게이션 대상임을 안내하여 선택 정확도를 높임' },
+              { state: 'Accordion Toggle (그룹 폴더 개폐)', visualChange: '우측 셰브론(Chevron) 아이콘 90도 회전 및 하위 목록 부드러운 슬라이드 애니메이션', functionalRole: '방대한 페이지 목록을 필요할 때만 펼쳐 보여줌으로써 좌측 패널 정보 과부하 방지' }
+            ]}
+            accessibility={[
+              { category: 'Current Page ARIA Marker (`aria-current="page"`)', description: '현재 선택된 네비게이션 항목에는 시각적 레드 엣지 외에도 HTML `aria-current="page"` 속성을 반드시 부착하여 스크린 리더 사용자의 위치 파악을 지원하세요.' },
+              { category: 'Keyboard Arrow Navigation (방향키 조작)', description: 'Tab 키 이동뿐 아니라 위/아래 방향키(`ArrowUp`/`ArrowDown`)를 통해 네비게이션 항목 간을 고속으로 순회할 수 있는 키보드 단축 탐색을 보장합니다.' }
             ]}
             tokens={[
               { name: '.knds-nav-item.active', defaultValue: 'background: var(--color-bg-secondary), border-left: 3px solid #AD1D1D', description: '선택된 네비게이션 항목의 스타일 공식' }
@@ -884,14 +1027,26 @@ export default {
           />
 
           <HigSpecSection
+            overview={{
+              summary: '대칭적 1:1 분할을 타파하고, 25(좌측 제어 기판) : 75(우측 작업 도화지) 비대칭 황금 분할을 기본 표준으로 하는 데스크톱 워크스페이스 구조입니다.',
+              purpose: '좌측 패널에서 탐색과 인덱싱을 고정하고 우측 75%의 광활한 영역에 본문 데이터와 조작 집중도를 몰입시켜, 인지 분산 없는 최고의 생산성을 달성합니다.'
+            }}
             anatomy={[
-              { id: 'sp-pc-1', name: 'Asymmetric 25% Sidebar (.knds-sidebar)', tokenOrClass: 'width: 25% / min-width: 280px', description: '네비게이션, 인덱스, 메타 정보를 담는 좌측 하드웨어 컨트롤 기판' },
-              { id: 'sp-pc-2', name: '75% Main Content Workspace (.knds-main-view)', tokenOrClass: 'width: 75% / overflow-y: auto', description: '사용자의 실제 본문 작업이 이루어지는 광활한 우측 도화지 영역' },
-              { id: 'sp-pc-3', name: 'Draggable Splitter Bar (.knds-splitter)', tokenOrClass: 'width: 4px, cursor: col-resize', description: '두 영역의 경계를 분리하며 사용자가 너비를 미세 조정할 수 있는 1px 액센트 바' }
+              { id: 'sp-pc-1', name: 'Asymmetric 25% Control Sidebar (.knds-sidebar)', tokenOrClass: 'width: 25% / min-width: 280px', description: '네비게이션 트리, 시스템 상태, 계층 인덱스를 수용하는 좌측 하드웨어 기판' },
+              { id: 'sp-pc-2', name: '75% Main Content Workspace (.knds-main-view)', tokenOrClass: 'width: 75% / overflow-y: auto', description: '사용자의 실제 본문 작업 및 데이터 제어가 이루어지는 광활한 우측 독립 도화지' },
+              { id: 'sp-pc-3', name: 'Draggable Splitter Bar (.knds-splitter)', tokenOrClass: 'width: 4px, cursor: col-resize', description: '두 영역의 경계선을 분리하며 사용자가 마우스 드래그로 너비를 미세 조정할 수 있는 4px 액센트 바' }
             ]}
             doDont={[
-              { type: 'do', title: '25:75 비대칭 황금 분할 원칙 준수', description: '데스크톱 화면에서 좌측은 25% (280px~360px), 우측은 75% 비율을 유지하여 시각적 밸런스를 달성하십시오.', codeSnippet: '<aside class="knds-w-1/4">...</aside>\n<main class="knds-w-3/4">...</main>' },
-              { type: 'dont', title: '50:50 대칭 분할이나 4개 이상 과도한 수직 컬럼 분열 금지', description: '50:50 분할은 화면 주인공(Main View)의 집중도를 떨어뜨리고 시선을 산만하게 만듭니다.', codeSnippet: '<!-- ❌ Avoid -->\n<div class="knds-w-1/2">Side</div>\n<div class="knds-w-1/2">Main</div>' }
+              { type: 'do', title: '25:75 비대칭 황금 분할 비율 원칙 고수', description: '데스크톱 화면에서 좌측 패널은 25%(`min-width: 280px` ~ `max-width: 400px`), 우측 본문은 75% 비율을 엄격히 유지하여 시각적 안정감을 확립하세요.', codeSnippet: '<aside class="knds-w-1/4">좌측 탐색 기판</aside>\n<main class="knds-w-3/4">우측 본문 도화지</main>' },
+              { type: 'dont', title: '50:50 대칭 분할 및 4개 이상의 과도한 수직 컬럼 분열 금지', description: '50:50 비율 분할은 화면의 주인공(Main View)을 모호하게 만들며, 4개 이상으로 쪼개진 수직 컬럼은 뷰포트 여백을 훼손하므로 금지됩니다.', codeSnippet: '<!-- ❌ Avoid -->\n<div class="knds-w-1/2">Side</div>\n<div class="knds-w-1/2">Main</div>' }
+            ]}
+            interactions={[
+              { state: 'Splitter Hover (경계 바 진입)', visualChange: '4px 분할 바의 색상이 `--color-border-default`에서 `--color-functional-red`(`#AD1D1D`)로 즉시 모핑', functionalRole: '좌우 패널 너비 조정을 위해 드래그 가능한 제어 축선(Handle)임을 직관적으로 표시' },
+              { state: 'Drag Resize (실시간 영역 조정)', visualChange: '마우스 드래그 시 좌우 패널 너비가 실시간(`requestAnimationFrame`)으로 자연스럽게 리사이징', functionalRole: '사용자가 작업 콘텐츠나 코딩 뷰어의 너비에 맞춰 공간을 최적화할 수 있도록 지원' }
+            ]}
+            accessibility={[
+              { category: 'Keyboard Resizing (방향키 너비 조정)', description: '마우스 드래그를 사용할 수 없는 키보드 사용자를 위해 분할 바(`.knds-splitter`)가 포커스(`tabindex="0"`)를 받을 수 있도록 하고, `ArrowLeft`/`ArrowRight` 키로 10px 단위 조정을 지원하세요.' },
+              { category: 'Minimum Width Safeguard (최소 너비 방어)', description: '사이드바가 `280px` 미만으로 축소되거나 메인 영역이 `600px` 미만으로 찌그러지지 않도록 CSS `min-width` 방어막을 설정하여 텍스트 겹침 장애를 예방합니다.' }
             ]}
             tokens={[
               { name: '.knds-sidebar min-width', defaultValue: '280px (최소 너비 제한)', description: '사이드바 글자가 뭉개지지 않기 위한 최소 하강 한계치' },
@@ -928,13 +1083,26 @@ export default {
           </div>
 
           <HigSpecSection
+            overview={{
+              summary: '뷰포트 너비 1200px 미만에서 25:75 가로 분할을 무력화하고 100% 수직 스택(Vertical Stack)으로 구조를 재구획하는 모바일 적응 시스템입니다.',
+              purpose: '제한된 모바일 화면 폭(360px~430px)에서 수평 스크롤이나 요소 압축으로 인한 데이터 파손을 방지하고, 모든 조작 요소를 엄지손가락 도달 범위 내에 100% 안착시킵니다.'
+            }}
             anatomy={[
-              { id: 'mo-st-1', name: 'Mobile Header Toggle Bar (.knds-mobile-header)', tokenOrClass: 'height: 56px, display: none (PC) / flex (Mobile)', description: '모바일 화면 최상단에 등장하는 네비게이션 드로어 트리거 바' },
-              { id: 'mo-st-2', name: '100% Full Width Stack Container (.knds-main-view)', tokenOrClass: 'width: 100% (on mobile)', description: '모든 컴포넌트와 카드가 상하 수직으로 안전하게 정렬되는 모바일 뷰' }
+              { id: 'mo-st-1', name: 'Mobile Header Toggle Bar (.knds-mobile-header)', tokenOrClass: 'height: 56px, display: none (PC) / flex (Mobile)', description: '모바일 화면 최상단에 고정되어 사이드바를 바텀 드로어로 호출하는 트리거 바' },
+              { id: 'mo-st-2', name: '100% Full Width Stack Container (.knds-main-view)', tokenOrClass: 'width: 100% (on mobile)', description: '모든 데이터 표면과 패널이 상하 수직 흐름으로 안전하게 재배치되는 독립 도화지' },
+              { id: 'mo-st-3', name: 'Bottom Drawer Sheet (.knds-bottom-drawer)', tokenOrClass: 'position: fixed, bottom: 0', description: '메뉴 버튼 클릭 시 하단에서 부드럽게 상승하여 네비게이션 트리를 노출하는 슬라이딩 시트' }
             ]}
             doDont={[
-              { type: 'do', title: '모바일 터치 타겟 최소 44x44px 이상 확보', description: '모바일 스택킹 전환 시 모든 버튼과 탭 항목은 최소 44px 이상의 수직 높이를 유지하여 터치 오작동을 방지하십시오.', codeSnippet: '<button class="knds-btn-primary knds-w-full knds-btn-md">TOUCH TARGET OK</button>' },
-              { type: 'dont', title: '모바일에서 수평 스크롤이 발생하는 테이블이나 고정 너비 강제 금지', description: '모바일 화면 너비(360~430px)를 초과하는 고정 너비 요소(예: min-width: 600px)를 방치하여 좌우 스크롤이 생기게 하면 안 됩니다.', codeSnippet: '<!-- ❌ Avoid -->' }
+              { type: 'do', title: '모바일 터치 타겟 최소 44x44px(권장 48px) 엄수', description: '모바일 스택 전환 시 모든 상호작용 버튼과 네비게이션 항목은 최소 44px 이상의 수직 높이를 유지하여 터치 오버랩(Touch overlap) 오류를 방지하세요.', codeSnippet: '<button class="knds-btn-primary knds-w-full knds-btn-md">TOUCH TARGET OK (44px+)</button>' },
+              { type: 'dont', title: '모바일 뷰포트를 초과하는 고정 너비 및 수평 스크롤 강제 금지', description: '모바일 화면 너비를 넘어서는 고정 너비(예: `width: 600px`)를 방치하여 좌우 수평 스크롤 바가 나타나게 하지 마세요. 사용자의 읽기 흐름이 절단됩니다.', codeSnippet: '<!-- ❌ Avoid -->' }
+            ]}
+            interactions={[
+              { state: 'Drawer Slide-up (하단 메뉴 호출)', visualChange: '배경 암전과 함께 하단에서 시트가 상승(`transform: translateY(0)`)하며 상단에 드래그 핸들 노출', functionalRole: '한 손 조작(One-handed use) 환경에서 화면 상단 끝까지 손가락을 뻗지 않고도 메뉴에 접근' },
+              { state: 'Swipe Down Dismiss (스와이프 닫기)', visualChange: '시트 상단 드래그 또는 아래로 스와이프 제스처 시 하단으로 다시 매끄럽게 퇴장', functionalRole: '직관적인 물리 법칙 제스처를 통해 부드러운 화면 이탈 경험 제공' }
+            ]}
+            accessibility={[
+              { category: 'Thumb Zone Optimization (엄지 도달 영역 최적화)', description: '화면 하단 1/3 영역에 핵심 액션(`Primary Button`)을 집중 배치하여, 모바일 기기 파지 시 엄지손가락 피로도와 조작 오류율을 극소화합니다.' },
+              { category: 'No Viewport Pinch-Zoom Lock (확대 차단 금지)', description: '저시력 사용자가 화면을 터치 제스처로 확대할 수 있도록 `<meta name="viewport" content="... user-scalable=no">` 설정을 금지하고 자유로운 줌인/아웃을 보장하세요.' }
             ]}
             tokens={[
               { name: 'Mobile Breakpoint', defaultValue: 'max-width: 1199px', description: '스플릿 스크린에서 수직 모바일 스택으로 전환되는 미디어 쿼리 분기점' }
@@ -968,12 +1136,25 @@ export default {
           </div>
 
           <HigSpecSection
+            overview={{
+              summary: '디자인 시스템 명세와 실제 프로덕션 소스코드 간의 1:1 완벽한 무결성(Zero-Deviance)을 보증하기 위한 자동 및 수동 검수 프로토콜입니다.',
+              purpose: 'CSS 하드코딩이나 임의의 색상 남발로 인한 디자인 열화를 차단하고, 크로스 디바이스/브라우저 환경에서 동일한 정밀 하드웨어 질감과 접근성을 유지합니다.'
+            }}
             anatomy={[
-              { id: 'qa-1', name: 'Automated QA & Token Compliance Checker', tokenOrClass: 'knds.css Token Verifier', description: 'CSS 변수 미선언 하드코딩 요소를 실시간으로 탐지하고 펑셔널 레드 남발 여부를 검증하는 실무 수칙' }
+              { id: 'qa-1', name: 'Token Compliance Verifier (`--space-*` / `--color-*`)', tokenOrClass: 'knds.css Token Verifier', description: 'CSS 변수 미선언 하드코딩 요소(`px`, `HEX` 등)를 탐지하여 빌드를 차단하는 정적 검수 수칙' },
+              { id: 'qa-2', name: 'Functional Red Frequency Controller (`#AD1D1D`)', tokenOrClass: 'Count <= 3 per view', description: '단일 화면 내에서 펑셔널 레드 포인트가 3개를 초과하지 않는지 감시하는 시각 위계 방어선' }
             ]}
             doDont={[
-              { type: 'do', title: '배포 전 5대 QA 준칙 체크리스트 완수', description: '1. 토큰 100% 준수 / 2. 터치 타겟 44px+ / 3. 다크 모드 대비 확인 / 4. 펑셔널 레드 3개 제한 / 5. 반응형 1199px 스택 테스트를 통과하십시오.', codeSnippet: 'npm run build && npm test' },
-              { type: 'dont', title: '검증 단계 생략 및 임의 핫픽스 배포 금지', description: '긴급 배포라는 명목으로 인라인 스타일(style="color:red")을 삽입하여 시스템 일관성을 깨뜨려서는 안 됩니다.', codeSnippet: '<!-- ❌ Avoid -->' }
+              { type: 'do', title: '배포 전 5대 핵심 QA 준칙 체크리스트 100% 완수', description: '1. 토큰 무결성 / 2. 터치 타겟 44px+ / 3. WCAG AA 대비 / 4. 기능성 레드 3개 제한 / 5. 1199px 반응형 스택 검증을 모두 완료한 후 프로덕션 배포를 승인하세요.', codeSnippet: 'npm run test:qa-checklist' },
+              { type: 'dont', title: '검증 단계 생략 및 임의 인라인 핫픽스 배포 절대 금지', description: '긴급 배포라는 명목으로 HTML 내부에 인라인 스타일(`style="color:red"`, `style="margin:13px"`)을 삽입하지 마세요. 디자인 시스템의 단일 진실 공급원(SSOT)이 붕괴됩니다.', codeSnippet: '<!-- ❌ Avoid inline styles or arbitrary magic numbers -->' }
+            ]}
+            interactions={[
+              { state: 'QA CI/CD Pipeline (자동 검증 루틴)', visualChange: '소스코드 커밋 및 PR 생성 시 스타일 린터(Linter)와 토큰 스캐너가 하드코딩 여부를 자동 파악', functionalRole: '디자인 규정 위반 코드가 메인 브랜치에 병합되는 것을 원천 차단' },
+              { state: 'Live Visual Regression (시각 회귀 테스팅)', visualChange: '데스크톱/태블릿/모바일 뷰포트별 스크린샷 자동 대조 후 픽셀 오차(`0.1%` 초과 시) 경고 표출', functionalRole: '예기치 않은 CSS 상속으로 인한 버튼 형태왜곡 및 베벨 깨짐 현상 방지' }
+            ]}
+            accessibility={[
+              { category: 'WCAG 2.1 AA Full Audit (전수 접근성 감사)', description: '모든 페이지 배포 전 스크린 리더(VoiceOver/NVDA) 순회 테스트 및 키보드 포커스(`Tab`/`Enter`/`ESC`) 트랩 검증을 의무적으로 통과해야 합니다.' },
+              { category: 'Color Contrast Verification (명도 대비 스캔)', description: '일반 텍스트 `4.5:1`, 대형 텍스트/UI 경계선 `3:1` 대비 기준이 다크 모드 전환 시에도 유지되는지 자동 측정기를 통해 확인하세요.' }
             ]}
             tokens={[
               { name: 'QA Integrity Matrix', defaultValue: '100% Token Compliance', description: '디자인 시스템과 구현 코드 간 1:1 무결성 보증 지표' }
@@ -1018,6 +1199,33 @@ export default {
               </div>
             </div>
           </div>
+
+          <HigSpecSection
+            overview={{
+              summary: 'KNDS(Physical-Digital Fusion Design System)의 발전과 진화를 이끄는 아키텍처 거버넌스 및 기여자 명세서입니다.',
+              purpose: '디터 람스(Dieter Rams)의 물리적 하드웨어 디자인 철학과 디지털 스크린의 동역학적 상호작용을 융합한 KNDS의 단일 진실 공급원(SSOT) 유지 관리 체계를 규정합니다.'
+            }}
+            anatomy={[
+              { id: 'cr-1', name: 'Lead System Architect', tokenOrClass: 'Jaewon Lee (Core Maintainer)', description: '디자인 시스템 코어 설계, 토큰 거버넌스 관리 및 아크로매틱 고대비 물리 표면 렌더링 총괄' },
+              { id: 'cr-2', name: 'Co-Creation & Governance Flow', tokenOrClass: 'GitHub PR / Design Token Review', description: '새로운 컴포넌트 추가 및 CSS 변수 수정 시 5대 QA 준칙을 거쳐 병합되는 디자인 거버넌스 파이프라인' }
+            ]}
+            doDont={[
+              { type: 'do', title: '거버넌스 승인 절차를 거친 공식 컴포넌트 활용', description: '모든 프로젝트 팀원은 사전 정의된 `.knds-*` 유틸리티와 공식 디자인 시스템 컴포넌트를 우선적으로 임포트하여 화면을 조립하세요.', codeSnippet: 'import { HigSpecSection, CodeViewer } from "./components";' },
+              { type: 'dont', title: '개인 편의에 따른 임의의 로컬 컴포넌트 파편화 금지', description: '공동의 디자인 토큰을 무시하고 개별 컴포넌트 내에서 스타일을 재정의(`styled-components` 하드코딩 등)하여 파편화하지 마세요.', codeSnippet: '<!-- ❌ Avoid building one-off custom buttons outside KNDS -->' }
+            ]}
+            interactions={[
+              { state: 'Community Request (컴포넌트 제안)', visualChange: '신규 디자인 패턴 필요 시 토큰 샌드박스에서 검증 후 PR 제출', functionalRole: '현장 실무의 요구사항을 반영하면서도 전체 아크로매틱 톤앤매너의 일관성을 방어' }
+            ]}
+            accessibility={[
+              { category: 'Long-term System Evolution (지속 가능한 진화)', description: '향후 OS 네이티브 고대비 모드나 공간 컴퓨팅(Spatial Computing) 3D 뎁스 환경으로 확장되더라도 현재의 베벨 및 블러 토큰 구조가 100% 호환되도록 설계되었습니다.' }
+            ]}
+            tokens={[
+              { name: 'KNDS System Version', defaultValue: 'v2.4.0-Stable', description: '현재 활성화된 물리-디지털 융합 디자인 시스템 릴리즈 스펙' }
+            ]}
+            responsiveRules={[
+              '디자인 가이드라인 최적화: 본 공식 가이드라인 페이지는 데스크톱에서 모바일에 이르기까지 모든 해상도에서 최고의 구독성(Readability)을 제공합니다.'
+            ]}
+          />
         </section>
       )}
 
