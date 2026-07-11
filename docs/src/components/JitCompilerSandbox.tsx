@@ -101,7 +101,7 @@ export default function JitCompilerSandbox() {
           onClick={() => setActiveTab('jit')}
           className="knds-text-label-14-mono"
           style={{
-            padding: '12px 20px',
+            padding: '16px 24px',
             backgroundColor: activeTab === 'jit' ? 'var(--color-bg-secondary)' : 'transparent',
             border: '1px solid',
             borderColor: activeTab === 'jit' ? 'var(--color-border-default)' : 'transparent',
@@ -117,7 +117,7 @@ export default function JitCompilerSandbox() {
           onClick={() => setActiveTab('static')}
           className="knds-text-label-14-mono"
           style={{
-            padding: '12px 20px',
+            padding: '16px 24px',
             backgroundColor: activeTab === 'static' ? 'var(--color-bg-secondary)' : 'transparent',
             border: '1px solid',
             borderColor: activeTab === 'static' ? 'var(--color-border-default)' : 'transparent',
@@ -133,7 +133,7 @@ export default function JitCompilerSandbox() {
           onClick={() => setActiveTab('cli')}
           className="knds-text-label-14-mono"
           style={{
-            padding: '12px 20px',
+            padding: '16px 24px',
             backgroundColor: activeTab === 'cli' ? 'var(--color-bg-secondary)' : 'transparent',
             border: '1px solid',
             borderColor: activeTab === 'cli' ? 'var(--color-border-default)' : 'transparent',
@@ -152,7 +152,7 @@ export default function JitCompilerSandbox() {
           <div className="knds-mb-300">
             <h3 className="knds-text-label-16 knds-mb-100">KNDS 온디맨드 JIT 컴파일러 시뮬레이터</h3>
             <p className="knds-text-copy-14 knds-text-muted">
-              임의 값(Arbitrary Values: <code className="knds-text-red">[...]</code>)과 상태/반응형 수식어(Variants: <code className="knds-text-red">hover:</code>, <code className="knds-text-red">dark:</code>, <code className="knds-text-red">sm:</code>)를 Lexical Scanner가 AST 파싱 없이 0.5ms 내로 분석하여 3-Layer 규칙으로 즉시 변환하는 과정을 실시간 검증합니다.
+              임의 값(Arbitrary Values: <code className="knds-text-red">[...]</code>)과 상태/반응형 수식어(Variants: <code className="knds-text-red">hover:</code>, <code className="knds-text-red">dark:</code>, <code className="knds-text-red">sm:</code>)를 Lexical Scanner가 AST 파싱 없이 실시간으로 분석하여 3-Layer 규칙으로 즉시 변환하는 과정을 실시간 검증합니다.
             </p>
           </div>
 
@@ -169,7 +169,7 @@ export default function JitCompilerSandbox() {
                     key={preset.value}
                     onClick={() => togglePreset(preset.value)}
                     style={{
-                      padding: '6px 12px',
+                      padding: '8px 16px',
                       borderRadius: '4px',
                       border: '1px solid',
                       borderColor: isActive ? 'var(--color-functional-red)' : 'var(--color-border-default)',
@@ -206,7 +206,7 @@ export default function JitCompilerSandbox() {
             <div className="knds-bg-primary knds-border knds-p-200">
               <span className="knds-text-label-14-mono knds-text-red">LEXICAL SCANNER OUTPUT</span>
               <div className="knds-text-copy-14 knds-mt-100 knds-font-mono" style={{ fontSize: '13px' }}>
-                <div>⏱️ Lexical Token Extraction: <strong>0.48ms</strong></div>
+                <div>⏱️ Lexical Token Extraction: <strong>즉시 실행 (Realtime)</strong></div>
                 <div>🔍 Valid Candidate Matches: <strong>{simulated.count} tokens</strong></div>
                 <div>🛡️ Layer Order Specificity: <strong>base → components → utilities</strong></div>
               </div>
@@ -218,7 +218,7 @@ export default function JitCompilerSandbox() {
                   <span>Monolithic Static (knds.css): 46.7 KB</span>
                   <span className="knds-text-red">JIT Bundle: ~4.57 KB (-90.2%)</span>
                 </div>
-                <div style={{ width: '100%', height: '12px', backgroundColor: 'var(--color-bg-secondary)', borderRadius: '6px', overflow: 'hidden', position: 'relative' }}>
+                <div style={{ width: '100%', height: '8px', backgroundColor: 'var(--color-bg-secondary)', borderRadius: '4px', overflow: 'hidden', position: 'relative' }}>
                   <div style={{ width: '9.8%', height: '100%', backgroundColor: 'var(--color-functional-red)' }} />
                 </div>
               </div>
@@ -263,7 +263,7 @@ export default function JitCompilerSandbox() {
             <div className="knds-bg-primary knds-border knds-p-200">
               <span className="knds-text-label-14-mono knds-font-bold">2. Complete Baseline Registry</span>
               <p className="knds-text-copy-14 knds-mt-050 knds-text-muted">
-                패널, 버튼, 모달, 네비게이션, 스플릿 스크린, 청사진 그리드 등 Apple HIG 기반의 100여 개 핵심 컴포넌트와 유틸리티가 모두 포함되어 있어 즉시 마크업이 가능합니다.
+                패널, 버튼, 모달, 네비게이션, 스플릿 스크린, 청사진 그리드 등 KNDS 표준 규격 기반의 100여 개 핵심 컴포넌트와 유틸리티가 모두 포함되어 있어 즉시 마크업이 가능합니다.
               </p>
             </div>
           </div>

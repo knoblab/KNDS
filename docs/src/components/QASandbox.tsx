@@ -27,7 +27,7 @@ export default function QASandbox() {
   const score = completedCount * 20;
 
   const getSlogan = (s: number) => {
-    if (s === 100) return { title: 'PERFECTION (시스템 승인 결함 제로)', desc: '피지컬 하드웨어와 아크로매틱 디지털이 완벽하게 융합된 무결점 명세 상태입니다.', color: { text: '#047857', bg: '#ecfdf5', border: '#a7f3d0' } };
+    if (s === 100) return { title: 'PERFECTION (시스템 승인 결함 제로)', desc: '피지컬 하드웨어와 아크로매틱 디지털이 완벽하게 융합된 무결점 명세 상태입니다.', color: { text: 'var(--color-text-primary)', bg: 'var(--color-bg-secondary)', border: 'var(--color-border-hover)' } };
     if (s >= 60) return { title: 'APPROVED (표준 가이드 준수)', desc: '모바일 및 저시력 접근성을 충분히 대비한 양질의 릴리즈 승인 규격입니다.', color: { text: 'var(--color-text-primary)', bg: 'var(--color-bg-primary)', border: 'var(--color-border-default)' } };
     return { title: 'CRITICAL WARNING (실격 및 보류)', desc: '사용자 포인팅 유실 우려 및 접근성 규격 누락이 관측됩니다. 신속히 보정하세요.', color: { text: 'var(--color-functional-red)', bg: 'var(--color-bg-primary)', border: 'var(--color-functional-red)' } };
   };
@@ -88,7 +88,7 @@ export default function QASandbox() {
         {/* COMPLIANCE RADIAL/LINEAR SCOREGUARD METER */}
         <div className="knds-border knds-p-200 knds-bg-secondary knds-flex-col knds-justify-between knds-items-center knds-radius-sm" style={{ flex: '1 1 40%', minHeight: 220 }}>
           <div className="knds-text-center knds-w-full">
-            <span className="knds-text-label-14-mono knds-text-muted" style={{ fontSize: 10, display: 'block', marginBottom: 12 }}>SYSTEM COMPLIANCE SCORE</span>
+            <span className="knds-text-label-14-mono knds-text-muted" style={{ fontSize: 10, display: 'block', marginBottom: '16px' }}>SYSTEM COMPLIANCE SCORE</span>
             
             {/* Elegant physical battery/gauge graphic */}
             <div className="knds-flex-row knds-justify-center knds-gap-100 knds-mb-200 knds-w-full" style={{ padding: '0 16px' }}>
@@ -97,7 +97,7 @@ export default function QASandbox() {
                   key={t}
                   className="knds-border"
                   style={{
-                    height: 32, flex: 1, borderRadius: 2, transition: 'all 0.3s',
+                    height: 32, flex: 1, borderRadius: '4px', transition: 'all 0.3s',
                     backgroundColor: score >= t ? 'var(--color-functional-red)' : 'var(--color-bg-secondary)',
                     borderColor: score >= t ? 'var(--color-functional-red)' : 'var(--color-border-hover)'
                   }}

@@ -18,7 +18,7 @@ export default function FormSandbox() {
             placeholder="이메일을 입력하세요" 
             className="knds-w-full knds-radius-md knds-border"
             style={{ 
-              padding: '12px 16px', 
+              padding: '8px 16px', 
               fontFamily: 'var(--font-sans)',
               fontSize: '14px',
               maxWidth: '400px',
@@ -37,7 +37,7 @@ export default function FormSandbox() {
             defaultValue="focusing@example.com"
             className="knds-w-full knds-radius-md"
             style={{ 
-              padding: '12px 16px', 
+              padding: '8px 16px', 
               border: '1px solid var(--color-text-primary)', 
               outline: '2px solid var(--color-border-hover)',
               outlineOffset: '2px',
@@ -59,7 +59,7 @@ export default function FormSandbox() {
             defaultValue="invalid-email"
             className="knds-w-full knds-radius-md knds-shadow-glow"
             style={{ 
-              padding: '12px 16px', 
+              padding: '8px 16px', 
               border: '1px solid var(--color-functional-red)', 
               fontFamily: 'var(--font-sans)',
               fontSize: '14px',
@@ -81,7 +81,7 @@ export default function FormSandbox() {
             value="수정할 수 없는 데이터"
             className="knds-w-full knds-radius-md knds-border"
             style={{ 
-              padding: '12px 16px', 
+              padding: '8px 16px', 
               fontFamily: 'var(--font-sans)',
               fontSize: '14px',
               maxWidth: '400px',

@@ -300,7 +300,7 @@ export default function HigSpecSection({
                     </td>
                     <td>
                       {token.darkValue ? (
-                        <code className="knds-code-block" style={{ fontSize: '12px', color: '#60A5FA' }}>
+                        <code className="knds-code-block" style={{ fontSize: '12px', color: 'var(--color-text-primary)' }}>
                           {token.darkValue}
                         </code>
                       ) : (

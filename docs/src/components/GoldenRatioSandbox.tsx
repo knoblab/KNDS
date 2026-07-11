@@ -21,7 +21,7 @@ export default function GoldenRatioSandbox() {
         <div className="knds-w-full knds-flex-shrink-0 knds-flex-col" style={{ backgroundColor: 'var(--color-border-default)' }}>
           {/* Tabs */}
           <div className="knds-flex-row knds-items-end" style={{ height: 32, padding: '0 8px', gap: 4, paddingTop: 8, backgroundColor: 'var(--color-border-default)' }}>
-            <div className="knds-flex-row knds-items-center" style={{ width: 128, height: '100%', backgroundColor: 'var(--color-bg-primary)', borderTopLeftRadius: 6, borderTopRightRadius: 6, padding: '0 8px', fontSize: 8, fontFamily: 'var(--font-sans)', color: 'var(--color-text-primary)' }}>
+            <div className="knds-flex-row knds-items-center" style={{ width: 128, height: '100%', backgroundColor: 'var(--color-bg-primary)', borderTopLeftRadius: 8, borderTopRightRadius: 8, padding: '0 8px', fontSize: 8, fontFamily: 'var(--font-sans)', color: 'var(--color-text-primary)' }}>
               KNDS System
             </div>
             <div className="knds-radius-sm knds-flex-row knds-items-center knds-justify-center" style={{ width: 32, height: 24, backgroundColor: 'var(--color-border-default)', fontSize: 10, color: 'var(--color-text-secondary)', borderRadius: '4px 4px 0 0' }}>+</div>

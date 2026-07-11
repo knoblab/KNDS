@@ -11,9 +11,9 @@ export default function ColorSandbox() {
     { token: '--color-bg-secondary', hex: '#F4F4F5', darkHex: '#18181B', layer: '구획 분할면', rule: '인접한 패널 간 시각적 명도 격리' },
     { token: '--color-border-default', hex: '#E4E4E7', darkHex: '#27272A', layer: '모서리 선', rule: '일반 상태 1px 경계선, 정직한 구획 분할' },
     { token: '--color-border-hover', hex: '#A1A1AA', darkHex: '#52525B', layer: '포커스 선', rule: '호버 구역 1차 시각 피드백 명도' },
-    { token: '--color-text-primary', hex: '#09090B', darkHex: '#FAFAFA', layer: '주 서식', rule: '초고대비의 완벽한 폰트 인지 대비 확보' },
+    { token: '--color-text-primary', hex: '#09090B', darkHex: '#ffffff', layer: '주 서식', rule: '초고대비의 완벽한 폰트 인지 대비 확보' },
     { token: '--color-text-secondary', hex: '#71717A', darkHex: '#A1A1AA', layer: '설명서 및 기호', rule: '설명 단락, 부가 수치 단위 레이블' },
-    { token: '--color-functional-red', hex: '#AD1D1D', darkHex: '#DC2626', layer: '전략 액센트 적색', rule: '역사적 하드웨어 가압 적색 계승 및 상태 환기' },
+    { token: '--color-functional-red', hex: '#AD1D1D', darkHex: '#AD1D1D', layer: '전략 액센트 적색', rule: '역사적 하드웨어 가압 적색 계승 및 상태 환기' },
   ];
 
   const triggerCopy = (hex: string, tokenName: string) => {
@@ -29,7 +29,7 @@ export default function ColorSandbox() {
   };
   
   const getSimulatedBg = () => theme === 'light' ? '#ffffff' : '#09090B';
-  const getSimulatedText = () => theme === 'light' ? '#09090B' : '#FAFAFA';
+  const getSimulatedText = () => theme === 'light' ? '#09090B' : '#ffffff';
 
   return (
     <div className="knds-panel">
@@ -55,7 +55,7 @@ export default function ColorSandbox() {
           onClick={() => { setTheme('light'); }}
           className="knds-text-label-14-mono knds-flex-row knds-items-center knds-justify-center knds-gap-100 knds-font-bold knds-radius-sm knds-cursor-pointer"
           style={{
-            flex: 1, padding: '6px 12px', border: 'none', transition: 'all 0.2s',
+            flex: 1, padding: '8px 16px', border: 'none', transition: 'all 0.2s',
             backgroundColor: theme === 'light' ? 'var(--color-bg-primary)' : 'transparent',
             color: theme === 'light' ? 'var(--color-text-primary)' : 'var(--color-text-secondary)',
             boxShadow: theme === 'light' ? '0 1px 2px rgba(0,0,0,0.05)' : 'none'
@@ -67,9 +67,9 @@ export default function ColorSandbox() {
           onClick={() => { setTheme('dark'); }}
           className="knds-text-label-14-mono knds-flex-row knds-items-center knds-justify-center knds-gap-100 knds-font-bold knds-radius-sm knds-cursor-pointer"
           style={{
-            flex: 1, padding: '6px 12px', border: 'none', transition: 'all 0.2s',
+            flex: 1, padding: '8px 16px', border: 'none', transition: 'all 0.2s',
             backgroundColor: theme === 'dark' ? '#09090B' : 'transparent',
-            color: theme === 'dark' ? '#FAFAFA' : 'var(--color-text-secondary)',
+            color: theme === 'dark' ? '#ffffff' : 'var(--color-text-secondary)',
             boxShadow: theme === 'dark' ? '0 1px 2px rgba(0,0,0,0.05)' : 'none'
           }}
         >
@@ -77,7 +77,7 @@ export default function ColorSandbox() {
         </button>
       </div>
 
-      <div className="knds-flex-row knds-gap-300 knds-p-200 knds-border knds-flex-wrap" style={{ borderRadius: 12, backgroundColor: getSimulatedBg(), transition: 'background-color 0.3s' }}>
+      <div className="knds-flex-row knds-gap-300 knds-p-200 knds-border knds-flex-wrap" style={{ borderRadius: '8px', backgroundColor: getSimulatedBg(), transition: 'background-color 0.3s' }}>
         
         {/* SWATCH PANEL LIST */}
         <div className="knds-flex-col knds-gap-100" style={{ flex: '1 1 50%' }}>
@@ -87,7 +87,7 @@ export default function ColorSandbox() {
               <div 
                 key={color.token}
                 className="knds-flex-row knds-items-center knds-justify-between knds-border knds-radius-md"
-                style={{ padding: 10, transition: 'colors 0.3s', borderColor: getDisplayColor(colors[2]), backgroundColor: theme === 'light' ? '#ffffff' : '#18181B' }}
+                style={{ padding: '16px', transition: 'colors 0.3s', borderColor: getDisplayColor(colors[2]), backgroundColor: theme === 'light' ? '#ffffff' : '#18181B' }}
               >
                 <div className="knds-flex-row knds-items-center knds-gap-150">
                   <div 
@@ -107,7 +107,7 @@ export default function ColorSandbox() {
                   <button
                     onClick={() => triggerCopy(displayColor, color.token)}
                     className="knds-radius-sm knds-cursor-pointer"
-                    style={{ padding: 6, transition: 'colors 0.2s', border: 'none', background: 'none', color: getDisplayColor(colors[5]) }}
+                    style={{ padding: '8px', transition: 'colors 0.2s', border: 'none', background: 'none', color: getDisplayColor(colors[5]) }}
                     title="Hex 코드 복사"
                   >
                     {copiedToken === color.token ? (

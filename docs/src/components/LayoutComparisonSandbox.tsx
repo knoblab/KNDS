@@ -57,7 +57,7 @@ export default function LayoutComparisonSandbox() {
         <div style={{ backgroundColor: 'var(--color-border-default)', width: '100%', flexShrink: 0, display: 'flex', flexDirection: 'column' }}>
           {/* Tabs */}
           <div style={{ display: 'flex', alignItems: 'flex-end', height: 32, padding: '0 8px', gap: 4, paddingTop: 8, backgroundColor: 'var(--color-border-default)' }}>
-            <div style={{ width: 128, height: '100%', backgroundColor: 'var(--color-bg-primary)', borderTopLeftRadius: 6, borderTopRightRadius: 6, display: 'flex', alignItems: 'center', padding: '0 8px', fontSize: 8, fontFamily: 'var(--font-sans)', color: 'var(--color-text-primary)' }}>
+            <div style={{ width: 128, height: '100%', backgroundColor: 'var(--color-bg-primary)', borderTopLeftRadius: 8, borderTopRightRadius: 8, display: 'flex', alignItems: 'center', padding: '0 8px', fontSize: 8, fontFamily: 'var(--font-sans)', color: 'var(--color-text-primary)' }}>
               New Tab
             </div>
             <div style={{ width: 32, height: 24, backgroundColor: 'var(--color-border-default)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 10, color: 'var(--color-text-secondary)' }}>+</div>

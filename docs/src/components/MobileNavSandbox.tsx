@@ -115,7 +115,7 @@ export default function MobileNavSandbox() {
           backgroundSize: '24px 24px'
         }}>
           {/* 드래그 핸들 (가짜) */}
-          <div className="knds-flex-row knds-justify-center knds-flex-shrink-0 knds-cursor-pointer" style={{ padding: '12px 0' }} onClick={() => setIsOpen(false)}>
+          <div className="knds-flex-row knds-justify-center knds-flex-shrink-0 knds-cursor-pointer" style={{ padding: '8px 0' }} onClick={() => setIsOpen(false)}>
             <div style={{ width: '40px', height: '4px', backgroundColor: 'var(--color-border-hover)', borderRadius: '2px' }}></div>
           </div>
 
@@ -130,7 +130,7 @@ export default function MobileNavSandbox() {
               { num: 13, title: 'Mobile Screen', active: true },
               { num: 14, title: 'QA & Checklist' }
             ].map(item => (
-              <div key={item.num} className={`knds-nav-item ${item.active ? 'active' : ''}`} style={{ marginBottom: '8px', padding: '12px 16px' }} onClick={() => setIsOpen(false)}>
+              <div key={item.num} className={`knds-nav-item ${item.active ? 'active' : ''}`} style={{ marginBottom: '8px', padding: '8px 16px' }} onClick={() => setIsOpen(false)}>
                 <div className="knds-flex-row knds-items-center knds-gap-150">
                   <span className="knds-text-label-14-mono knds-font-bold" style={{
                     backgroundColor: item.active ? 'var(--color-functional-red)' : 'var(--color-border-default)',

@@ -54,6 +54,15 @@
   --blueprint-grid-pattern: 
     linear-gradient(to right, rgba(229, 231, 235, 0.25) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(229, 231, 235, 0.25) 1px, transparent 1px);
+
+  /* 1.7. Border Radius */
+  --radius-none: 0px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-2xl: 32px;
+  --radius-full: 50%;
 }
 
 [data-theme='dark'] {
@@ -300,7 +309,7 @@ button {
   border: 1px solid var(--color-border-default);
   background-color: var(--color-bg-primary);
   color: var(--color-text-primary);
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   font-family: var(--font-mono);
   font-size: 13px;
   display: inline-flex;
@@ -340,7 +349,7 @@ button {
 .knds-input {
   width: 100%;
   max-width: 400px;
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   border: 1px solid var(--color-border-default);
   padding: 12px 16px;
   font-family: var(--font-sans);
@@ -371,7 +380,7 @@ button {
   box-shadow: var(--shadow-hardware-bevel);
   padding: var(--space-200);
   margin-bottom: var(--space-300);
-  border-radius: 4px; /* 하드웨어 특유의 미세한 곡률 추가 */
+  border-radius: var(--radius-sm); /* 하드웨어 특유의 미세한 곡률 추가 */
 }
 
 .knds-panel-header {
@@ -447,7 +456,7 @@ button {
   background-color: var(--color-bg-secondary);
   color: var(--color-text-secondary);
   border: 1px solid var(--color-border-default);
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   margin-left: 8px;
 }
 
@@ -501,7 +510,7 @@ button {
 .knds-indicator-dot {
   width: 6px;
   height: 6px;
-  border-radius: 50%;
+  border-radius: var(--radius-full);
   background-color: var(--color-functional-red);
 }
 
@@ -526,7 +535,7 @@ button {
   font-family: var(--font-mono);
   background-color: var(--color-bg-secondary);
   padding: var(--space-050) var(--space-100);
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   font-size: 13px;
 }
 
@@ -958,26 +967,26 @@ button {
 .knds-border-transparent { border-color: transparent; }
 
 /* --- 6.11 Border Radius --- */
-.knds-radius-sm { border-radius: 4px; }
-.knds-radius-md { border-radius: 8px; }
-.knds-radius-lg { border-radius: 16px; }
-.knds-radius-full { border-radius: 50%; }
+.knds-radius-sm { border-radius: var(--radius-sm); }
+.knds-radius-md { border-radius: var(--radius-md); }
+.knds-radius-lg { border-radius: var(--radius-lg); }
+.knds-radius-full { border-radius: var(--radius-full); }
 
-.knds-rounded-none { border-radius: 0; }
-.knds-rounded-sm { border-radius: 4px; }
-.knds-rounded { border-radius: 8px; }
-.knds-rounded-md { border-radius: 8px; }
-.knds-rounded-lg { border-radius: 16px; }
-.knds-rounded-xl { border-radius: 24px; }
-.knds-rounded-2xl { border-radius: 32px; }
-.knds-rounded-full { border-radius: 50%; }
+.knds-rounded-none { border-radius: var(--radius-none); }
+.knds-rounded-sm { border-radius: var(--radius-sm); }
+.knds-rounded { border-radius: var(--radius-md); }
+.knds-rounded-md { border-radius: var(--radius-md); }
+.knds-rounded-lg { border-radius: var(--radius-lg); }
+.knds-rounded-xl { border-radius: var(--radius-xl); }
+.knds-rounded-2xl { border-radius: var(--radius-2xl); }
+.knds-rounded-full { border-radius: var(--radius-full); }
 
-.knds-rounded-t-sm { border-top-left-radius: 4px; border-top-right-radius: 4px; }
-.knds-rounded-t-md { border-top-left-radius: 8px; border-top-right-radius: 8px; }
-.knds-rounded-t-lg { border-top-left-radius: 16px; border-top-right-radius: 16px; }
-.knds-rounded-b-sm { border-bottom-left-radius: 4px; border-bottom-right-radius: 4px; }
-.knds-rounded-b-md { border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; }
-.knds-rounded-b-lg { border-bottom-left-radius: 16px; border-bottom-right-radius: 16px; }
+.knds-rounded-t-sm { border-top-left-radius: var(--radius-sm); border-top-right-radius: var(--radius-sm); }
+.knds-rounded-t-md { border-top-left-radius: var(--radius-md); border-top-right-radius: var(--radius-md); }
+.knds-rounded-t-lg { border-top-left-radius: var(--radius-lg); border-top-right-radius: var(--radius-lg); }
+.knds-rounded-b-sm { border-bottom-left-radius: var(--radius-sm); border-bottom-right-radius: var(--radius-sm); }
+.knds-rounded-b-md { border-bottom-left-radius: var(--radius-md); border-bottom-right-radius: var(--radius-md); }
+.knds-rounded-b-lg { border-bottom-left-radius: var(--radius-lg); border-bottom-right-radius: var(--radius-lg); }
 
 /* --- 6.12 Shadows Extended --- */
 .knds-shadow-bevel { box-shadow: var(--shadow-hardware-bevel); }

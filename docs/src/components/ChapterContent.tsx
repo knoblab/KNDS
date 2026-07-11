@@ -119,8 +119,8 @@ export default function ChapterContent({ activeChapter }: ChapterProps) {
                 type: 'dont',
                 title: '무의미한 3D 회전 및 장식성 입체 글로우 사용 금지',
                 description: '사용자에게 조작 오인을 유발하는 유채색 네온사인 글로우나 과도한 입체 효과를 남발하지 마세요. KNDS의 고대비 물리적 정직성이 훼손됩니다.',
-                preview: <div style={{ boxShadow: '0 0 25px pink', transform: 'rotate(-2deg)', padding: '16px', background: '#18181b', color: '#ff80bf', textAlign: 'center', borderRadius: '12px', fontWeight: 'bold' }}>❌ 장식성 유채색 글로우 3D</div>,
-                codeSnippet: '<!-- ❌ Avoid -->\n<div style="box-shadow: 0 0 50px pink; transform: rotate3d(1, 1, 1, 45deg);">...</div>'
+                preview: <div style={{ boxShadow: '0 0 25px var(--color-functional-red)', transform: 'rotate(-2deg)', padding: '16px', background: '#18181b', color: 'var(--color-functional-red)', textAlign: 'center', borderRadius: '16px', fontWeight: 'bold' }}>❌ 장식성 유채색 글로우 3D</div>,
+                codeSnippet: '<!-- ❌ Avoid -->\n<div style="box-shadow: 0 0 50px var(--color-functional-red); transform: rotate3d(1, 1, 1, 45deg);">...</div>'
               }
             ]}
             interactions={[
@@ -607,7 +607,7 @@ export default {
               {
                 label: "CSS Token Specifications",
                 tag: "CSS",
-                code: ":root {\n  /* Achromatic Foundations */\n  --color-bg-primary: #ffffff;\n  --color-bg-secondary: #f4f4f5;\n  --color-border-default: #e4e4e7;\n  --color-border-hover: #a1a1aa;\n  --color-text-primary: #09090b;\n  --color-text-secondary: #71717a;\n\n  /* Functional Red Accent (#AD1D1D) */\n  --color-functional-red: #ad1d1d;\n  --color-red-hover: #c21f1f;\n  --color-red-active: #941a1a;\n}\n[data-theme=\"dark\"] {\n  --color-bg-primary: #09090b;\n  --color-bg-secondary: #18181b;\n  --color-border-default: #27272a;\n  --color-text-primary: #fafafa;\n}"
+                code: ":root {\n  /* Achromatic Foundations */\n  --color-bg-primary: #ffffff;\n  --color-bg-secondary: #f4f4f5;\n  --color-border-default: #e4e4e7;\n  --color-border-hover: #a1a1aa;\n  --color-text-primary: #09090b;\n  --color-text-secondary: #71717a;\n\n  /* Functional Red Accent (#AD1D1D) */\n  --color-functional-red: #ad1d1d;\n  --color-red-hover: #c21f1f;\n  --color-red-active: #941a1a;\n}\n[data-theme=\"dark\"] {\n  --color-bg-primary: #09090b;\n  --color-bg-secondary: #18181b;\n  --color-border-default: #27272a;\n  --color-border-hover: #52525b;\n  --color-text-primary: #ffffff;\n  --color-text-secondary: #a1a1aa;\n}"
               }
             ]}
             note="펑셔널 레드(#AD1D1D)는 뷰포트 내 핵심 버튼 및 경고 뱃지 1~3개에만 제한적으로 부여되어 주의력을 집중시킵니다."
@@ -632,13 +632,16 @@ export default {
               { state: 'Dark Mode Inversion (테마 반전)', visualChange: '#FFFFFF 도화지가 #09090B로 전환되며 경계선은 #27272A로 동기화', functionalRole: '저조도 환경에서 눈부심 방지 및 동일한 계층 대비 유지' }
             ]}
             accessibility={[
-              { category: 'WCAG AA 4.5:1 Contrast Ratio (명도 대비)', description: '본문 텍스트와 배경 간의 대비는 언제나 WCAG AA 최소 기준(4.5:1) 및 AAA(7:1)를 충족하여 저시력 사용자에게도 선명한 읽기 환경을 보장합니다.' },
+              { category: 'WCAG 대비 규격 (명도 대비)', description: '주요 텍스트(Text Primary)와 배경 간의 대비는 언제나 WCAG AAA(7:1 이상) 표준을 준수하며, 보조 텍스트(Text Secondary)와 배경 간의 대비는 인지 가독성을 위한 최적의 명도비(4.3:1 ~ 6.6:1) 범위를 보장합니다.' },
               { category: 'Color Blindness Safe (색약 배려)', description: '색상 단독으로만 상태를 표기하지 마세요. 에러나 경고는 항상 텍스트 라벨(`OVERHEAT`, `ERROR`)과 아이콘(`⚠️`)을 병기하여 색각 이상 사용자도 상태를 파악할 수 있도록 해야 합니다.' }
             ]}
             tokens={[
               { name: '--color-bg-primary', defaultValue: '#ffffff', darkValue: '#09090b', description: '최상위 도화지 및 패널 기본 배경색' },
               { name: '--color-bg-secondary', defaultValue: '#f4f4f5', darkValue: '#18181b', description: '계층 구분을 위한 보조 표면 배경색' },
               { name: '--color-border-default', defaultValue: '#e4e4e7', darkValue: '#27272a', description: '모든 패널, 입력창, 구분선의 기본 테두리 색상' },
+              { name: '--color-border-hover', defaultValue: '#a1a1aa', darkValue: '#52525b', description: '요소 호버 또는 활성화 시 강조 경계선 색상' },
+              { name: '--color-text-primary', defaultValue: '#09090b', darkValue: '#ffffff', description: '고대비 주 텍스트 및 기본 타이틀 색상' },
+              { name: '--color-text-secondary', defaultValue: '#71717a', darkValue: '#a1a1aa', description: '메타 설명서 및 기호용 보조 명도 색상' },
               { name: '--color-functional-red', defaultValue: '#ad1d1d', darkValue: '#ad1d1d', description: 'KNDS의 아이덴티티이자 액션 유도 컬러' }
             ]}
             responsiveRules={[

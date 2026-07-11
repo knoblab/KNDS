@@ -72,7 +72,7 @@ export default function NavigationSandbox() {
               backgroundColor: 'var(--color-bg-primary)'
             }}
           >
-            <div className="knds-flex-row" style={{ display: 'inline-flex', backgroundColor: 'var(--color-bg-secondary)', border: '1px solid var(--color-border-default)', borderRadius: '10px', padding: '4px', gap: '4px', width: '100%', overflowX: 'auto' }}>
+            <div className="knds-flex-row" style={{ display: 'inline-flex', backgroundColor: 'var(--color-bg-secondary)', border: '1px solid var(--color-border-default)', borderRadius: '8px', padding: '4px', gap: '4px', width: '100%', overflowX: 'auto' }}>
               <button
                 onClick={() => setActiveTab('web')}
                 style={{
