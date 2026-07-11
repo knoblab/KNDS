@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "knds-docs",
+  "name": "knds",
   "compatibility_date": "2026-05-26",
   "observability": {
     "enabled": true
