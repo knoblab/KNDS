@@ -1,5 +1,6 @@
 import React from 'react';
 import HigSpecSection from './HigSpecSection';
+import CodeViewer from './CodeViewer';
 
 // Import our custom interactive sandboxes
 import GridSandbox from './GridSandbox';
