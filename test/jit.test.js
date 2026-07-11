@@ -1,7 +1,7 @@
 import assert from 'node:assert';
 import { compile, scanText, generateCss, loadConfig } from '../compiler/index.js';
 
-console.log('=== KNDS JIT Compiler Automated Verification Suite ===\n');
+console.log('=== KNDS Design Language & Token Engine Verification Suite ===\n');
 
 // 1. Test Scanner (scanText)
 console.log('[Test 1] Lexical Scanner (scanText)');
@@ -61,8 +61,8 @@ const duration = (performance.now() - startTime).toFixed(2);
 
 assert.ok(result.css.includes('@layer base'), 'Should include base layer when requested');
 assert.ok(result.css.includes('.knds-w-\\[500px\\]'), 'Should include new candidate from content stream');
-console.log(`✔ Full JIT compile completed in ${duration}ms (Extracted ${result.candidates.size} classes).\n`);
+console.log(`✔ Full Design Token compilation completed in ${duration}ms (Extracted ${result.candidates.size} specifications).\n`);
 
 console.log('======================================================');
-console.log('🎉 ALL KNDS JIT COMPILER VERIFICATION TESTS PASSED!');
+console.log('🎉 ALL KNDS DESIGN TOKEN ENGINE VERIFICATION TESTS PASSED!');
 console.log('======================================================');

@@ -1,6 +1,6 @@
 /** @type {import('@knoblab/knds').Config} */
 export default {
-  // 1. 스캐너가 추적할 소스 파일 패턴
+  // 1. 디자인 토큰 및 컴포넌트 원형(Archetype)을 스캐닝할 소스 파일 패턴
   content: [
     './index.html',
     './src/**/*.{js,ts,jsx,tsx,vue,svelte,html}',
@@ -9,10 +9,10 @@ export default {
     './test/**/*.html'
   ],
 
-  // 2. 클래스 접두사 지정 (기본값: 'knds-')
+  // 2. 디자인 언어 접두사 문법 (기본값: 'knds-')
   prefix: 'knds-',
 
-  // 3. Knoblab 디자인 토큰 확장 및 커스텀
+  // 3. Knoblab 디자인 토큰 명세 및 물리적 상수에 대한 확장
   theme: {
     extend: {
       colors: {
@@ -25,7 +25,7 @@ export default {
     }
   },
 
-  // 4. 동적 클래스 생성을 강제 보존할 패턴 (선택 사항)
+  // 4. 온디맨드 빌드 시 강제 보존할 핵심 물리 스위치 및 인디케이터 패턴
   safelist: [
     'knds-indicator-dot',
     'knds-btn-primary',

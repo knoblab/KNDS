@@ -8,7 +8,7 @@ const args = process.argv.slice(2);
 
 function printHelp() {
   console.log(`
-KNDS JIT Compiler CLI (Knoblab Design System)
+KNDS Design Token & Archetype Compiler Engine (Knoblab Design Language)
 Usage: knds [options]
 
 Options:
@@ -40,7 +40,7 @@ if (hasFlag(['-h', '--help'])) {
 }
 
 if (hasFlag(['-v', '--version'])) {
-  console.log('KNDS JIT Compiler v1.0.0');
+  console.log('KNDS Design Token & Archetype Compiler Engine v1.0.0');
   process.exit(0);
 }
 
@@ -92,7 +92,7 @@ async function runBuild() {
 
   const duration = (performance.now() - startTime).toFixed(2);
   const sizeKb = (Buffer.byteLength(outputCss, 'utf8') / 1024).toFixed(2);
-  console.log(`[KNDS JIT] Successfully built ${outputFile} (${sizeKb} KB - ${result.candidates.size} candidate classes in ${duration}ms)`);
+  console.log(`[KNDS Design Engine] Successfully compiled design tokens & archetypes (${outputFile}: ${sizeKb} KB - ${result.candidates.size} token specifications in ${duration}ms)`);
 
   return config;
 }
@@ -100,7 +100,7 @@ async function runBuild() {
 await runBuild();
 
 if (isWatch) {
-  console.log(`[KNDS Watcher] Watching source files for changes...`);
+  console.log(`[KNDS Token Watcher] Watching source files for design token changes...`);
   const config = await loadConfig(configFile);
   const watchedFiles = new Set(resolveContentFiles(config.content));
 
@@ -115,11 +115,11 @@ if (isWatch) {
   const triggerRebuild = (eventType, filename) => {
     if (buildTimeout) clearTimeout(buildTimeout);
     buildTimeout = setTimeout(async () => {
-      console.log(`\n[KNDS Watcher] Change detected (${filename || eventType}). Rebuilding...`);
+      console.log(`\n[KNDS Token Watcher] Change detected (${filename || eventType}). Recompiling design tokens...`);
       try {
         await runBuild();
       } catch (err) {
-        console.error(`[KNDS Watcher Error]`, err.message);
+        console.error(`[KNDS Token Watcher Error]`, err.message);
       }
     }, 50);
   };

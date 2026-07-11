@@ -4,7 +4,7 @@ import { scanFiles, resolveContentFiles } from './scanner.js';
 import { generateCss, getKndsMasterData, parseCandidate, generateDeclarations, wrapRule } from './generator.js';
 
 /**
- * PostCSS 8 Plugin for KNDS JIT Compiler (`postcss-knds`)
+ * PostCSS 8 Plugin for KNDS Design Token Engine (`postcss-knds`)
  * @param {object|string} options - Path to knds.config.js or config options object
  */
 function postcssKndsPlugin(options = {}) {

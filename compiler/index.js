@@ -3,7 +3,7 @@ import { scanText, scanFiles, resolveContentFiles } from './scanner.js';
 import { generateCss, getKndsMasterData, escapeClassName } from './generator.js';
 
 /**
- * Main KNDS JIT Compile API
+ * Main KNDS Design Token & Archetype Compile API (Knoblab Design Language Engine)
  * @param {object} options
  * @param {string|object} options.config - Path to knds.config.js or config object
  * @param {string} options.content - Raw HTML/JS string to scan directly

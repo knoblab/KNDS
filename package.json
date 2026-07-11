@@ -1,7 +1,7 @@
 {
   "name": "@knoblab/knds",
   "version": "1.0.0",
-  "description": "KNDS (Knoblab Design System): Physical-Digital Fusion Web Design Language & Utility Framework",
+  "description": "KNDS (Knoblab Design System): Physical-Digital Fusion Interface Design Language & Token Engine",
   "main": "knds.css",
   "type": "module",
   "bin": {
@@ -34,14 +34,16 @@
     "url": "https://github.com/knoblab/KNDS.git"
   },
   "keywords": [
+    "design-language",
+    "design-tokens",
     "design-system",
-    "css",
-    "utility-first",
+    "tactile-feedback",
+    "hardware-ui",
     "knoblab",
     "knds",
     "physical-digital-fusion",
     "dieter-rams",
-    "achromatic"
+    "achromatic-ui"
   ],
   "author": "Knoblab Design Team",
   "license": "MIT"
