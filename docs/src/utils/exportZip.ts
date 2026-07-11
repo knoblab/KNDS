@@ -19,9 +19,9 @@ const renderHtml = (nodes: EditorElement[], indent = '      '): string => {
       case 'split-layout':
         return `${indent}<div class="${getCombinedClasses(node, 'knds-flex-row')}">\n${renderHtml(node.children, indent + '  ')}\n${indent}</div>`;
       case 'split-left':
-        return `${indent}<div class="${getCombinedClasses(node, '')}" style="width: 38%;">\n${renderHtml(node.children, indent + '  ')}\n${indent}</div>`;
+        return `${indent}<div class="${getCombinedClasses(node, '')}" style="width: 25%;">\n${renderHtml(node.children, indent + '  ')}\n${indent}</div>`;
       case 'split-right':
-        return `${indent}<div class="${getCombinedClasses(node, '')}" style="width: 62%;">\n${renderHtml(node.children, indent + '  ')}\n${indent}</div>`;
+        return `${indent}<div class="${getCombinedClasses(node, '')}" style="width: 75%;">\n${renderHtml(node.children, indent + '  ')}\n${indent}</div>`;
       case 'heading':
         return `${indent}<h2 class="${getCombinedClasses(node, 'knds-text-heading-32')}">${node.content}</h2>`;
       case 'paragraph':

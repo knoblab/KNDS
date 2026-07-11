@@ -9,13 +9,13 @@ export default function GoldenRatioSandbox() {
             CH.5 BLUEPRINT FORMAT
           </span>
           <h4 className="knds-text-label-16 knds-font-bold" style={{ marginTop: 4 }}>
-            25:75 비대칭 황금 분할 (Asymmetric Golden Ratio)
+            25:75 비대칭 스플릿 분할 (1:3 Split Ratio)
           </h4>
         </div>
       </div>
 
       {/* 16:9 윈도우 모니터 프레임 */}
-      <div className="knds-w-full knds-relative knds-overflow-hidden knds-flex-col" style={{ margin: '0 auto', maxWidth: '896px', aspectRatio: '16/9', backgroundColor: '#09090b', borderRadius: 6, border: '6px solid var(--color-border-hover)', boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)', transition: 'all 0.5s' }}>
+      <div className="knds-w-full knds-relative knds-overflow-hidden knds-flex-col" style={{ margin: '0 auto', maxWidth: '896px', aspectRatio: '16/9', backgroundColor: '#09090b', borderRadius: '8px', border: '8px solid var(--color-border-hover)', boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)', transition: 'all 0.5s' }}>
 
         {/* OS Top: Browser Tabs & URL Bar */}
         <div className="knds-w-full knds-flex-shrink-0 knds-flex-col" style={{ backgroundColor: 'var(--color-border-default)' }}>
@@ -48,10 +48,10 @@ export default function GoldenRatioSandbox() {
             <div className="knds-golden-ratio-panel knds-flex-col knds-relative" style={{ width: '25%', backgroundColor: 'var(--color-bg-primary)', borderRight: '1px solid var(--color-border-hover)', height: '100%' }}>
               {/* Overlay Annotation */}
               <div className="knds-absolute knds-inset-0 knds-flex-col knds-items-center knds-justify-center" style={{ backgroundColor: 'rgba(173, 29, 29, 0.05)', border: '2px solid rgba(173, 29, 29, 0.5)', zIndex: 20, pointerEvents: 'none' }}>
-                <div style={{ backgroundColor: 'var(--color-functional-red)', color: 'var(--color-bg-primary)', fontFamily: 'var(--font-mono)', fontWeight: 'bold', fontSize: 12, padding: '6px 12px', borderRadius: 4, boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)' }}>
+                <div style={{ backgroundColor: 'var(--color-functional-red)', color: 'var(--color-bg-primary)', fontFamily: 'var(--font-mono)', fontWeight: 'bold', fontSize: '13px', padding: '8px 16px', borderRadius: '4px', boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)' }}>
                   25% CONTROL PANEL
                 </div>
-                <div className="knds-radius-sm" style={{ fontSize: 10, color: 'var(--color-functional-red)', fontWeight: 'bold', backgroundColor: 'rgba(255,255,255,0.9)', padding: '4px 8px', marginTop: 8, border: '1px solid var(--color-functional-red)', borderRadius: '4px' }}>
+                <div className="knds-radius-sm" style={{ fontSize: '12px', color: 'var(--color-functional-red)', fontWeight: 'bold', backgroundColor: 'rgba(255,255,255,0.9)', padding: '8px', marginTop: '8px', border: '1px solid var(--color-functional-red)', borderRadius: '4px' }}>
                   Geist Mono / #F4F4F5 / Fixed
                 </div>
               </div>
@@ -62,34 +62,34 @@ export default function GoldenRatioSandbox() {
                 <span style={{ fontSize: 10, fontFamily: 'var(--font-mono)', color: 'var(--color-text-primary)', fontWeight: 'bold', marginLeft: 8 }}>KNDS SYSTEM</span>
               </div>
               {/* KNDS Controls */}
-              <div className="knds-flex-col" style={{ padding: 16, gap: 12, flex: 1, overflowY: 'auto' }}>
-                <div style={{ width: '100%', height: 24, backgroundColor: 'var(--color-border-default)', borderRadius: 2 }}></div>
-                <div className="knds-flex-row" style={{ gap: 8 }}>
-                  <div style={{ width: '50%', height: 32, backgroundColor: 'var(--color-bg-primary)', border: '1px solid var(--color-border-default)', borderRadius: 2 }}></div>
-                  <div style={{ width: '50%', height: 32, backgroundColor: 'var(--color-bg-primary)', border: '1px solid var(--color-border-default)', borderRadius: 2 }}></div>
+              <div className="knds-flex-col" style={{ padding: '16px', gap: '16px', flex: 1, overflowY: 'auto' }}>
+                <div style={{ width: '100%', height: 24, backgroundColor: 'var(--color-border-default)', borderRadius: '4px' }}></div>
+                <div className="knds-flex-row" style={{ gap: '8px' }}>
+                  <div style={{ width: '50%', height: 32, backgroundColor: 'var(--color-bg-primary)', border: '1px solid var(--color-border-default)', borderRadius: '4px' }}></div>
+                  <div style={{ width: '50%', height: 32, backgroundColor: 'var(--color-bg-primary)', border: '1px solid var(--color-border-default)', borderRadius: '4px' }}></div>
                 </div>
-                <div className="knds-w-full knds-border knds-flex-col" style={{ height: 96, backgroundColor: 'var(--color-bg-primary)', borderRadius: 2, marginTop: 8, gap: 8, padding: 12, fontSize: 8, color: 'var(--color-text-secondary)', fontFamily: 'var(--font-mono)' }}>
+                <div className="knds-w-full knds-border knds-flex-col" style={{ height: 96, backgroundColor: 'var(--color-bg-primary)', borderRadius: '4px', marginTop: '8px', gap: '8px', padding: '16px', fontSize: 8, color: 'var(--color-text-secondary)', fontFamily: 'var(--font-mono)' }}>
                   [SYSTEM_METADATA_BLOCK]
-                  <div style={{ width: '75%', height: 6, backgroundColor: 'var(--color-border-default)', marginTop: 4 }}></div>
-                  <div style={{ width: '50%', height: 6, backgroundColor: 'var(--color-border-default)', marginTop: 4 }}></div>
-                  <div style={{ width: '66%', height: 6, backgroundColor: 'var(--color-border-default)', marginTop: 4 }}></div>
+                  <div style={{ width: '75%', height: '8px', backgroundColor: 'var(--color-border-default)', marginTop: '8px' }}></div>
+                  <div style={{ width: '50%', height: '8px', backgroundColor: 'var(--color-border-default)', marginTop: '8px' }}></div>
+                  <div style={{ width: '66%', height: '8px', backgroundColor: 'var(--color-border-default)', marginTop: '8px' }}></div>
                 </div>
-                <div style={{ marginTop: 'auto', paddingTop: 16 }}>
+                <div style={{ marginTop: 'auto', paddingTop: '16px' }}>
                   <div className="knds-w-full knds-radius-sm knds-flex-row knds-items-center knds-justify-center knds-overflow-hidden" style={{ height: 40, backgroundColor: 'var(--color-functional-red)', borderRadius: '4px' }}>
-                    <div style={{ width: 16, height: 16, backgroundColor: 'rgba(255,255,255,0.2)', borderRadius: '4px', marginRight: 8 }}></div>
+                    <div style={{ width: 16, height: 16, backgroundColor: 'rgba(255,255,255,0.2)', borderRadius: '4px', marginRight: '8px' }}></div>
                   </div>
                 </div>
               </div>
             </div>
 
             {/* KNDS RIGHT 75% */}
-            <div className="knds-flex-col knds-relative" style={{ width: '75%', height: '100%', backgroundColor: 'var(--color-bg-primary)', borderLeft: '1px solid rgba(226, 232, 240, 0.5)' }}>
+            <div className="knds-flex-col knds-relative" style={{ width: '75%', height: '100%', backgroundColor: 'var(--color-bg-primary)', borderLeft: '1px solid var(--color-border-default)' }}>
               {/* Overlay Annotation */}
-              <div className="knds-absolute knds-inset-0 knds-flex-col knds-items-center knds-justify-center" style={{ backgroundColor: 'rgba(29, 78, 216, 0.05)', border: '2px solid rgba(59, 130, 246, 0.5)', zIndex: 20, pointerEvents: 'none' }}>
-                <div style={{ backgroundColor: '#1d4ed8', color: 'var(--color-bg-primary)', fontFamily: 'var(--font-mono)', fontWeight: 'bold', fontSize: 12, padding: '6px 12px', borderRadius: 4, boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)' }}>
+              <div className="knds-absolute knds-inset-0 knds-flex-col knds-items-center knds-justify-center" style={{ backgroundColor: 'rgba(161, 161, 170, 0.08)', border: '2px solid var(--color-border-hover)', zIndex: 20, pointerEvents: 'none' }}>
+                <div style={{ backgroundColor: 'var(--color-text-primary)', color: 'var(--color-bg-primary)', fontFamily: 'var(--font-mono)', fontWeight: 'bold', fontSize: '13px', padding: '8px 16px', borderRadius: '4px', boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)' }}>
                   75% CONTENT CANVAS
                 </div>
-                <div className="knds-radius-sm" style={{ fontSize: 10, color: '#1d4ed8', fontWeight: 'bold', backgroundColor: 'rgba(255,255,255,0.9)', padding: '4px 8px', marginTop: 8, border: '1px solid #bfdbfe', borderRadius: '4px' }}>
+                <div className="knds-radius-sm" style={{ fontSize: '12px', color: 'var(--color-text-secondary)', fontWeight: 'bold', backgroundColor: 'rgba(255,255,255,0.9)', padding: '8px', marginTop: '8px', border: '1px solid var(--color-border-default)', borderRadius: '4px' }}>
                   Pretendard / #FFFFFF / Scrollable
                 </div>
               </div>
@@ -99,23 +99,23 @@ export default function GoldenRatioSandbox() {
                 <span style={{ fontSize: 9, fontFamily: 'var(--font-mono)', color: 'var(--color-text-secondary)' }}>DATA CANVAS VIEW</span>
               </div>
               {/* 75 Canvas Body */}
-              <div style={{ flex: 1, padding: '32px 15% 32px 32px', display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: 16 }}>
+              <div style={{ flex: 1, padding: '32px 15% 32px 32px', display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: '16px' }}>
                 <div className="knds-flex-row knds-items-center knds-border-bottom" style={{ gridColumn: 'span 2 / span 2', height: 48 }}>
-                  <div style={{ width: 192, height: 24, backgroundColor: 'var(--color-border-default)', borderRadius: 4 }}></div>
+                  <div style={{ width: 192, height: 24, backgroundColor: 'var(--color-border-default)', borderRadius: '4px' }}></div>
                 </div>
-                <div className="knds-border knds-flex-col knds-relative knds-overflow-hidden" style={{ backgroundColor: 'var(--color-bg-primary)', boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)', height: 128, borderRadius: 8, padding: 16 }}>
-                  <div style={{ width: '33%', height: 16, backgroundColor: 'var(--color-border-default)', borderRadius: 4, marginBottom: 16 }}></div>
+                <div className="knds-border knds-flex-col knds-relative knds-overflow-hidden" style={{ backgroundColor: 'var(--color-bg-primary)', boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)', height: 128, borderRadius: '8px', padding: '16px' }}>
+                  <div style={{ width: '33%', height: 16, backgroundColor: 'var(--color-border-default)', borderRadius: '4px', marginBottom: '16px' }}></div>
                   <div style={{ width: '100%', borderBottom: '1px solid var(--color-border-default)', margin: '8px 0' }}></div>
-                  <div style={{ width: '100%', height: 8, backgroundColor: 'var(--color-bg-primary)', borderRadius: 4, marginBottom: 8 }}></div>
-                  <div style={{ width: '100%', height: 8, backgroundColor: 'var(--color-bg-primary)', borderRadius: 4, marginBottom: 8 }}></div>
-                  <div style={{ width: '66%', height: 8, backgroundColor: 'var(--color-bg-primary)', borderRadius: 4 }}></div>
+                  <div style={{ width: '100%', height: '8px', backgroundColor: 'var(--color-bg-primary)', borderRadius: '4px', marginBottom: '8px' }}></div>
+                  <div style={{ width: '100%', height: '8px', backgroundColor: 'var(--color-bg-primary)', borderRadius: '4px', marginBottom: '8px' }}></div>
+                  <div style={{ width: '66%', height: '8px', backgroundColor: 'var(--color-bg-primary)', borderRadius: '4px' }}></div>
                 </div>
-                <div className="knds-border knds-flex-col knds-relative knds-overflow-hidden" style={{ backgroundColor: 'var(--color-bg-primary)', boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)', height: 128, borderRadius: 8, padding: 16 }}>
-                  <div style={{ width: '33%', height: 16, backgroundColor: 'var(--color-border-default)', borderRadius: 4, marginBottom: 16 }}></div>
+                <div className="knds-border knds-flex-col knds-relative knds-overflow-hidden" style={{ backgroundColor: 'var(--color-bg-primary)', boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)', height: 128, borderRadius: '8px', padding: '16px' }}>
+                  <div style={{ width: '33%', height: 16, backgroundColor: 'var(--color-border-default)', borderRadius: '4px', marginBottom: '16px' }}></div>
                   <div style={{ width: '100%', borderBottom: '1px solid var(--color-border-default)', margin: '8px 0' }}></div>
-                  <div style={{ width: '100%', height: 8, backgroundColor: 'var(--color-bg-primary)', borderRadius: 4, marginBottom: 8 }}></div>
-                  <div style={{ width: '100%', height: 8, backgroundColor: 'var(--color-bg-primary)', borderRadius: 4, marginBottom: 8 }}></div>
-                  <div style={{ width: '66%', height: 8, backgroundColor: 'var(--color-bg-primary)', borderRadius: 4 }}></div>
+                  <div style={{ width: '100%', height: '8px', backgroundColor: 'var(--color-bg-primary)', borderRadius: '4px', marginBottom: '8px' }}></div>
+                  <div style={{ width: '100%', height: '8px', backgroundColor: 'var(--color-bg-primary)', borderRadius: '4px', marginBottom: '8px' }}></div>
+                  <div style={{ width: '66%', height: '8px', backgroundColor: 'var(--color-bg-primary)', borderRadius: '4px' }}></div>
                 </div>
               </div>
             </div>
@@ -124,12 +124,12 @@ export default function GoldenRatioSandbox() {
 
         {/* OS Bottom: Windows Taskbar */}
         <div className="knds-w-full knds-flex-shrink-0 knds-flex-row knds-items-center knds-justify-between" style={{ height: 40, backgroundColor: '#09090b', padding: '0 8px', zIndex: 30, boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.5)' }}>
-          <div className="knds-flex-row knds-items-center" style={{ gap: 8 }}>
-            <div className="knds-flex-row knds-items-center knds-justify-center" style={{ width: 24, height: 24, borderRadius: 4, backgroundColor: 'rgba(59, 130, 246, 0.2)', color: '#60a5fa', fontSize: 10 }}>W</div>
-            <div style={{ width: 24, height: 24, borderRadius: 4, backgroundColor: '#09090b' }}></div>
-            <div style={{ width: 24, height: 24, borderRadius: 4, backgroundColor: '#09090b', borderBottom: '2px solid #60a5fa', boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)' }}></div>
+          <div className="knds-flex-row knds-items-center" style={{ gap: '8px' }}>
+            <div className="knds-flex-row knds-items-center knds-justify-center" style={{ width: 24, height: 24, borderRadius: '4px', backgroundColor: 'var(--color-bg-tertiary)', color: 'var(--color-text-secondary)', fontSize: '12px', fontWeight: 'bold' }}>W</div>
+            <div style={{ width: 24, height: 24, borderRadius: '4px', backgroundColor: '#09090b' }}></div>
+            <div style={{ width: 24, height: 24, borderRadius: '4px', backgroundColor: '#09090b', borderBottom: '2px solid var(--color-text-secondary)', boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)' }}></div>
           </div>
-          <div className="knds-flex-row knds-items-center" style={{ gap: 12, fontSize: 8, color: 'var(--color-text-secondary)', fontFamily: 'var(--font-mono)' }}>
+          <div className="knds-flex-row knds-items-center" style={{ gap: '16px', fontSize: '12px', color: 'var(--color-text-secondary)', fontFamily: 'var(--font-mono)' }}>
             <span>ENG</span>
             <div className="knds-flex-col knds-items-end" style={{ lineHeight: 1.2 }}>
               <span>12:00 PM</span>
@@ -138,7 +138,7 @@ export default function GoldenRatioSandbox() {
           </div>
         </div>
       </div>
-      <p className="knds-text-copy-14 knds-text-muted knds-mt-200" style={{ fontSize: '10px', textAlign: 'center' }}>
+      <p className="knds-text-copy-14 knds-text-muted knds-mt-200" style={{ fontSize: '12px', textAlign: 'center' }}>
         * 25:75 정밀 할당 영역을 나타냅니다.
       </p>
     </div>

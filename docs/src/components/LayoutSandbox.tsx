@@ -44,7 +44,7 @@ export default function LayoutSandbox() {
         <div className="knds-animate-fade-in">
           <div className="knds-mb-300">
             <p className="knds-text-copy-14 knds-text-muted">
-              화면 분할 철학은 대칭 분리를 타파하고 비대칭 황금비에 준하는 25:75 비율의 스플릿 스크린을 기본 표준으로 채택한다.
+              화면 분할 철학은 대칭 분리를 타파하고 1:3 비율(25:75)의 비대칭 스플릿 스크린을 기본 표준으로 채택한다.
             </p>
           </div>
           <GoldenRatioSandbox />

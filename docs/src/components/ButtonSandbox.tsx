@@ -50,7 +50,7 @@ export default function ButtonSandbox() {
           </button>
         </div>
 
-        <div className="knds-text-label-14-mono knds-text-muted" style={{ fontSize: '11px' }}>
+        <div className="knds-text-label-14-mono knds-text-muted" style={{ fontSize: '12px' }}>
           {clickCount > 0 ? (
             <span>
               최근 클릭: <strong className="knds-text-red">{lastSizeClicked}</strong> (누적 클릭: {clickCount}회)
@@ -70,7 +70,7 @@ export default function ButtonSandbox() {
             >
               <div className="knds-font-mono" style={{ flex: '1 1 20%', minWidth: '120px' }}>
                 <span className="knds-text-copy-14 knds-font-bold" style={{ display: 'block' }}>{cfg.size}</span>
-                <span className="knds-text-muted" style={{ fontSize: '10px', display: 'block' }}>표준 높이: {cfg.height} | Padding: {cfg.padding}</span>
+                <span className="knds-text-muted" style={{ fontSize: '12px', display: 'block' }}>표준 높이: {cfg.height} | Padding: {cfg.padding}</span>
               </div>
 
               {/* Outer Wrapper for Target testing */}
@@ -78,7 +78,7 @@ export default function ButtonSandbox() {
                 {/* 48x48dp Bounding target line overlay */}
                 {showTargets && (cfg.height === '32px' || cfg.height === '40px') && (
                   <div className="knds-absolute knds-radius-sm" style={{ width: '48px', height: '48px', border: '1px dashed var(--color-functional-red)', opacity: 0.6, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <span className="knds-absolute knds-font-bold" style={{ top: '-14px', fontSize: '8px', fontFamily: 'var(--font-mono)', color: 'var(--color-functional-red)', backgroundColor: 'var(--color-bg-primary)', padding: '0 4px' }}>48&times;48px TARGET</span>
+                    <span className="knds-absolute knds-font-bold" style={{ top: '-16px', fontSize: '12px', fontFamily: 'var(--font-mono)', color: 'var(--color-functional-red)', backgroundColor: 'var(--color-bg-primary)', padding: '0 8px' }}>48&times;48px TARGET</span>
                   </div>
                 )}
 
@@ -121,7 +121,7 @@ export default function ButtonSandbox() {
               </div>
 
               {/* Dynamic Formula Specs details */}
-              <div className="knds-font-mono knds-bg-secondary knds-p-100 knds-radius-sm knds-flex-col" style={{ flex: '1 1 30%', fontSize: '9px', color: 'var(--color-text-secondary)', gap: '4px' }}>
+              <div className="knds-font-mono knds-bg-secondary knds-p-100 knds-radius-sm knds-flex-col" style={{ flex: '1 1 30%', fontSize: '12px', color: 'var(--color-text-secondary)', gap: '4px' }}>
                 <div className="knds-flex-row knds-justify-between">
                   <span>Rest 코너 반경:</span>
                   <span className="knds-font-bold" style={{ color: 'var(--color-text-primary)' }}>

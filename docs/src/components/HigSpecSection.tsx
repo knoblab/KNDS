@@ -17,6 +17,7 @@ export interface DoDontItem {
   title: string;
   description: string;
   codeSnippet?: string;
+  preview?: React.ReactNode;
 }
 
 export interface StateItem {
@@ -135,7 +136,7 @@ export default function HigSpecSection({
                   key={idx}
                   className="knds-panel knds-p-300"
                   style={{
-                    borderLeft: `4px solid ${isDo ? '#10B981' : 'var(--color-functional-red)'}`,
+                    borderLeft: `4px solid ${isDo ? 'var(--color-text-primary)' : 'var(--color-functional-red)'}`,
                     marginBottom: 0,
                   }}
                 >
@@ -143,8 +144,8 @@ export default function HigSpecSection({
                     <span
                       className="knds-text-label-14-mono knds-font-bold"
                       style={{
-                        color: isDo ? '#10B981' : 'var(--color-functional-red)',
-                        backgroundColor: isDo ? 'rgba(16, 185, 129, 0.1)' : 'var(--color-red-light)',
+                        color: isDo ? 'var(--color-text-primary)' : 'var(--color-functional-red)',
+                        backgroundColor: isDo ? 'var(--color-bg-tertiary)' : 'var(--color-red-light)',
                         padding: '2px 8px',
                         borderRadius: '4px',
                       }}
@@ -153,6 +154,20 @@ export default function HigSpecSection({
                     </span>
                     <h4 className="knds-text-label-16 knds-font-bold" style={{ fontSize: '15px' }}>{item.title}</h4>
                   </div>
+                  {item.preview && (
+                    <div
+                      className="knds-mb-150 knds-p-200 knds-border knds-radius-sm knds-flex-row knds-items-center knds-justify-center knds-overflow-hidden"
+                      style={{
+                        backgroundColor: 'var(--color-bg-secondary)',
+                        minHeight: '72px',
+                        borderColor: isDo ? 'var(--color-border-default)' : 'var(--color-functional-red)',
+                        borderWidth: '1px',
+                        borderStyle: isDo ? 'solid' : 'dashed'
+                      }}
+                    >
+                      {item.preview}
+                    </div>
+                  )}
                   <p className="knds-text-copy-14 knds-text-muted knds-mb-150" style={{ lineHeight: '1.6' }}>
                     {item.description}
                   </p>

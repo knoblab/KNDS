@@ -55,16 +55,16 @@ export default function AlignmentSandbox() {
         {/* SECTION A: Optical alignment playground */}
         <div className="knds-bg-secondary knds-border knds-p-200 knds-flex-col knds-justify-between knds-radius-sm" style={{ flex: '1 1 45%' }}>
           <div>
-            <span className="knds-text-label-14-mono knds-text-muted" style={{ fontSize: '10px', display: 'block', marginBottom: 8 }}>PART A: OPTICAL VS GEOMETRIC NUDGE</span>
+            <span className="knds-text-label-14-mono knds-text-muted" style={{ fontSize: '10px', display: 'block', marginBottom: '8px' }}>PART A: OPTICAL VS GEOMETRIC NUDGE</span>
             <div className="knds-flex-row knds-gap-100 knds-mb-150">
-              <span className="knds-text-label-14-mono" style={{ fontSize: '11px', backgroundColor: 'var(--color-border-default)', padding: '2px 8px', borderRadius: 4 }}>
+              <span className="knds-text-label-14-mono" style={{ fontSize: '12px', backgroundColor: 'var(--color-border-default)', padding: '8px 16px', borderRadius: '4px' }}>
                 미세 보정 값: {opticalOffset}px
               </span>
               {opticalOffset !== 0 && (
                 <button 
                   onClick={resetOffset} 
                   className="knds-text-label-14-mono knds-text-red knds-flex-row knds-items-center knds-gap-050 knds-cursor-pointer"
-                  style={{ fontSize: '10px', border: 'none', background: 'none' }}
+                  style={{ fontSize: '12px', border: 'none', background: 'none' }}
                 >
                   <RefreshCw style={{ width: 10, height: 10 }} /> 초기화
                 </button>
@@ -72,29 +72,29 @@ export default function AlignmentSandbox() {
             </div>
           </div>
 
-          <div className="knds-bg-secondary knds-border knds-p-300 knds-flex-col knds-items-center knds-justify-center knds-radius-sm knds-relative" style={{ minHeight: '140px' }}>
-            <div className="knds-text-label-14-mono knds-text-muted" style={{ fontSize: '8px', position: 'absolute', top: 4, left: 8 }}>ALIGNMENT TEST STAGE</div>
+          <div className="knds-bg-secondary knds-border knds-p-300 knds-flex-col knds-items-center knds-justify-center knds-radius-sm knds-relative" style={{ minHeight: '144px' }}>
+            <div className="knds-text-label-14-mono knds-text-muted" style={{ fontSize: '8px', position: 'absolute', top: '8px', left: '8px' }}>ALIGNMENT TEST STAGE</div>
             
             <div className="knds-flex-col knds-items-center knds-gap-200">
               <div className="knds-flex-row knds-items-center knds-gap-300">
                 
                 <div className="knds-flex-col knds-items-center">
-                  <span className="knds-text-label-14-mono knds-text-muted" style={{ fontSize: '9px', marginBottom: 4 }}>수학적 연산 (오차 방치)</span>
+                  <span className="knds-text-label-14-mono knds-text-muted" style={{ fontSize: '12px', marginBottom: '8px' }}>수학적 연산 (오차 방치)</span>
                   <div className="knds-border knds-flex-row knds-items-center knds-justify-center knds-radius-sm" style={{ width: 96, height: 48, backgroundColor: 'var(--color-bg-primary)' }}>
                     <div className="knds-flex-row knds-items-center knds-gap-050">
-                      <div className="knds-radius-full knds-flex-row knds-items-center knds-justify-center knds-font-bold" style={{ width: 20, height: 20, backgroundColor: 'var(--color-functional-red)', color: 'var(--color-bg-primary)', fontSize: '10px' }}>▶</div>
+                      <div className="knds-radius-full knds-flex-row knds-items-center knds-justify-center knds-font-bold" style={{ width: 24, height: 24, backgroundColor: 'var(--color-functional-red)', color: 'var(--color-bg-primary)', fontSize: '12px' }}>▶</div>
                       <span className="knds-text-label-14-mono" style={{ fontSize: '12px', fontWeight: 'bold' }}>재생</span>
                     </div>
                   </div>
                 </div>
 
                 <div className="knds-flex-col knds-items-center">
-                  <span className="knds-text-label-14-mono knds-text-muted" style={{ fontSize: '9px', fontWeight: 'bold', marginBottom: 4 }}>사용자 광학 보정 스테이지</span>
+                  <span className="knds-text-label-14-mono knds-text-muted" style={{ fontSize: '12px', fontWeight: 'bold', marginBottom: '8px' }}>사용자 광학 보정 스테이지</span>
                   <div className="knds-border knds-flex-row knds-items-center knds-justify-center knds-radius-sm" style={{ width: 96, height: 48, backgroundColor: '#09090b', borderColor: 'var(--color-border-hover)' }}>
                     <div className="knds-flex-row knds-items-center knds-gap-100">
                       <div 
                         className="knds-radius-full knds-flex-row knds-items-center knds-justify-center knds-font-bold"
-                        style={{ width: 20, height: 20, backgroundColor: 'var(--color-functional-red)', color: 'var(--color-bg-primary)', fontSize: '9px', transform: `translateX(${opticalOffset}px)`, transition: 'transform 0.2s' }}
+                        style={{ width: 24, height: 24, backgroundColor: 'var(--color-functional-red)', color: 'var(--color-bg-primary)', fontSize: '12px', transform: `translateX(${opticalOffset}px)`, transition: 'transform 0.2s' }}
                       >
                         ▶
                       </div>
@@ -105,9 +105,9 @@ export default function AlignmentSandbox() {
 
               </div>
 
-              <div className="knds-text-copy-14 knds-text-muted knds-text-center knds-flex-row knds-items-center knds-justify-center" style={{ fontSize: '10px', maxWidth: '280px', height: '32px' }}>
+              <div className="knds-text-copy-14 knds-text-muted knds-text-center knds-flex-row knds-items-center knds-justify-center" style={{ fontSize: '12px', maxWidth: '280px', height: '32px' }}>
                 {opticalOffset === 0 ? (
-                  <span>우측 재생기 내부 삼각 화살표 아이콘을 좌우로 미조 조정해보세요. (추천 광학 오프셋: <code style={{ backgroundColor: 'var(--color-bg-primary)', padding: '0 4px', border: '1px solid var(--color-border-default)', borderRadius: 2, fontWeight: 'bold', color: 'var(--color-text-primary)' }}>+1px</code>)</span>
+                  <span>우측 재생기 내부 삼각 화살표 아이콘을 좌우로 미조 조정해보세요. (추천 광학 오프셋: <code style={{ backgroundColor: 'var(--color-bg-primary)', padding: '0 8px', border: '1px solid var(--color-border-default)', borderRadius: '4px', fontWeight: 'bold', color: 'var(--color-text-primary)' }}>+1px</code>)</span>
                 ) : opticalOffset === 1 ? (
                   <span className="knds-text-red" style={{ fontWeight: 'bold' }}>정답! 삼각 아이콘이 물리적 중앙에서 우측으로 1px 이동하여 광학적 안구 균형을 성취했습니다.</span>
                 ) : (
@@ -144,7 +144,7 @@ export default function AlignmentSandbox() {
                 onClick={() => setTabularNumsActive(!tabularNumsActive)}
                 className="knds-text-label-14-mono"
                 style={{
-                  fontSize: '10px', padding: '2px 8px', borderRadius: 4, border: '1px solid', cursor: 'pointer',
+                  fontSize: '12px', padding: '8px 16px', borderRadius: '4px', border: '1px solid', cursor: 'pointer',
                   backgroundColor: tabularNumsActive ? 'var(--color-functional-red)' : 'var(--color-bg-primary)',
                   color: tabularNumsActive ? 'var(--color-bg-primary)' : 'var(--color-text-secondary)',
                   borderColor: tabularNumsActive ? 'var(--color-functional-red)' : 'var(--color-border-default)'
@@ -155,14 +155,14 @@ export default function AlignmentSandbox() {
             </div>
           </div>
 
-          <div className="knds-bg-secondary knds-border knds-p-200 knds-radius-sm knds-flex-col knds-justify-center" style={{ gap: 12, minHeight: '140px' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 8, borderBottom: '1px solid var(--color-border-default)', paddingBottom: 8 }}>
+          <div className="knds-bg-secondary knds-border knds-p-200 knds-radius-sm knds-flex-col knds-justify-center" style={{ gap: '16px', minHeight: '144px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '8px', borderBottom: '1px solid var(--color-border-default)', paddingBottom: '8px' }}>
               <span className="knds-text-label-14-mono knds-text-muted" style={{ fontSize: '10px', fontWeight: 'bold' }}>지표 부문</span>
               <span className="knds-text-label-14-mono knds-text-muted" style={{ fontSize: '10px', fontWeight: 'bold', textAlign: 'right' }}>기본 가변폭 숫자</span>
               <span className="knds-text-label-14-mono" style={{ fontSize: '10px', fontWeight: 'bold', textAlign: 'right' }}>정밀 고정폭 수치 (tabular)</span>
             </div>
 
-            <div className="knds-flex-col" style={{ gap: 10 }}>
+            <div className="knds-flex-col" style={{ gap: '8px' }}>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', alignItems: 'center' }}>
                 <span className="knds-text-copy-14 knds-text-muted" style={{ fontSize: '12px' }}>시스템 매출액</span>
                 <span className="knds-text-copy-14 knds-text-muted" style={{ fontSize: '12px', textAlign: 'right', letterSpacing: '-0.05em' }}>

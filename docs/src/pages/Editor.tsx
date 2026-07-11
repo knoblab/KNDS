@@ -161,9 +161,9 @@ export default function Editor() {
         case 'split-layout':
           return `${indent}<div class="${getCombinedClasses(node, 'knds-flex-row')}">\n${generateHTMLString(node.children, indent + '  ')}\n${indent}</div>`;
         case 'split-left':
-          return `${indent}<div class="${getCombinedClasses(node, '')}" style="width: 38%;">\n${generateHTMLString(node.children, indent + '  ')}\n${indent}</div>`;
+          return `${indent}<div class="${getCombinedClasses(node, '')}" style="width: 25%;">\n${generateHTMLString(node.children, indent + '  ')}\n${indent}</div>`;
         case 'split-right':
-          return `${indent}<div class="${getCombinedClasses(node, '')}" style="width: 62%;">\n${generateHTMLString(node.children, indent + '  ')}\n${indent}</div>`;
+          return `${indent}<div class="${getCombinedClasses(node, '')}" style="width: 75%;">\n${generateHTMLString(node.children, indent + '  ')}\n${indent}</div>`;
         case 'heading':
           return `${indent}<h2 class="${getCombinedClasses(node, 'knds-text-heading-32')}">${node.content}</h2>`;
         case 'paragraph':
@@ -209,14 +209,14 @@ export default function Editor() {
         );
       case 'split-left':
         return (
-          <div key={node.id} className={getCombinedClasses(node, '')} style={{ ...selectStyle, width: '38%' }} onClick={onClick}>
-            {node.children.length > 0 ? node.children.map(renderVisualNode) : <div className="knds-text-muted knds-text-label-14-mono" style={{ ...contentStyle, padding: '16px', border: '1px dashed var(--color-border-hover)' }}>좌측 (38%)</div>}
+          <div key={node.id} className={getCombinedClasses(node, '')} style={{ ...selectStyle, width: '25%' }} onClick={onClick}>
+            {node.children.length > 0 ? node.children.map(renderVisualNode) : <div className="knds-text-muted knds-text-label-14-mono" style={{ ...contentStyle, padding: '16px', border: '1px dashed var(--color-border-hover)' }}>좌측 (25%)</div>}
           </div>
         );
       case 'split-right':
         return (
-          <div key={node.id} className={getCombinedClasses(node, '')} style={{ ...selectStyle, width: '62%' }} onClick={onClick}>
-            {node.children.length > 0 ? node.children.map(renderVisualNode) : <div className="knds-text-muted knds-text-label-14-mono" style={{ ...contentStyle, padding: '16px', border: '1px dashed var(--color-border-hover)' }}>우측 (62%)</div>}
+          <div key={node.id} className={getCombinedClasses(node, '')} style={{ ...selectStyle, width: '75%' }} onClick={onClick}>
+            {node.children.length > 0 ? node.children.map(renderVisualNode) : <div className="knds-text-muted knds-text-label-14-mono" style={{ ...contentStyle, padding: '16px', border: '1px dashed var(--color-border-hover)' }}>우측 (75%)</div>}
           </div>
         );
       case 'heading':
@@ -296,7 +296,7 @@ export default function Editor() {
             <h3 className="knds-text-label-16 knds-mb-100">컴포넌트 삽입</h3>
             <div className="knds-flex-row" style={{ gap: '8px', flexWrap: 'wrap' }}>
               <button className="knds-secondary-btn" onClick={() => addElement('panel')}>Panel</button>
-              <button className="knds-secondary-btn" onClick={() => addElement('split-layout')}>38:62 Split</button>
+              <button className="knds-secondary-btn" onClick={() => addElement('split-layout')}>25:75 Split</button>
               <button className="knds-secondary-btn" onClick={() => addElement('heading')}>Heading</button>
               <button className="knds-secondary-btn" onClick={() => addElement('paragraph')}>Paragraph</button>
               <button className="knds-secondary-btn" onClick={() => addElement('primary-btn')}>Pri Btn</button>

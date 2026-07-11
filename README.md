@@ -2,10 +2,6 @@
 
 오디오 하드웨어의 조작감과 촉각적 피드백을 디지털 UI로 옮긴 CSS 디자인 토큰 & 컴파일러입니다.
 
-[![Release](https://img.shields.io/github/v/release/knoblab/KNDS?label=Latest%20Release&style=flat-square)](https://github.com/knoblab/KNDS/releases/latest)
-[![Build Status](https://img.shields.io/badge/Build-Passing-brightgreen?style=flat-square)]()
-[![License](https://img.shields.io/badge/License-MIT-blue?style=flat-square)]()
-
 `@knoblab/knds`는 정적 CSS 파일(CDN)로 바로 쓸 수도 있고, 빌드 파이프라인에 붙여서 사용한 클래스만 추출한 최소 CSS를 생성할 수도 있습니다.
 
 ---
@@ -44,11 +40,11 @@
 </body>
 ```
 
-전체 시트(`knds.css`, 약 46KB)를 그대로 받기 때문에 별도 설정이 필요 없습니다. 대신 빌드 최적화는 없습니다.
+전체 스타일시트(`knds.css`)를 그대로 불러오기 때문에 별도 설정이 필요 없습니다. 대신 빌드 최적화는 없습니다.
 
 ### 방법 B — 온디맨드 컴파일러 (Vite / Next.js / CLI)
 
-소스 코드를 스캔해서 실제로 쓴 클래스만 뽑아 5KB 미만의 CSS로 압축합니다.
+소스 코드를 스캔해서 실제로 쓴 클래스만 뽑아 경량화된 최적화 CSS로 추출합니다.
 
 ```bash
 npm install -D @knoblab/knds
@@ -77,7 +73,7 @@ npx knds -i knds.css -o dist/output.css --minify   # 1회 빌드
 npx knds -i knds.css -o dist/output.css --watch    # 변경 감지(증분 컴파일)
 ```
 
-내부 동작: 정규식 스캐너가 소스에서 토큰 후보를 뽑고 → 컴포넌트 원형/임의 값(`w-[342px]` 등)을 매칭 → `@layer base, components, utilities` 순서로 정렬된 CSS를 출력합니다. 파일당 스캔 시간은 평균 0.5ms 정도입니다.
+내부 동작: 정규식 스캐너가 소스에서 토큰 후보를 즉각적으로 추출하고 → 컴포넌트 원형/임의 값(`w-[342px]` 등)을 매칭 → `@layer base, components, utilities` 순서로 정렬된 린트 클린 CSS를 출력합니다. 빌드 부하를 최소화한 정적 스트림 스캐닝 구조입니다.
 
 ---
 
@@ -122,13 +118,13 @@ export default {
 
 ## 3. 주요 토큰
 
-| 분류 | 변수 / 클래스 | 값 | 용도 |
+| 분류 | 변수 / 클래스 | 값 (`knds.css` 원문 기준) | 용도 |
 | :--- | :--- | :--- | :--- |
-| 배경/텍스트 | `--color-bg-primary`<br>`--color-text-primary` | `#ffffff` / `#09090b` (light)<br>`#09090b` / `#f4f4f5` (dark) | 기본 배경·텍스트 색. 다크모드 자동 반전 |
-| 베벨 그림자 | `--shadow-hardware-bevel`<br>`.knds-shadow-bevel` | `inset 0 1px 0 rgba(255,255,255,0.8), 0 1px 3px rgba(0,0,0,0.12)` | 패널에 입체감을 주는 그림자 |
-| 눌림 피드백 | `.knds-btn-primary:active` | `transform: scale(0.98); box-shadow: inset 0 2px 4px rgba(0,0,0,0.2)` | 버튼/스위치 클릭 시 눌리는 느낌 |
+| 배경/텍스트 | `--color-bg-primary`<br>`--color-text-primary` | `#ffffff` / `#09090b` (light)<br>`#09090b` / `#ffffff` (dark) | 기본 배경·텍스트 색. 다크모드 자동 반전 |
+| 베벨 그림자 | `--shadow-hardware-bevel`<br>`.knds-shadow-bevel` | `inset 0 1px 0 rgba(255, 255, 255, 1), inset 0 -1px 0 var(--color-border-default), 0 1px 2px rgba(0, 0, 0, 0.05)` | 패널에 하드웨어 입체감을 주는 그림자 |
+| 눌림 피드백 | `.knds-btn-primary:active` | `background-color: var(--color-red-active); border-radius: var(--btn-active-radius);` | 버튼/스위치 클릭 시 색상 및 곡률 모핑 피드백 |
 | 강조색 | `--color-functional-red`<br>`.knds-text-red` | `#ad1d1d` | 상태 표시, 주요 액션에만 사용 (장식용 금지) |
-| 그리드 | `--blueprint-grid-pattern`<br>`.knds-blueprint-grid` | `24px x 24px linear-gradient` | 정렬 확인용 배경 그리드 |
+| 그리드 | `--blueprint-grid-pattern`<br>`.knds-blueprint-grid` | `24px x 24px linear-gradient` | 정렬 및 시각 위계 확인용 청사진 그리드 |
 
 ### 자주 쓰는 컴포넌트 클래스
 
@@ -144,7 +140,7 @@ export default {
 KNDS/
  ├── package.json
  ├── README.md
- ├── knds.css              # 전체 토큰/컴포넌트 시트 (~46KB, CDN용)
+ ├── knds.css              # 전체 토큰/컴포넌트 시트 (CDN용)
  ├── knds.config.js        # 설정 템플릿
  ├── wrangler.jsonc        # Cloudflare Pages 배포 설정
  ├── compiler/

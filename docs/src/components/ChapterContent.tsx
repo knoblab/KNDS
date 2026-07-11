@@ -41,7 +41,7 @@ export default function ChapterContent({ activeChapter }: ChapterProps) {
               물리적 촉각을 지닌<br />디지털 설계 언어
             </h1>
             <p className="knds-text-copy-14 knds-text-muted knds-max-w-2xl knds-mx-auto knds-leading-relaxed">
-              디터 람스의 철학과 하드웨어적 정밀함을 웹 환경에 완벽히 이식한 통합 디자인 시스템입니다. 복잡한 스타일링 없이, 선언적인 구조와 엄격한 여백만으로 극한의 정밀함을 달성하세요.
+              디터 람스의 철학과 하드웨어적 정밀함을 웹 환경에 실용적으로 구현한 통합 디자인 시스템입니다. 복잡한 장식 없이, 선언적인 구조와 8px 여백 스케일을 통해 기능 중심의 명확한 UI를 설계할 수 있습니다.
             </p>
             <div className="knds-mt-400 knds-flex-row knds-justify-center knds-gap-200">
               <a href="https://github.com/knoblab/KNDS" target="_blank" rel="noopener noreferrer" className="knds-no-underline">
@@ -100,7 +100,7 @@ export default function ChapterContent({ activeChapter }: ChapterProps) {
 
           <HigSpecSection
             overview={{
-              summary: 'KNDS(Knoblab Design System)는 디터 람스의 기능주의 철학과 하드웨어적 정밀함을 웹 인터페이스에 완벽히 이식한 물리-디지털 융합(Physical-Digital Fusion) 디자인 시스템입니다.',
+              summary: 'KNDS(Knoblab Design System)는 디터 람스의 기능주의 철학과 하드웨어적 정밀함을 웹 인터페이스에 일관성 있게 구현한 물리-디지털 융합(Physical-Digital Fusion) 디자인 시스템입니다.',
               purpose: '가상의 그래픽 레이어가 아닌 물리적 두께와 질감을 지닌 독립적인 조작기(Manipulator)를 제공하여, 사용자에게 높은 어포던스(Affordance)와 직관적인 촉각 피드백을 전달합니다.'
             }}
             anatomy={[
@@ -108,8 +108,20 @@ export default function ChapterContent({ activeChapter }: ChapterProps) {
               { id: 'ph-2', name: 'Structural Minimalism Grid (.knds-grid-bg)', tokenOrClass: '--blueprint-grid-pattern', description: '장식을 배제하고 기능적 좌표와 위치를 증명하는 기하학적 청사진 도면' }
             ]}
             doDont={[
-              { type: 'do', title: '설계의 정직성과 기능적 위계(Hierarchy) 집중', description: '모든 요소는 사용자의 조작(Click, Input, Scroll)과 직결되거나 명확한 정보 위계를 가질 때만 렌더링하세요. 단순한 비주얼 장식을 배제하고 컴포넌트 본연의 목적에 충실해야 합니다.', codeSnippet: '<div class="knds-panel knds-grid-bg knds-p-300">기능적 기판 패널</div>' },
-              { type: 'dont', title: '무의미한 3D 회전 및 장식성 입체 글로우 사용 금지', description: '사용자에게 조작 오인을 유발하는 유채색 네온사인 글로우나 과도한 입체 효과를 남발하지 마세요. KNDS의 고대비 물리적 정직성이 훼손됩니다.', codeSnippet: '<!-- ❌ Avoid -->\n<div style="box-shadow: 0 0 50px pink; transform: rotate3d(1, 1, 1, 45deg);">...</div>' }
+              {
+                type: 'do',
+                title: '설계의 정직성과 기능적 위계(Hierarchy) 집중',
+                description: '모든 요소는 사용자의 조작(Click, Input, Scroll)과 직결되거나 명확한 정보 위계를 가질 때만 렌더링하세요. 단순한 비주얼 장식을 배제하고 컴포넌트 본연의 목적에 충실해야 합니다.',
+                preview: <div className="knds-panel knds-grid-bg knds-p-200 knds-w-full knds-text-center knds-font-bold">기능적 기판 패널 (.knds-panel)</div>,
+                codeSnippet: '<div class="knds-panel knds-grid-bg knds-p-300">기능적 기판 패널</div>'
+              },
+              {
+                type: 'dont',
+                title: '무의미한 3D 회전 및 장식성 입체 글로우 사용 금지',
+                description: '사용자에게 조작 오인을 유발하는 유채색 네온사인 글로우나 과도한 입체 효과를 남발하지 마세요. KNDS의 고대비 물리적 정직성이 훼손됩니다.',
+                preview: <div style={{ boxShadow: '0 0 25px pink', transform: 'rotate(-2deg)', padding: '16px', background: '#18181b', color: '#ff80bf', textAlign: 'center', borderRadius: '12px', fontWeight: 'bold' }}>❌ 장식성 유채색 글로우 3D</div>,
+                codeSnippet: '<!-- ❌ Avoid -->\n<div style="box-shadow: 0 0 50px pink; transform: rotate3d(1, 1, 1, 45deg);">...</div>'
+              }
             ]}
             interactions={[
               { state: 'Rest (기본 상태)', visualChange: '1px 화이트 상단 하이라이트와 2px 하단 음영 (.knds-panel)', functionalRole: '물리적 기판 위에 부유하는 하드웨어 표면임을 직관적으로 안내' },
@@ -169,20 +181,20 @@ export default function ChapterContent({ activeChapter }: ChapterProps) {
           <HigSpecSection
             overview={{
               summary: 'KNDS JIT 컴파일러는 소스 코드를 스캔하여 실제 사용된 클래스만 즉시 생성하는 온디맨드(On-Demand) CSS 엔진이자 3-Layer 특이도(Specificity) 정렬 체계입니다.',
-              purpose: '스타일시트 용량을 극단적으로 압축(4.5KB 미만)하여 페이지 로드 성능을 극대화하고, CSS 특이도 충돌 없이 예측 가능한 UI 컴포넌트 제어 환경을 보장합니다.'
+              purpose: '스타일시트 용량을 경량화하여 페이지 로드 성능을 높이고, CSS 특이도 충돌 없이 예측 가능한 UI 컴포넌트 제어 환경을 보장합니다.'
             }}
             anatomy={[
-              { id: 'ar-1', name: 'Lexical Scanner Engine (compiler/scanner.js)', tokenOrClass: 'Regex Tokenizer (~0.5ms)', description: 'AST 파싱의 무거운 부하를 제거하고 정규식(/[^<>"\'`\\s,;{}()]+/g)을 통해 소스 텍스트 스트림에서 유효한 유틸리티 후보만 초고속으로 추출합니다.' },
+              { id: 'ar-1', name: 'Lexical Scanner Engine (compiler/scanner.js)', tokenOrClass: 'Regex Tokenizer (고속 추출 Engine)', description: 'AST 파싱의 무거운 부하를 제거하고 정규식(/[^<>"\'`\\s,;{}()]+/g)을 통해 소스 텍스트 스트림에서 유효한 유틸리티 후보만 초고속으로 추출합니다.' },
               { id: 'ar-2', name: 'Arbitrary Value Extractor (knds-prop-[value])', tokenOrClass: 'knds-w-[342px] → width: 342px;', description: '사전에 정의되지 않은 너비, 높이, 색상, 간격, 그리드 컬럼 등을 동적 파싱하여 즉시 CSS 규칙과 이스케이프 클래스로 생성합니다.' },
               { id: 'ar-3', name: 'Variant Modifier Chain (variants:coreClass)', tokenOrClass: 'hover:dark:sm:knds-...', description: '상태 수식어(hover, focus, active)와 반응형 브레이크포인트(sm, md, lg) 및 다크 모드(dark)를 정확한 Media Query와 Selector로 중첩 래핑합니다.' }
             ]}
             doDont={[
-              { type: 'do', title: '프로덕션 빌드 시 JIT 컴파일러 또는 Minify 옵션 활성화', description: '실제 마크업에서 사용된 15~30여 개 클래스만 정렬하여 출력하는 JIT CLI(`knds -o output.min.css --minify`)를 사용하여 번들 용량을 4.5KB 미만으로 최적화하세요.', codeSnippet: 'npx knds -o dist/output.min.css --minify' },
+              { type: 'do', title: '프로덕션 빌드 시 JIT 컴파일러 또는 Minify 옵션 활성화', description: '실제 마크업에서 사용된 클래스만 정렬하여 출력하는 JIT CLI(`knds -o output.min.css --minify`)를 사용하여 번들 용량을 최적화하세요.', codeSnippet: 'npx knds -o dist/output.min.css --minify' },
               { type: 'dont', title: 'knds.config.js의 content 경로 누락 방지', description: 'JIT 컴파일러가 유틸리티 클래스를 정확히 감지할 수 있도록 HTML, JSX, TSX, Vue 파일의 경로가 `content` 배열에서 누락되지 않도록 주의하세요.', codeSnippet: '<!-- ❌ Avoid missing glob patterns -->\ncontent: ["./src/**/*.tsx"] // HTML 파일이 누락되면 index.html의 클래스가 스캔되지 않음' }
             ]}
             interactions={[
-              { state: 'Incremental Watch (증분 감지)', visualChange: '소스 파일 변경 감지 후 15ms 이내 증분 컴파일 및 갱신', functionalRole: '개발 모드(HMR)에서 브라우저 새로고침 없이 즉각적인 스타일 핫 리로딩 제공' },
-              { state: 'Zero-Overhead Build (프로덕션 압축)', visualChange: '미사용 유틸리티 제거 후 4.5KB 단일 스타일시트로 압축', functionalRole: '최종 사용자에게 최초 로딩 지연(LCP 0.1초 미만) 없는 최적 렌더링 속도 보장' }
+              { state: 'Incremental Watch (증분 감지)', visualChange: '소스 파일 변경 감지 후 지연 없는 증분 컴파일 및 갱신', functionalRole: '개발 모드(HMR)에서 브라우저 새로고침 없이 즉각적인 스타일 핫 리로딩 제공' },
+              { state: 'Zero-Overhead Build (프로덕션 압축)', visualChange: '미사용 유틸리티 제거 후 경량화된 단일 스타일시트로 압축', functionalRole: '최종 사용자에게 불필요한 스타일 오버헤드 없는 최적 렌더링 속도 보장' }
             ]}
             accessibility={[
               { category: 'Performance Accessibility (저사양 기기 배려)', description: '경량화된 단일 CSS는 저사양 모바일 기기 및 열악한 네트워크 환경에서도 스타일 렌더링 병목 현상을 방지합니다.' },
@@ -193,7 +205,7 @@ export default function ChapterContent({ activeChapter }: ChapterProps) {
               { name: 'knds.config.js # theme.extend', defaultValue: 'Deep Merge Registry', description: '기본 Knoblab 아크로매틱 토큰을 확장하거나 커스텀 컬러/여백 추가' }
             ]}
             responsiveRules={[
-              'HMR 의존성 감지: PostCSS 8 플러그인(`postcss-knds`)은 content 경로 내 모든 파일을 PostCSS dependency로 등록하여, 소스 파일 수정 시 15ms 만에 증분 빌드 및 실시간 브라우저 갱신을 실행합니다.'
+              'HMR 의존성 감지: PostCSS 8 플러그인(`postcss-knds`)은 content 경로 내 모든 파일을 PostCSS dependency로 등록하여, 소스 파일 수정 시 지연 없이 즉각적인 증분 빌드 및 실시간 브라우저 갱신을 실행합니다.'
             ]}
           />
         </section>
@@ -221,7 +233,7 @@ export default function ChapterContent({ activeChapter }: ChapterProps) {
           <h2 className="knds-text-label-16 knds-mb-200">Mode B: NPM 패키지 및 온디맨드 JIT CLI 구축</h2>
           <div className="knds-mb-300">
             <p className="knds-text-copy-14 knds-mb-100">
-              프로덕션 웹앱에서 임의 값(`[...]`), 반응형 수식어(`hover:`, `sm:`), 그리고 번들 용량 최소화(4.5KB)를 누리려면 NPM 패키지와 CLI 바이너리를 사용하십시오.
+              프로덕션 웹앱에서 임의 값(`[...]`), 반응형 수식어(`hover:`, `sm:`), 그리고 번들 용량 경량화를 누리려면 NPM 패키지와 CLI 바이너리를 사용하십시오.
             </p>
             <div className="knds-code-block knds-selectable" style={{ whiteSpace: 'pre-wrap' }}>
               {`# 1. 패키지 설치
@@ -341,7 +353,7 @@ export default {
             ]}
             interactions={[
               { state: 'Mode A (Zero-Build CDN)', visualChange: 'HTML `<head>` 선언 즉시 100여 개 핵심 UI 토큰 및 스타일 활성화', functionalRole: '별도의 Node.js 설치나 빌드 지연 없는 즉각적 시각화 및 디자인 검증' },
-              { state: 'Mode B (PostCSS Integration)', visualChange: 'Vite / Next.js 소스 코드 저장 시 15ms 내 트리 쉐이핑 및 핫 리로딩', functionalRole: '임의 속성 및 동적 뷰포트 변화에 실시간 대응하는 초정밀 빌드 결과물 반환' }
+              { state: 'Mode B (PostCSS Integration)', visualChange: 'Vite / Next.js 소스 코드 저장 시 지연 없이 즉시 트리 쉐이핑 및 핫 리로딩', functionalRole: '임의 속성 및 동적 뷰포트 변화에 실시간 대응하는 초정밀 빌드 결과물 반환' }
             ]}
             accessibility={[
               { category: 'Network Fallback (장애 복구 보장)', description: '외부 CDN 유실 또는 열악한 네트워크 환경에 대비하여 프로덕션 배포 시에는 Mode B 로컬 번들링을 권장합니다.' },
@@ -630,7 +642,7 @@ export default {
               { name: '--color-functional-red', defaultValue: '#ad1d1d', darkValue: '#ad1d1d', description: 'KNDS의 아이덴티티이자 액션 유도 컬러' }
             ]}
             responsiveRules={[
-              '테마 자동 적응: HTML 태그에 data-theme="dark" 속성 부여 시 모든 아크로매틱 변수가 0.05ms 내로 반전 렌더링됩니다.',
+              '테마 자동 적응: HTML 태그에 data-theme="dark" 속성 부여 시 모든 아크로매틱 변수가 즉시 반전 렌더링됩니다.',
               '고대비 유지: 다크 모드에서도 기능성 레드는 명도 대비를 유지하여 뚜렷한 식별성을 담보합니다.'
             ]}
           />
@@ -722,6 +734,69 @@ export default {
           </div>
           <div className="knds-mb-300">
             <ButtonSandbox />
+          </div>
+
+          <div className="knds-mb-300">
+            <h3 className="knds-text-label-16 knds-mb-150">KNDS 시스템 공식 곡률 스펙트럼 (Border Radius Specs)</h3>
+            <p className="knds-text-copy-14 knds-text-muted knds-mb-200">
+              KNDS의 모든 조작 표면과 하드웨어 섀시는 규정된 7가지 코너 곡률(Border Radius)만을 사용해야 합니다. 임의의 둥글기 값을 하드코딩하지 마십시오.
+            </p>
+            <div className="knds-overflow-x-auto">
+              <table className="knds-table">
+                <thead>
+                  <tr>
+                    <th style={{ width: '120px' }}>곡률 등급</th>
+                    <th style={{ width: '280px' }}>토큰 및 클래스</th>
+                    <th style={{ width: '100px' }}>반경</th>
+                    <th>시스템 설계 적용 규격 및 사례</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span className="knds-text-label-14-mono knds-font-bold">None</span></td>
+                    <td><code className="knds-code-block" style={{ fontSize: '12px' }}>.knds-rounded-none</code></td>
+                    <td><span className="knds-font-mono">0px</span></td>
+                    <td className="knds-text-copy-14 knds-text-muted">날카로운 직각 섀시. 최외곽 메인 컨테이너 외부 모서리 및 기판 구획선 접합부.</td>
+                  </tr>
+                  <tr>
+                    <td><span className="knds-text-label-14-mono knds-font-bold">Small</span></td>
+                    <td><code className="knds-code-block" style={{ fontSize: '12px' }}>.knds-radius-sm</code> / <code className="knds-code-block" style={{ fontSize: '12px' }}>.knds-rounded-sm</code></td>
+                    <td><span className="knds-font-mono">4px</span></td>
+                    <td className="knds-text-copy-14 knds-text-muted">미세 곡률. 입력창(Input), 드롭다운, 태그/배지, active(가압) 상태의 택타일 버튼.</td>
+                  </tr>
+                  <tr>
+                    <td><span className="knds-text-label-14-mono knds-font-bold">Medium</span></td>
+                    <td><code className="knds-code-block" style={{ fontSize: '12px' }}>.knds-radius-md</code> / <code className="knds-code-block" style={{ fontSize: '12px' }}>.knds-rounded-md</code></td>
+                    <td><span className="knds-font-mono">8px</span></td>
+                    <td className="knds-text-copy-14 knds-text-muted">보조 표면 곡률. 카드 뷰(Card), 내부 서브 패널 컨테이너, hover 상태의 택타일 버튼.</td>
+                  </tr>
+                  <tr>
+                    <td><span className="knds-text-label-14-mono knds-font-bold">Large</span></td>
+                    <td><code className="knds-code-block" style={{ fontSize: '12px' }}>.knds-radius-lg</code> / <code className="knds-code-block" style={{ fontSize: '12px' }}>.knds-rounded-lg</code></td>
+                    <td><span className="knds-font-mono">16px</span></td>
+                    <td className="knds-text-copy-14 knds-text-muted">메인 위계 곡률. 부유형 다이얼로그/모달 패널 본체, 대형 이미지 프레임, rest 상태의 택타일 버튼 수축 코너.</td>
+                  </tr>
+                  <tr>
+                    <td><span className="knds-text-label-14-mono knds-font-bold">X-Large</span></td>
+                    <td><code className="knds-code-block" style={{ fontSize: '12px' }}>.knds-rounded-xl</code></td>
+                    <td><span className="knds-font-mono">24px</span></td>
+                    <td className="knds-text-copy-14 knds-text-muted">최외곽 모서리. 브라우저 뷰포트 코너, 데스크톱 앱 창 프레임 최외곽 단면.</td>
+                  </tr>
+                  <tr>
+                    <td><span className="knds-text-label-14-mono knds-font-bold">2X-Large</span></td>
+                    <td><code className="knds-code-block" style={{ fontSize: '12px' }}>.knds-rounded-2xl</code></td>
+                    <td><span className="knds-font-mono">32px</span></td>
+                    <td className="knds-text-copy-14 knds-text-muted">특수 연출 곡률. 대형 모달 레이아웃 프레임 및 초대형 프로모션/배너 프레임.</td>
+                  </tr>
+                  <tr>
+                    <td><span className="knds-text-label-14-mono knds-font-bold">Full</span></td>
+                    <td><code className="knds-code-block" style={{ fontSize: '12px' }}>.knds-radius-full</code> / <code className="knds-code-block" style={{ fontSize: '12px' }}>.knds-rounded-full</code></td>
+                    <td><span className="knds-font-mono">50% / 9999px</span></td>
+                    <td className="knds-text-copy-14 knds-text-muted">완전 둥근 상태. 택타일 버튼의 Rest(대기) 상태, 원형 스위치 손잡이, 상태 LED 표시등.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
 
           <CodeViewer
@@ -993,7 +1068,7 @@ export default {
         <section id="ch-12">
           <div className="knds-mb-300">
             <p className="knds-text-copy-14 knds-text-muted">
-              화면 분할 철학은 대칭 분리를 타파하고 비대칭 황금비에 준하는 25:75 비율의 스플릿 스크린을 기본 표준으로 채택한다.
+              화면 분할 철학은 대칭 분리를 타파하고 1:3 비율(25:75)의 비대칭 스플릿 스크린을 기본 표준으로 채택한다.
             </p>
           </div>
           <div className="knds-mb-300">
@@ -1004,7 +1079,7 @@ export default {
           </div>
 
           <CodeViewer
-            title="25:75 비대칭 황금 분할 레이아웃 명세"
+            title="25:75 비대칭 스플릿 레이아웃 명세"
             subtitle="Asymmetric Split Screen & Draggable Splitter Bar"
             codeBlocks={[
               {
@@ -1028,7 +1103,7 @@ export default {
 
           <HigSpecSection
             overview={{
-              summary: '대칭적 1:1 분할을 타파하고, 25(좌측 제어 기판) : 75(우측 작업 도화지) 비대칭 황금 분할을 기본 표준으로 하는 데스크톱 워크스페이스 구조입니다.',
+              summary: '대칭적 1:1 분할을 타파하고, 25(좌측 제어 기판) : 75(우측 작업 도화지)의 1:3 비대칭 스플릿 분할을 기본 표준으로 하는 데스크톱 워크스페이스 구조입니다.',
               purpose: '좌측 패널에서 탐색과 인덱싱을 고정하고 우측 75%의 광활한 영역에 본문 데이터와 조작 집중도를 몰입시켜, 인지 분산 없는 최고의 생산성을 달성합니다.'
             }}
             anatomy={[
@@ -1037,7 +1112,7 @@ export default {
               { id: 'sp-pc-3', name: 'Draggable Splitter Bar (.knds-splitter)', tokenOrClass: 'width: 4px, cursor: col-resize', description: '두 영역의 경계선을 분리하며 사용자가 마우스 드래그로 너비를 미세 조정할 수 있는 4px 액센트 바' }
             ]}
             doDont={[
-              { type: 'do', title: '25:75 비대칭 황금 분할 비율 원칙 고수', description: '데스크톱 화면에서 좌측 패널은 25%(`min-width: 280px` ~ `max-width: 400px`), 우측 본문은 75% 비율을 엄격히 유지하여 시각적 안정감을 확립하세요.', codeSnippet: '<aside class="knds-w-1/4">좌측 탐색 기판</aside>\n<main class="knds-w-3/4">우측 본문 도화지</main>' },
+              { type: 'do', title: '1:3 (25:75) 비대칭 스플릿 비율 원칙 고수', description: '데스크톱 화면에서 좌측 패널은 25%(`min-width: 280px` ~ `max-width: 400px`), 우측 본문은 75% 비율을 엄격히 유지하여 시각적 안정감을 확립하세요.', codeSnippet: '<aside class="knds-w-1/4">좌측 탐색 기판</aside>\n<main class="knds-w-3/4">우측 본문 도화지</main>' },
               { type: 'dont', title: '50:50 대칭 분할 및 4개 이상의 과도한 수직 컬럼 분열 금지', description: '50:50 비율 분할은 화면의 주인공(Main View)을 모호하게 만들며, 4개 이상으로 쪼개진 수직 컬럼은 뷰포트 여백을 훼손하므로 금지됩니다.', codeSnippet: '<!-- ❌ Avoid -->\n<div class="knds-w-1/2">Side</div>\n<div class="knds-w-1/2">Main</div>' }
             ]}
             interactions={[

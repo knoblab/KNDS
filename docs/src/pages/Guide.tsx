@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ChapterContent from '../components/ChapterContent';
+import { CHAPTERS_DATA, NAVIGATION_GROUPS } from '../data/chapters';
 
 export default function Guide() {
   const [activeChapter, setActiveChapter] = useState<number>(1);
@@ -19,29 +20,36 @@ export default function Guide() {
   };
 
   useEffect(() => {
-    if (isDarkMode) {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useEffect(() => {
+    // Theme initialization
+    const matchDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    setIsDarkMode(matchDark);
+    if (matchDark) document.documentElement.setAttribute('data-theme', 'dark');
+  }, []);
+
+  const toggleTheme = () => {
+    const nextTheme = !isDarkMode;
+    setIsDarkMode(nextTheme);
+    if (nextTheme) {
       document.documentElement.setAttribute('data-theme', 'dark');
     } else {
       document.documentElement.removeAttribute('data-theme');
     }
-  }, [isDarkMode]);
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 1200);
-    };
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
+  };
 
   const handleChapterSwitch = (num: number) => {
     setActiveChapter(num);
-    setIsMobileNavOpen(false);
-    const scrollableDiv = document.getElementById('documentation-scroller');
-    if (scrollableDiv) {
-      scrollableDiv.scrollTop = 0;
-    }
+    if (isMobile) setIsMobileNavOpen(false);
+    const scroller = document.getElementById('documentation-scroller');
+    if (scroller) scroller.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const startResizing = (e: React.MouseEvent) => {
@@ -53,24 +61,24 @@ export default function Guide() {
     const handleMouseMove = (e: MouseEvent) => {
       if (!isResizing || !containerRef.current) return;
       const containerRect = containerRef.current.getBoundingClientRect();
-      const relativeX = e.clientX - containerRect.left;
-      const percentage = (relativeX / containerRect.width) * 100;
-
-      // Enforce 20% to 50% boundary caps in Section 6
-      if (percentage >= 20 && percentage <= 50) {
-        setSidebarWidth(percentage);
+      const newWidth = ((e.clientX - containerRect.left) / containerRect.width) * 100;
+      if (newWidth >= 18 && newWidth <= 45) {
+        setSidebarWidth(newWidth);
       }
     };
 
     const handleMouseUp = () => {
-      if (isResizing) {
-        setIsResizing(false);
-      }
+      if (isResizing) setIsResizing(false);
     };
 
     if (isResizing) {
       window.addEventListener('mousemove', handleMouseMove);
       window.addEventListener('mouseup', handleMouseUp);
+      document.body.style.cursor = 'col-resize';
+      document.body.style.userSelect = 'none';
+    } else {
+      document.body.style.cursor = 'default';
+      document.body.style.userSelect = 'auto';
     }
 
     return () => {
@@ -79,63 +87,9 @@ export default function Guide() {
     };
   }, [isResizing]);
 
-  // Chapter mapping metadata from PDF (Storytelling Order)
-  const chapters = [
-    { num: 1, title: 'Philosophy', sub: '철학적 토대와 시스템 미학의 융합' },
-    { num: 2, title: 'System Architecture & JIT Engine', sub: '듀얼 모드 아키텍처 및 온디맨드 JIT 컴파일러 명세' },
-    { num: 3, title: 'Installation & CLI Pipeline', sub: 'CDN 및 JIT CLI/PostCSS 파이프라인 구축 가이드' },
-    { num: 4, title: 'Blueprint Grid & Spacing', sub: '청사진 그리드와 멀티 스케일 여백 시스템' },
-    { num: 5, title: 'Typography', sub: '정밀 타이포그래피 및 레이아웃 정렬 명세' },
-    { num: 6, title: 'Color', sub: '아크로매틱 컬러 체계와 펑셔널 레드' },
-    { num: 7, title: 'Materials', sub: '머티리얼 디자인 및 물리적 재질감' },
-    { num: 8, title: 'Buttons & Morphing', sub: '초정밀 버튼 설계 및 형태 모핑 상호작용' },
-    { num: 9, title: 'Forms', sub: '입력 폼 및 데이터 제어 UI' },
-    { num: 10, title: 'Modals', sub: '모달 및 다이얼로그 시스템' },
-    { num: 11, title: 'Navigation', sub: '네비게이션 및 계층 이동 구조' },
-    { num: 12, title: 'Split Screen', sub: '비대칭 황금 분할 25:75 스크린' },
-    { num: 13, title: 'Mobile Screen', sub: '모바일 스택 및 반응형 레이아웃 복원' },
-    { num: 14, title: 'QA & Checklist', sub: '최종 통합 실무 체크리스트 및 검수 수칙' },
-    { num: 15, title: 'Credits', sub: 'KNDS 디자인 시스템 제작 공로자 및 기여자' }
-  ];
-
-  // Categorized chapter mapping for HIG style sidebar
-  const navigationGroups = [
-    {
-      category: 'Foundations (설계 기초)',
-      items: [
-        { num: 1, title: 'Philosophy', sub: '철학적 토대와 물리-디지털 융합 원칙' },
-        { num: 2, title: 'System Architecture', sub: '단일 레이어 순수 CSS 및 토큰 구현' },
-        { num: 3, title: 'Installation & Quick Start', sub: 'KNDS CDN 퀵 스타트 및 설치 가이드' },
-        { num: 4, title: 'Blueprint Grid & Spacing', sub: '청사진 그리드와 8px 여백 스케일' },
-        { num: 5, title: 'Typography', sub: '정밀 타이포그래피 (Pretendard / Mono)' },
-        { num: 6, title: 'Color System', sub: '아크로매틱 고대비 & 기능성 레드' },
-        { num: 7, title: 'Tactile Materials', sub: '하드웨어 베벨 및 물리적 표면 재질감' },
-      ]
-    },
-    {
-      category: 'Patterns (핵심 UX 패턴)',
-      items: [
-        { num: 11, title: 'Navigation Architecture', sub: '네비게이션 및 계층 이동 구조' },
-        { num: 12, title: 'Split Screen (25:75)', sub: '비대칭 황금 분할 25:75 스크린' },
-        { num: 13, title: 'Responsive Mobile Adaptation', sub: '모바일 100% 스택 및 반응형 복원' },
-      ]
-    },
-    {
-      category: 'Components (컴포넌트 명세)',
-      items: [
-        { num: 8, title: 'Buttons & Shape Morphing', sub: '초정밀 버튼 설계 및 형태 모핑 상호작용' },
-        { num: 9, title: 'Form Controls & Validation', sub: '입력 폼 및 데이터 제어 UI' },
-        { num: 10, title: 'Modals & Overlays', sub: '모달 및 다이얼로그 오버레이' },
-      ]
-    },
-    {
-      category: 'Specifications & Credits',
-      items: [
-        { num: 14, title: 'QA Checklist & Verification', sub: '최종 통합 실무 체크리스트 및 검수 수칙' },
-        { num: 15, title: 'Credits & Contributors', sub: 'KNDS 디자인 시스템 제작 공로자 및 기여자' },
-      ]
-    }
-  ];
+  // Use single source of truth from chapters.ts
+  const chapters = CHAPTERS_DATA;
+  const navigationGroups = NAVIGATION_GROUPS;
 
   return (
     <div className="knds-app" ref={containerRef}>
@@ -155,7 +109,7 @@ export default function Guide() {
                 KNDS System
               </h1>
               <button
-                onClick={() => setIsDarkMode(!isDarkMode)}
+                onClick={toggleTheme}
                 className="knds-secondary-btn knds-flex-row knds-items-center knds-justify-center"
                 style={{ padding: '6px 12px', whiteSpace: 'nowrap', gap: '6px', minWidth: '85px' }}
                 aria-label={isDarkMode ? "라이트 모드로 전환" : "다크 모드로 전환"}
@@ -255,9 +209,9 @@ export default function Guide() {
       {!isMobile && (
         <div
           onMouseDown={startResizing}
-          onDoubleClick={() => setSidebarWidth(38)}
+          onDoubleClick={() => setSidebarWidth(25)}
           className={`knds-splitter ${isResizing ? 'active' : ''}`}
-          title="더블클릭시 38% 표준 비율로 리셋"
+          title="더블클릭시 25% 표준 비율로 리셋"
         />
       )}
 
@@ -280,6 +234,9 @@ export default function Guide() {
                   {Math.round((activeChapter / 15) * 100)}% PROGRESS
                 </div>
               </div>
+              <p className="knds-text-copy-14 knds-text-muted knds-mt-100">
+                {chapters[activeChapter - 1].sub}
+              </p>
             </div>
           </div>
 
