@@ -19,6 +19,7 @@ import MaterialSandbox from './MaterialSandbox';
 import FormSandbox from './FormSandbox';
 import ModalSandbox from './ModalSandbox';
 import NavigationSandbox from './NavigationSandbox';
+import JitCompilerSandbox from './JitCompilerSandbox';
 
 interface ChapterProps {
   activeChapter: number;
@@ -122,41 +123,52 @@ export default function ChapterContent({ activeChapter }: ChapterProps) {
         <section id="ch-2">
           <div className="knds-mb-300">
             <p className="knds-text-copy-14 knds-text-muted">
-              KNDS 소프트웨어 구조는 복잡한 의존성을 제거하고 단 하나의 순수 CSS 파일(<code className="knds-text-red">knds.css</code>)에 모든 디자인 토큰 및 컴포넌트 스타일이 격리되어 작동하도록 설계되었습니다.
+              KNDS 아키텍처는 프로젝트의 규모와 복잡도에 맞춰 선택할 수 있는 <strong>듀얼 모드 전달 체계(Dual-Mode Delivery Architecture)</strong>로 설계되었습니다. 빌드 체인이 없는 환경을 위한 <strong>Mode A(정적 단일 스타일시트)</strong>와 초정밀 온디맨드 빌드를 위한 <strong>Mode B(JIT 컴파일러 엔진)</strong>을 완벽하게 동시 지원합니다.
             </p>
           </div>
+
+          {/* Interactive JIT Compiler Simulator */}
+          <div className="knds-mb-400">
+            <JitCompilerSandbox />
+          </div>
+
           <div className="knds-panel knds-grid-bg knds-mb-300">
-            <h3 className="knds-text-label-16 knds-mb-150">아키텍처 레이어 구성 (3-Layer Architecture)</h3>
+            <h3 className="knds-text-label-16 knds-mb-150">3-Layer Specificity 계층 정렬 원칙</h3>
+            <p className="knds-text-copy-14 knds-text-muted knds-mb-200">
+              KNDS JIT 컴파일러는 CSS 특이도(Specificity) 충돌을 방지하기 위해 생성된 규칙을 엄격한 3-Layer로 분류하여 출력합니다.
+            </p>
             <div className="knds-flex-col knds-gap-150">
               <div className="knds-bg-primary knds-border knds-p-200">
-                <span className="knds-text-label-14-mono knds-text-red">LAYER 1. DESIGN TOKENS (:root)</span>
-                <p className="knds-text-copy-14 knds-mt-050 knds-text-muted">CSS Custom Properties 기반의 색상, 타이포그래피, 여백, 그림자 베벨, 청사진 패턴 원시 정의</p>
+                <span className="knds-text-label-14-mono knds-text-red">LAYER 1. @layer base (:root & Reset)</span>
+                <p className="knds-text-copy-14 knds-mt-050 knds-text-muted">CSS Custom Properties 기반의 아크로매틱 고대비 팔레트, 하드웨어 베벨 섀도우 변수, 청사진 패턴 원시 정의</p>
               </div>
               <div className="knds-bg-primary knds-border knds-p-200">
-                <span className="knds-text-label-14-mono knds-text-red">LAYER 2. COMPONENT CLASSES (.knds-panel, .knds-btn-primary...)</span>
-                <p className="knds-text-copy-14 knds-mt-050 knds-text-muted">토큰을 결합하여 렌더링하는 BEM 유사 구조의 독립적 UI 컴포넌트 클래스</p>
+                <span className="knds-text-label-14-mono knds-text-red">LAYER 2. @layer components (.knds-panel, .knds-btn-primary...)</span>
+                <p className="knds-text-copy-14 knds-mt-050 knds-text-muted">디자인 토큰을 결합한 BEM 유사 구조의 UI 컴포넌트 규칙. 하위/복합 선택자(:hover, span 등)를 자동 결합</p>
               </div>
               <div className="knds-bg-primary knds-border knds-p-200">
-                <span className="knds-text-label-14-mono knds-text-red">LAYER 3. UTILITY HELPER CLASSES (.knds-p-*, .knds-flex-row...)</span>
-                <p className="knds-text-copy-14 knds-mt-050 knds-text-muted">인라인 레이아웃 조정을 위한 최소한의 아토믹 유틸리티 체계</p>
+                <span className="knds-text-label-14-mono knds-text-red">LAYER 3. @layer utilities (.knds-w-[...], .hover:knds-*, .sm:knds-*)</span>
+                <p className="knds-text-copy-14 knds-mt-050 knds-text-muted">임의 값([...]), 반응형 및 상태 수식어가 결합된 온디맨드 아토믹 유틸리티. 컴포넌트 스타일을 안전하게 오버라이드</p>
               </div>
             </div>
           </div>
 
           <HigSpecSection
             anatomy={[
-              { id: 'ar-1', name: 'Monolithic Root CSS Layer (knds.css)', tokenOrClass: ':root { ... }', description: '외부 JS 프레임워크에 비의존적인 100% 순수 CSS 단일 변수/클래스 저장소' },
-              { id: 'ar-2', name: 'Namespace Prefix (.knds-*)', tokenOrClass: '.knds-* namespace', description: '기존 글로벌 CSS나 부트스트랩/테일윈드 등과의 스타일 충돌을 원천 방지하는 접두사 규칙' }
+              { id: 'ar-1', name: 'Lexical Scanner Engine (compiler/scanner.js)', tokenOrClass: 'Regex Tokenizer (~0.5ms)', description: 'AST 파싱의 무거운 부하를 제거하고 정규식(/[^<>"\'`\\s,;{}()]+/g)을 통해 소스 텍스트 스트림에서 유효한 유틸리티 후보만 초고속으로 추출합니다.' },
+              { id: 'ar-2', name: 'Arbitrary Value Extractor (knds-prop-[value])', tokenOrClass: 'knds-w-[342px] → width: 342px;', description: '사전에 정의되지 않은 너비, 높이, 색상, 간격, 그리드 컬럼 등을 동적 파싱하여 즉시 CSS 규칙과 이스케이프 클래스로 생성합니다.' },
+              { id: 'ar-3', name: 'Variant Modifier Chain (variants:coreClass)', tokenOrClass: 'hover:dark:sm:knds-...', description: '상태 수식어(hover, focus, active)와 반응형 브레이크포인트(sm, md, lg) 및 다크 모드(dark)를 정확한 Media Query와 Selector로 중첩 래핑합니다.' }
             ]}
             doDont={[
-              { type: 'do', title: 'knds.css 단일 파일 로드 유지', description: '복잡한 빌드 스텝이나 PostCSS 플러그인 없이 knds.css 단 하나의 파일만 HTML에 로드하여 완벽한 스타일을 보장받으십시오.', codeSnippet: '<link rel="stylesheet" href="knds.css" />' },
-              { type: 'dont', title: 'knds- 접두사 없이 글로벌 태그 스타일 오버라이드 금지', description: '디자인 시스템 변수를 조작하지 않고 임의의 글로벌 CSS로 button이나 input을 강제 덮어쓰면 안 됩니다.', codeSnippet: '<!-- ❌ Avoid -->\n<style>button { background: red !important; }</style>' }
+              { type: 'do', title: '프로덕션 빌드 시 JIT 컴파일러 또는 Minify 옵션 활성화', description: '실제 마크업에서 사용된 15~30여 개 클래스만 정렬하여 출력하는 JIT CLI(`knds -o output.min.css --minify`)를 사용하면 번들 용량을 4.5KB 미만으로 최적화할 수 있습니다.', codeSnippet: 'npx knds -o dist/output.min.css --minify' },
+              { type: 'dont', title: 'knds.config.js의 content 경로 누락 방지', description: 'JIT 컴파일러가 유틸리티 클래스를 감지할 수 있도록 HTML, JSX, TSX, Vue 파일의 경로가 `content` 배열에 정확히 지정되어야 합니다.', codeSnippet: '<!-- ❌ Avoid missing glob patterns -->\ncontent: ["./src/**/*.tsx"] // HTML 파일이 누락되면 index.html의 클래스가 스캔되지 않음' }
             ]}
             tokens={[
-              { name: '.knds-* prefix', defaultValue: 'Namespace isolation', description: '전체 디자인 시스템 컴포넌트 클래스 명명 접두사' }
+              { name: 'knds.config.js # prefix', defaultValue: "'knds-'", description: '클래스 네임스페이스 충돌 방지 접두사 설정' },
+              { name: 'knds.config.js # theme.extend', defaultValue: 'Deep Merge Registry', description: '기본 Knoblab 아크로매틱 토큰을 확장하거나 커스텀 컬러/여백 추가' }
             ]}
             responsiveRules={[
-              '프레임워크 중립성: React, Vue, Svelte, Next.js, 순수 HTML 등 어떤 환경에서도 동일한 CSS 변수 아키텍처로 적응합니다.'
+              'HMR 의존성 감지: PostCSS 8 플러그인(`postcss-knds`)은 content 경로 내 모든 파일을 PostCSS dependency로 등록하여, 소스 파일 수정 시 15ms 만에 증분 빌드 및 실시간 브라우저 갱신을 실행합니다.'
             ]}
           />
         </section>
@@ -167,38 +179,63 @@ export default function ChapterContent({ activeChapter }: ChapterProps) {
         <section id="ch-3">
           <div className="knds-mb-300">
             <p className="knds-text-copy-14 knds-text-muted">
-              KNDS는 가장 빠른 시작을 위한 CDN 연결 방식과 로컬 프로젝트 구축을 위한 NPM 설치 방식을 모두 지원합니다.
+              KNDS는 프로토타이핑을 위한 즉각적인 CDN 연결 방식과, Vite/Next.js/Node 파이프라인에 최적화된 온디맨드 JIT 컴파일러 NPM 패키지 방식을 모두 제공합니다.
             </p>
           </div>
 
-          <h2 className="knds-text-label-16 knds-mb-200">📦 CDN을 통한 CSS 퀵 스타트 (권장)</h2>
+          <h2 className="knds-text-label-16 knds-mb-200">Mode A: CDN 정적 마스터 스타일시트 (Zero-Build)</h2>
           <div className="knds-mb-300">
             <p className="knds-text-copy-14 knds-mb-100">
-              HTML 파일의 <code>&lt;head&gt;</code> 태그 내부에 아래 jsDelivr CDN 링크를 추가하면 별도의 다운로드나 설치 과정 없이 바로 KNDS 컴포넌트 클래스를 사용할 수 있습니다.
+              HTML <code>&lt;head&gt;</code> 태그에 마스터 스타일시트를 연결하면 별도의 Node.js 설치나 빌드 과정 없이 즉시 100여 개 컴포넌트와 유틸리티를 사용할 수 있습니다.
             </p>
             <div className="knds-code-block knds-selectable" style={{ whiteSpace: 'pre-wrap' }}>
               {`<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/knoblab/KNDS@main/knds.css">`}
             </div>
           </div>
 
-          <h2 className="knds-text-label-16 knds-mb-200">💻 로컬 개발 환경 구성 (선택)</h2>
+          <h2 className="knds-text-label-16 knds-mb-200">Mode B: NPM 패키지 및 온디맨드 JIT CLI 구축</h2>
           <div className="knds-mb-300">
             <p className="knds-text-copy-14 knds-mb-100">
-              만약 이 저장소를 직접 클론하여 컴포넌트 샌드박스를 실행하거나 수정하고 싶다면 아래 과정을 따르십시오.
+              프로덕션 웹앱에서 임의 값(`[...]`), 반응형 수식어(`hover:`, `sm:`), 그리고 번들 용량 최소화(4.5KB)를 누리려면 NPM 패키지와 CLI 바이너리를 사용하십시오.
             </p>
             <div className="knds-code-block knds-selectable" style={{ whiteSpace: 'pre-wrap' }}>
-              {`# 패키지 의존성 설치
-npm install
+              {`# 1. 패키지 설치
+npm install @knoblab/knds
 
-# 샌드박스 개발 서버 실행 (localhost:3000)
-npm run dev
+# 2. knds.config.js 생성 및 소스 파일 경로 지정
+# -> content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}']
 
-# 프로덕션 빌드 출력
-npm run build`}
+# 3. 독립 실행형 CLI 온디맨드 빌드 및 Minify 압축
+npx knds -o dist/knds.output.css --minify
+
+# 4. 소스 코드 감지 및 증분 빌드 (Watch Mode)
+npx knds -o dist/knds.output.css --watch`}
             </div>
           </div>
 
-          <h2 className="knds-text-label-16 knds-mb-200">🏷️ 선택적 출처 표시 (Optional Attribution)</h2>
+          <h2 className="knds-text-label-16 knds-mb-200">Mode B: PostCSS 8 API 플러그인 연동 (Vite / Next.js)</h2>
+          <div className="knds-mb-300">
+            <p className="knds-text-copy-14 knds-mb-100">
+              Vite, Next.js, Webpack 등의 기존 빌드 도구와 완벽하게 동기화하려면 PostCSS 8 플러그인을 설정하십시오.
+            </p>
+            <div className="knds-code-block knds-selectable" style={{ whiteSpace: 'pre-wrap' }}>
+              {`// postcss.config.js
+import postcssKnds from '@knoblab/knds/postcss';
+
+export default {
+  plugins: [
+    postcssKnds({ config: './knds.config.js' })
+  ]
+};
+
+/* src/index.css 내 지시어 선언 */
+@knds base;
+@knds components;
+@knds utilities;`}
+            </div>
+          </div>
+
+          <h2 className="knds-text-label-16 knds-mb-200">선택적 출처 표시 (Optional Attribution)</h2>
           <div className="knds-mb-300">
             <p className="knds-text-copy-14 knds-mb-200">
               KNDS를 사용하여 제작된 사이트임을 명시하고 싶다면, 아래의 출처 표시 코드를 사이드바 하단이나 푸터에 자유롭게 추가할 수 있습니다.

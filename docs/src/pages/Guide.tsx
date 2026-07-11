@@ -82,8 +82,8 @@ export default function Guide() {
   // Chapter mapping metadata from PDF (Storytelling Order)
   const chapters = [
     { num: 1, title: 'Philosophy', sub: '철학적 토대와 시스템 미학의 융합' },
-    { num: 2, title: 'System Architecture', sub: '통합 소프트웨어 아키텍처 및 토큰 구현' },
-    { num: 3, title: 'Installation', sub: 'KNDS 시작하기 및 설치 가이드' },
+    { num: 2, title: 'System Architecture & JIT Engine', sub: '듀얼 모드 아키텍처 및 온디맨드 JIT 컴파일러 명세' },
+    { num: 3, title: 'Installation & CLI Pipeline', sub: 'CDN 및 JIT CLI/PostCSS 파이프라인 구축 가이드' },
     { num: 4, title: 'Blueprint Grid & Spacing', sub: '청사진 그리드와 멀티 스케일 여백 시스템' },
     { num: 5, title: 'Typography', sub: '정밀 타이포그래피 및 레이아웃 정렬 명세' },
     { num: 6, title: 'Color', sub: '아크로매틱 컬러 체계와 펑셔널 레드' },
