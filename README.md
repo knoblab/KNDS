@@ -1,19 +1,32 @@
 # KNDS (Knoblab Design System)
 
-**Physical-Digital Fusion Web Design Language & Utility Framework**
+**Physical-Digital Fusion Web Design Language & On-Demand JIT Utility Framework**
 
 [![Release](https://img.shields.io/github/v/release/knoblab/KNDS?label=Latest%20Release&style=flat-square)](https://github.com/knoblab/KNDS/releases/latest)
-[![CSS](https://img.shields.io/badge/Pure%20CSS-No%20Build%20Tools-blue?style=flat-square)]()
-[![Runtime](https://img.shields.io/badge/JS%20Runtime-Not%20Required-lightgrey?style=flat-square)]()
+[![Build Status](https://img.shields.io/badge/Build-Passing-brightgreen?style=flat-square)]()
+[![License](https://img.shields.io/badge/License-MIT-blue?style=flat-square)]()
 
-> **KNDS(Knoblab Design System)**는 물리적 오디오 디바이스의 촉각적 베벨 피드백(Tactile Bevels)과 디지털 인터페이스의 구조적 미니멀리즘(Structural Minimalism)을 단일 스타일시트(`knds.css`)로 통합한 **순수 CSS 기반 웹 디자인 언어(Web Design Language Framework)**입니다.  
-> 어떠한 JS 런타임이나 복잡한 빌드 체인 없이도, `<link>` 태그 단 하나로 브라우저에 즉시 고 품격 인터페이스를 렌더링합니다.
+KNDS (`@knoblab/knds`) is a technical design system and CSS framework engineered to bridge physical hardware tactile feedback (tactile bevels) with structural digital minimalism. It delivers precise achromatic high-contrast layouts, hardware-inspired inner/outer bevel shadows, and functional red indicators through either a zero-build static stylesheet or a high-performance Just-In-Time (JIT) utility compiler engine.
 
 ---
 
-## ⚡ Quick Start (CDN)
+## 1. Architectural Overview & Design Tokens
 
-가장 빠르게 KNDS 웹 디자인 언어를 적용하는 방법은 HTML `<head>`에 스타일시트를 추가하는 것입니다:
+KNDS is built upon strict functional tokens that eliminate decorative overhead:
+
+* **Achromatic High Contrast (`--color-bg-primary: #ffffff` / `--color-text-primary: #09090b`)**: Maximizes visual recognition speed and legibility across standard and automated dark (`[data-theme='dark']`) modes.
+* **Tactile Hardware Bevels (`--shadow-hardware-bevel`)**: Emulates physical audio hardware indentation and surface extrusion using multi-layered CSS inner and outer box shadows. Active states (`:active`) invert shadow offsets to provide simulated physical key-press feedback.
+* **Functional Red Accent (`--color-functional-red: #ad1d1d`)**: Restricted exclusively to critical user interactions, system readiness indicators, and primary action triggers.
+
+---
+
+## 2. Delivery Modes
+
+KNDS supports two distinct delivery architectures depending on project complexity and build tooling requirements.
+
+### Mode A: Zero-Build Master Static Stylesheet (CDN)
+
+For static HTML environments, prototypes, and lightweight applications where build chains are unnecessary or restricted.
 
 ```html
 <!DOCTYPE html>
@@ -21,96 +34,138 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KNDS App</title>
+  <title>KNDS Static Application</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/knoblab/KNDS@main/knds.css">
 </head>
 <body class="knds-bg-primary knds-text-primary">
-  <main style="max-width: 520px; margin: 80px auto; padding: 0 16px;">
-    <!-- KNDS Panel Container -->
-    <div class="knds-panel knds-grid-bg">
-      <div class="knds-panel-header knds-flex-row knds-justify-between knds-items-center">
-        <span class="knds-text-label-14-mono knds-text-red">SYSTEM READY</span>
-        <span class="knds-badge">v1.0.0</span>
-      </div>
-      
-      <h1 class="knds-text-heading-32 knds-mb-200">Knoblab Design Language</h1>
-      <p class="knds-text-copy-14 knds-text-muted knds-mb-400">
-        디터 람스(Dieter Rams)의 10가지 디자인 원칙을 디지털 웹 환경에 맞게 재해석했습니다. 고대비 아크로매틱 컬러와 하드웨어 베벨 섀도우가 정확하게 맞물립니다.
-      </p>
-      
-      <div class="knds-flex-row knds-gap-200">
-        <button class="knds-btn-primary">
-          <span>Get Started</span>
-        </button>
-        <button class="knds-secondary-btn">
-          <span>Documentation</span>
-        </button>
-      </div>
+  <main class="knds-panel knds-w-[100%] knds-max-w-500">
+    <div class="knds-panel-header knds-flex-row knds-justify-between knds-items-center">
+      <span class="knds-text-label-14-mono knds-text-red">SYSTEM READY</span>
+      <span class="knds-badge">v1.0.0</span>
     </div>
+    <h1 class="knds-text-heading-32 knds-mb-200">Knoblab Design Language</h1>
+    <button class="knds-btn-primary">
+      <span>Execute Action</span>
+    </button>
   </main>
 </body>
 </html>
 ```
 
+### Mode B: On-Demand JIT Compiler Engine (CLI & PostCSS 8 Plugin)
+
+For modern web application pipelines (Vite, Next.js, Webpack) that require arbitrary value extrapolation (`knds-w-[342px]`), state/breakpoint modifier chaining (`hover:`, `dark:`, `sm:`), and minimal output bundling (`< 5 KB`).
+
+#### JIT Compilation Lifecycle
+1. **Lexical Scanning (`compiler/scanner.js`)**: Scans raw source files (`.html`, `.jsx`, `.tsx`, `.vue`, `.svelte`) using regex-based tokenization without AST overhead (`~0.5ms` extraction time).
+2. **Dynamic Rule Matching (`compiler/generator.js`)**: Evaluates candidate strings against the master `knds.css` component registry and parses dynamic bracket expressions (`w-[...]`, `p-[...]`, `grid-cols-[...]`, `bg-[...]`).
+3. **Specificity Layering (`@layer base, components, utilities`)**: Orders rules deterministically to ensure utility classes override compound component rules consistently without CSS specificity conflicts.
+
 ---
 
-## 📂 Repository Architecture
+## 3. Configuration & CLI Usage
 
-본 리포지토리는 누구나 웹앱 뼈대로 바로 복제하여 쓰거나, 공식 명세 문서를 개발할 수 있도록 명확히 분리된 구조를 가집니다:
+### Configuration File (`knds.config.js`)
+
+Create or customize `knds.config.js` in the project root:
+
+```javascript
+/** @type {import('@knoblab/knds').Config} */
+export default {
+  content: [
+    './index.html',
+    './src/**/*.{js,ts,jsx,tsx,vue,svelte,html}',
+    './template/**/*.html'
+  ],
+  prefix: 'knds-',
+  theme: {
+    extend: {
+      colors: {
+        'surface-dark': '#09090b',
+      },
+      spacing: {
+        'custom-header': '88px',
+      }
+    }
+  },
+  safelist: [
+    'knds-indicator-dot',
+    'knds-btn-primary'
+  ]
+};
+```
+
+### Standalone CLI
+
+The `@knoblab/knds` package exposes the executable `knds` binary:
+
+```bash
+# Compile and optimize used utilities from knds.config.js content paths
+npx knds -o dist/knds.output.css --minify
+
+# Run incremental watch mode for development
+npx knds -o dist/knds.output.css --watch
+```
+
+### PostCSS 8 Integration (`postcss.config.js`)
+
+To integrate KNDS into existing PostCSS pipelines (such as Vite or Next.js):
+
+```javascript
+// postcss.config.js
+import postcssKnds from '@knoblab/knds/postcss';
+
+export default {
+  plugins: [
+    postcssKnds({ config: './knds.config.js' })
+  ]
+};
+```
+
+Include the KNDS directive inside your entry CSS file:
+
+```css
+/* src/index.css */
+@knds base;
+@knds components;
+@knds utilities;
+```
+
+---
+
+## 4. Repository Structure
 
 ```
 KNDS/
- ├── knds.css                 # [CORE] 단일 스타일시트로 구동되는 KNDS 마스터 디자인 언어
- ├── template/                # [GITHUB TEMPLATE] 즉시 사용 가능한 스타터 뼈대
- │    ├── starter-html/       # 빌드 도구 없는 순수 HTML + CDN 스타터 뼈대
- │    └── starter-vite/       # Vite + TypeScript + React 스타터 뼈대
- └── docs/                    # [APPLE HIG-LEVEL DOCS] Apple HIG 체계의 공식 라이브 가이드 & 에디터 SPA
+ ├── knds.css                 # Master static stylesheet (CDN & baseline rule definition)
+ ├── knds.config.js           # Standard JIT configuration specification
+ ├── package.json             # Package manifest exposing CLI binaries and PostCSS exports
+ ├── compiler/                # Core JIT Compiler Engine
+ │    ├── config.js           # Design token dictionary and configuration resolver
+ │    ├── scanner.js          # Regex-based lexical source code scanner
+ │    ├── generator.js        # Balanced-brace AST rule matcher and CSS layer generator
+ │    ├── index.js            # Programmatic compilation API (`compile()`)
+ │    ├── postcss.js          # PostCSS 8 plugin wrapper (`postcss-knds`)
+ │    └── cli.js              # Executable CLI interface (`knds`)
+ ├── template/                # Starter project blueprints
+ │    ├── starter-html/       # Static HTML + CDN starter structure
+ │    └── starter-vite/       # Vite + TypeScript + React starter structure
+ ├── test/                    # Automated JIT verification suite and performance benchmarks
+ └── docs/                    # Apple HIG-structured documentation application
 ```
 
 ---
 
-## 🎨 Core Design Principles
+## 5. Verification Suite
 
-1. **Achromatic High Contrast (아크로매틱 고대비)**  
-   배경과 텍스트의 대비도를 극대화(`--color-bg-primary: #FFFFFF` vs `--color-text-primary: #09090B`)하여 시각적 인지 속도를 최대로 높입니다. 다크 모드(`[data-theme='dark']`)로 자동 전환 시에도 균형 잡힌 대비율을 유지합니다.
-
-2. **Functional Red Accent (기능성 레드 포인트)**  
-   모든 장식적 컬러를 배제하고, 사용자 액션(`Primary Button`, `Active Navigation`, `Warning Badge`)이 일어나는 필수 지점에만 기능성 레드(`--color-functional-red: #AD1D1D`)를 부여하여 시선 경로를 유도합니다.
-
-3. **Tactile Hardware Bevels (촉각적 하드웨어 베벨)**  
-   평면적 Flat UI의 한계를 넘어, 실제 물리 장비의 버튼과 패널이 가진 미세한 홈과 그림자를 CSS Inner/Outer Shadow(`--shadow-hardware-bevel`)로 정교하게 구현했습니다. 버튼 누름(`:active`) 시 베벨이 수축되며 물리적 타건감을 줍니다.
-
----
-
-## 🚀 Using as a GitHub Template
-
-이 리포지토리를 복제하여 새로운 프로젝트를 시작할 때, 목적에 맞게 뼈대를 선택하세요:
-
-### 1. 단일 HTML CDN 프로젝트 시작 시 (`template/starter-html`)
-`template/starter-html/index.html` 파일을 열거나 복사하면 바로 개발 준비가 끝납니다. 별도의 `npm install`이나 빌드 과정이 불필요합니다.
-
-### 2. Vite + React TypeScript 프로젝트 시작 시 (`template/starter-vite`)
-```bash
-cp -r template/starter-vite my-knds-app
-cd my-knds-app
-npm install
-npm run dev
-```
-
----
-
-## 📖 Interactive Documentation & Live Editor (`docs/`)
-
-KNDS의 모든 명세는 **Apple Human Interface Guidelines (HIG)** 수준의 정밀한 명세(Anatomy), Do/Don't 비주얼 비교 가이드, 그리고 실시간 샌드박스로 제작되어 있습니다.
+Run automated unit tests and performance checks directly across all compiler modules:
 
 ```bash
-# 공식 가이드 및 실시간 페이지 에디터 실행
-npm run dev
+node test/jit.test.js
 ```
-브라우저에서 `http://localhost:3000`에 접속하여 Apple HIG 체계(`Foundations`, `Patterns`, `Components`)로 구성된 KNDS 디자인 언어를 직접 체험하고, 나만의 페이지를 실시간 에디팅 후 HTML/ZIP으로 내보내세요.
 
 ---
 
-## 📄 License
+## 6. License
 
-MIT License © Knoblab Design Team & QPI Labels.
+MIT License © Knoblab Design Team.

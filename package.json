@@ -3,9 +3,19 @@
   "version": "1.0.0",
   "description": "KNDS (Knoblab Design System): Physical-Digital Fusion Web Design Language & Utility Framework",
   "main": "knds.css",
+  "type": "module",
+  "bin": {
+    "knds": "./compiler/cli.js"
+  },
+  "exports": {
+    ".": "./knds.css",
+    "./compiler": "./compiler/index.js",
+    "./postcss": "./compiler/postcss.js"
+  },
   "files": [
     "knds.css",
-    "README.md"
+    "README.md",
+    "compiler"
   ],
   "scripts": {
     "dev": "npm --workspace=@knoblab/knds-docs run dev",
