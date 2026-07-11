@@ -214,6 +214,7 @@ KNDS/ (Root - Core Design Language Package)
  ├── README.md                # 100% 기술 엔지니어링 명세서 및 시스템 아키텍처 다이어그램
  ├── knds.css                 # 마스터 디자인 토큰 및 컴포넌트 원형 시트 (~46 KB)
  ├── knds.config.js           # 표준 디자인 언어 설정 템플릿
+ ├── wrangler.jsonc           # Cloudflare Pages 자동 배포 구성 (CI/CD용)
  ├── compiler/                # 온디맨드 디자인 토큰 컴파일러 Core 엔진
  │    ├── config.js           # 디자인 토큰 사전 및 구성 병합기
  │    ├── scanner.js          # AST-Free 고속 어휘 스캐너 (~0.5ms)
