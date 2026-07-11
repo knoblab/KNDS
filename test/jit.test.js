@@ -49,6 +49,18 @@ assert.ok(variantCss.includes("[data-theme='dark'] .dark\\:knds-w-\\[342px\\]"),
 assert.ok(variantCss.includes('@media (min-width: 640px) {\n  .sm\\:knds-p-400 {\n    padding: var(--space-400);\n  }\n}'), 'Should wrap with sm breakpoint media query');
 console.log('✔ Variant & responsive modifier chains accurately wrapped.\n');
 
+// 4.5 Test Border Radius Utilities (Theme Tokens & Directional)
+console.log('[Test 4.5] Border Radius & Directional Rounding');
+const radiusCss = generateCss(new Set(['knds-rounded', 'knds-rounded-sm', 'knds-radius-lg', 'knds-rounded-t-md', 'knds-rounded-b-xl']), config, { includeBase: false });
+console.log('Radius CSS Output:\n', radiusCss);
+
+assert.ok(radiusCss.includes('.knds-rounded'), 'Should handle knds-rounded');
+assert.ok(radiusCss.includes('.knds-rounded-sm'), 'Should handle knds-rounded-sm');
+assert.ok(radiusCss.includes('.knds-radius-lg'), 'Should handle knds-radius-lg');
+assert.ok(radiusCss.includes('.knds-rounded-t-md'), 'Should handle directional knds-rounded-t-md');
+assert.ok(radiusCss.includes('.knds-rounded-b-xl'), 'Should handle directional knds-rounded-b-xl');
+console.log('✔ Border radius and directional rounding utilities generated correctly.\n');
+
 // 5. Test Full compile() API performance
 console.log('[Test 5] Full JIT Compile Engine & Performance Check');
 const startTime = performance.now();

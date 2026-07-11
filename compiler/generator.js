@@ -266,6 +266,39 @@ export function generateDeclarations(coreClass, config) {
     }
   }
 
+  // Check Border Radius
+  const radiusMatch = unprefixed.match(/^(rounded|radius)-([a-z0-9_-]+)$/);
+  if (radiusMatch && theme.borderRadius) {
+    const tokenKey = radiusMatch[2];
+    const tokenVal = theme.borderRadius[tokenKey] || null;
+    if (tokenVal) {
+      return { layer: 'utilities', declarations: `border-radius: ${tokenVal};` };
+    }
+  }
+
+  // Check Directional Border Radius (e.g. rounded-t-sm)
+  const dirRadiusMatch = unprefixed.match(/^rounded-([tblr])-([a-z0-9_-]+)$/);
+  if (dirRadiusMatch && theme.borderRadius) {
+    const dir = dirRadiusMatch[1];
+    const tokenKey = dirRadiusMatch[2];
+    const tokenVal = theme.borderRadius[tokenKey] || null;
+    if (tokenVal) {
+      const propMap = {
+        't': ['border-top-left-radius', 'border-top-right-radius'],
+        'b': ['border-bottom-left-radius', 'border-bottom-right-radius'],
+        'l': ['border-top-left-radius', 'border-bottom-left-radius'],
+        'r': ['border-top-right-radius', 'border-bottom-right-radius'],
+      };
+      const props = propMap[dir];
+      return { layer: 'utilities', declarations: props.map(p => `${p}: ${tokenVal};`).join(' ') };
+    }
+  }
+
+  // Special case: knds-rounded (maps to md)
+  if (unprefixed === 'rounded' && theme.borderRadius && theme.borderRadius.md) {
+    return { layer: 'utilities', declarations: `border-radius: ${theme.borderRadius.md};` };
+  }
+
   // Check Shadows
   if (unprefixed.startsWith('shadow-') && theme.boxShadow) {
     const tokenKey = unprefixed.slice('shadow-'.length);

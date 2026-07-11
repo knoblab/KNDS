@@ -65,6 +65,15 @@ export const defaultTokens = {
     'lg': '1024px',
     'xl': '1280px',
     '2xl': '1536px',
+  },
+  borderRadius: {
+    'none': 'var(--radius-none, 0px)',
+    'sm': 'var(--radius-sm, 4px)',
+    'md': 'var(--radius-md, 8px)',
+    'lg': 'var(--radius-lg, 16px)',
+    'xl': 'var(--radius-xl, 24px)',
+    '2xl': 'var(--radius-2xl, 32px)',
+    'full': 'var(--radius-full, 50%)',
   }
 };
 

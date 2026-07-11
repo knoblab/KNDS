@@ -45,7 +45,7 @@ export default function JitCompilerSandbox() {
     sortedTokens.forEach(token => {
       // Static components
       if (token === 'knds-panel') {
-        componentsCss.push(`.knds-panel {\n  background-color: var(--color-bg-primary);\n  border: 1px solid var(--color-border-default);\n  box-shadow: var(--shadow-hardware-bevel);\n  padding: var(--space-200);\n  border-radius: 8px;\n}`);
+        componentsCss.push(`.knds-panel {\n  background-color: var(--color-bg-primary);\n  border: 1px solid var(--color-border-default);\n  box-shadow: var(--shadow-hardware-bevel);\n  padding: var(--space-200);\n  border-radius: var(--radius-md);\n}`);
       } else if (token === 'knds-btn-primary') {
         componentsCss.push(`.knds-btn-primary {\n  background-color: var(--color-bg-primary);\n  border: 1px solid var(--color-border-default);\n  box-shadow: var(--shadow-hardware-bevel);\n  padding: var(--space-100) var(--space-200);\n  color: var(--color-text-primary);\n}`);
       } 

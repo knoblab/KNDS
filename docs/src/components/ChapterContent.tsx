@@ -769,7 +769,7 @@ export default {
                   </tr>
                   <tr>
                     <td><span className="knds-text-label-14-mono knds-font-bold">Medium</span></td>
-                    <td><code className="knds-code-block" style={{ fontSize: '12px' }}>.knds-radius-md</code> / <code className="knds-code-block" style={{ fontSize: '12px' }}>.knds-rounded-md</code></td>
+                    <td><code className="knds-code-block" style={{ fontSize: '12px' }}>.knds-rounded</code> / <code className="knds-code-block" style={{ fontSize: '12px' }}>.knds-radius-md</code> / <code className="knds-code-block" style={{ fontSize: '12px' }}>.knds-rounded-md</code></td>
                     <td><span className="knds-font-mono">8px</span></td>
                     <td className="knds-text-copy-14 knds-text-muted">보조 표면 곡률. 카드 뷰(Card), 내부 서브 패널 컨테이너, hover 상태의 택타일 버튼.</td>
                   </tr>
@@ -890,7 +890,7 @@ export default {
               {
                 label: "CSS Token Specifications",
                 tag: "CSS",
-                code: ".knds-input {\n  width: 100%;\n  height: 44px;\n  padding: 0 16px;\n  background-color: var(--color-bg-primary);\n  border: 1px solid var(--color-border-default);\n  border-radius: 6px;\n  color: var(--color-text-primary);\n  transition: border-color 0.15s ease, box-shadow 0.15s ease;\n}\n.knds-input:focus {\n  outline: none;\n  border-color: var(--color-text-primary);\n  box-shadow: 0 0 0 2px rgba(9, 9, 11, 0.1);\n}\n[data-theme=\"dark\"] .knds-input:focus {\n  box-shadow: 0 0 0 2px rgba(250, 250, 250, 0.15);\n}"
+                code: ".knds-input {\n  width: 100%;\n  height: 44px;\n  padding: 0 16px;\n  background-color: var(--color-bg-primary);\n  border: 1px solid var(--color-border-default);\n  border-radius: 8px; /* Standard MD Radius */\n  color: var(--color-text-primary);\n  transition: border-color 0.15s ease, box-shadow 0.15s ease;\n}\n.knds-input:focus {\n  outline: none;\n  border-color: var(--color-text-primary);\n  box-shadow: 0 0 0 2px rgba(9, 9, 11, 0.1);\n}\n[data-theme=\"dark\"] .knds-input:focus {\n  box-shadow: 0 0 0 2px rgba(250, 250, 250, 0.15);\n}"
               }
             ]}
             note="폼 제어 요소는 버튼 높이와 정확히 1:1 일치하여 수평 툴바나 인라인 검색 바 구성 시 여백 오차가 0px입니다."

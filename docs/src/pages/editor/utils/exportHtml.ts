@@ -79,7 +79,7 @@ export const exportToZip = async (pages: EditorPageItem[], appTitle: string, app
         const activeStyleColor = isCurrent ? 'var(--color-bg-primary)' : 'var(--color-text-secondary)';
 
         return `
-          <div class="knds-nav-item ${isCurrent ? 'active' : ''}" style="margin-bottom: 4px; cursor: pointer; border-radius: 4px;" onclick="window.location.href='${href}'">
+          <div class="knds-nav-item ${isCurrent ? 'active' : ''}" style="margin-bottom: 4px; cursor: pointer; border-radius: var(--radius-sm);" onclick="window.location.href='${href}'">
             <div class="knds-flex-row knds-items-center knds-gap-150 knds-overflow-hidden knds-w-full" style="padding: 2px 0;">
               <span class="knds-text-label-14-mono knds-text-center knds-font-bold" style="background-color: ${activeStyleBg}; color: ${activeStyleColor}; padding: 2px 6px; border-radius: 2px; font-size: 11px; min-width: 24px;">
                 ${numStr}
@@ -99,7 +99,7 @@ export const exportToZip = async (pages: EditorPageItem[], appTitle: string, app
           <div 
             class="knds-nav-group-header" 
             onclick="toggleNavGroup(this)"
-            style="display: flex; justify-content: space-between; align-items: center; margin: 12px 0 6px 0; padding: 4px 8px; background-color: var(--color-bg-secondary); border-radius: 4px; cursor: pointer;"
+            style="display: flex; justify-content: space-between; align-items: center; margin: 12px 0 6px 0; padding: 4px 8px; background-color: var(--color-bg-secondary); border-radius: var(--radius-sm); cursor: pointer;"
           >
             <div class="knds-flex-row knds-items-center knds-gap-100">
               <span class="knds-text-label-14-mono" style="font-weight: 700; display: inline-flex; align-items: center; gap: 6px;">

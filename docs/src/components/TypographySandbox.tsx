@@ -39,7 +39,7 @@ export default function TypographySandbox() {
         <div>
           <div className="knds-text-label-14-mono knds-text-muted knds-mb-050">Mono 14 / Mono 13 (Code / Data)</div>
           <div className="knds-text-label-14-mono knds-mb-050">
-            JetBrains Mono • 0123456789 • {`{ border-radius: 4px; }`}
+            JetBrains Mono • 0123456789 • {`{ border-radius: var(--radius-sm); }`}
           </div>
           <div className="knds-text-copy-13-mono">
             $ git commit -m "update typography tokens"

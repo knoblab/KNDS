@@ -44,16 +44,16 @@ export default function CodeExport() {
   border: none;
   font-family: 'Pretendard Variable', Pretendard, -apple-system, sans-serif;
   font-weight: 700;
-  border-radius: 22px; /* Capsule base shape (height / 2) */
+  border-radius: 9999px; /* Capsule base shape (--radius-full) */
   transition: border-radius 0.28s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.2s ease;
 }
 .knds-btn-primary:hover {
   background-color: var(--color-red-hover);
-  border-radius: 14px; /* Soft Square Morphing */
+  border-radius: 14px; /* Soft Square Morphing (between --radius-md and --radius-lg) */
 }
 .knds-btn-primary:active {
   background-color: var(--color-red-active);
-  border-radius: 8px; /* Sharp Square Morphing */
+  border-radius: 8px; /* Sharp Square Morphing (--radius-md) */
 }`,
     react: `// KNDS React TSX Component Integration (JIT Utility Classes)
 import React, { useState } from 'react';
