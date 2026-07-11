@@ -379,30 +379,62 @@ export default {
             <TypographySandbox />
           </div>
 
-          <details className="knds-mt-200 knds-cursor-pointer knds-border-top knds-pt-200">
-            <summary className="knds-text-label-14-mono knds-text-muted knds-font-bold">[+] 타이포그래피 구현 코드 보기</summary>
-            <div className="knds-code-block knds-selectable knds-mt-100" style={{ whiteSpace: 'pre-wrap' }}>
-              {`<!-- 1. 헤딩 타이틀 (Heading Typography) -->
-<!-- 가장 눈에 띄는 제목 요소에 사용합니다. -->
+          <CodeViewer
+            title="타이포그래피 및 네오 그로테스크 폰트 스케일 명세"
+            subtitle="Pretendard Variable & JetBrains Mono Token Scale"
+            codeBlocks={[
+              {
+                label: 'HTML / 유틸리티',
+                tag: 'HTML',
+                code: `<!-- 1. 헤딩 타이틀 (Heading Typography) -->
+<!-- 화면 내 가장 큰 강조 및 섹션 구분에 사용합니다. -->
 <h1 class="knds-text-heading-72">거대한 메인 타이틀 (72px)</h1>
 <h1 class="knds-text-heading-32">최상위 타이틀 (32px)</h1>
 <h2 class="knds-text-heading-24">중간 타이틀 (24px)</h2>
 
 <!-- 2. 라벨 (UI Labels & Emphasized Text) -->
-<!-- 버튼, 네비게이션, 짧은 강조 텍스트에 사용합니다. -->
+<!-- 버튼, 네비게이션, 짧은 강조 텍스트 및 메타데이터에 사용합니다. -->
 <span class="knds-text-label-16">중요 라벨 텍스트 (16px, Bold)</span>
 <span class="knds-text-label-14-mono">고정폭 메타데이터 라벨 (14px)</span>
 
-<!-- 3. 본문 텍스트 (Copy/Body Text) -->
+<!-- 3. 본문 텍스트 (Copy / Body Text) -->
 <!-- 긴 단락이나 일반 설명 문구에 사용합니다. -->
 <p class="knds-text-copy-14">기본 본문 텍스트입니다. (14px)</p>
 <p class="knds-text-copy-13-mono knds-text-muted">부가적인 설명이나 작은 캡션 (13px, Muted)</p>
 
 <!-- 4. 다국어/숫자 복합 사용 예시 -->
 <!-- JetBrains Mono와 Pretendard가 자동 폴백으로 섞여 렌더링됩니다. -->
-<span class="knds-text-label-14-mono">API_KEY_12345 (생성일: 2026-05-26)</span>`}
-            </div>
-          </details>
+<span class="knds-text-label-14-mono">API_KEY_12345 (생성일: 2026-05-26)</span>`
+              },
+              {
+                label: 'React / TSX',
+                tag: 'TSX',
+                code: "export default function StatusPanel({ isError }: { isError: boolean }) {\n  return (\n    <div className={`knds-panel knds-p-300 knds-border ${isError ? 'knds-border-red' : ''}`}>\n      <div className=\"knds-flex-row knds-items-center knds-justify-between\">\n        <span className=\"knds-text-label-16 knds-font-bold\">시스템 코어 온도</span>\n        <span className={`knds-px-100 knds-py-050 knds-radius-sm knds-text-label-14-mono ${\n          isError ? 'knds-bg-red knds-text-white' : 'knds-bg-secondary knds-text-primary'\n        }`}>\n          {isError ? 'OVERHEAT #AD1D1D' : 'STABLE 42°C'}\n        </span>\n      </div>\n    </div>\n  );\n}"
+              },
+              {
+                label: 'CSS Token & Font Face',
+                tag: 'CSS',
+                code: `@font-face {
+  font-family: 'Pretendard Variable';
+  src: url('/fonts/PretendardVariable.woff2') format('woff2-variations');
+  font-weight: 100 900;
+  font-display: swap;
+}
+:root {
+  --font-primary: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+}
+.knds-text-heading-32 {
+  font-family: var(--font-primary);
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}`
+              }
+            ]}
+            note="Pretendard는 다국어 타이포그래피의 가독성을 극대화하며 JetBrains Mono와 완벽한 시각적 균형을 이룹니다."
+          />
 
           <div className="knds-mb-300 knds-mt-300">
             <h3 className="knds-text-label-16 knds-mb-100">Primary Typeface: Pretendard</h3>
@@ -483,33 +515,28 @@ export default {
             <ColorSandbox />
           </div>
 
-          <details className="knds-mt-200 knds-cursor-pointer knds-border-top knds-pt-200">
-            <summary className="knds-text-label-14-mono knds-text-muted knds-font-bold">[+] 컬러 구현 코드 보기</summary>
-            <div className="knds-code-block knds-selectable knds-mt-100" style={{ whiteSpace: 'pre-wrap' }}>
-              {`/* 1. 디자인 시스템 토큰을 활용한 CSS 예시 (CSS Variables) */
-.my-custom-panel {
-  /* 배경과 텍스트 대비 */
-  background-color: var(--color-bg-secondary);
-  color: var(--color-text-primary);
-  
-  /* 경계선 토큰 적용 */
-  border: 1px solid var(--color-border-default);
-}
-.my-custom-panel:hover {
-  border-color: var(--color-border-hover);
-}
-
-/* 2. 유틸리티 클래스를 이용한 HTML 적용 예시 */
-<!-- 붉은색 액센트 텍스트 -->
-<div class="knds-text-red knds-font-bold">Error: Connection Lost</div>
-
-<!-- 보조 텍스트 색상 (Muted) -->
-<div class="knds-text-muted knds-text-copy-14">마지막 업데이트: 1시간 전</div>
-
-<!-- 붉은색 배경 (주로 알림 뱃지 등에 사용) -->
-<div class="knds-bg-red knds-text-white knds-px-100 knds-py-050 knds-radius-sm">알림</div>`}
-            </div>
-          </details>
+          <CodeViewer
+            title="아크로매틱 고대비 배경 및 펑셔널 레드 명세"
+            subtitle="Achromatic Foundations & #AD1D1D Accent Control"
+            codeBlocks={[
+              {
+                label: "HTML / 유틸리티",
+                tag: "HTML",
+                code: "<!-- 1. 아크로매틱 배경 및 경계선 유틸리티 -->\n<div class=\"knds-panel knds-bg-primary knds-border knds-p-300\">\n  <span class=\"knds-text-label-14-mono knds-text-muted\">SURFACE: PRIMARY</span>\n</div>\n\n<!-- 2. 붉은색 액센트 텍스트 (치명적 오류 또는 유일한 액션 강조) -->\n<div class=\"knds-text-red knds-font-bold knds-mt-200\">\n  ⚠️ Critical Error: Hardware Sensor Connection Lost\n</div>\n\n<!-- 3. 보조 텍스트 색상 (Muted Text) -->\n<div class=\"knds-text-muted knds-text-copy-14\">\n  마지막 하트비트 동기화: 14:02:18 (정상)\n</div>\n\n<!-- 4. 펑셔널 레드 상태 뱃지 -->\n<span class=\"knds-bg-red knds-text-white knds-px-100 knds-py-050 knds-radius-sm knds-text-label-14-mono\">\n  ACTION REQUIRED\n</span>"
+              },
+              {
+                label: "React / TSX",
+                tag: "TSX",
+                code: "export default function StatusPanel({ isError }: { isError: boolean }) {\n  return (\n    <div className={`knds-panel knds-p-300 knds-border ${isError ? 'knds-border-red' : ''}`}>\n      <div className=\"knds-flex-row knds-items-center knds-justify-between\">\n        <span className=\"knds-text-label-16 knds-font-bold\">시스템 코어 온도</span>\n        <span className={`knds-px-100 knds-py-050 knds-radius-sm knds-text-label-14-mono ${\n          isError ? 'knds-bg-red knds-text-white' : 'knds-bg-secondary knds-text-primary'\n        }`}>\n          {isError ? 'OVERHEAT #AD1D1D' : 'STABLE 42°C'}\n        </span>\n      </div>\n    </div>\n  );\n}"
+              },
+              {
+                label: "CSS Token Specifications",
+                tag: "CSS",
+                code: ":root {\n  /* Achromatic Foundations */\n  --color-bg-primary: #ffffff;\n  --color-bg-secondary: #f4f4f5;\n  --color-border-default: #e4e4e7;\n  --color-border-hover: #a1a1aa;\n  --color-text-primary: #09090b;\n  --color-text-secondary: #71717a;\n\n  /* Functional Red Accent (#AD1D1D) */\n  --color-functional-red: #ad1d1d;\n  --color-red-hover: #c21f1f;\n  --color-red-active: #941a1a;\n}\n[data-theme=\"dark\"] {\n  --color-bg-primary: #09090b;\n  --color-bg-secondary: #18181b;\n  --color-border-default: #27272a;\n  --color-text-primary: #fafafa;\n}"
+              }
+            ]}
+            note="펑셔널 레드(#AD1D1D)는 뷰포트 내 핵심 버튼 및 경고 뱃지 1~3개에만 제한적으로 부여되어 주의력을 집중시킵니다."
+          />
 
           <HigSpecSection
             anatomy={[
@@ -546,30 +573,30 @@ export default {
             <MaterialSandbox />
           </div>
 
-          <details className="knds-mt-200 knds-cursor-pointer knds-border-top knds-pt-200">
-            <summary className="knds-text-label-14-mono knds-text-muted knds-font-bold">[+] 머티리얼 및 표면 높이 구현 코드 보기</summary>
-            <div className="knds-code-block knds-selectable knds-mt-100" style={{ whiteSpace: 'pre-wrap' }}>
-              {`<!-- 1. 기본 하드웨어 패널 (Standard Panel) -->
-<!-- 미세한 볼륨감(Bevel)과 그림자가 포함된 기본 표면입니다. -->
-<div class="knds-panel">
-  <div class="knds-panel-header">
-    <h3 class="knds-text-label-16">패널 타이틀</h3>
-  </div>
-  <p class="knds-text-copy-14 knds-text-muted">안정적인 하드웨어 재질감</p>
-</div>
+          <CodeViewer
+            title="물리적 베벨 및 광학 반투명 글래스 머티리얼 명세"
+            subtitle="Hardware Bevel & Frosted Glass Backdrop Elevation"
+            codeBlocks={[
+              {
+                label: "HTML / 유틸리티",
+                tag: "HTML",
+                code: "<!-- 1. 기본 하드웨어 패널 (Standard Bevel Panel) -->\n<div class=\"knds-panel knds-p-300\">\n  <div class=\"knds-panel-header\">\n    <h3 class=\"knds-text-label-16 knds-font-bold\">시스템 하드웨어 기판</h3>\n  </div>\n  <p class=\"knds-text-copy-14 knds-text-muted\">아크로매틱 고대비 정밀 재질감</p>\n</div>\n\n<!-- 2. 프로스트 글래스 반투명 표면 (Frosted Glass Overlay) -->\n<div class=\"knds-backdrop-blur-lg knds-p-200 knds-border\" style=\"background-color: var(--bg-sidebar);\">\n  <span class=\"knds-text-label-14-mono knds-font-bold\">BLUR 24PX + SATURATE 180%</span>\n</div>\n\n<!-- 3. 치명적 오류 글로우 이펙트 (Glow Effect) -->\n<div class=\"knds-shadow-glow knds-border knds-border-red knds-radius-md knds-p-200\">\n  <span class=\"knds-text-red knds-font-bold\">EMERGENCY CORE EXCURSION</span>\n</div>"
+              },
+              {
+                label: "React / TSX",
+                tag: "TSX",
+                code: "export default function GlassModal({ isOpen, onClose, children }: {\n  isOpen: boolean;\n  onClose: () => void;\n  children: React.ReactNode;\n}) {\n  if (!isOpen) return null;\n  return (\n    <div className=\"knds-fixed knds-inset-0 knds-z-50 knds-flex-col knds-items-center knds-justify-center knds-p-400\">\n      <div\n        className=\"knds-absolute knds-inset-0 knds-backdrop-blur-lg\"\n        style={{ backgroundColor: 'rgba(0, 0, 0, 0.45)' }}\n        onClick={onClose}\n      />\n      <div className=\"knds-panel knds-content-relative knds-z-10 knds-w-full knds-max-w-lg knds-shadow-bevel\">\n        {children}\n      </div>\n    </div>\n  );\n}"
+              },
+              {
+                label: "CSS Token Specifications",
+                tag: "CSS",
+                code: ":root {\n  --shadow-hardware-bevel: 0 1px 0 0 rgba(255, 255, 255, 0.8) inset, 0 1px 2px 0 rgba(0, 0, 0, 0.05);\n  --bg-sidebar: rgba(255, 255, 255, 0.65);\n}\n[data-theme=\"dark\"] {\n  --shadow-hardware-bevel: 0 1px 0 0 rgba(255, 255, 255, 0.08) inset, 0 2px 4px 0 rgba(0, 0, 0, 0.5);\n  --bg-sidebar: rgba(9, 9, 11, 0.65);\n}\n.knds-backdrop-blur-lg {\n  backdrop-filter: blur(24px) saturate(180%);\n  -webkit-backdrop-filter: blur(24px) saturate(180%);\n}"
+              }
+            ]}
+            note="머티리얼 레이어는 상단 1px 반사와 반투명 블러 필터를 통해 디지털 화면에 깊이와 질감을 부여합니다."
+          />
 
-<!-- 2. 프로스트 글래스 / 반투명 표면 (Frosted Glass) -->
-<!-- 스크롤 오버레이나 사이드바, 네비게이션 영역에 주로 사용합니다. -->
-<div class="knds-backdrop-blur-lg knds-p-200" style="background-color: var(--bg-sidebar);">
-  <span class="knds-text-label-14-mono">투과되는 유리 재질</span>
-</div>
-
-<!-- 3. 상태 표시용 글로우 이펙트 (Glow Effect) -->
-<div class="knds-shadow-glow knds-border knds-border-red knds-radius-md knds-p-200">
-  강조되어야 하는 치명적 알림 박스
-</div>`}
-            </div>
-          </details>
+          <CodeExport />
 
           <HigSpecSection
             anatomy={[
@@ -609,38 +636,28 @@ export default {
             <ButtonSandbox />
           </div>
 
-          <details className="knds-mt-200 knds-cursor-pointer knds-border-top knds-pt-200">
-            <summary className="knds-text-label-14-mono knds-text-muted knds-font-bold">[+] 버튼 구현 코드 보기</summary>
-            <div className="knds-code-block knds-selectable knds-mt-100" style={{ whiteSpace: 'pre-wrap' }}>
-              {`<!-- 1. 1차 액션 (Primary Button) -->
-<!-- 화면당 1개 제한 권장, 가장 중요한 단일 액션 -->
-<!-- Hover/Active 시 둥근 알약(Capsule) 형태에서 직사각형으로 모핑(Morphing)됩니다. -->
-<button class="knds-btn-primary">
-  SUBMIT DATA
-</button>
-
-<!-- 2. 2차 액션 (Secondary Button) -->
-<!-- 폼 취소, 뒤로가기 등 보조적인 동작 -->
-<button class="knds-secondary-btn">
-  CANCEL
-</button>
-
-<!-- 3. 고스트 액션 (Ghost Button / Text Button) -->
-<!-- 테두리 없이 텍스트만 존재, 중요도가 낮은 부가 기능 -->
-<!-- knds-secondary-btn 구조에서 border를 빼고 여백을 줄여 사용 가능 -->
-<button class="knds-secondary-btn knds-border-none knds-bg-transparent">
-  Learn More
-</button>
-
-<!-- 4. 버튼 사이즈 토큰 (Button Sizing Modifiers) -->
-<!-- XS (32px) | SM (40px) | MD (44px, 기본) | LG (48px) | XL (56px) -->
-<div class="knds-flex-row knds-gap-100">
-  <button class="knds-btn-primary knds-btn-xs">XS BTN</button>
-  <button class="knds-btn-primary knds-btn-sm">SM BTN</button>
-  <button class="knds-btn-primary knds-btn-md">MD BTN</button>
-</div>`}
-            </div>
-          </details>
+          <CodeViewer
+            title="하드웨어 택타일 버튼 및 모핑 메커니즘"
+            subtitle="Tactile Switch & Capsule-to-Rectangle Morphing"
+            codeBlocks={[
+              {
+                label: "HTML / 유틸리티",
+                tag: "HTML",
+                code: "<!-- 1. 1차 핵심 액션 (Primary Button) -->\n<button class=\"knds-btn-primary knds-btn-md\">\n  SUBMIT DATA\n</button>\n\n<!-- 2. 2차 보조 액션 (Secondary Button) -->\n<button class=\"knds-secondary-btn knds-btn-md\">\n  CANCEL\n</button>\n\n<!-- 3. 고스트 액션 (Ghost / Text Button) -->\n<button class=\"knds-secondary-btn knds-btn-md knds-border-none knds-bg-transparent\">\n  Learn More\n</button>\n\n<!-- 4. 버튼 사이즈 스케일 (XS ~ XL) -->\n<div class=\"knds-flex-row knds-gap-100 knds-items-center\">\n  <button class=\"knds-btn-primary knds-btn-xs\">XS (32px)</button>\n  <button class=\"knds-btn-primary knds-btn-sm\">SM (40px)</button>\n  <button class=\"knds-btn-primary knds-btn-md\">MD (44px)</button>\n  <button class=\"knds-btn-primary knds-btn-lg\">LG (48px)</button>\n  <button class=\"knds-btn-primary knds-btn-xl\">XL (56px)</button>\n</div>"
+              },
+              {
+                label: "React / TSX",
+                tag: "TSX",
+                code: "interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {\n  variant?: 'primary' | 'secondary' | 'ghost';\n  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';\n}\n\nexport default function TactileButton({ variant = 'primary', size = 'md', children, ...props }: ButtonProps) {\n  const variantClass = variant === 'primary' ? 'knds-btn-primary' :\n                       variant === 'secondary' ? 'knds-secondary-btn' :\n                       'knds-secondary-btn knds-border-none knds-bg-transparent';\n  return (\n    <button className={`${variantClass} knds-btn-${size}`} {...props}>\n      {children}\n    </button>\n  );\n}"
+              },
+              {
+                label: "CSS Token Specifications",
+                tag: "CSS",
+                code: ".knds-btn-primary {\n  height: 44px;\n  padding: 0 24px;\n  border-radius: 9999px; /* Capsule Rest State */\n  background-color: var(--color-text-primary);\n  color: var(--color-bg-primary);\n  transition: border-radius 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.1s ease;\n}\n.knds-btn-primary:hover {\n  border-radius: 6px; /* Morphing to Rectangle */\n  background-color: var(--color-functional-red);\n  color: #ffffff;\n}\n.knds-btn-primary:active {\n  transform: scale(0.98);\n}"
+              }
+            ]}
+            note="KNDS 버튼은 평상시 곡선을 유지하다 가압 순간 예리한 엣지로 모핑되어 물리적 클릭 질감을 극대화합니다."
+          />
 
           <HigSpecSection
             anatomy={[
@@ -676,34 +693,28 @@ export default {
             <FormSandbox />
           </div>
 
-          <details className="knds-mt-200 knds-cursor-pointer knds-border-top knds-pt-200">
-            <summary className="knds-text-label-14-mono knds-text-muted knds-font-bold">[+] 폼 입력 구현 코드 보기</summary>
-            <div className="knds-code-block knds-selectable knds-mt-100" style={{ whiteSpace: 'pre-wrap' }}>
-              {`<!-- 1. 기본 텍스트 입력 폼 세트 -->
-<div class="knds-flex-col knds-gap-100">
-  <label class="knds-text-label-14-mono knds-text-muted">USERNAME</label>
-  <input type="text" class="knds-input" placeholder="Enter your name" />
-</div>
-
-<!-- 2. 드롭다운(Select) 폼 세트 -->
-<div class="knds-flex-col knds-gap-100">
-  <label class="knds-text-label-14-mono knds-text-muted">USER ROLE</label>
-  <select class="knds-input">
-    <option value="admin">Administrator</option>
-    <option value="editor">Editor</option>
-    <option value="viewer">Viewer</option>
-  </select>
-</div>
-
-<!-- 3. 입력 폼 사이즈 토큰 (Form Sizing Modifiers) -->
-<!-- 버튼 사이즈와 1:1로 대응하여 수평 정렬을 완벽하게 맞출 수 있습니다. -->
-<input type="text" class="knds-input knds-input-xs" placeholder="XS Input (32px)" />
-<input type="text" class="knds-input knds-input-sm" placeholder="SM Input (40px)" />
-<input type="text" class="knds-input knds-input-md" placeholder="MD Input (44px, Default)" />
-<input type="text" class="knds-input knds-input-lg" placeholder="LG Input (48px)" />
-<input type="text" class="knds-input knds-input-xl" placeholder="XL Input (56px)" />`}
-            </div>
-          </details>
+          <CodeViewer
+            title="정밀 인풋 콘솔 및 아크로매틱 폼 제어"
+            subtitle="Precision Input Terminal & Focus State Indicator"
+            codeBlocks={[
+              {
+                label: "HTML / 유틸리티",
+                tag: "HTML",
+                code: "<!-- 1. 기본 인풋 필드 세트 -->\n<div class=\"knds-flex-col knds-gap-100\">\n  <label class=\"knds-text-label-14-mono knds-text-muted\">USERNAME OR ID</label>\n  <input type=\"text\" class=\"knds-input knds-input-md\" placeholder=\"Enter alphanumeric identifier...\" />\n</div>\n\n<!-- 2. 셀렉트 드롭다운 -->\n<div class=\"knds-flex-col knds-gap-100 knds-mt-200\">\n  <label class=\"knds-text-label-14-mono knds-text-muted\">SECURITY ACCESS LEVEL</label>\n  <select class=\"knds-input knds-input-md\">\n    <option value=\"level-1\">Level 1 - Administrator Console</option>\n    <option value=\"level-2\">Level 2 - Hardware Engineer</option>\n    <option value=\"level-3\">Level 3 - Guest Observer</option>\n  </select>\n</div>\n\n<!-- 3. 인풋 사이즈 스케일 (버튼 사이즈와 1:1 수평 정렬) -->\n<div class=\"knds-flex-col knds-gap-150 knds-mt-300\">\n  <input type=\"text\" class=\"knds-input knds-input-xs\" placeholder=\"XS Input (32px)\" />\n  <input type=\"text\" class=\"knds-input knds-input-sm\" placeholder=\"SM Input (40px)\" />\n  <input type=\"text\" class=\"knds-input knds-input-md\" placeholder=\"MD Input (44px, Default)\" />\n  <input type=\"text\" class=\"knds-input knds-input-lg\" placeholder=\"LG Input (48px)\" />\n  <input type=\"text\" class=\"knds-input knds-input-xl\" placeholder=\"XL Input (56px)\" />\n</div>"
+              },
+              {
+                label: "React / TSX",
+                tag: "TSX",
+                code: "interface FormFieldProps {\n  label: string;\n  placeholder?: string;\n  type?: string;\n  isError?: boolean;\n  errorMessage?: string;\n}\n\nexport default function FormField({ label, placeholder, type = 'text', isError, errorMessage }: FormFieldProps) {\n  return (\n    <div className=\"knds-flex-col knds-gap-100\">\n      <div className=\"knds-flex-row knds-justify-between\">\n        <label className=\"knds-text-label-14-mono knds-text-muted\">{label}</label>\n        {isError && <span className=\"knds-text-label-14-mono knds-text-red\">ERROR</span>}\n      </div>\n      <input\n        type={type}\n        placeholder={placeholder}\n        className={`knds-input knds-input-md ${isError ? 'knds-border-red knds-shadow-glow' : ''}`}\n      />\n      {errorMessage && <span className=\"knds-text-copy-14 knds-text-red\">{errorMessage}</span>}\n    </div>\n  );\n}"
+              },
+              {
+                label: "CSS Token Specifications",
+                tag: "CSS",
+                code: ".knds-input {\n  width: 100%;\n  height: 44px;\n  padding: 0 16px;\n  background-color: var(--color-bg-primary);\n  border: 1px solid var(--color-border-default);\n  border-radius: 6px;\n  color: var(--color-text-primary);\n  transition: border-color 0.15s ease, box-shadow 0.15s ease;\n}\n.knds-input:focus {\n  outline: none;\n  border-color: var(--color-text-primary);\n  box-shadow: 0 0 0 2px rgba(9, 9, 11, 0.1);\n}\n[data-theme=\"dark\"] .knds-input:focus {\n  box-shadow: 0 0 0 2px rgba(250, 250, 250, 0.15);\n}"
+              }
+            ]}
+            note="폼 제어 요소는 버튼 높이와 정확히 1:1 일치하여 수평 툴바나 인라인 검색 바 구성 시 여백 오차가 0px입니다."
+          />
 
           <HigSpecSection
             anatomy={[
@@ -737,37 +748,28 @@ export default {
             <ModalSandbox />
           </div>
 
-          <details className="knds-mt-200 knds-cursor-pointer knds-border-top knds-pt-200">
-            <summary className="knds-text-label-14-mono knds-text-muted knds-font-bold">[+] 모달 다이얼로그 구현 코드 보기</summary>
-            <div className="knds-code-block knds-selectable knds-mt-100" style={{ whiteSpace: 'pre-wrap' }}>
-              {`<!-- 1. 전체 화면 오버레이 (Dimmed Background) -->
-<!-- z-index를 높게 설정하고 화면 전체를 덮습니다. -->
-<div class="knds-overlay knds-fixed knds-inset-0 knds-backdrop-blur-sm knds-z-40" style="background: rgba(0,0,0,0.6);"></div>
-
-<!-- 2. 모달 다이얼로그 본체 -->
-<!-- 화면 중앙에 고정시키며 입체감을 강하게 부여합니다. -->
-<div class="knds-panel knds-fixed knds-inset-center knds-z-50 knds-shadow-xl knds-w-[420px]">
-  
-  <!-- 모달 헤더 -->
-  <div class="knds-border-bottom knds-pb-150 knds-mb-200 knds-flex-row knds-justify-between knds-items-center">
-    <h3 class="knds-text-label-16">DELETE SYSTEM DATA</h3>
-    <button class="knds-text-muted knds-cursor-pointer knds-border-none knds-bg-transparent">✕</button>
-  </div>
-  
-  <!-- 모달 콘텐츠 -->
-  <p class="knds-text-copy-14 knds-text-muted knds-mb-300">
-    이 동작은 되돌릴 수 없습니다.<br/>서버에서 영구적으로 삭제하시겠습니까?
-  </p>
-  
-  <!-- 모달 푸터 (액션 버튼) -->
-  <div class="knds-flex-row knds-justify-end knds-gap-100">
-    <button class="knds-secondary-btn">Cancel</button>
-    <button class="knds-btn-primary">Confirm Delete</button>
-  </div>
-  
-</div>`}
-            </div>
-          </details>
+          <CodeViewer
+            title="하드웨어 콘솔 다이얼로그 및 오버레이 레이어"
+            subtitle="Elevated Bevel Modal & Backdrop Dimming"
+            codeBlocks={[
+              {
+                label: "HTML / 유틸리티",
+                tag: "HTML",
+                code: "<!-- 1. 다이얼로그 배경 오버레이 -->\n<div class=\"knds-fixed knds-inset-0 knds-backdrop-blur-sm knds-z-40\" style=\"background: rgba(0,0,0,0.65);\"></div>\n\n<!-- 2. 다이얼로그 패널 본체 -->\n<div class=\"knds-panel knds-fixed knds-inset-center knds-z-50 knds-shadow-xl knds-w-[420px] knds-p-400\">\n  \n  <div class=\"knds-border-bottom knds-pb-200 knds-mb-300 knds-flex-row knds-justify-between knds-items-center\">\n    <h3 class=\"knds-text-label-16 knds-font-bold knds-text-red\">SYSTEM TERMINATE CONFIRMATION</h3>\n    <button class=\"knds-text-muted knds-cursor-pointer knds-border-none knds-bg-transparent\">✕</button>\n  </div>\n  \n  <p class=\"knds-text-copy-14 knds-text-muted knds-mb-400 knds-leading-relaxed\">\n    선택한 하드웨어 클러스터의 데이터 마운트를 해제하고 서버에서 영구 삭제합니다.<br/>\n    이 작업은 <strong>절대 복구할 수 없습니다</strong>.\n  </p>\n  \n  <div class=\"knds-flex-row knds-justify-end knds-gap-200\">\n    <button class=\"knds-secondary-btn knds-btn-md\">Cancel</button>\n    <button class=\"knds-btn-primary knds-btn-md\">Confirm Execution</button>\n  </div>\n  \n</div>"
+              },
+              {
+                label: "React / TSX",
+                tag: "TSX",
+                code: "export default function HardwareModal({ isOpen, title, children, onConfirm, onCancel }: {\n  isOpen: boolean;\n  title: string;\n  children: React.ReactNode;\n  onConfirm: () => void;\n  onCancel: () => void;\n}) {\n  if (!isOpen) return null;\n  return (\n    <div className=\"knds-fixed knds-inset-0 knds-z-50 knds-flex-col knds-items-center knds-justify-center\">\n      <div className=\"knds-absolute knds-inset-0 knds-backdrop-blur-md\" style={{ background: 'rgba(0,0,0,0.6)' }} onClick={onCancel} />\n      <div className=\"knds-panel knds-content-relative knds-z-10 knds-w-full knds-max-w-md knds-shadow-bevel knds-p-400\">\n        <div className=\"knds-border-bottom knds-pb-200 knds-mb-300 knds-flex-row knds-justify-between knds-items-center\">\n          <span className=\"knds-text-label-16 knds-font-bold\">{title}</span>\n          <button onClick={onCancel} className=\"knds-border-none knds-bg-transparent knds-cursor-pointer\">✕</button>\n        </div>\n        <div className=\"knds-mb-400\">{children}</div>\n        <div className=\"knds-flex-row knds-justify-end knds-gap-200\">\n          <button onClick={onCancel} className=\"knds-secondary-btn knds-btn-md\">취소</button>\n          <button onClick={onConfirm} className=\"knds-btn-primary knds-btn-md\">확인 및 실행</button>\n        </div>\n      </div>\n    </div>\n  );\n}"
+              },
+              {
+                label: "CSS Token Specifications",
+                tag: "CSS",
+                code: ".knds-inset-center {\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n.knds-shadow-xl {\n  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.15);\n}"
+              }
+            ]}
+            note="모달은 물리적 다이얼로그의 무게감을 나타내기 위해 상단 1px 반사와 깊은 드롭 섀도우를 동반합니다."
+          />
 
           <HigSpecSection
             anatomy={[
@@ -800,32 +802,28 @@ export default {
             <NavigationSandbox />
           </div>
 
-          <details className="knds-mt-200 knds-cursor-pointer knds-border-top" style={{ paddingTop: '16px' }}>
-            <summary className="knds-text-label-14-mono knds-text-muted knds-font-bold">[+] 네비게이션 구현 코드 보기</summary>
-            <div className="knds-code-block knds-selectable knds-mt-100" style={{ whiteSpace: 'pre-wrap' }}>
-              {`<!-- 1. 사이드바 네비게이션 그룹 헤더 -->
-<!-- 클릭하여 하위 메뉴를 접고 펼칠 수 있는 인터페이스용 -->
-<div class="knds-nav-group-header">
-  <span>LAYOUT & GRID</span>
-  <!-- 화살표 아이콘 (상태에 따라 .collapsed 클래스 토글) -->
-  <svg class="knds-chevron collapsed" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z" /></svg>
-</div>
-
-<!-- 2. 네비게이션 메뉴 아이템 -->
-<!-- .active 클래스 부여 시 좌측에 붉은 인디케이터가 활성화됨 -->
-<div class="knds-nav-item active">
-  <div class="knds-flex-row knds-items-center knds-gap-100">
-    <span class="knds-text-label-14-mono knds-bg-secondary knds-p-050 knds-radius-sm">01</span>
-    <span class="knds-text-label-16">PC Split Screen</span>
-  </div>
-</div>
-
-<!-- 3. 비활성(Disabled) 아이템 -->
-<div class="knds-nav-item disabled">
-  <span class="knds-text-label-16">Mobile Screen (준비중)</span>
-</div>`}
-            </div>
-          </details>
+          <CodeViewer
+            title="하드웨어 사이드바 트리 및 액티브 엣지 명세"
+            subtitle="Sidebar Navigation Tree & #AD1D1D Active Edge"
+            codeBlocks={[
+              {
+                label: "HTML / 유틸리티",
+                tag: "HTML",
+                code: "<!-- 1. 사이드바 그룹 헤더 (접기/펼치기 토글) -->\n<div class=\"knds-nav-group-header knds-flex-row knds-justify-between knds-items-center knds-py-200 knds-cursor-pointer\">\n  <span class=\"knds-text-label-14-mono knds-font-bold knds-text-muted\">01. LAYOUT & GRID ARCHITECTURE</span>\n  <svg class=\"knds-chevron collapsed\" viewBox=\"0 0 24 24\" width=\"16\" height=\"16\"><path d=\"M7 10l5 5 5-5z\" fill=\"currentColor\" /></svg>\n</div>\n\n<!-- 2. 활성화(Active) 네비게이션 아이템 -->\n<div class=\"knds-nav-item active knds-flex-row knds-items-center knds-gap-200 knds-py-150 knds-px-200\">\n  <span class=\"knds-text-label-14-mono knds-bg-red knds-text-white knds-px-100 knds-py-050 knds-radius-sm\">1.1</span>\n  <span class=\"knds-text-label-16 knds-font-bold\">PC Split Screen Workspace</span>\n</div>\n\n<!-- 3. 일반(Inactive) 네비게이션 아이템 -->\n<div class=\"knds-nav-item knds-flex-row knds-items-center knds-gap-200 knds-py-150 knds-px-200 knds-cursor-pointer\">\n  <span class=\"knds-text-label-14-mono knds-bg-secondary knds-text-muted knds-px-100 knds-py-050 knds-radius-sm\">1.2</span>\n  <span class=\"knds-text-label-16 knds-text-muted\">Achromatic Color Token System</span>\n</div>\n\n<!-- 4. 비활성(Disabled / Planned) 아이템 -->\n<div class=\"knds-nav-item disabled knds-opacity-40 knds-py-150 knds-px-200\">\n  <span class=\"knds-text-label-16 knds-text-muted\">Mobile Screen Adaptive (준비중)</span>\n</div>"
+              },
+              {
+                label: "React / TSX",
+                tag: "TSX",
+                code: "interface NavItemProps {\n  index: string;\n  title: string;\n  isActive?: boolean;\n  isDisabled?: boolean;\n  onClick?: () => void;\n}\n\nexport default function NavItem({ index, title, isActive, isDisabled, onClick }: NavItemProps) {\n  return (\n    <div\n      onClick={!isDisabled ? onClick : undefined}\n      className={`knds-nav-item knds-flex-row knds-items-center knds-gap-200 knds-py-150 knds-px-200 ${\n        isActive ? 'active' : ''\n      } ${isDisabled ? 'disabled knds-opacity-40' : 'knds-cursor-pointer'}`}\n    >\n      <span className={`knds-text-label-14-mono knds-px-100 knds-py-050 knds-radius-sm ${\n        isActive ? 'knds-bg-red knds-text-white' : 'knds-bg-secondary knds-text-muted'\n      }`}>\n        {index}\n      </span>\n      <span className={`knds-text-label-16 ${isActive ? 'knds-font-bold knds-text-primary' : 'knds-text-muted'}`}>\n        {title}\n      </span>\n    </div>\n  );\n}"
+              },
+              {
+                label: "CSS Token Specifications",
+                tag: "CSS",
+                code: ".knds-nav-item {\n  position: relative;\n  transition: background-color 0.15s ease, color 0.15s ease;\n  border-left: 3px solid transparent;\n}\n.knds-nav-item:hover:not(.disabled) {\n  background-color: var(--color-bg-secondary);\n}\n.knds-nav-item.active {\n  background-color: var(--color-bg-secondary);\n  border-left-color: var(--color-functional-red);\n}"
+              }
+            ]}
+            note="네비게이션 트리는 좌측 3px 레드 인디케이터를 통해 사용자가 현재 어느 기판 위치에 있는지 명확하게 안내합니다."
+          />
 
           <HigSpecSection
             anatomy={[
@@ -861,33 +859,28 @@ export default {
             <SplitSandbox defaultMode="desktop" />
           </div>
 
-          <details className="knds-mt-200 knds-cursor-pointer knds-border-top knds-pt-200">
-            <summary className="knds-text-label-14-mono knds-text-muted knds-font-bold">[+] 스플릿 스크린 구현 코드 보기</summary>
-            <div className="knds-code-block knds-selectable knds-mt-100" style={{ whiteSpace: 'pre-wrap' }}>
-              {`<!-- 25:75 비율의 황금비 스플릿 스크린 전체 구조 -->
-<div class="knds-app">
-  
-  <!-- 좌측 25% 사이드바 영역 -->
-  <!-- 블러 효과와 그리드 패턴이 포함된 KNDS 특유의 사이드바 클래스 -->
-  <aside class="knds-sidebar knds-w-1/4">
-    <nav>네비게이션 메뉴</nav>
-  </aside>
-  
-  <!-- 드래그 가능한 중앙 스플리터 막대 -->
-  <div class="knds-splitter"></div>
-  
-  <!-- 우측 75% 메인 콘텐츠 영역 -->
-  <main class="knds-main-view knds-w-3/4">
-    <!-- 실제 콘텐츠가 담기는 중앙 정렬된 컨테이너 -->
-    <div class="knds-main-content">
-      <h1 class="knds-text-heading-32">Main Title</h1>
-      <p class="knds-text-copy-14">Main content goes here.</p>
-    </div>
-  </main>
-
-</div>`}
-            </div>
-          </details>
+          <CodeViewer
+            title="25:75 비대칭 황금 분할 레이아웃 명세"
+            subtitle="Asymmetric Split Screen & Draggable Splitter Bar"
+            codeBlocks={[
+              {
+                label: "HTML / 유틸리티",
+                tag: "HTML",
+                code: "<!-- 25:75 비율의 데스크톱 스플릿 스크린 메인 레이아웃 -->\n<div class=\"knds-app knds-flex-row knds-w-full knds-h-screen knds-overflow-hidden\">\n  \n  <aside class=\"knds-sidebar knds-w-1/4 knds-border-right knds-p-400 knds-flex-col knds-justify-between\" style=\"min-width: 280px;\">\n    <nav class=\"knds-flex-col knds-gap-200\">\n      <span class=\"knds-text-label-14-mono knds-text-red\">KNDS SYSTEM TREE</span>\n      <ul class=\"knds-list-none knds-p-0 knds-m-0 knds-flex-col knds-gap-100\">\n        <!-- 네비게이션 아이템들 -->\n      </ul>\n    </nav>\n    <div class=\"knds-panel knds-p-200\">\n      <span class=\"knds-text-label-14-mono knds-text-muted\">STATUS: ONLINE 99.9%</span>\n    </div>\n  </aside>\n  \n  <div class=\"knds-splitter knds-w-[4px] knds-cursor-col-resize knds-bg-border hover:knds-bg-red knds-transition-colors\"></div>\n  \n  <main class=\"knds-main-view knds-w-3/4 knds-flex-1 knds-overflow-y-auto knds-p-600\">\n    <div class=\"knds-main-content knds-max-w-4xl knds-mx-auto\">\n      <h1 class=\"knds-text-heading-32 knds-font-bold knds-mb-200\">Workspace Dashboard</h1>\n      <p class=\"knds-text-copy-14 knds-text-muted\">우측 75% 영역은 실제 데이터 작업과 복잡한 표면 조작이 이루어지는 독립 도화지입니다.</p>\n    </div>\n  </main>\n\n</div>"
+              },
+              {
+                label: "React / TSX",
+                tag: "TSX",
+                code: "export default function SplitLayout({ sidebar, children }: { sidebar: React.ReactNode; children: React.ReactNode }) {\n  const [sidebarWidth, setSidebarWidth] = React.useState(25); // Percentage\n  \n  return (\n    <div className=\"knds-flex-row knds-w-full knds-h-screen knds-overflow-hidden knds-bg-primary\">\n      <aside style={{ width: `${sidebarWidth}%`, minWidth: '280px', maxWidth: '40%' }} className=\"knds-border-right knds-p-400 knds-overflow-y-auto\">\n        {sidebar}\n      </aside>\n      <div className=\"knds-splitter knds-w-[4px] knds-cursor-col-resize knds-bg-border hover:knds-bg-red\" />\n      <main style={{ width: `${100 - sidebarWidth}%` }} className=\"knds-flex-1 knds-overflow-y-auto knds-p-600\">\n        {children}\n      </main>\n    </div>\n  );\n}"
+              },
+              {
+                label: "CSS Token Specifications",
+                tag: "CSS",
+                code: ".knds-app {\n  display: flex;\n  flex-direction: row;\n  width: 100vw;\n  height: 100vh;\n  overflow: hidden;\n}\n.knds-splitter {\n  width: 4px;\n  background-color: var(--color-border-default);\n  cursor: col-resize;\n  transition: background-color 0.15s ease;\n  z-index: 20;\n}\n.knds-splitter:hover, .knds-splitter:active {\n  background-color: var(--color-functional-red);\n}"
+              }
+            ]}
+            note="데스크톱에서 좌측 25% 기판과 우측 75% 작업 도화지를 분리하여 정보 탐색과 실행 영역을 명확히 구분합니다."
+          />
 
           <HigSpecSection
             anatomy={[

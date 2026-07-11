@@ -34,6 +34,6 @@ export interface QACheckItem {
   checked: boolean;
 }
 
-export type CodePlatform = 'web' | 'android' | 'ios';
+export type CodePlatform = 'web' | 'react' | 'android' | 'ios';
 
 export type SimulationMode = 'none' | 'protanopia' | 'deuteranopia' | 'text-zoom-200';

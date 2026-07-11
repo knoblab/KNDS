@@ -670,6 +670,11 @@ button {
 .knds-min-h-\[200px\] { min-height: 200px; }
 .knds-max-h-full { max-height: 100%; }
 .knds-max-h-screen { max-height: 100vh; }
+.knds-max-h-\[300px\] { max-height: 300px; }
+.knds-max-h-\[340px\] { max-height: 340px; }
+.knds-max-h-\[360px\] { max-height: 360px; }
+.knds-max-h-\[400px\] { max-height: 400px; }
+.knds-max-h-\[480px\] { max-height: 480px; }
 
 /* --- 6.5 Spacing – Margin --- */
 .knds-m-025 { margin: var(--space-025); }
@@ -950,6 +955,7 @@ button {
 .knds-border-red { border-color: var(--color-functional-red); }
 .knds-border-hover { border-color: var(--color-border-hover); }
 .knds-border-none { border: none; }
+.knds-border-transparent { border-color: transparent; }
 
 /* --- 6.11 Border Radius --- */
 .knds-radius-sm { border-radius: 4px; }
@@ -1042,6 +1048,10 @@ button {
 .knds-select-text { user-select: text; -webkit-user-select: text; }
 .knds-object-cover { object-fit: cover; }
 .knds-object-contain { object-fit: contain; }
+.knds-flex-shrink-0 { flex-shrink: 0; }
+.knds-word-break { word-break: break-all; }
+.knds-line-height-relaxed { line-height: 1.6; }
+.knds-pr-150 { padding-right: var(--space-150); }
 
 /* --- 6.18 Transitions --- */
 .knds-transition { transition-property: all; transition-timing-function: ease; transition-duration: 200ms; }
