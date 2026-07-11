@@ -32,27 +32,27 @@ export default function ChapterContent({ activeChapter }: ChapterProps) {
       {/* 1. Philosophy */}
       {activeChapter === 1 && (
         <section id="ch-1">
-          <div className="knds-mb-400" style={{ textAlign: 'center', padding: 'var(--space-600) 0' }}>
-            <span className="knds-text-label-14-mono knds-text-red knds-mb-200" style={{ display: 'inline-block' }}>
+          <div className="knds-mb-400 knds-text-center knds-py-600">
+            <span className="knds-text-label-14-mono knds-text-red knds-mb-200 knds-inline-block">
               PHYSICAL-DIGITAL FUSION DESIGN SYSTEM
             </span>
-            <h1 className="knds-mb-300" style={{ fontSize: '64px', lineHeight: '1.1', fontWeight: 600, letterSpacing: '-0.02em', color: 'var(--color-text-primary)' }}>
+            <h1 className="knds-mb-300 knds-text-heading-72 knds-font-semibold knds-text-primary knds-tracking-tight">
               물리적 촉각을 지닌<br />디지털 설계 언어
             </h1>
-            <p className="knds-text-copy-14 knds-text-muted" style={{ fontSize: '18px', lineHeight: '1.6', maxWidth: '600px', margin: '0 auto' }}>
+            <p className="knds-text-copy-14 knds-text-muted knds-max-w-2xl knds-mx-auto knds-leading-relaxed">
               디터 람스의 철학과 하드웨어적 정밀함을 웹 환경에 완벽히 이식한 통합 디자인 시스템입니다. 복잡한 스타일링 없이, 선언적인 구조와 엄격한 여백만으로 극한의 정밀함을 달성하세요.
             </p>
-            <div className="knds-mt-400 knds-flex-row knds-justify-center" style={{ gap: '16px' }}>
-              <a href="https://github.com/knoblab/KNDS" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
-                <button className="knds-btn-primary knds-btn-md" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div className="knds-mt-400 knds-flex-row knds-justify-center knds-gap-200">
+              <a href="https://github.com/knoblab/KNDS" target="_blank" rel="noopener noreferrer" className="knds-no-underline">
+                <button className="knds-btn-primary knds-btn-md knds-flex-row knds-items-center knds-gap-100">
                   <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
                     <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
                   </svg>
                   View on GitHub
                 </button>
               </a>
-              <a href="/editor/" style={{ textDecoration: 'none' }}>
-                <button className="knds-secondary-btn knds-btn-md" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <a href="/editor/" className="knds-no-underline">
+                <button className="knds-secondary-btn knds-btn-md knds-flex-row knds-items-center knds-gap-100">
                   <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
                     <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" />
                   </svg>
@@ -63,13 +63,13 @@ export default function ChapterContent({ activeChapter }: ChapterProps) {
           </div>
 
           <div className="knds-mb-400">
-            <div className="knds-panel knds-grid-bg knds-flex-row knds-items-center knds-justify-center knds-gap-300 knds-flex-wrap" style={{ padding: 'var(--space-400)' }}>
-              <div className="knds-content-relative knds-flex-shrink-0" style={{ width: '240px', height: '240px' }}>
-                <img src="/Px7S3.webp" alt="Design Motif" className="knds-w-full knds-h-full knds-radius-lg knds-shadow-bevel" style={{ objectFit: 'cover' }} />
+            <div className="knds-panel knds-grid-bg knds-flex-row knds-items-center knds-justify-center knds-gap-300 knds-flex-wrap knds-p-400">
+              <div className="knds-content-relative knds-flex-shrink-0 knds-w-[240px] knds-h-[240px]">
+                <img src="/Px7S3.webp" alt="Design Motif" className="knds-w-full knds-h-full knds-radius-lg knds-shadow-bevel knds-object-cover" />
               </div>
               <div className="knds-content-relative">
-                <p className="knds-text-label-14-mono knds-text-muted" style={{ lineHeight: '1.8' }}>
-                  <strong className="knds-text-red" style={{ fontSize: '12px' }}>DESIGN MOTIF</strong><br />
+                <p className="knds-text-label-14-mono knds-text-muted knds-leading-relaxed">
+                  <strong className="knds-text-red">DESIGN MOTIF</strong><br />
                   서로 다른 물리적 재료들이<br />
                   연속성 있게 조화를 이루는<br />
                   하드웨어의 미학
@@ -243,11 +243,11 @@ export default {
             
             <div className="knds-mt-100 knds-mb-300">
               <p className="knds-text-label-14-mono knds-text-muted knds-mb-100">디자인 미리보기 (실제 사이드바 적용 예시)</p>
-              <div style={{ width: '100%', maxWidth: '320px', border: '1px solid var(--color-border-default)', backgroundColor: 'var(--color-bg-primary)', position: 'relative', overflow: 'hidden' }}>
-                <aside className="knds-sidebar" style={{ width: '100%', borderRight: 'none', minHeight: '100%' }}>
+              <div className="knds-w-full knds-max-w-xs knds-border knds-bg-primary knds-relative knds-overflow-hidden">
+                <aside className="knds-sidebar knds-w-full knds-h-full knds-border-none">
                   <div className="knds-content-relative knds-p-300">
                     <nav>
-                      <span className="knds-text-label-14-mono knds-text-muted knds-border-bottom knds-pb-100 knds-mb-100 knds-font-bold" style={{ display: 'block' }}>
+                      <span className="knds-text-label-14-mono knds-text-muted knds-border-bottom knds-pb-100 knds-mb-100 knds-font-bold knds-block">
                         GUIDELINES INDEX
                       </span>
                       <div className="knds-mb-200">
@@ -257,13 +257,13 @@ export default {
                         </div>
                         <div className="knds-nav-item">
                           <div className="knds-flex-row knds-items-center knds-gap-150 knds-overflow-hidden knds-w-full">
-                            <span className="knds-text-label-14-mono knds-text-center knds-font-bold" style={{ backgroundColor: 'var(--color-border-default)', color: 'var(--color-text-secondary)', padding: '4px 8px', borderRadius: '2px', minWidth: '32px' }}>01</span>
+                            <span className="knds-text-label-14-mono knds-text-center knds-font-bold knds-bg-secondary knds-text-secondary knds-p-050 knds-radius-sm knds-min-w-[32px]">01</span>
                             <span className="knds-text-label-16">Philosophy</span>
                           </div>
                         </div>
                         <div className="knds-nav-item active">
                           <div className="knds-flex-row knds-items-center knds-gap-150 knds-overflow-hidden knds-w-full">
-                            <span className="knds-text-label-14-mono knds-text-center knds-font-bold" style={{ backgroundColor: 'var(--color-functional-red)', color: 'var(--color-bg-primary)', padding: '4px 8px', borderRadius: '2px', minWidth: '32px' }}>02</span>
+                            <span className="knds-text-label-14-mono knds-text-center knds-font-bold knds-bg-red knds-text-white knds-p-050 knds-radius-sm knds-min-w-[32px]">02</span>
                             <span className="knds-text-label-16">System Architecture</span>
                           </div>
                         </div>
@@ -271,12 +271,10 @@ export default {
                     </nav>
                     
                     {/* 출처 표시 미리보기 */}
-                    <div className="knds-mt-400 knds-pt-200 knds-border-top" style={{ marginTop: '32px', paddingTop: '16px' }}>
+                    <div className="knds-mt-400 knds-pt-200 knds-border-top">
                       <div className="knds-text-label-14-mono knds-text-muted knds-mb-050">
                         <a href="https://github.com/knoblab/KNDS" target="_blank" rel="noreferrer"
-                          style={{ color: 'var(--color-text-secondary)', textDecoration: 'none', transition: 'color 0.2s' }}
-                          onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-text-primary)'}
-                          onMouseLeave={(e) => e.currentTarget.style.color = 'var(--color-text-secondary)'}>
+                          className="knds-text-secondary knds-no-underline knds-transition-colors hover:knds-text-primary">
                           View on GitHub ↗
                         </a>
                       </div>
@@ -290,13 +288,10 @@ export default {
             </div>
 
             <p className="knds-text-label-14-mono knds-text-muted knds-mb-100">적용 코드</p>
-            <div className="knds-code-block knds-selectable" style={{ whiteSpace: 'pre-wrap' }}>
-              {`<div class="knds-mt-400 knds-pt-200 knds-border-top" style="margin-top: 32px; padding-top: 16px;">
+            <div className="knds-code-block knds-selectable knds-whitespace-pre-wrap">
+              {`<div class="knds-mt-400 knds-pt-200 knds-border-top">
   <div class="knds-text-label-14-mono knds-text-muted knds-mb-050">
-    <a href="https://github.com/knoblab/KNDS" target="_blank"
-      style="color: var(--color-text-secondary); text-decoration: none; transition: color 0.2s;"
-      onmouseover="this.style.color='var(--color-text-primary)'"
-      onmouseout="this.style.color='var(--color-text-secondary)'">View on GitHub ↗</a>
+    <a href="https://github.com/knoblab/KNDS" target="_blank" class="knds-text-secondary knds-no-underline knds-transition-colors hover:knds-text-primary">View on GitHub ↗</a>
   </div>
   <div class="knds-text-label-14-mono knds-text-muted">
     Made with KNDS
@@ -331,17 +326,17 @@ export default {
               디지털 레이아웃의 구조적 정밀도를 담보하기 위해 KNDS는 물리적 설계 도면에서 착안한 청사진 그리드와 수학적으로 정렬된 다중 스케일 여백 시스템을 채택한다.
             </p>
           </div>
-          <div className="knds-bg-secondary knds-border knds-p-300 knds-flex-col knds-gap-200 knds-mb-300" style={{ backgroundImage: 'var(--blueprint-grid-pattern)', backgroundSize: 'var(--space-300) var(--space-300)' }}>
+          <div className="knds-bg-secondary knds-border knds-p-300 knds-flex-col knds-gap-200 knds-mb-300 knds-grid-bg">
             <div className="knds-flex-row knds-gap-100">
-              <div style={{ width: 'var(--space-100)', height: 'var(--space-400)', backgroundColor: 'var(--color-functional-red)' }}></div>
+              <div className="knds-bg-red" style={{ width: 'var(--space-100)', height: 'var(--space-400)' }}></div>
               <span className="knds-text-label-14-mono knds-text-red">--space-100 (8px)</span>
             </div>
             <div className="knds-flex-row knds-gap-200">
-              <div style={{ width: 'var(--space-200)', height: 'var(--space-400)', backgroundColor: 'var(--color-functional-red)' }}></div>
+              <div className="knds-bg-red" style={{ width: 'var(--space-200)', height: 'var(--space-400)' }}></div>
               <span className="knds-text-label-14-mono knds-text-red">--space-200 (16px)</span>
             </div>
             <div className="knds-flex-row knds-gap-300">
-              <div style={{ width: 'var(--space-300)', height: 'var(--space-400)', backgroundColor: 'var(--color-functional-red)' }}></div>
+              <div className="knds-bg-red" style={{ width: 'var(--space-300)', height: 'var(--space-400)' }}></div>
               <span className="knds-text-label-14-mono knds-text-red">--space-300 (24px)</span>
             </div>
           </div>
@@ -384,7 +379,7 @@ export default {
             <TypographySandbox />
           </div>
 
-          <details className="knds-mt-200 knds-cursor-pointer knds-border-top" style={{ paddingTop: '16px' }}>
+          <details className="knds-mt-200 knds-cursor-pointer knds-border-top knds-pt-200">
             <summary className="knds-text-label-14-mono knds-text-muted knds-font-bold">[+] 타이포그래피 구현 코드 보기</summary>
             <div className="knds-code-block knds-selectable knds-mt-100" style={{ whiteSpace: 'pre-wrap' }}>
               {`<!-- 1. 헤딩 타이틀 (Heading Typography) -->
@@ -464,10 +459,10 @@ export default {
           <div className="knds-mb-300">
             <h3 className="knds-text-label-16 knds-mb-100">아크로매틱 기본 배경 및 경계선 시스템</h3>
             <div className="knds-code-block knds-mb-200">
-              배경 1 (Background 1: #FFFFFF)<br />
-              배경 2 (Background 2: #F4F4F5)<br />
-              컴포넌트 Rest (Color 1: #FFFFFF)<br />
-              경계선 Rest (Color 4: #E4E4E7)
+              배경 1 (.knds-bg-primary: #FFFFFF)<br />
+              배경 2 (.knds-bg-secondary: #F4F4F5)<br />
+              텍스트 Rest (.knds-text-primary: var(--color-text-primary))<br />
+              경계선 Rest (.knds-border: 1px solid var(--color-border-default))
             </div>
             <p className="knds-text-copy-14">
               페이지 전체를 감싸는 최하단 도화지 영역인 '배경 1'은 순수한 백색인 #FFFFFF를 지정하며, 제한적인 수준에서 '배경 2'인 #F4F4F5를 차용하여 깊이 단계를 제어한다.
@@ -488,7 +483,7 @@ export default {
             <ColorSandbox />
           </div>
 
-          <details className="knds-mt-200 knds-cursor-pointer knds-border-top" style={{ paddingTop: '16px' }}>
+          <details className="knds-mt-200 knds-cursor-pointer knds-border-top knds-pt-200">
             <summary className="knds-text-label-14-mono knds-text-muted knds-font-bold">[+] 컬러 구현 코드 보기</summary>
             <div className="knds-code-block knds-selectable knds-mt-100" style={{ whiteSpace: 'pre-wrap' }}>
               {`/* 1. 디자인 시스템 토큰을 활용한 CSS 예시 (CSS Variables) */
@@ -512,7 +507,7 @@ export default {
 <div class="knds-text-muted knds-text-copy-14">마지막 업데이트: 1시간 전</div>
 
 <!-- 붉은색 배경 (주로 알림 뱃지 등에 사용) -->
-<div class="knds-bg-red" style="color: var(--color-bg-primary);">알림</div>`}
+<div class="knds-bg-red knds-text-white knds-px-100 knds-py-050 knds-radius-sm">알림</div>`}
             </div>
           </details>
 
@@ -551,7 +546,7 @@ export default {
             <MaterialSandbox />
           </div>
 
-          <details className="knds-mt-200 knds-cursor-pointer knds-border-top" style={{ paddingTop: '16px' }}>
+          <details className="knds-mt-200 knds-cursor-pointer knds-border-top knds-pt-200">
             <summary className="knds-text-label-14-mono knds-text-muted knds-font-bold">[+] 머티리얼 및 표면 높이 구현 코드 보기</summary>
             <div className="knds-code-block knds-selectable knds-mt-100" style={{ whiteSpace: 'pre-wrap' }}>
               {`<!-- 1. 기본 하드웨어 패널 (Standard Panel) -->
@@ -565,12 +560,12 @@ export default {
 
 <!-- 2. 프로스트 글래스 / 반투명 표면 (Frosted Glass) -->
 <!-- 스크롤 오버레이나 사이드바, 네비게이션 영역에 주로 사용합니다. -->
-<div style="background-color: var(--bg-sidebar); backdrop-filter: blur(24px) saturate(180%); -webkit-backdrop-filter: blur(24px) saturate(180%); padding: var(--space-200);">
+<div class="knds-backdrop-blur-lg knds-p-200" style="background-color: var(--bg-sidebar);">
   <span class="knds-text-label-14-mono">투과되는 유리 재질</span>
 </div>
 
 <!-- 3. 상태 표시용 글로우 이펙트 (Glow Effect) -->
-<div class="knds-shadow-glow" style="border: 1px solid var(--color-functional-red); border-radius: 8px; padding: 16px;">
+<div class="knds-shadow-glow knds-border knds-border-red knds-radius-md knds-p-200">
   강조되어야 하는 치명적 알림 박스
 </div>`}
             </div>
@@ -614,7 +609,7 @@ export default {
             <ButtonSandbox />
           </div>
 
-          <details className="knds-mt-200 knds-cursor-pointer knds-border-top" style={{ paddingTop: '16px' }}>
+          <details className="knds-mt-200 knds-cursor-pointer knds-border-top knds-pt-200">
             <summary className="knds-text-label-14-mono knds-text-muted knds-font-bold">[+] 버튼 구현 코드 보기</summary>
             <div className="knds-code-block knds-selectable knds-mt-100" style={{ whiteSpace: 'pre-wrap' }}>
               {`<!-- 1. 1차 액션 (Primary Button) -->
@@ -633,7 +628,7 @@ export default {
 <!-- 3. 고스트 액션 (Ghost Button / Text Button) -->
 <!-- 테두리 없이 텍스트만 존재, 중요도가 낮은 부가 기능 -->
 <!-- knds-secondary-btn 구조에서 border를 빼고 여백을 줄여 사용 가능 -->
-<button class="knds-secondary-btn" style="border: none; background: transparent;">
+<button class="knds-secondary-btn knds-border-none knds-bg-transparent">
   Learn More
 </button>
 
@@ -681,7 +676,7 @@ export default {
             <FormSandbox />
           </div>
 
-          <details className="knds-mt-200 knds-cursor-pointer knds-border-top" style={{ paddingTop: '16px' }}>
+          <details className="knds-mt-200 knds-cursor-pointer knds-border-top knds-pt-200">
             <summary className="knds-text-label-14-mono knds-text-muted knds-font-bold">[+] 폼 입력 구현 코드 보기</summary>
             <div className="knds-code-block knds-selectable knds-mt-100" style={{ whiteSpace: 'pre-wrap' }}>
               {`<!-- 1. 기본 텍스트 입력 폼 세트 -->
@@ -742,21 +737,21 @@ export default {
             <ModalSandbox />
           </div>
 
-          <details className="knds-mt-200 knds-cursor-pointer knds-border-top" style={{ paddingTop: '16px' }}>
+          <details className="knds-mt-200 knds-cursor-pointer knds-border-top knds-pt-200">
             <summary className="knds-text-label-14-mono knds-text-muted knds-font-bold">[+] 모달 다이얼로그 구현 코드 보기</summary>
             <div className="knds-code-block knds-selectable knds-mt-100" style={{ whiteSpace: 'pre-wrap' }}>
               {`<!-- 1. 전체 화면 오버레이 (Dimmed Background) -->
 <!-- z-index를 높게 설정하고 화면 전체를 덮습니다. -->
-<div class="knds-overlay" style="position: fixed; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); z-index: 998;"></div>
+<div class="knds-overlay knds-fixed knds-inset-0 knds-backdrop-blur-sm knds-z-40" style="background: rgba(0,0,0,0.6);"></div>
 
 <!-- 2. 모달 다이얼로그 본체 -->
 <!-- 화면 중앙에 고정시키며 입체감을 강하게 부여합니다. -->
-<div class="knds-panel" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 999; min-width: 420px; box-shadow: 0 20px 40px rgba(0,0,0,0.2);">
+<div class="knds-panel knds-fixed knds-inset-center knds-z-50 knds-shadow-xl knds-w-[420px]">
   
   <!-- 모달 헤더 -->
   <div class="knds-border-bottom knds-pb-150 knds-mb-200 knds-flex-row knds-justify-between knds-items-center">
     <h3 class="knds-text-label-16">DELETE SYSTEM DATA</h3>
-    <button class="knds-text-muted knds-cursor-pointer" style="font-size: 18px;">✕</button>
+    <button class="knds-text-muted knds-cursor-pointer knds-border-none knds-bg-transparent">✕</button>
   </div>
   
   <!-- 모달 콘텐츠 -->
@@ -820,7 +815,7 @@ export default {
 <!-- .active 클래스 부여 시 좌측에 붉은 인디케이터가 활성화됨 -->
 <div class="knds-nav-item active">
   <div class="knds-flex-row knds-items-center knds-gap-100">
-    <span class="knds-text-label-14-mono knds-bg-secondary knds-p-050" style="border-radius:2px;">01</span>
+    <span class="knds-text-label-14-mono knds-bg-secondary knds-p-050 knds-radius-sm">01</span>
     <span class="knds-text-label-16">PC Split Screen</span>
   </div>
 </div>
@@ -866,7 +861,7 @@ export default {
             <SplitSandbox defaultMode="desktop" />
           </div>
 
-          <details className="knds-mt-200 knds-cursor-pointer knds-border-top" style={{ paddingTop: '16px' }}>
+          <details className="knds-mt-200 knds-cursor-pointer knds-border-top knds-pt-200">
             <summary className="knds-text-label-14-mono knds-text-muted knds-font-bold">[+] 스플릿 스크린 구현 코드 보기</summary>
             <div className="knds-code-block knds-selectable knds-mt-100" style={{ whiteSpace: 'pre-wrap' }}>
               {`<!-- 25:75 비율의 황금비 스플릿 스크린 전체 구조 -->
@@ -874,7 +869,7 @@ export default {
   
   <!-- 좌측 25% 사이드바 영역 -->
   <!-- 블러 효과와 그리드 패턴이 포함된 KNDS 특유의 사이드바 클래스 -->
-  <aside class="knds-sidebar" style="width: 25%;">
+  <aside class="knds-sidebar knds-w-1/4">
     <nav>네비게이션 메뉴</nav>
   </aside>
   
@@ -882,7 +877,7 @@ export default {
   <div class="knds-splitter"></div>
   
   <!-- 우측 75% 메인 콘텐츠 영역 -->
-  <main class="knds-main-view" style="width: 75%;">
+  <main class="knds-main-view knds-w-3/4">
     <!-- 실제 콘텐츠가 담기는 중앙 정렬된 컨테이너 -->
     <div class="knds-main-content">
       <h1 class="knds-text-heading-32">Main Title</h1>
@@ -901,8 +896,8 @@ export default {
               { id: 'sp-pc-3', name: 'Draggable Splitter Bar (.knds-splitter)', tokenOrClass: 'width: 4px, cursor: col-resize', description: '두 영역의 경계를 분리하며 사용자가 너비를 미세 조정할 수 있는 1px 액센트 바' }
             ]}
             doDont={[
-              { type: 'do', title: '25:75 비대칭 황금 분할 원칙 준수', description: '데스크톱 화면에서 좌측은 25% (280px~360px), 우측은 75% 비율을 유지하여 시각적 밸런스를 달성하십시오.', codeSnippet: '<aside style="width: 25%">...</aside>\n<main style="width: 75%">...</main>' },
-              { type: 'dont', title: '50:50 대칭 분할이나 4개 이상 과도한 수직 컬럼 분열 금지', description: '50:50 분할은 화면 주인공(Main View)의 집중도를 떨어뜨리고 시선을 산만하게 만듭니다.', codeSnippet: '<!-- ❌ Avoid -->\n<div style="width: 50%">Side</div>\n<div style="width: 50%">Main</div>' }
+              { type: 'do', title: '25:75 비대칭 황금 분할 원칙 준수', description: '데스크톱 화면에서 좌측은 25% (280px~360px), 우측은 75% 비율을 유지하여 시각적 밸런스를 달성하십시오.', codeSnippet: '<aside class="knds-w-1/4">...</aside>\n<main class="knds-w-3/4">...</main>' },
+              { type: 'dont', title: '50:50 대칭 분할이나 4개 이상 과도한 수직 컬럼 분열 금지', description: '50:50 분할은 화면 주인공(Main View)의 집중도를 떨어뜨리고 시선을 산만하게 만듭니다.', codeSnippet: '<!-- ❌ Avoid -->\n<div class="knds-w-1/2">Side</div>\n<div class="knds-w-1/2">Main</div>' }
             ]}
             tokens={[
               { name: '.knds-sidebar min-width', defaultValue: '280px (최소 너비 제한)', description: '사이드바 글자가 뭉개지지 않기 위한 최소 하강 한계치' },
@@ -968,7 +963,7 @@ export default {
           </div>
           <div className="knds-mb-300">
             <ul className="knds-list-disc knds-text-copy-14">
-              <li><strong>하드코딩 배제 검수:</strong> 모든 여백 및 내부 패딩 코드가 기하학적인 정수형 픽셀 단위로 선언되어 있지 않고, 반드시 $space- 계열의 토큰으로 대체되었는지 확인한다.</li>
+              <li><strong>하드코딩 배제 검수:</strong> 모든 여백 및 내부 패딩 코드가 기하학적인 정수형 픽셀 단위로 선언되어 있지 않고, 반드시 --space-* CSS 변수 및 .knds-p-*, .knds-m-* 유틸리티 태그로 대체되었는지 확인한다.</li>
               <li><strong>청사진 그리드 대비:</strong> 배경 격자선의 명도 투명도 수치가 10% - 20% 임계를 넘지 않는지 검측한다.</li>
               <li><strong>터치 영역 확보:</strong> 48x48dp 이상을 확보하여 모바일 터치 누락을 방지한다.</li>
               <li><strong>펑셔널 레드 위계 통제:</strong> 펑셔널 레드 색상이 적용된 컴포넌트가 과도하게 남발되지 않고 화면당 최대 3개 이하로 통제되고 있는지 체크한다.</li>
@@ -999,28 +994,28 @@ export default {
       {/* 15. Credits */}
       {activeChapter === 15 && (
         <section id="ch-15">
-          <div className="knds-mb-400" style={{ textAlign: 'center', padding: 'var(--space-400) 0' }}>
-            <span className="knds-text-label-14-mono knds-text-red knds-mb-150" style={{ display: 'inline-block' }}>
+          <div className="knds-mb-400 knds-text-center knds-py-400">
+            <span className="knds-text-label-14-mono knds-text-red knds-mb-150 knds-inline-block">
               KNDS CO-CREATION LABS
             </span>
             <h2 className="knds-text-heading-32 knds-mb-200">
               System Creators & Inspirations
             </h2>
-            <p className="knds-text-copy-14 knds-text-muted" style={{ maxWidth: '600px', margin: '0 auto' }}>
+            <p className="knds-text-copy-14 knds-text-muted knds-max-w-2xl knds-mx-auto">
               물리 하드웨어의 감각을 디지털 스크린으로 확장하는 여정을 함께한 기여자입니다.
             </p>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px', marginBottom: '40px' }}>
+          <div className="knds-grid knds-grid-cols-1 knds-md:grid-cols-2 knds-gap-300 knds-mb-400">
 
             {/* User Card */}
-            <div className="knds-panel knds-grid-bg knds-relative" style={{ minHeight: '200px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding: 'var(--space-300)' }}>
+            <div className="knds-panel knds-grid-bg knds-relative knds-flex-col knds-justify-between knds-p-300 knds-min-h-[200px]">
               <div className="knds-content-relative">
                 <div className="knds-flex-row knds-justify-between knds-items-start knds-mb-200">
-                  <span className="knds-text-label-14-mono knds-text-red" style={{ backgroundColor: 'var(--color-red-light)', padding: '4px 8px', borderRadius: '4px' }}>LEAD ARCHITECT</span>
+                  <span className="knds-text-label-14-mono knds-text-red knds-bg-red-light knds-px-100 knds-py-050 knds-radius-sm">LEAD ARCHITECT</span>
                   <span className="knds-text-label-14-mono knds-text-muted">01</span>
                 </div>
-                <h3 className="knds-text-heading-32 knds-font-bold knds-mb-100" style={{ fontSize: '24px' }}>Jaewon Lee</h3>
+                <h3 className="knds-text-heading-24 knds-font-bold knds-mb-100">Jaewon Lee</h3>
                 <p className="knds-text-copy-14 knds-text-muted">
                   시스템 기획 및 검증 총괄.
                 </p>

@@ -4,6 +4,7 @@ export default {
   content: [
     './index.html',
     './src/**/*.{js,ts,jsx,tsx,vue,svelte,html}',
+    './docs/src/**/*.{js,ts,jsx,tsx,html}',
     './template/**/*.html',
     './test/**/*.html'
   ],
